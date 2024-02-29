@@ -1,0 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+chapters:
+  - file: syllabus/index
+  - file: week01/index
+    sections:
+      - file: week01/session1
+      - file: week01/session2
