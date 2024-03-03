@@ -3,9 +3,22 @@
 
 format: jb-book
 root: index
-chapters:
-  - file: syllabus/index
-  - file: week01/index
-    sections:
-      - file: week01/session1
-      - file: week01/session2
+parts:
+  - caption: Lecture Notes
+    chapters:
+      - file: week01/index
+        sections:
+          - file: week01/session1
+          - file: week01/session2
+  - caption: About
+    chapters:
+      - file: syllabus/index
+      - file: about/index
+      - url: https://halla.ai
+        title: 인공지능학과
+      - url: https://os2024.halla.ai
+        title: 운영체제 2024
+      - url: https://mlops2024.halla.ai
+        title: 머신러닝시스템 2024
+      - url: https://cobots2024.halla.ai
+        title: 협동로봇활용 2024
