@@ -1,34 +1,39 @@
 # Changes here will be overwritten by Copier; do NOT edit manually
-_commit: v0.12.1-1-ged875bd
+_commit: v0.12.1
 _src_path: gh:entelecheia/hyperfast-python-template
 author: Young Joon Lee
-build_and_release: false
+build_and_release: true
 code_template_answers_file: .copier-hyfi-config.yaml
-code_template_source: ''
-codecov_graph_token: '[REPLACE_ME]'
+code_template_source: gh:entelecheia/hyfi-template
+codecov_graph_token: 6OxfwdlW4Y
 copyright_year: 2024
 documentaion_tool: jupyter-book
-documentation_url: https://entelecheia.github.io/course-template
-email: entelecheia@hotmail.com
+documentation_url: https://os2024.halla.ai
+email: yj.lee@chu.ac.kr
 favicon_path: https://assets.entelecheia.ai/favicon.png
-friendly_name: Course Template
-github_repo_name: course-template
-github_username: entelecheia
-google_analytics_id: ''
+friendly_name: 운영체제 2024
+github_repo_name: os-2024
+github_username: chu-aie
+google_analytics_id: G-BQJE5V9RK2
 logo_path: ''
 main_branch: main
-package_name: coursetemp
+package_name: os2024
 package_scripts:
-- coursetemp = 'coursetemp.__cli__:main'
+- os2024 = 'os2024.__cli__:main'
 poe_task_files:
 - .tasks.toml
 - .tasks-extra.toml
-project_description: A template for a course
+project_description: 이 수업은 실제 운영 환경에서 기계 학습 시스템의 설계, 구현 및 관리에 대한 실질적인 측면을 다룹니다. 본
+    과정은 학생들에게 기계 학습 워크플로를 기존 소프트웨어 개발 및 운영 프로세스와 원활하게 통합하는 데 필요한 기술을 제공합니다. 이 과정에서는
+    DevOps, os 및 보안 관행을 강조합니다. 학생들은 실습 프로젝트를 통해 dot 파일, git, Docker, Kubernetes,
+    CI/CD 파이프라인, Weights & Biases 등 첨단 도구와 방법론을 사용하여 강력한 기계 학습 모델을 구축, 배포하고 유지 관리합니다.
+    또한, 이 과정은 학생들에게 GitOps, DevSecOps 및 LLMOps의 새로운 분야를 소개하여 실제 기계 학습 애플리케이션의 복잡성에
+    대비합니다.
 project_license: CC-BY-4.0
-project_name: course-template
-project_short_description: A template for a course
-upload_to_release: false
-upload_to_repository: false
+project_name: os2024
+project_short_description: Machine Learning Systems Design
+upload_to_release: true
+upload_to_repository: true
 use_launch_buttons: true
-use_source_code_skeleton: false
+use_source_code_skeleton: true
 
