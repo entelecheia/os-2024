@@ -6,11 +6,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "*"
+      - "main"
     paths:
       - "src/**"
       - "tests/**"
-      - '.copier-template/**'
 
 jobs:
   build:
@@ -21,7 +20,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: [3.8]
+        python-version: [3.9]
 
     steps:
       # Checkout the code base #
@@ -70,3 +69,10 @@ jobs:
           cat tests/pytest-coverage.txt >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           echo '\n\n\n'
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # required
+          fail_ci_if_error: false # optional (default = false)
+          verbose: true # optional (default = false)

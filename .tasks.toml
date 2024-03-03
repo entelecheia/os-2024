@@ -66,6 +66,14 @@ help = "remove documentation artifacts"
 sequence = ["clean-cov", "clean-pycache", "clean-build", "clean-docs"]
 help = "remove build artifacts and coverage reports"
 
+[tool.poe.tasks.run]
+cmd = "os2024"
+help = "run the main program"
+
+[tool.poe.tasks.build]
+cmd = "poetry build"
+help = "build the package"
+
 [tool.poe.tasks.install-ghp-import]
 cmd = "pipx install ghp-import"
 help = "install ghp-import"

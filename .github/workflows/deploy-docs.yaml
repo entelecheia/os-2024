@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - entelecheia/*
     # Paths can be used to only trigger actions when you have edited certain files, such as a file within the /docs directory
     paths:
       - "book/**"
@@ -40,4 +41,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: book/_build/html
-          cname: 
+          cname: os2024.halla.ai
