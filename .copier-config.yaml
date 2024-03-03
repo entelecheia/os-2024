@@ -1,34 +1,36 @@
 # Changes here will be overwritten by Copier; do NOT edit manually
-_commit: v0.12.1-1-ged875bd
+_commit: v0.13.0
 _src_path: gh:entelecheia/hyperfast-python-template
 author: Young Joon Lee
-build_and_release: false
+build_and_release: true
 code_template_answers_file: .copier-hyfi-config.yaml
 code_template_source: ''
-codecov_graph_token: '[REPLACE_ME]'
+codecov_graph_token: WvzaewFR3I
 copyright_year: 2024
 documentaion_tool: jupyter-book
-documentation_url: https://entelecheia.github.io/course-template
-email: entelecheia@hotmail.com
+documentation_url: https://os2024.halla.ai
+email: yj.lee@chu.ac.kr
 favicon_path: https://assets.entelecheia.ai/favicon.png
-friendly_name: Course Template
-github_repo_name: course-template
-github_username: entelecheia
-google_analytics_id: ''
+friendly_name: 운영체제 2024
+github_repo_name: os-2024
+github_username: chu-aie
+google_analytics_id: G-BQJE5V9RK2
 logo_path: ''
 main_branch: main
-package_name: coursetemp
+package_name: os2024
 package_scripts:
-- coursetemp = 'coursetemp.__cli__:main'
+- os2024 = 'os2024.__cli__:main'
 poe_task_files:
 - .tasks.toml
 - .tasks-extra.toml
-project_description: A template for a course
+project_description: 이 수업에서는 컴퓨터 시스템의 작동에 필수적인 운영체제의 설계, 기능, 관리에 대해 포괄적으로 다룹니다. 프로세스
+    관리, 메모리 관리, 파일 시스템 등 운영체제의 이론적・실질적 측면과 리눅스 운영체제에 대한 깊은 이해를 얻게 됩니다. 강의, 실습, 프로젝트를
+    통해 운영체제의 작동 방식, 하드웨어 및 소프트웨어와의 상호 작용, 운영체제 리소스의 효율적인 관리 방법을 배울 것입니다.
 project_license: CC-BY-4.0
-project_name: course-template
-project_short_description: A template for a course
-upload_to_release: false
-upload_to_repository: false
+project_name: os2024
+project_short_description: Operating Systems 2024 Course
+upload_to_release: true
+upload_to_repository: true
 use_launch_buttons: true
-use_source_code_skeleton: false
+use_source_code_skeleton: true
 

@@ -1,16 +1,19 @@
 [tool.poetry]
-name = "course-template"
+name = "os2024"
 version = "0.0.0"
-description = "A template for a course"
-authors = ["Young Joon Lee <entelecheia@hotmail.com>"]
+description = "Operating Systems 2024 Course"
+authors = ["Young Joon Lee <yj.lee@chu.ac.kr>"]
 license = "CC-BY-4.0"
-homepage = "https://entelecheia.github.io/course-template"
-repository = "https://github.com/entelecheia/course-template"
+homepage = "https://os2024.halla.ai"
+repository = "https://github.com/chu-aie/os-2024"
 readme = "README.md"
+packages = [{ include = "os2024", from = "src" }]
 
+[tool.poetry.scripts]
+os2024 = 'os2024.__cli__:main'
 
 [tool.poetry.dependencies]
-python = ">=3.8.1,<3.13"
+python = ">=3.9,<=3.12"
 click = "^8.1.3"
 
 [tool.poetry.group.dev]
@@ -96,6 +99,7 @@ tag_format = "v$version"
 [tool.semantic_release]
 branch = "main"
 version_toml = "pyproject.toml:tool.poetry.version"
+version_variable = "src/os2024/_version.py:__version__"
 version_source = "tag"
 commit_version_number = true # required for version_source = "tag"
 commit_subject = "chore(release): :rocket: {version} [skip ci]"
@@ -103,7 +107,12 @@ prerelease_tag = "rc"
 major_on_zero = true
 tag_commit = true
 changelog_file = "CHANGELOG.md"
-upload_to_repository = false
-upload_to_release = false
+upload_to_repository = true
+upload_to_release = true
 hvcs = "github" # hosting version control system, gitlab is also supported
-build_command = "mkdir -p dist && echo 'No build command configured' > dist/release.txt"
+build_command = "poetry build --no-cache"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+

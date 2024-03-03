@@ -5,7 +5,7 @@
 
 #######################################################################################
 # Book settings
-title: "Course Template" # The title of the book. Will be placed in the left navbar.
+title: "운영체제 2024" # The title of the book. Will be placed in the left navbar.
 author: "Young Joon Lee" # The author of the book
 copyright: "2024" # Copyright year to be placed in the footer
 # logo: Path to the book logo
@@ -29,7 +29,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/entelecheia/course-template # Online location of your book
+  url: https://github.com/chu-aie/os-2024 # Online location of your book
   path_to_book: book # Optional path to your book, relative to the repository root
   branch: main # Which branch of the repository should be used when creating links (optional)
 
@@ -40,7 +40,17 @@ html:
   use_repository_button: true
   use_edit_page_button: true
   favicon: https://assets.entelecheia.ai/favicon.png # favicon: Path to the favicon image
-  # google_analytics_id: Google Analytics ID
+  google_analytics_id: G-BQJE5V9RK2 # google_analytics_id: Google Analytics ID
+  extra_footer: |
+      <script
+        data-embed-id="8f8d1c1a-0e3e-428a-a8a6-26acd215e1fe"
+        data-base-api-url="https://chat.entelecheia.app/api/embed"
+        data-brand-image-url="https://assets.entelecheia.ai/favicon.png"
+        data-chat-icon="magic"
+        data-sponsor-text="OS 2024"
+        data-sponsor-link="https://chat.entelecheia.app/workspace/os2024"
+        src="https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js">
+      </script>
 
 sphinx:
   config:
