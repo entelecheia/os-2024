@@ -28,7 +28,7 @@ project_description: 이 수업에서는 컴퓨터 시스템의 작동에 필수
     통해 운영체제의 작동 방식, 하드웨어 및 소프트웨어와의 상호 작용, 운영체제 리소스의 효율적인 관리 방법을 배울 것입니다.
 project_license: CC-BY-4.0
 project_name: os2024
-project_short_description: Operating Systems 2024 Course
+project_short_description: Operating Systems 2024 Class
 upload_to_release: true
 upload_to_repository: true
 use_launch_buttons: true
