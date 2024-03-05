@@ -206,6 +206,4 @@
 
 이 수업에 필수 교재는 없지만, 추가 자료를 원할 경우 다음 책을 권장합니다:
 
-Operating Systems: Principles and Practice (2nd Edition): [http://www.amazon.com/Operating-Systems-Principles-Thomas-Anderson/dp/0985673524](http://www.amazon.com/Operating-Systems-Principles-Thomas-Anderson/dp/0985673524), Thomas Anderson and Michael Dahlin.
-
-추가 참고 자료에는 Silberschatz, Galvin, Greg, Sumitabha Das, W. Richard Stevens Stephen A. Rago, Milan Milenkovic, A. S. Tanenbaum, Kenneth H. Rosen, Dhanjay M. Dhamdhere 등 저자의 책이 있습니다.
+[Operating Systems: Three Easy Pieces by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (University of Wisconsin-Madison)](https://pages.cs.wisc.edu/~remzi/OSTEP/)
