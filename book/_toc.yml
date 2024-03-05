@@ -8,8 +8,7 @@ parts:
     chapters:
       - file: week01/index
         sections:
-          - file: week01/session1
-          - file: week01/session2
+          - file: week01/dialogues
   - caption: References
     chapters:
       - file: references/osstep/index
