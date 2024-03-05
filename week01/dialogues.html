@@ -436,14 +436,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">이 책에 관한 대화</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">운영체제: 아주 쉬운 세 가지 이야기, 흥미진진한 대화로 시작하다!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가상화의 세계</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">운영체제: 아주 쉬운 세 가지 이야기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">가상화의 세계</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">CPU 가상화 마무리 대화</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">메모리 가상화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">메모리 가상화</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">메모리 가상화를 정리하는 대화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">메모리 가상화를 정리하는 대화</a></li>
 </ul>
             </nav>
         </div>
@@ -457,11 +456,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dialogues">
 <h1>Dialogues<a class="headerlink" href="#dialogues" title="Link to this heading">#</a></h1>
+<p>이 대화는 <a class="reference external" href="https://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems: Three Easy Pieces by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (University of Wisconsin-Madison)</a>에 나오는 대화를 일부 재구성한 것입니다.</p>
 <section id="id1">
-<h2>이 책에 관한 대화<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-</section>
-<section id="id2">
-<h2>운영체제: 아주 쉬운 세 가지 이야기, 흥미진진한 대화로 시작하다!<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2>운영체제: 아주 쉬운 세 가지 이야기<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p><strong>교수:</strong> 안녕! “운영체제: 아주 쉬운 세 가지 이야기”에 온 걸 환영하네. 나는 운영체제의 비밀을 널에게 알려줄 “교수”라고 불린다네. 자네는 누구인가?</p>
 <p><strong>학생:</strong> 교수님 안녕하세요! 저는 배움에 목말라 “학생”이라고 합니다.</p>
 <p><strong>교수:</strong> 질문 있나?</p>
@@ -485,11 +482,10 @@ document.write(`
 <p><strong>참고:</strong></p>
 <ul class="simple">
 <li><p>공자의 말은 실제로는 Xunzi라는 학자의 말이다.</p></li>
-<li><p>더 흥미로운 대화를 위해 일부 내용을 재구성했습니다.</p></li>
 </ul>
 </section>
-<section id="id3">
-<h2>가상화의 세계<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2>가상화의 세계<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><strong>교수:</strong> 드디어 운영체제의 첫 번째 주제, 가상화에 대해 이야기할 시간이 왔네!</p>
 <p><strong>학생:</strong> 가상화가 뭐죠? 혹시 복숭아와 관련이 있나요?</p>
 <p><strong>교수:</strong> (미소 지으며) 흥미로운 질문이군. 가상화는 마치 복숭아 마술과 같다고 할 수 있네. 하나의 진짜 복숭아로부터 여러 개의 가상 복숭아를 만들어 내는 것처럼, 컴퓨터 시스템에서도 한 개의 자원을 여러 개의 가상 자원으로 만들어 낼 수 있지.</p>
@@ -506,7 +502,6 @@ document.write(`
 <p><strong>흥미진진한 여정이 시작되다! 과연 학생은 가상화의 비밀을 밝혀낼 수 있을까?</strong></p>
 <p><strong>참고:</strong></p>
 <ul class="simple">
-<li><p>대화를 더 흥미롭게 만들기 위해 일부 내용을 재구성했습니다.</p></li>
 <li><p>복숭아 비유는 가상화 개념을 이해하는 데 도움을 주지만, 실제 시스템에서의 작동 방식과는 다를 수 있습니다.</p></li>
 </ul>
 </section>
@@ -534,8 +529,8 @@ document.write(`
 <p><strong>학생:</strong> 하지만 원래 그런 의도 아니셨습니까? 우리가 흥미를 느껴서 스스로 조사하게 만드는 것?</p>
 <p><strong>교수:</strong> 그렇게 생각하지만, 그게 효과가 있을 줄은 몰랐지!</p>
 <p><strong>흥미진진한 대화는 끝났지만, 학생의 탐구는 계속된다. 과연 그는 CPU 가상화의 비밀을 완전히 밝혀낼 수 있을까?</strong></p>
-<section id="id4">
-<h3>메모리 가상화<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>메모리 가상화<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p><strong>학생:</strong> 가상화에 대한 이야기는 이제 끝인가요?</p>
 <p><strong>교수:</strong> 아니다! 아직 끝나지 않았네. 우리는 CPU 가상화에 대한 이야기를 마쳤을 뿐, 옷장 속에 숨어있는 진정한 괴물, 메모리 가상화는 아직 남아있지. 메모리 가상화는 CPU 가상화보다 훨씬 복잡하고, 하드웨어와 운영체제의 상호작용에 대한 더 깊은 이해를 필요로 하지.</p>
 <p><strong>학생:</strong> 왜 그렇게 어려운가요?</p>
@@ -554,13 +549,12 @@ document.write(`
 <p><strong>흥미진진한 대화 속에서 학생은 메모리 가상화에 대한 깊은 이해를 얻게 된다. 그는 과연 메모리 가상화의 비밀을 완전히 밝혀낼 수 있을까?</strong></p>
 <p><strong>참고:</strong></p>
 <ul class="simple">
-<li><p>대화를 더욱 흥미롭게 만들기 위해 일부 내용을 재구성했습니다.</p></li>
 <li><p>메모리 가상화 개념을 이해하기 위해서는 컴퓨터 아키텍처와 운영체제에 대한 기본적인 지식이 필요합니다.</p></li>
 </ul>
 </section>
 </section>
-<section id="id5">
-<h2>메모리 가상화를 정리하는 대화<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h2>메모리 가상화를 정리하는 대화<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p><strong>학생:</strong> (지쳐) 와, 정말 많은 내용이었네요.</p>
 <p><strong>교수:</strong> 그렇구나. 그래서 이제 어떻게 할 생각이야? 시험 대비라고?</p>
 <p><strong>학생:</strong> 음, 그렇죠. 하지만 이렇게 많은 내용을 어떻게 다 기억하라는 거죠?</p>
@@ -659,14 +653,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">이 책에 관한 대화</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">운영체제: 아주 쉬운 세 가지 이야기, 흥미진진한 대화로 시작하다!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가상화의 세계</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">운영체제: 아주 쉬운 세 가지 이야기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">가상화의 세계</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">CPU 가상화 마무리 대화</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">메모리 가상화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">메모리 가상화</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">메모리 가상화를 정리하는 대화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">메모리 가상화를 정리하는 대화</a></li>
 </ul>
   </nav></div>
 
