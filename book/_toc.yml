@@ -9,6 +9,7 @@ parts:
       - file: week01/index
         sections:
           - file: week01/dialogues
+          - file: week01/intro
   - caption: References
     chapters:
       - file: references/osstep/index
