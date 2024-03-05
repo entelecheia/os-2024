@@ -10,6 +10,9 @@ parts:
         sections:
           - file: week01/session1
           - file: week01/session2
+  - caption: References
+    chapters:
+      - file: references/osstep/index
   - caption: About
     chapters:
       - file: syllabus/index
