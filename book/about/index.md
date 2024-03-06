@@ -20,3 +20,8 @@
 ## Teaching Assistants
 
 ## Students
+
+### 이규범
+
+- 2024학년도 학회장입니다.
+- 202221014@chu.ac.kr
