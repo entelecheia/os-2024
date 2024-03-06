@@ -20,3 +20,8 @@
 ## Teaching Assistants
 
 ## Students
+
+### 오혜진
+
+- 202321012
+- ohj-0903@naver.com
