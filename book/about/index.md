@@ -20,3 +20,8 @@
 ## Teaching Assistants
 
 ## Students
+
+### 박진우
+
+학번: 202321010
+202321010@chu.ac.kr
