@@ -20,3 +20,7 @@
 ## Teaching Assistants
 
 ## Students
+
+### 고다희
+- 본인소개
+- 본인 연락처
