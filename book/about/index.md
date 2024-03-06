@@ -20,3 +20,8 @@
 ## Teaching Assistants
 
 ## Students
+
+###이호준
+
+- 20학번 3학년
+- 202021027@chu.ac.kr
