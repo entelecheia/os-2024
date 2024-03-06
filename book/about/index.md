@@ -20,3 +20,8 @@
 ## Teaching Assistants
 
 ## Students
+
+### 김진우
+
+202321007학번 입니다
+202321007@chu.ac.kr
