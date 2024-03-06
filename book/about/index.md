@@ -20,3 +20,8 @@
 ## Teaching Assistants
 
 ## Students
+
+##김준서
+
+-202321006
+-202321006@chu.ac.kr
