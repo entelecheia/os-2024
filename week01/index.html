@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 1 &#8212; 운영체제 2024</title>
+    <title>Week 1 - 운영체제: 아주 쉬운 세 가지 이야기 &#8212; 운영체제 2024</title>
   
   
   
@@ -93,7 +93,7 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="운영체제: 아주 쉬운 세 가지 이야기" href="dialogue.html" />
+    <link rel="next" title="운영체제 개요" href="intro.html" />
     <link rel="prev" title="운영체제 2024" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -205,14 +205,12 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 1</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="dialogue.html">운영체제: 아주 쉬운 세 가지 이야기</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 1 - 운영체제: 아주 쉬운 세 가지 이야기</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="intro.html">운영체제 개요</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week02/dialogue.html">가상화의 세계</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - 가상화의 세계</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week02/processes.html">프로세스의 개념</a></li>
 </ul>
 </li>
@@ -431,7 +429,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 1</h1>
+    <h1>Week 1 - 운영체제: 아주 쉬운 세 가지 이야기</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -446,10 +444,54 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-1">
-<h1>Week 1<a class="headerlink" href="#week-1" title="Link to this heading">#</a></h1>
+<h1>Week 1 - 운영체제: 아주 쉬운 세 가지 이야기<a class="headerlink" href="#week-1" title="Link to this heading">#</a></h1>
+<p>이 대화는 <a class="reference external" href="https://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems: Three Easy Pieces by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (University of Wisconsin-Madison)</a>에 나오는 대화를 일부 재구성한 것입니다.</p>
+<blockquote>
+<div><p><strong>교수:</strong> 안녕! “운영체제: 아주 쉬운 세 가지 이야기”에 온 걸 환영하네. 나는 운영체제의 비밀을 널에게 알려줄 “교수”라고 불린다네. 자네는 누구인가?</p>
+</div></blockquote>
+<p><strong>학생:</strong> 교수님 안녕하세요! 저는 배움에 목말라 “학생”이라고 합니다.</p>
+<blockquote>
+<div><p><strong>교수:</strong> 질문 있나?</p>
+</div></blockquote>
+<p><strong>학생:</strong> 네, 왜 이 책은 “아주 쉬운 세 가지 이야기”라고 불리는 거죠?</p>
+<blockquote>
+<div><p><strong>교수:</strong> 흥미로운 질문이군! 물리학자 Richard Feynman의 유명한 강의를 들어본 적 있나?</p>
+</div></blockquote>
+<p><strong>학생:</strong> 네, “Surely You’re Joking, Mr. Feynman”을 쓴 사람이죠? 재미있을 것 같아요!</p>
+<blockquote>
+<div><p><strong>교수:</strong> 음… 글쎄, 그의 물리학 노트 “Six Easy Pieces”와 비슷하다고 생각하면 돼. 우리는 운영체제의 핵심적인 세 가지 주제, 즉 가상화, 병행성, 영속성에 대해 이야기할 거야. 물리학만큼 어렵지는 않으니 걱정 마.</p>
+</div></blockquote>
+<p><strong>학생:</strong> 기대되네요! 그 세 가지 주제는 무엇인가요?</p>
+<blockquote>
+<div><p><strong>교수:</strong> CPU가 다음에 실행할 프로그램을 결정하는 방법, 가상 메모리 시스템, 가상 머신 모니터, 디스크 관리, 분산 시스템 등 운영체제의 핵심을 배우게 될 거야.</p>
+</div></blockquote>
+<p><strong>학생:</strong> 듣기만 해도 어렵네요…</p>
+<blockquote>
+<div><p><strong>교수:</strong> 걱정 마! 자네가 여기에 온 이유가 바로 그거야.</p>
+</div></blockquote>
+<p><strong>학생:</strong> 이 과목을 잘 공부하는 방법은 무엇인가요?</p>
+<blockquote>
+<div><p><strong>교수:</strong> 수업에 집중하고, 매주 교재를 읽고, 과제와 프로젝트를 열심히 해. 특히 코딩 프로젝트는 중요해. 공자의 말처럼 “듣고 잊는 것보다 보고 기억하고, 하고 이해하는 것”이 중요하지.</p>
+</div></blockquote>
+<p><strong>학생:</strong> 저도 공자의 팬입니다! “I hear and I forget. I see and I remember. I do and I understand.” 말씀하시는 거죠?</p>
+<blockquote>
+<div><p><strong>교수:</strong> 정말 놀랍다! 우리는 잘 지낼 수 있을 것 같구나.</p>
+</div></blockquote>
+<p><strong>학생:</strong> 교수님, 이 대화의 목적은 무엇인가요? 바로 주제를 설명하지 않고…</p>
+<blockquote>
+<div><p><strong>교수:</strong> 좋은 질문이군! 때론 듣는 것에서 벗어나 생각하는 시간이 필요하지. 이 대화는 바로 그 시간이야. 함께 생각할 준비는 되어 있나?</p>
+</div></blockquote>
+<p><strong>학생:</strong> 네, 준비됐습니다!</p>
+<blockquote>
+<div><p><strong>교수:</strong> 그럼 함께 출발해 보세!</p>
+</div></blockquote>
+<p><strong>흥미진진한 여정이 시작되다! 과연 학생은 운영체제의 비밀을 밝혀낼 수 있을까?</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>공자의 말은 실제로는 Xunzi라는 학자의 말이다.</p>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dialogue.html">운영체제: 아주 쉬운 세 가지 이야기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">운영체제 개요</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
 </ul>
@@ -496,11 +538,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="dialogue.html"
+       href="intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">운영체제: 아주 쉬운 세 가지 이야기</p>
+        <p class="prev-next-title">운영체제 개요</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
