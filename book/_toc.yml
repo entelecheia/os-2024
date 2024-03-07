@@ -13,7 +13,9 @@ parts:
             title: WSL 설치방법
       - file: week02/index
         sections:
-          - file: week02/processes
+          - file: week02/cpu-info
+          - file: week02/cpu-api
+          - file: week02/cpu-mechanisms
       - file: week03/index
   - caption: References
     chapters:
