@@ -15,6 +15,7 @@ parts:
       - file: week02/index
         sections:
           - file: week01/dialogue
+          - file: week01/processes
   - caption: References
     chapters:
       - file: references/osstep/index
