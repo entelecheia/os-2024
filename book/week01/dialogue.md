@@ -1,8 +1,6 @@
-# Dialogues
+# 운영체제: 아주 쉬운 세 가지 이야기
 
 이 대화는 [Operating Systems: Three Easy Pieces by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (University of Wisconsin-Madison)](https://pages.cs.wisc.edu/~remzi/OSTEP/)에 나오는 대화를 일부 재구성한 것입니다.
-
-## 운영체제: 아주 쉬운 세 가지 이야기
 
 > **교수:** 안녕! "운영체제: 아주 쉬운 세 가지 이야기"에 온 걸 환영하네. 나는 운영체제의 비밀을 널에게 알려줄 "교수"라고 불린다네. 자네는 누구인가?
 
