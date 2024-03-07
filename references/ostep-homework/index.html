@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Homeworks &#8212; 운영체제 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'references/ostep-homework/index';</script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">운영체제 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    운영체제 2024
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week01/index.html">Week 1 - 운영체제: 아주 쉬운 세 가지 이야기</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/intro.html">운영체제 개요</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week02/index.html">Week 2 - 가상화의 세계</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/cpu-api.html">프로세스 API</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../week02/cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/index.html">Week 3 - 스케줄링</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../osstep/index.html">OSTEP (Korean Version)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://kuleuven-diepenbeek.github.io/osc-course/">Operating Systems and C</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">만든 사람들</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">인공지능학과</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://os2024.halla.ai">운영체제 2024</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://mlops2024.halla.ai">머신러닝시스템 2024</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://cobots2024.halla.ai">협동로봇활용 2024</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://aibasics.halla.ai">AI 세상 속으로</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chu-aie/os-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/book/references/ostep-homework/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Freferences/ostep-homework/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/references/ostep-homework/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Homeworks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Homeworks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualization">Virtualization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency">Concurrency</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#persistence">Persistence</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="homeworks">
+<h1>Homeworks<a class="headerlink" href="#homeworks" title="Link to this heading">#</a></h1>
+<p>Each chapter has some questions at the end; we call these “homeworks”, because you should do the “work” at your “home”. Make sense? It’s one of the innovations of this book.</p>
+<p>Homeworks can be used to solidify your knowledge of the material in each of the chapters. Many homeworks are based on running a simulator, which mimic some aspect of an operating system. For example, a disk scheduling simulator could be useful in understanding how different disk scheduling algorithms work. Some other homeworks are just short programming exercises, allowing you to explore how real systems work.</p>
+<p>For the simulators, the basic idea is simple: each of the simulators below let you both generate problems and obtain solutions for an infinite number of problems. Different random seeds can usually be used to generate different problems; using the <code class="docutils literal notranslate"><span class="pre">-c</span></code> flag computes the answers for you (presumably after you have tried to compute them yourself!).</p>
+<p>Each homework included below has a README file that explains what to do. Previously, this material had been included in the chapters themselves, but that was making the book too long. Now, all that is left in the book are the questions you might want to answer with the simulator; the details on how to run code are all in the README.</p>
+<p>Thus, your task: read a chapter, look at the questions at the end of the chapter, and try to answer them by doing the homework. Some require a simulator (written in Python); those are available by below. Some others require you to write some code. At this point, reading the relevant README is a good idea. Still others require some other stuff, like writing C code to accomplish some task.</p>
+<p>To use these, the best thing to do is to clone the homeworks. For example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>prompt&gt;<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/remzi-arpacidusseau/ostep-homework/
+prompt&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>file-disks
+prompt&gt;<span class="w"> </span>./disk.py<span class="w"> </span>-h
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Chapter</p></th>
+<th class="head"><p>What To Do</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/intro.pdf">Introduction</a></p></td>
+<td><p>No homework (yet)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="virtualization">
+<h1>Virtualization<a class="headerlink" href="#virtualization" title="Link to this heading">#</a></h1>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Chapter</p></th>
+<th class="head"><p>What To Do</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf">Abstraction: Processes</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/cpu-intro">process-run.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf">Process API</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/cpu-api">fork.py</a> and write some code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf">Direct Execution</a></p></td>
+<td><p>Write some code</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf">Scheduling Basics</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/cpu-sched">scheduler.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf">MLFQ Scheduling</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/cpu-sched-mlfq">mlfq.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-sched-lottery.pdf">Lottery Scheduling</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/cpu-sched-lottery">lottery.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-sched-multi.pdf">Multiprocessor Scheduling</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/cpu-sched-multi">multi.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf">Abstraction: Address Spaces</a></p></td>
+<td><p>Write some code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf">VM API</a></p></td>
+<td><p>Write some code</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-mechanism.pdf">Relocation</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/vm-mechanism">relocation.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf">Segmentation</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/vm-segmentation">segmentation.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf">Free Space</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/vm-freespace">malloc.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf">Paging</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/vm-paging">paging-linear-translate.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf">TLBs</a></p></td>
+<td><p>Write some code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf">Multi-level Paging</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/vm-smalltables">paging-multilevel-translate.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf">Paging Mechanism</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/vm-beyondphys">mem.c</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf">Paging Policy</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/vm-beyondphys-policy">paging-policy.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/vm-complete.pdf">Complete VM</a></p></td>
+<td><p>No homework (yet)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="concurrency">
+<h1>Concurrency<a class="headerlink" href="#concurrency" title="Link to this heading">#</a></h1>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Chapter</p></th>
+<th class="head"><p>What To Do</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf">Threads Intro</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/threads-intro">x86.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/threads-api.pdf">Thread API</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/threads-api">some C code</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf">Locks</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/threads-locks">x86.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/threads-locks-usage.pdf">Lock Usage</a></p></td>
+<td><p>Write some code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/threads-cv.pdf">Condition Variables</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/threads-cv">some C code</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/threads-sema.pdf">Semaphores</a></p></td>
+<td><p>Read and write <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/threads-sema">some code</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf">Concurrency Bugs</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/threads-bugs">some C code</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/threads-events.pdf">Event-based Concurrency</a></p></td>
+<td><p>Write some code</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="persistence">
+<h1>Persistence<a class="headerlink" href="#persistence" title="Link to this heading">#</a></h1>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Chapter</p></th>
+<th class="head"><p>What To Do</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf">I/O Devices</a></p></td>
+<td><p>No homework (yet)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-disks.pdf">Hard Disk Drives</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/file-disks">disk.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-raid.pdf">RAID</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/file-raid">raid.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-intro.pdf">FS Intro</a></p></td>
+<td><p>Write some code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-implementation.pdf">FS Implementation</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/file-implementation">vsfs.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-ffs.pdf">Fast File System</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/file-ffs">ffs.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf">Crash Consistency and Journaling</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/file-journaling">fsck.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-lfs.pdf">Log-Structured File Systems</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/file-lfs">lfs.py</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-ssd.pdf">Solid-State Disk Drives</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/file-ssd">ssd.py</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/file-integrity.pdf">Data Integrity</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/file-integrity">checksum.py</a> and Write some code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/dist-intro.pdf">Distributed Intro</a></p></td>
+<td><p>Write some code</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/dist-nfs.pdf">NFS</a></p></td>
+<td><p>Write some analysis code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/dist-afs.pdf">AFS</a></p></td>
+<td><p>Run <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/dist-afs">afs.py</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "chu-aie/os-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./references/ostep-homework"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Homeworks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualization">Virtualization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#concurrency">Concurrency</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#persistence">Persistence</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href='https://entelecheia.me/'>Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <script
+  data-embed-id="8f8d1c1a-0e3e-428a-a8a6-26acd215e1fe"
+  data-base-api-url="https://chat.entelecheia.app/api/embed"
+  data-brand-image-url="https://assets.entelecheia.ai/favicon.png"
+  data-chat-icon="magic"
+  data-sponsor-text="OS 2024"
+  data-sponsor-link="https://chat.entelecheia.app/workspace/os2024"
+  src="https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js">
+</script>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
