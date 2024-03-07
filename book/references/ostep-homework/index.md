@@ -18,13 +18,13 @@ prompt> cd file-disks
 prompt> ./disk.py -h
 ```
 
-# Introduction
+## Introduction
 
 | Chapter                                                                               | What To Do        |
 | ------------------------------------------------------------------------------------- | ----------------- |
 | [Introduction](http://www.cs.wisc.edu/~remzi/OSTEP/intro.pdf)                         | No homework (yet) |
 
-# Virtualization
+## Virtualization
 
 | Chapter                                                                              | What To Do                                                                                                             |
 | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
@@ -47,7 +47,7 @@ prompt> ./disk.py -h
 | [Paging Policy](http://www.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)        | Run [paging-policy.py](https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/vm-beyondphys-policy)         |
 | [Complete VM](http://www.cs.wisc.edu/~remzi/OSTEP/vm-complete.pdf)                   | No homework (yet)                                                                                                      |
 
-# Concurrency
+## Concurrency
 
 | Chapter                                                                           | What To Do                                                                                                 |
 | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -60,7 +60,7 @@ prompt> ./disk.py -h
 | [Concurrency Bugs](http://www.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)          | Run [some C code](https://github.com/remzi-arpacidusseau/ostep-homework/blob/master/threads-bugs)          |
 | [Event-based Concurrency](http://www.cs.wisc.edu/~remzi/OSTEP/threads-events.pdf) | Write some code                                                                                            |
 
-# Persistence
+## Persistence
 
 | Chapter                                                                                     | What To Do                                                                                                              |
 | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
