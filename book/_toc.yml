@@ -8,13 +8,20 @@ parts:
     chapters:
       - file: week01/index
         sections:
-          - file: week01/dialogues
           - file: week01/intro
           - url: https://learn.microsoft.com/ko-kr/windows/wsl/install
             title: WSL 설치방법
+      - file: week02/index
+        sections:
+          - file: week02/cpu-intro
+          - file: week02/cpu-api
+          - file: week02/cpu-mechanisms
+      - file: week03/index
   - caption: References
     chapters:
-      - file: references/osstep/index
+      - file: references/ostep/index
+      - file: references/ostep-code/index
+      - file: references/ostep-homework/index
       - url: https://kuleuven-diepenbeek.github.io/osc-course/
         title: Operating Systems and C
   - caption: About
