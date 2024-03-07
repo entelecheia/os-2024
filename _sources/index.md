@@ -1,4 +1,4 @@
-# 운영체제 2024
+# Home
 
 [![halla-img]][halla-url]
 [![course-img]][course-url]
