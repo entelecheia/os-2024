@@ -14,8 +14,8 @@ parts:
             title: WSL 설치방법
       - file: week02/index
         sections:
-          - file: week01/dialogue
-          - file: week01/processes
+          - file: week02/dialogue
+          - file: week02/processes
   - caption: References
     chapters:
       - file: references/osstep/index
