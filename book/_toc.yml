@@ -20,6 +20,8 @@ parts:
   - caption: References
     chapters:
       - file: references/osstep/index
+      - file: references/osstep-code/index
+      - file: references/osstep-homework/index
       - url: https://kuleuven-diepenbeek.github.io/osc-course/
         title: Operating Systems and C
   - caption: About
