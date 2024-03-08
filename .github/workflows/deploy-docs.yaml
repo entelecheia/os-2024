@@ -25,6 +25,13 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: Contribute List
+        uses: akhilmhdh/contributors-readme-action@master
+        with:
+          readme_path: "book/index.md"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # install the source code
       - name: Install the source code
         run: pip install .
