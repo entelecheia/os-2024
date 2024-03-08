@@ -2,12 +2,16 @@
 name: Contributors List
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
   pull_request:
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   contrib-readme-job:
