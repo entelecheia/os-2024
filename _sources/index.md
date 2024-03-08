@@ -41,6 +41,9 @@
 
 ```
 
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
+
 ## Changelog
 
 See the [CHANGELOG] for more information.
