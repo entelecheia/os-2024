@@ -1,0 +1,16 @@
+{
+    "projectName": "os-2024",
+    "projectOwner": "chu-aie",
+    "repoType": "github",
+    "repoHost": "https://github.com",
+    "files": [
+        "book/index.md"
+    ],
+    "imageSize": 100,
+    "commit": false,
+    "contributorsPerLine": 6,
+    "contributorsSortAlphabetically": false,
+    "linkToUsage": false,
+    "skipCi": true,
+    "contributors": []
+}
