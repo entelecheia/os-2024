@@ -73,7 +73,7 @@
 
 예제 코드는 [`src/ostep/processes-shell/chesh.c`](https://github.com/chu-aie/os-2024/blob/entelecheia/issue31/src/ostep/processes-shell/chesh.c)에 있습니다. 이 코드는 `chesh` 셸의 기본적인 동작을 보여주며, 추가적인 기능을 구현하여 확장할 수 있습니다.
 
-## 실행 방실
+## 실행 방법
 
 리눅스 환경에서 위의 기본적인 셸 프로그램 `chesh`를 컴파일하고 실행하는 방법을 단계별로 설명하겠습니다. 이 튜토리얼은 GCC(GNU Compiler Collection)가 설치된 리눅스 시스템을 기준으로 합니다.
 
