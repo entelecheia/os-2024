@@ -110,4 +110,5 @@ sphinx:
 
 launch_buttons:
   colab_url: "https://colab.research.google.com"
+  binderhub_url: "https://mybinder.org"
   thebe: true
