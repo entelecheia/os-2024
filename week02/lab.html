@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lab - Shell &#8212; 운영체제 2024</title>
+    <title>Lab: Shell &#8212; 운영체제 2024</title>
   
   
   
@@ -89,11 +89,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/chesh';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/lab';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Week 3 - 스케줄링" href="../week03/index.html" />
+    <link rel="next" title="Tip: 리눅스 프로세스 관리 명령어" href="tip.html" />
     <link rel="prev" title="제한적 직접 실행 원리" href="cpu-mechanisms.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -214,7 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="cpu-intro.html">프로세스의 개념</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpu-api.html">프로세스 API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab - Shell</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab: Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링</a></li>
@@ -310,7 +311,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/book/week02/chesh.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/book/week02/lab.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -327,7 +328,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/chesh.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/lab.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -357,7 +358,7 @@
       
       
       
-      <li><a href="../_sources/week02/chesh.md" target="_blank"
+      <li><a href="../_sources/week02/lab.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -441,7 +442,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab - Shell</h1>
+    <h1>Lab: Shell</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -480,7 +481,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-shell">
-<h1>Lab - Shell<a class="headerlink" href="#lab-shell" title="Link to this heading">#</a></h1>
+<h1>Lab: Shell<a class="headerlink" href="#lab-shell" title="Link to this heading">#</a></h1>
 <p>이 실습에서는 기본적인 Unix 셸을 구현할 것입니다. 이 셸은 명령어를 입력받아 해당 명령어를 실행하는 아주 간단한 구조로 되어 있습니다. 이 과정을 통해 리눅스 프로그래밍 환경에 익숙해지고, 프로세스 생성, 관리, 소멸에 대해 배우며, 셸이 필요로 하는 기본적인 기능들을 경험하게 됩니다.</p>
 <div class="admonition-linux-shell admonition">
 <p class="admonition-title">리눅스 셸(Linux Shell)</p>
@@ -663,11 +664,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../week03/index.html"
+       href="tip.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 3 - 스케줄링</p>
+        <p class="prev-next-title">Tip: 리눅스 프로세스 관리 명령어</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
