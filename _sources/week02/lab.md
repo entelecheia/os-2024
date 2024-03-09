@@ -71,7 +71,7 @@
 
 ## 예제 코드
 
-예제 코드는 [`src/ostep/processes-shell/chesh.c`](https://github.com/chu-aie/os-2024/blob/entelecheia/issue31/src/ostep/processes-shell/chesh.c)에 있습니다. 이 코드는 `chesh` 셸의 기본적인 동작을 보여주며, 추가적인 기능을 구현하여 확장할 수 있습니다.
+예제 코드는 [`src/ostep/processes-shell/chesh.c`](https://github.com/chu-aie/os-2024/blob/main/src/ostep/processes-shell/chesh.c)에 있습니다. 이 코드는 `chesh` 셸의 기본적인 동작을 보여주며, 추가적인 기능을 구현하여 확장할 수 있습니다.
 
 ## 실행 방법
 
