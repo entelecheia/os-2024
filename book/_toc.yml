@@ -16,6 +16,7 @@ parts:
           - file: week02/cpu-intro
           - file: week02/cpu-api
           - file: week02/cpu-mechanisms
+          - file: week02/shells
           - file: week02/lab
           - file: week02/tip
       - file: week03/index
