@@ -94,7 +94,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Tip: 리눅스 프로세스 관리 명령어" href="tip.html" />
-    <link rel="prev" title="제한적 직접 실행 원리" href="cpu-mechanisms.html" />
+    <link rel="prev" title="리눅스 셸 (Linux Shell)" href="shells.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -214,6 +214,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cpu-intro.html">프로세스의 개념</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpu-api.html">프로세스 API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shells.html">리눅스 셸 (Linux Shell)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab: Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
 </ul>
@@ -483,48 +484,6 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="lab-shell">
 <h1>Lab: Shell<a class="headerlink" href="#lab-shell" title="Link to this heading">#</a></h1>
 <p>이 실습에서는 기본적인 Unix 셸을 구현할 것입니다. 이 셸은 명령어를 입력받아 해당 명령어를 실행하는 아주 간단한 구조로 되어 있습니다. 이 과정을 통해 리눅스 프로그래밍 환경에 익숙해지고, 프로세스 생성, 관리, 소멸에 대해 배우며, 셸이 필요로 하는 기본적인 기능들을 경험하게 됩니다.</p>
-<div class="admonition-linux-shell admonition">
-<p class="admonition-title">리눅스 셸(Linux Shell)</p>
-<p>리눅스 셸(Linux Shell)은 사용자와 운영체제 간의 상호작용을 위한 인터페이스를 제공합니다. 다양한 종류의 셸이 있으며, 각각은 독특한 특징과 사용 방법을 가지고 있습니다. 여기서는 몇 가지 주요 리눅스 셸(Bash, Zsh, Fish)에 대해 소개하고, 기능 및 사용법을 비교해 보겠습니다.</p>
-<p><strong>Bash (Bourne-Again SHell)</strong></p>
-<ul class="simple">
-<li><p><strong>특징:</strong> 가장 흔히 사용되는 셸로, 많은 리눅스 배포판의 기본 셸입니다. 강력한 프로그래밍 기능을 제공하며, 스크립트 작성과 작업 자동화에 유용합니다.</p></li>
-<li><p><strong>사용법 예시:</strong></p>
-<ul>
-<li><p>파일 목록 보기: <code class="docutils literal notranslate"><span class="pre">ls</span></code></p></li>
-<li><p>현재 작업 디렉토리 확인: <code class="docutils literal notranslate"><span class="pre">pwd</span></code></p></li>
-<li><p>파일 복사: <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">source.txt</span> <span class="pre">destination.txt</span></code></p></li>
-</ul>
-</li>
-<li><p><strong>장점:</strong> 널리 사용되어 자료가 풍부하며, 다양한 스크립트와 호환됩니다.</p></li>
-<li><p><strong>단점:</strong> 다른 셸에 비해 사용자 친화적인 기능이 부족할 수 있습니다.</p></li>
-</ul>
-<p><strong>Zsh (Z Shell)</strong></p>
-<ul class="simple">
-<li><p><strong>특징:</strong> Bash의 기능을 포함하면서 사용자 친화적인 기능을 많이 추가한 셸입니다. 테마와 플러그인을 통해 매우 커스터마이징이 가능합니다.</p></li>
-<li><p><strong>사용법 예시:</strong></p>
-<ul>
-<li><p>자동 완성 기능을 사용하여 효율적인 명령 입력이 가능합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">oh-my-zsh</span></code>를 설치하여 다양한 테마와 플러그인을 쉽게 적용할 수 있습니다.</p></li>
-</ul>
-</li>
-<li><p><strong>장점:</strong> 매우 유연하고 사용자 친화적입니다. 다양한 개선 사항으로 작업 효율이 높아집니다.</p></li>
-<li><p><strong>단점:</strong> 초기 설정이 Bash보다 복잡할 수 있습니다.</p></li>
-</ul>
-<p><strong>Fish (Friendly Interactive SHell)</strong></p>
-<ul class="simple">
-<li><p><strong>특징:</strong> 사용의 편의성을 최우선으로 설계된 셸입니다. 기본 설정만으로도 풍부한 기능을 제공합니다.</p></li>
-<li><p><strong>사용법 예시:</strong></p>
-<ul>
-<li><p>실시간으로 표시되는 명령어 자동 완성 기능이 있습니다.</p></li>
-<li><p>명령어 실행 이력에서 쉽게 명령어를 검색하고 재사용할 수 있습니다.</p></li>
-</ul>
-</li>
-<li><p><strong>장점:</strong> 사용하기 쉽고 직관적인 인터페이스를 제공합니다.</p></li>
-<li><p><strong>단점:</strong> Bash나 Zsh에 비해 호환성 문제가 발생할 수 있습니다.</p></li>
-</ul>
-<p>각 셸은 고유의 특징과 장단점을 가지고 있으며, 사용자의 선호도나 필요에 따라 선택할 수 있습니다. Bash는 전통적이고 강력한 스크립팅이 필요할 때 좋으며, Zsh는 사용자 경험과 커스터마이징을 중시할 때, Fish는 쉽고 빠르게 셸을 사용하고 싶을 때 추천됩니다.</p>
-</div>
 <section id="id1">
 <h2>프로그램 명세<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <section id="chesh">
@@ -655,12 +614,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="cpu-mechanisms.html"
+       href="shells.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">제한적 직접 실행 원리</p>
+        <p class="prev-next-title">리눅스 셸 (Linux Shell)</p>
       </div>
     </a>
     <a class="right-next"
