@@ -22,6 +22,7 @@ parts:
       - file: references/ostep/index
       - file: references/ostep-code/index
       - file: references/ostep-homework/index
+      - file: references/ostep-projects/index
       - url: https://kuleuven-diepenbeek.github.io/osc-course/
         title: Operating Systems and C
   - caption: About
