@@ -16,6 +16,7 @@ parts:
           - file: week02/cpu-intro
           - file: week02/cpu-api
           - file: week02/cpu-mechanisms
+          - file: week02/chesh
       - file: week03/index
   - caption: References
     chapters:
