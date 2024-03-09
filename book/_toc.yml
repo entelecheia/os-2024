@@ -29,6 +29,8 @@ parts:
     chapters:
       - file: syllabus/index
       - file: about/index
+  - caption: Links
+    chapters:
       - url: https://halla.ai
         title: 인공지능학과
       - url: https://os2024.halla.ai
