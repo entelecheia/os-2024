@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>프로세스의 개념 &#8212; 운영체제 2024</title>
+    <title>Lab - Shell &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/cpu-intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/chesh';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="프로세스 API" href="cpu-api.html" />
-    <link rel="prev" title="Week 2 - 가상화의 세계" href="index.html" />
+    <link rel="next" title="Week 3 - 스케줄링" href="../week03/index.html" />
+    <link rel="prev" title="제한적 직접 실행 원리" href="cpu-mechanisms.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,10 +211,10 @@
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 2 - 가상화의 세계</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">프로세스의 개념</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu-intro.html">프로세스의 개념</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpu-api.html">프로세스 API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chesh.html">Lab - Shell</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab - Shell</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링</a></li>
@@ -310,7 +310,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/book/week02/cpu-intro.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/book/week02/chesh.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -327,7 +327,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/cpu-intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/chesh.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -357,7 +357,7 @@
       
       
       
-      <li><a href="../_sources/week02/cpu-intro.md" target="_blank"
+      <li><a href="../_sources/week02/chesh.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -441,7 +441,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>프로세스의 개념</h1>
+    <h1>Lab - Shell</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -451,11 +451,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">프로세스의 개념</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">프로세스 API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로세스 생성 : 좀 더 자세하게</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">프로세스 상태</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">프로그램 명세</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chesh">기본 셸: <code class="docutils literal notranslate"><span class="pre">chesh</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">명령어 실행</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">내장 명령어</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">프로그램 오류 처리</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">구현 팁</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">예제 코드</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">실행 방법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1단계: 코드 저장하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2단계: 코드 컴파일하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3단계: 셸 실행하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4단계: 명령어 실행하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5단계: <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 종료하기</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -467,88 +479,147 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>프로세스의 개념<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>이 장에서는 운영체제의 핵심 개념 중 하나인 프로세스에 대해 다룹니다. 프로세스는 실행 중인 프로그램을 의미하며, 프로그램 자체는 디스크에 저장된 명령어와 데이터의 집합입니다. 운영체제는 이 명령어와 데이터를 실행하여 프로그램을 작동시킵니다.</p>
-<p>사용자는 여러 프로그램을 동시에 실행하기를 원합니다. 예를 들어, 웹 브라우저, 이메일, 게임, 음악 플레이어 등을 동시에 실행하는 것입니다. 운영체제는 실제로 한정된 CPU를 가지고 있음에도 불구하고, 여러 개의 프로세스가 동시에 실행되는 것처럼 만드는 기술, 즉 CPU 가상화를 통해 이를 가능하게 합니다.</p>
-<p>이러한 환상을 만들기 위해, 운영체제는 시분할 방식을 사용하여 한 프로세스를 잠시 실행한 후 다른 프로세스로 전환하는 작업을 반복합니다. 이 과정을 통해, 여러 프로세스가 동시에 실행되는 것처럼 보이게 합니다. 하지만 이 방식은 프로세스마다 성능이 다소 저하될 수 있습니다.</p>
-<p>운영체제가 이런 작업을 잘 처리하기 위해서는 저수준의 기술적 방법, 즉 메커니즘과, 어떤 프로세스를 언제 실행시킬지 결정하는 정책이 필요합니다. 메커니즘은 운영체제가 필요한 기능을 구현하는 방법을 말하며, 정책은 운영체제가 어떤 결정을 내리기 위한 규칙이나 알고리즘입니다. 예를 들어, 여러 프로그램이 실행 가능할 때 어느 것을 먼저 실행할지 결정하는 스케줄링 정책이 이에 해당합니다.</p>
-<p>이처럼 운영체제는 복잡한 작업을 처리하면서도 사용자에게 편리하고 효율적인 환경을 제공하기 위해 설계되었습니다.</p>
-<div class="admonition- admonition">
-<p class="admonition-title">시분할과 공간분할</p>
-<p>시분할은 운영체제가 자원을 효율적으로 공유하는 중요한 방법 중 하나입니다. 여러 사용자나 프로그램이 동시에 자원을 사용하는 것처럼 보이게 하기 위해, 운영체제는 짧은 시간 동안 한 사용자(또는 프로그램)에게 자원을 할당하고, 그 다음 사용자에게 순차적으로 할당하는 방식으로 자원(CPU나 네트워크 링크 등)을 관리합니다. 이와 반대되는 개념으로 공간 분할이 있습니다. 공간 분할에서는 자원의 ‘공간’을 여러 사용자나 프로그램에게 나누어 줍니다. 디스크가 좋은 예인데, 디스크의 경우 특정 공간(블록)이 한 파일에 할당되면, 그 파일이 삭제되기 전까지 다른 파일이 그 공간을 사용할 가능성이 낮습니다.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-shell">
+<h1>Lab - Shell<a class="headerlink" href="#lab-shell" title="Link to this heading">#</a></h1>
+<p>이 실습에서는 기본적인 Unix 셸을 구현할 것입니다. 이 셸은 명령어를 입력받아 해당 명령어를 실행하는 아주 간단한 구조로 되어 있습니다. 이 과정을 통해 리눅스 프로그래밍 환경에 익숙해지고, 프로세스 생성, 관리, 소멸에 대해 배우며, 셸이 필요로 하는 기본적인 기능들을 경험하게 됩니다.</p>
+<div class="admonition-linux-shell admonition">
+<p class="admonition-title">리눅스 셸(Linux Shell)</p>
+<p>리눅스 셸(Linux Shell)은 사용자와 운영체제 간의 상호작용을 위한 인터페이스를 제공합니다. 다양한 종류의 셸이 있으며, 각각은 독특한 특징과 사용 방법을 가지고 있습니다. 여기서는 몇 가지 주요 리눅스 셸(Bash, Zsh, Fish)에 대해 소개하고, 기능 및 사용법을 비교해 보겠습니다.</p>
+<p><strong>Bash (Bourne-Again SHell)</strong></p>
+<ul class="simple">
+<li><p><strong>특징:</strong> 가장 흔히 사용되는 셸로, 많은 리눅스 배포판의 기본 셸입니다. 강력한 프로그래밍 기능을 제공하며, 스크립트 작성과 작업 자동화에 유용합니다.</p></li>
+<li><p><strong>사용법 예시:</strong></p>
+<ul>
+<li><p>파일 목록 보기: <code class="docutils literal notranslate"><span class="pre">ls</span></code></p></li>
+<li><p>현재 작업 디렉토리 확인: <code class="docutils literal notranslate"><span class="pre">pwd</span></code></p></li>
+<li><p>파일 복사: <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">source.txt</span> <span class="pre">destination.txt</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>장점:</strong> 널리 사용되어 자료가 풍부하며, 다양한 스크립트와 호환됩니다.</p></li>
+<li><p><strong>단점:</strong> 다른 셸에 비해 사용자 친화적인 기능이 부족할 수 있습니다.</p></li>
+</ul>
+<p><strong>Zsh (Z Shell)</strong></p>
+<ul class="simple">
+<li><p><strong>특징:</strong> Bash의 기능을 포함하면서 사용자 친화적인 기능을 많이 추가한 셸입니다. 테마와 플러그인을 통해 매우 커스터마이징이 가능합니다.</p></li>
+<li><p><strong>사용법 예시:</strong></p>
+<ul>
+<li><p>자동 완성 기능을 사용하여 효율적인 명령 입력이 가능합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oh-my-zsh</span></code>를 설치하여 다양한 테마와 플러그인을 쉽게 적용할 수 있습니다.</p></li>
+</ul>
+</li>
+<li><p><strong>장점:</strong> 매우 유연하고 사용자 친화적입니다. 다양한 개선 사항으로 작업 효율이 높아집니다.</p></li>
+<li><p><strong>단점:</strong> 초기 설정이 Bash보다 복잡할 수 있습니다.</p></li>
+</ul>
+<p><strong>Fish (Friendly Interactive SHell)</strong></p>
+<ul class="simple">
+<li><p><strong>특징:</strong> 사용의 편의성을 최우선으로 설계된 셸입니다. 기본 설정만으로도 풍부한 기능을 제공합니다.</p></li>
+<li><p><strong>사용법 예시:</strong></p>
+<ul>
+<li><p>실시간으로 표시되는 명령어 자동 완성 기능이 있습니다.</p></li>
+<li><p>명령어 실행 이력에서 쉽게 명령어를 검색하고 재사용할 수 있습니다.</p></li>
+</ul>
+</li>
+<li><p><strong>장점:</strong> 사용하기 쉽고 직관적인 인터페이스를 제공합니다.</p></li>
+<li><p><strong>단점:</strong> Bash나 Zsh에 비해 호환성 문제가 발생할 수 있습니다.</p></li>
+</ul>
+<p>각 셸은 고유의 특징과 장단점을 가지고 있으며, 사용자의 선호도나 필요에 따라 선택할 수 있습니다. Bash는 전통적이고 강력한 스크립팅이 필요할 때 좋으며, Zsh는 사용자 경험과 커스터마이징을 중시할 때, Fish는 쉽고 빠르게 셸을 사용하고 싶을 때 추천됩니다.</p>
 </div>
-<section id="id3">
-<h2>프로세스의 개념<a class="footnote-reference brackets" href="#parkeunseongkr" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>운영체제는 실행 중인 프로그램을 프로세스라는 개념으로 제공합니다. 프로세스를 간단하게 표현하면, 실행 중에 접근하거나 영향을 받은 자원의 목록이라고 할 수 있습니다.</p>
-<p>프로세스를 이해하려면 하드웨어 상태를 이해해야 합니다. 프로그램은 실행 중에 하드웨어 상태를 읽거나 변경합니다. 이때 가장 중요한 하드웨어 구성 요소는 메모리입니다. 메모리는 명령어와 데이터를 저장합니다. 프로세스가 접근할 수 있는 메모리는 프로세스의 구성 요소입니다.</p>
-<p>레지스터도 프로세스의 하드웨어 상태를 구성하는 중요한 요소입니다. 많은 명령어가 레지스터를 직접 읽거나 변경합니다. 따라서 프로세스를 실행하려면 레지스터도 필요합니다.</p>
-<p>프로세스의 하드웨어 상태를 구성하는 레지스터 중 특별한 레지스터가 있습니다. 프로그램 카운터(PC)는 실행 중인 명령어를 알려줍니다. PC는 명령어 포인터(IP)라고도 불립니다. 스택 포인터(SP)와 프레임 포인터(FP)는 함수의 변수와 리턴 주소를 저장하는 스택을 관리하는 데 사용됩니다.</p>
-<p>프로그램은 영구 저장장치에 접근하기도 합니다. 이 입출력 정보는 프로세스가 현재 열어 놓은 파일 목록으로 표현됩니다.</p>
-<p><strong>핵심 내용:</strong></p>
+<section id="id1">
+<h2>프로그램 명세<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="chesh">
+<h3>기본 셸: <code class="docutils literal notranslate"><span class="pre">chesh</span></code><a class="headerlink" href="#chesh" title="Link to this heading">#</a></h3>
+<p>당신의 기본 셸, <code class="docutils literal notranslate"><span class="pre">chesh</span></code>(Cheju Shell의 약자)는 사용자로부터 명령어를 입력받아 실행하고 결과를 출력하는 반복 구조를 가집니다. 사용자가 <code class="docutils literal notranslate"><span class="pre">exit</span></code>를 입력하기 전까지 이 과정은 계속됩니다.</p>
 <ul class="simple">
-<li><p>프로세스는 실행 중인 프로그램의 개념입니다.</p></li>
-<li><p>프로세스는 메모리, 레지스터, 파일 등의 자원을 사용합니다.</p></li>
-<li><p>프로그램 카운터는 실행 중인 명령어를 알려줍니다.</p></li>
-<li><p>스택 포인터와 프레임 포인터는 스택을 관리하는 데 사용됩니다.</p></li>
-<li><p>프로세스는 영구 저장장치에 접근할 수 있습니다.</p></li>
+<li><p>인터랙티브 모드: 사용자가 직접 명령어를 입력할 수 있습니다.</p></li>
+<li><p>배치 모드: 명령어가 담긴 파일을 읽어 해당 명령어들을 순차적으로 실행합니다.</p></li>
 </ul>
-<div class="admonition- admonition">
-<p class="admonition-title">정책과 구현의 분리</p>
-<p><strong>핵심 개념:</strong></p>
-<ul class="simple">
-<li><p><strong>고수준 정책:</strong> 운영체제가 <strong>무엇을</strong> 해야 하는지 결정하는 규칙</p></li>
-<li><p><strong>저수준 기법:</strong> 운영체제가 <strong>어떻게</strong> 작업을 수행하는지 구현하는 방법</p></li>
-</ul>
-<p><strong>설계 패러다임:</strong></p>
-<ul class="simple">
-<li><p><strong>고수준 정책과 저수준 기법을 분리</strong></p></li>
-</ul>
-<p><strong>이점:</strong></p>
-<ul class="simple">
-<li><p><strong>정책 변경 용이:</strong> 정책 변경 시 기법 변경 필요 없음</p></li>
-<li><p><strong>모듈성 향상:</strong> 코드 재사용 및 유지 관리 용이</p></li>
-<li><p><strong>확장성 향상:</strong> 새로운 정책 및 기법 추가 용이</p></li>
-</ul>
-<p><strong>예시:</strong></p>
-<ul class="simple">
-<li><p><strong>정책:</strong> 어느 프로세스를 실행할 것인가?</p></li>
-<li><p><strong>기법:</strong> 스케줄링 알고리즘 (예: 라운드 로빈, 우선 순위 기반)</p></li>
-</ul>
-<p><strong>결론:</strong></p>
-<p>고수준 정책과 저수준 기법 분리는 운영체제 설계의 중요한 패러다임이며, 이는 모듈성, 확장성, 유지 관리 용이성을 향상시킵니다.</p>
-</div>
 </section>
-<section id="api">
-<h2>프로세스 API<a class="footnote-reference brackets" href="#jo-sehyun" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#api" title="Link to this heading">#</a></h2>
-<p>운영체제가 반드시 API로 제공해야 하는 몇몇 기본 기능은 다음과 같습니다. 이 API등은 형태는 다르지만 모든 현대 운영체제에서 제공됩니다.</p>
+<section id="id2">
+<h3>명령어 실행<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>생성(Create): 쉘에 명령어를 입력하거나, 응용 프로그램의 아이콘을 더블 클릭하여 프로그램을 실행시키면, 운영체제는 새로운 프로세스를 생성합니다.</p></li>
-<li><p>제거(Destroy): 많은 프로세스는 실행되고 할 일을 다하면 스스로 종료하지만 스스로 종료하지 않는 경우가 있기 때문에 운영체제는 불필요한 프로세스를 종료시키는 기능을 제공합니다.</p></li>
-<li><p>대기(Wait): 특정 프로세스의 작업이 끝날 때까지 기다려야 할 때가 있어 여러 종류의 대기 인터페이스가 제공됩니다. 이는 다른 프로세스와의 작업을 동기화하거나, 특정 조건이 충족될 때까지 기다리는 데 사용될 수 있습니다.</p></li>
-<li><p>각종 제어(Miscellaneous Control): 프로세스를 일시정지 하거나 다시 시작하는 등의 여러 가지 제어 기능들이 제공됩니다. 이는 프로세스의 동작을 조절하거나 문제를 해결하는데 도움이 됩니다.</p></li>
-<li><p>상태(Status): 프로세스의 현재 상태 정보를 얻어내는 인터페이스도 제공됩니다. 이는 프로세스가 얼마 동안 실행되었는지 또는 프로세스가 어떤 상태에 있는지 등이 포함됩니다.</p></li>
+<li><p>셸은 각 명령어를 별도의 프로세스로 실행해야 합니다(<code class="docutils literal notranslate"><span class="pre">fork()</span></code>, <code class="docutils literal notranslate"><span class="pre">exec()</span></code>, <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 사용).</p></li>
+<li><p>초기 셸 경로는 <code class="docutils literal notranslate"><span class="pre">/bin</span></code> 디렉토리를 포함해야 합니다.</p></li>
 </ul>
+</section>
+<section id="id3">
+<h3>내장 명령어<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">exit</span></code>: 셸을 종료합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code>: 현재 디렉토리를 변경합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: 실행 파일을 검색할 경로를 설정합니다.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>프로그램 오류 처리<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>오류 발생 시 “An error has occurred\n” 메시지를 출력하고, 적절하게 처리합니다.</p></li>
+</ul>
+</section>
 </section>
 <section id="id5">
-<h2>프로세스 생성 : 좀 더 자세하게<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2>구현 팁<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>기본 기능 구현</strong>: 한 번에 하나의 명령어 실행에서 시작합니다.</p></li>
+<li><p><strong>내장 명령어 추가</strong>: <code class="docutils literal notranslate"><span class="pre">exit</span></code>, <code class="docutils literal notranslate"><span class="pre">cd</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code> 같은 내장 명령어를 구현합니다.</p></li>
+<li><p><strong>입력 처리</strong>: 공백, 탭 등 다양한 공백 문자를 적절히 처리할 수 있도록 합니다.</p></li>
+<li><p><strong>오류 검사</strong>: 모든 시스템 호출의 반환값을 검사하여 오류를 적절히 처리합니다.</p></li>
+<li><p><strong>테스트</strong>: 다양한 입력과 상황을 가정하여 셸이 올바르게 동작하는지 테스트합니다.</p></li>
+</ol>
 </section>
 <section id="id6">
-<h2>프로세스 상태<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h2>예제 코드<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>예제 코드는 <a class="reference external" href="https://github.com/chu-aie/os-2024/blob/entelecheia/issue31/src/ostep/processes-shell/chesh.c"><code class="docutils literal notranslate"><span class="pre">src/ostep/processes-shell/chesh.c</span></code></a>에 있습니다. 이 코드는 <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 셸의 기본적인 동작을 보여주며, 추가적인 기능을 구현하여 확장할 수 있습니다.</p>
 </section>
 <section id="id7">
-<h2>자료구조<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<hr class="footnotes docutils" />
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="parkeunseongkr" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://github.com/ParkEunSeongKR">박은성</a></p>
-</aside>
-<aside class="footnote brackets" id="jo-sehyun" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://github.com/Jo-Sehyun">조세현</a></p>
-</aside>
-</aside>
+<h2>실행 방법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>리눅스 환경에서 위의 기본적인 셸 프로그램 <code class="docutils literal notranslate"><span class="pre">chesh</span></code>를 컴파일하고 실행하는 방법을 단계별로 설명하겠습니다. 이 튜토리얼은 GCC(GNU Compiler Collection)가 설치된 리눅스 시스템을 기준으로 합니다.</p>
+<section id="id8">
+<h3>1단계: 코드 저장하기<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>위에서 제공된 C 코드를 <code class="docutils literal notranslate"><span class="pre">chesh.c</span></code>라는 이름의 파일로 저장합니다. 이 작업은 텍스트 에디터를 사용하여 수행할 수 있습니다. 예를 들어, <code class="docutils literal notranslate"><span class="pre">nano</span></code>, <code class="docutils literal notranslate"><span class="pre">vim</span></code>, <code class="docutils literal notranslate"><span class="pre">gedit</span></code> 등의 에디터를 사용할 수 있습니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>chesh.c
+</pre></div>
+</div>
+<p>위 명령어는 <code class="docutils literal notranslate"><span class="pre">nano</span></code> 텍스트 에디터를 사용하여 새 파일을 생성하거나 기존 파일을 편집할 때 사용합니다. 위 코드를 복사하여 에디터에 붙여넣고 저장 후 종료합니다(<code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>를 누르고 <code class="docutils literal notranslate"><span class="pre">Enter</span></code>를 눌러 저장).</p>
+</section>
+<section id="id9">
+<h3>2단계: 코드 컴파일하기<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">gcc</span></code>를 사용하여 <code class="docutils literal notranslate"><span class="pre">chesh.c</span></code> 소스 파일을 컴파일하고 실행 파일을 생성합니다. 다음 명령어를 사용합니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>chesh.c<span class="w"> </span>-o<span class="w"> </span>chesh
+</pre></div>
+</div>
+<p>이 명령어는 <code class="docutils literal notranslate"><span class="pre">chesh.c</span></code> 파일을 컴파일하여 <code class="docutils literal notranslate"><span class="pre">chesh</span></code>라는 실행 파일을 생성합니다. <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">chesh</span></code> 옵션은 출력 파일의 이름을 지정합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>만약 <code class="docutils literal notranslate"><span class="pre">gcc</span></code> 컴파일러가 설치되어 있지 않다면, 대부분의 리눅스 배포판에서 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">build-essential</span></code> (Debian, Ubuntu 등) 또는 해당 배포판의 패키지 관리자를 사용하여 설치할 수 있습니다.</p>
+</div>
+</section>
+<section id="id10">
+<h3>3단계: 셸 실행하기<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>컴파일이 성공적으로 완료되면, 생성된 <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 실행 파일을 다음과 같이 실행할 수 있습니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./chesh
+</pre></div>
+</div>
+<p>이 명령어는 현재 디렉토리에 있는 <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 실행 파일을 실행합니다. 성공적으로 실행되면, 사용자에게 명령어 입력을 위한 프롬프트 <code class="docutils literal notranslate"><span class="pre">chesh&gt;</span> </code>가 표시됩니다.</p>
+</section>
+<section id="id11">
+<h3>4단계: 명령어 실행하기<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">chesh</span></code> 셸이 실행되고 나면, 다양한 리눅스 명령어를 입력하여 실행할 수 있습니다. 예를 들어, 현재 디렉토리의 파일 목록을 보려면 <code class="docutils literal notranslate"><span class="pre">ls</span></code> 명령어를 사용합니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chesh&gt;<span class="w"> </span>ls
+</pre></div>
+</div>
+<p>또는 현재 디렉토리를 변경하려면 <code class="docutils literal notranslate"><span class="pre">cd</span></code> 명령어와 함께 원하는 경로를 입력합니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chesh&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/directory
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h3>5단계: <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 종료하기<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">chesh</span></code> 셸을 종료하려면, 내장 명령어인 <code class="docutils literal notranslate"><span class="pre">exit</span></code>을 입력합니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chesh&gt;<span class="w"> </span><span class="nb">exit</span>
+</pre></div>
+</div>
+<p>이 튜토리얼을 따라 하면, 기본적인 셸 프로그램 <code class="docutils literal notranslate"><span class="pre">chesh</span></code>를 컴파일하고 실행하여 간단한 명령어를 수행할 수 있습니다. 추가 기능이나 개선이 필요한 경우, 소스 코드를 수정하여 더 많은 기능을 구현할 수 있습니다.</p>
+</section>
 </section>
 </section>
 
@@ -583,20 +654,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="cpu-mechanisms.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 2 - 가상화의 세계</p>
+        <p class="prev-next-title">제한적 직접 실행 원리</p>
       </div>
     </a>
     <a class="right-next"
-       href="cpu-api.html"
+       href="../week03/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">프로세스 API</p>
+        <p class="prev-next-title">Week 3 - 스케줄링</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -616,11 +687,23 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">프로세스의 개념</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">프로세스 API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로세스 생성 : 좀 더 자세하게</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">프로세스 상태</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">프로그램 명세</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chesh">기본 셸: <code class="docutils literal notranslate"><span class="pre">chesh</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">명령어 실행</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">내장 명령어</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">프로그램 오류 처리</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">구현 팁</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">예제 코드</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">실행 방법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1단계: 코드 저장하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2단계: 코드 컴파일하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3단계: 셸 실행하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4단계: 명령어 실행하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5단계: <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 종료하기</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
