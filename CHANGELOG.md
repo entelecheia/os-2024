@@ -1,5 +1,12 @@
 <!--next-version-placeholder-->
 
+## v0.2.1 (2024-03-10)
+
+### Fix
+
+* **pyproject:** Update 'omit' field in pyproject.toml ([`8ff91fe`](https://github.com/chu-aie/os-2024/commit/8ff91fef5bd7d93684f34a58d89447534297e5ff))
+* **cli:** Add about information loading ([`e13b5ec`](https://github.com/chu-aie/os-2024/commit/e13b5ecc59aed1e6b27cc7b854711012a47ca817))
+
 ## v0.2.0 (2024-03-10)
 
 ### Feature
