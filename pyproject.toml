@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "os2024"
-version = "0.1.0"
+version = "0.2.0"
 description = "Operating Systems 2024 Class"
 authors = ["Young Joon Lee <yj.lee@chu.ac.kr>"]
 license = "CC-BY-4.0"
