@@ -134,7 +134,7 @@ fail_under = 50
 exclude_lines = ['if __name__ == "__main__":']
 
 [tool.coverage.run]
-omit = '*/book/*'
+omit = ['*/book/*']
 
 [tool.commitizen]
 name = "cz_conventional_commits"
