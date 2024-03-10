@@ -57,7 +57,7 @@ def open_book(local: bool = False) -> None:
         if not os.path.isfile(html_path):
             click.echo(f"The `{html_path}` was not found.")
             click.echo(
-                f"The book is not built yet. Please run '{__package_name__} build' first."
+                f"The book is not built yet. Please run '{__package_name__} --build' first."
             )
             return
         click.echo("Opening the book locally...")
