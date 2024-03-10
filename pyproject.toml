@@ -130,7 +130,11 @@ testpaths = ["tests"]
 addopts = "-p no:cacheprovider" # deactivating pytest caching.
 
 [tool.coverage.report]
+fail_under = 50
 exclude_lines = ['if __name__ == "__main__":']
+
+[tool.coverage.run]
+omit = ['*/book/*']
 
 [tool.commitizen]
 name = "cz_conventional_commits"
