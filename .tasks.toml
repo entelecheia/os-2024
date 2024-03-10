@@ -39,12 +39,12 @@ cmd = "pytest --doctest-modules"
 help = "run tests with pytest"
 
 [tool.poe.tasks.tests-cov]
-cmd = "pytest --cov=src --cov-report=xml"
+cmd = "pytest --cov-report=xml"
 help = "run tests with pytest and generate a coverage report"
 
 [tool.poe.tasks.tests-cov-fail]
-shell = "pytest --cov=src --cov-report=xml --cov-fail-under=50 --junitxml=tests/pytest.xml | tee tests/pytest-coverage.txt"
-help = "run tests with pytest and generate a coverage report, fail if coverage is below 80%"
+shell = "pytest --cov-report=xml -junitxml=tests/pytest.xml | tee tests/pytest-coverage.txt"
+help = "run tests with pytest and generate a coverage report, fail if coverage is below the threshold"
 
 [tool.poe.tasks.clean-cov]
 cmd = "rm -rf .coverage* tests/htmlcov tests/pytest.xml tests/pytest-coverage.txt"
