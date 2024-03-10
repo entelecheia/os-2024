@@ -35,7 +35,7 @@
 [contributing guidelines]: https://github.com/chu-aie/os-2024/blob/main/CONTRIBUTING.md
 <!-- Links: -->
 
-Operating Systems 2024 Course
+Operating Systems 2024 Class
 
 - Documentation: [https://os2024.halla.ai][docs-url]
 - GitHub: [https://github.com/chu-aie/os-2024][repo-url]

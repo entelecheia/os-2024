@@ -5,3 +5,4 @@ Makefile
 deploy-app-image.yaml
 deploy-base-image.yaml
 _toc.yml
+.refs/

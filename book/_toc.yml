@@ -8,12 +8,32 @@ parts:
     chapters:
       - file: week01/index
         sections:
-          - file: week01/session1
-          - file: week01/session2
+          - file: week01/intro
+          - url: https://learn.microsoft.com/ko-kr/windows/wsl/install
+            title: WSL 설치방법
+      - file: week02/index
+        sections:
+          - file: week02/cpu-intro
+          - file: week02/cpu-api
+          - file: week02/cpu-mechanisms
+          - file: week02/shells
+          - file: week02/lab
+          - file: week02/tip
+      - file: week03/index
+  - caption: References
+    chapters:
+      - file: references/ostep/index
+      - file: references/ostep-code/index
+      - file: references/ostep-homework/index
+      - file: references/ostep-projects/index
+      - url: https://kuleuven-diepenbeek.github.io/osc-course/
+        title: Operating Systems and C
   - caption: About
     chapters:
       - file: syllabus/index
       - file: about/index
+  - caption: Links
+    chapters:
       - url: https://halla.ai
         title: 인공지능학과
       - url: https://os2024.halla.ai
@@ -22,3 +42,5 @@ parts:
         title: 머신러닝시스템 2024
       - url: https://cobots2024.halla.ai
         title: 협동로봇활용 2024
+      - url: https://aibasics.halla.ai
+        title: AI 세상 속으로
