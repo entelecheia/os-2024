@@ -41,6 +41,69 @@
 
 ```
 
+# Installation
+
+To install the OS 2024 package, use the following command:
+
+```
+pip install os2024
+```
+
+Or
+
+```
+pip install --user os2024
+```
+
+The `--user` flag is optional and can be used to install the package in the user's home directory instead of the system-wide location.
+
+## Usage
+
+To use the OS 2024 CLI, run the following command:
+
+```
+os2024 [OPTIONS]
+```
+
+If no option is provided, the website of the book will open in the default web browser.
+
+### Options
+
+The following options are available:
+
+- `--version`: Show the version of the package and exit.
+- `-b`, `--build`: Build the book.
+- `-l`, `--local`: Open the locally built HTML version of the book in the browser.
+- `--help`: Show the help message and exit.
+
+### Examples
+
+1. To build the book, use the following command:
+
+   ```
+   os2024 --build
+   ```
+
+   This will trigger the build process for the book.
+
+2. To open the locally built HTML version of the book in the browser, use the following command:
+
+   ```
+   os2024 --local
+   ```
+
+   This will open the book's HTML file in your default web browser.
+
+3. To view the version of the package, use the following command:
+
+   ```
+   os2024 --version
+   ```
+
+   This will display the version number of the OS 2024 package.
+
+For more information and additional options, run `os2024 --help` to see the help message.
+
 ## [Contributors](https://github.com/chu-aie/os-2024/contributors)
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
