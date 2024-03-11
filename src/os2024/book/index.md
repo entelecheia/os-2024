@@ -41,7 +41,7 @@
 
 ```
 
-# Installation
+## Installation
 
 To install the OS 2024 package, use the following command:
 
