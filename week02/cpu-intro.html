@@ -455,9 +455,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">프로세스의 개념</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">프로세스 API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로세스 생성 : 좀 더 자세하게</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">프로세스 상태</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">프로세스 생성 : 좀 더 자세하게</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">프로세스 생성 단계</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">프로세스 상태</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">자료구조</a></li>
 </ul>
             </nav>
         </div>
@@ -532,14 +535,39 @@ document.write(`
 <li><p>상태(Status): 프로세스의 현재 상태 정보를 얻어내는 인터페이스도 제공됩니다. 이는 프로세스가 얼마 동안 실행되었는지 또는 프로세스가 어떤 상태에 있는지 등이 포함됩니다.</p></li>
 </ul>
 </section>
-<section id="id5">
-<h2>프로세스 생성 : 좀 더 자세하게<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-</section>
 <section id="id6">
-<h2>프로세스 상태<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-</section>
+<h2>프로세스 생성 : 좀 더 자세하게<a class="footnote-reference brackets" href="#ypilseong" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>프로세스 생성은 컴퓨터 운영 체제에서 매우 중요한 작업 중 하나로, 프로그램이 실행되기 위해 컴퓨터 리소스를 할당받아 프로세스의 형태로 메모리에 로드되는 과정을 의미합니다. 이 과정을 통해 프로그램은 실행 가능한 상태가 됩니다.</p>
 <section id="id7">
-<h2>자료구조<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h3>프로세스 생성 단계<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>프로세스 식별자 할당: 운영 체제는 새로 생성될 프로세스에 고유한 프로세스 ID(PID)를 할당합니다. 이를 통해 시스템 내에서 프로세스를 식별하고 관리할 수 있습니다.</p></li>
+<li><p>메모리 할당: 프로세스가 실행될 메모리 공간이 할당됩니다. 이 공간에는 프로그램의 코드, 데이터, 스택 등이 저장됩니다.</p></li>
+<li><p>프로세스 제어 블록(PCB) 초기화: 프로세스 제어 블록(PCB)은 프로세스에 대한 중요한 정보를 담고 있는 데이터 구조로, 프로세스 상태, 프로그램 카운터, CPU 레지스터, 메모리 관리 정보 등을 포함합니다. 새로운 프로세스가 생성될 때, 해당 프로세스를 위한 PCB가 초기화됩니다.</p></li>
+<li><p>부모 프로세스와의 관계 설정: 운영 체제에서 프로세스는 보통 부모-자식 관계를 통해 관리됩니다. 새 프로세스는 기존의 프로세스(부모 프로세스)에 의해 생성될 수 있으며, 이때 부모 프로세스와 자식 프로세스 사이의 관계가 설정됩니다.</p></li>
+<li><p>프로세스 상태 설정: 프로세스의 초기 상태가 설정됩니다. 보통 새 프로세스는 준비 상태로 설정되어 실행을 위한 대기열에 들어가게 됩니다.</p></li>
+</ul>
+<p>프로세스 생성 방법은 운영 체제에 따라 다를 수 있으며, UNIX/Linux 시스템에서는 fork()와 exec() 시스템 호출을 사용하여 프로세스를 생성합니다.</p>
+<p><img alt="fork()와 exec()" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb964Um%2Fbtstq6scmiT%2FPc1tLHFSm3rJeeeWOt7BMK%2Fimg.png" /></p>
+<ul class="simple">
+<li><p>fork(): 새로운 프로세스를 생성하는 시스템 콜</p>
+<ul>
+<li><p>새로운 프로세스는 원래 프로세스의 주소 공간의 복사본으로 구성합니다.</p></li>
+</ul>
+</li>
+<li><p>exec() : 이진 파일을 메모리에 적재(load)하고 그 프로그램을 실행하는 시스템콜</p>
+<ul>
+<li><p>fork() 시스템 콜 다음에 둘 중 한 프로세스가 해당 시스템콜을 사용한다.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h2>프로세스 상태<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+</section>
+<section id="id9">
+<h2>자료구조<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="parkeunseongkr" role="doc-footnote">
@@ -549,6 +577,10 @@ document.write(`
 <aside class="footnote brackets" id="jo-sehyun" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://github.com/Jo-Sehyun">조세현</a></p>
+</aside>
+<aside class="footnote brackets" id="ypilseong" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/ypilseong">양필성</a></p>
 </aside>
 </aside>
 </section>
@@ -620,9 +652,12 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">프로세스의 개념</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">프로세스 API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로세스 생성 : 좀 더 자세하게</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">프로세스 상태</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">프로세스 생성 : 좀 더 자세하게</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">프로세스 생성 단계</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">프로세스 상태</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">자료구조</a></li>
 </ul>
   </nav></div>
 
