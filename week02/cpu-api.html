@@ -456,8 +456,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fork">fork() 시스템 콜</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wait">wait() 시스템 콜</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exec">드디어, exec() 시스템 콜</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">왜, 이런 API를?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">여타 API들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">왜, 이런 API를?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">여타 API들</a></li>
 </ul>
             </nav>
         </div>
@@ -470,21 +470,162 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="api">
-<h1>프로세스 API<a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
+<h1>프로세스 API<a class="footnote-reference brackets" href="#gyu-bbb" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
+<p>프로세스 API는 운영체제(OS)가 애플리케이션에 제공하는 인터페이스로, 사용자 프로그램이 운영체제의 다양한 기능을 사용할 수 있도록 해주는 시스템 호출이다. 이는 프로세스의 생성, 종료, 정지, 재개와 같은 기본적인 관리 작업뿐만 아니라, 프로세스 상태 정보 제공, 메모리 할당, 파일 접근 등 가상 머신 관련 기능을 요청하는데 필수적이다. 또한, 프로세스 API는 프로세스 뿐만 아니라 모듈(실행 파일 또는 DLL)과 디바이스 드라이버에 대한 정보 조회 및 메모리 사용량 데이터 수집과 같은 고급 기능도 지원한다.</p>
+<p>이 중 fork(), wait(), exec()는 프로세스의 생성, 실행, 대기 및 종료를 다루는 데 필수적인 API로 해당 문서에서 소개한다.</p>
 <section id="fork">
 <h2>fork() 시스템 콜<a class="headerlink" href="#fork" title="Link to this heading">#</a></h2>
+<p>fork() 시스템 콜은 호출하는 프로세스(부모 프로세스)의 복사본을 생성하는(자식 프로세스) 기능을 한다. 이때, 자식 프로세스는 부모 프로세스의 데이터, 코드, 힙, 스택 등을 복사하게 된다. 하지만, 프로세스 식별자(PID)는 서로 다르다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 자식 프로세스</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;이것은 자식 프로세스입니다.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 부모 프로세스</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;이것은 부모 프로세스입니다.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// fork 실패</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;fork() 실패</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="wait">
 <h2>wait() 시스템 콜<a class="headerlink" href="#wait" title="Link to this heading">#</a></h2>
+<p>wait() 시스템 콜은 부모 프로세스가 자식 프로세스의 종료를 대기하는 기능을 한다. 자식 프로세스가 종료될 때까지 부모 프로세스의 실행을 잠시 멈훈다. 이를 통해 자원의 회수 및 자식 프로세스의 종료 상태 값을 얻을 수 있다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/wait.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 자식 프로세스</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;자식 프로세스 실행</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 부모 프로세스</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">status</span><span class="p">);</span><span class="w"> </span><span class="c1">// 자식 프로세스의 종료를 대기</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;부모 프로세스 재개</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// fork 실패</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;fork() 실패</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="exec">
 <h2>드디어, exec() 시스템 콜<a class="headerlink" href="#exec" title="Link to this heading">#</a></h2>
-</section>
-<section id="id1">
-<h2>왜, 이런 API를?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>exec() 계열의 시스템 콜은 프로세스가 새로운 프로그램을 실행하게 해준다. exec() 호출은 현재 프로세스의 이미지를 새로운 프로그램의 이미지로 교체한다. 이는 프로세스의 메모리 내용을 완전히 새로운 프로그램으로 바꾸는 것을 의미한다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;echo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello, exec()!&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span>
+<span class="w">    </span><span class="n">execvp</span><span class="p">(</span><span class="s">&quot;echo&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// execvp 호출 후 이 코드는 실행되지 않습니다.</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;이 문장은 실행되지 않습니다.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="id2">
-<h2>여타 API들<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2>왜, 이런 API를?<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>운영 체제의 핵심 기능 중 하나는 프로세스 관리이다. 프로세스는 운영 체제 상에서 실행 중인 프로그램의 인스턴스로, 각각 고유한 주소 공간과 시스템 자원을 할당받는다. 이러한 프로세스들을 효율적으로 생성, 실행, 관리, 종료하는 것은 시스템의 안정성과 성능에 직접적인 영향을 미친다. 이를 위해 운영 체제는 fork(), wait(), exec()와 같은 프로세스 관리 API를 제공한다.</p>
+<details>
+<summary>복잡한 시스템의 단순화</summary>
+<p>fork(), wait(), exec()와 같은 API들은 복잡한 멀티프로세싱 시스템을 구축할 때 필수적이다. 이들 API를 사용함으로써 개발자는 새로운 프로세스를 생성하고(fork()), 프로세스의 실행을 조정(wait()), 그리고 새로운 프로그램을 실행(exec())할 수 있다. 이 과정에서, 각 API는 복잡한 내부 작업을 추상화하고 개발자에게 단순화된 인터페이스를 제공한다. 결과적으로, 개발자는 운영 체제의 복잡한 내부 메커니즘을 자세히 알지 못해도 프로세스 관리 기능을 쉽게 구현할 수 있다.</details></p>
+<details>
+<summary>멀티태스킹과 병렬 처리 지원</summary>
+<p>컴퓨팅 환경은 멀티태스킹과 병렬 처리를 필요로 한다. fork()를 사용하여 프로세스를 복제하고, exec()로 새로운 작업을 실행시키며, wait()으로 자식 프로세스의 실행 완료를 동기화함으로써, 개발자는 여러 작업을 동시에 처리할 수 있는 애플리케이션을 만들 수 있다. 이는 웹 서버와 같이 동시에 여러 요청을 처리해야 하는 애플리케이션에서 특히 중요다.</details></p>
+<details>
+<summary>자원 관리 및 장애 격리</summary>
+<p>프로세스 API를 사용하면 프로세스 간의 자원 공유와 통신을 정교하게 관리할 수 있다. 예를 들어, fork() 후 exec()를 사용하면, 자식 프로세스는 부모 프로세스로부터 독립된 메모리 공간을 할당받게 되며, 이는 장애 격리(fault isolation)를 가능하게 한다. 하나의 프로세스에서 발생한 문제가 다른 프로세스에 영향을 미치지 않도록 하는 것이다. 이러한 장애 격리 메커니즘은 시스템의 안정성과 보안을 향상시킨다.</details></p>
+<details>
+<summary>효율적인 프로세스 관리</summary>
+<p>wait() 시스템 콜은 부모 프로세스가 자식 프로세스의 종료를 기다리게 함으로써, 자식 프로세스가 시스템 자원을 반환하고 종료 상태를 부모에게 알리는 과정을 관리한다. 이는 프로세스가 시스템 자원을 낭비하지 않고 효율적으로 활용하도록 보장한다. 프로세스의 정상 종료 및 비정상 종료를 관리하는 것은 시스템의 성능과 안정성을 유지하는 데 중요하다.</details></p>
+</section>
+<section id="id3">
+<h2>여타 API들<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>API 이름</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">waitpid()</span></code></p></td>
+<td><p>특정 PID를 가진 자식 프로세스 또는 어떤 자식 프로세스의 상태 변화를 대기한다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">exit()</span></code></p></td>
+<td><p>프로세스를 종료시키고, 모든 자원을 운영 체제에 반환한다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_exit()</span></code></p></td>
+<td><p>프로세스를 즉시 종료시키지만, 표준 I/O 버퍼를 비우지 않는다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">getpid()</span></code></p></td>
+<td><p>현재 프로세스의 PID를 반환한다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">getppid()</span></code></p></td>
+<td><p>현재 프로세스의 부모 프로세스 PID를 반환한다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kill()</span></code></p></td>
+<td><p>특정 프로세스에 시그널을 보낸다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">signal()</span></code></p></td>
+<td><p>시그널 핸들러를 설치한다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sigaction()</span></code></p></td>
+<td><p>시그널 처리를 위한 고급 인터페이스를 제공한다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">setpgid()</span></code></p></td>
+<td><p>프로세스 그룹 ID를 설정하거나 변경한다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">getpgid()</span></code></p></td>
+<td><p>프로세스 그룹 ID를 가져온다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">setsid()</span></code></p></td>
+<td><p>새로운 세션을 생성하고, 세션 리더가 된다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">alarm()</span></code></p></td>
+<td><p>일정 시간 후에 프로세스에 SIGALRM 시그널을 전송한다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sleep()</span></code></p></td>
+<td><p>프로세스를 지정된 시간 동안 대기시킨다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pause()</span></code></p></td>
+<td><p>프로세스를 시그널이 도착할 때까지 대기시킨다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nice()</span></code></p></td>
+<td><p>프로세스의 스케줄링 우선순위를 변경한다.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sched_setparam()</span></code></p></td>
+<td><p>프로세스 스케줄링 매개변수를 설정한다.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sched_getparam()</span></code></p></td>
+<td><p>프로세스 스케줄링 매개변수를 가져온다.</p></td>
+</tr>
+</tbody>
+</table>
+<p>이 표에는 프로세스 관리를 위해 사용되는 주요 시스템 콜과 API들이 포함되어 있다.</p>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="gyu-bbb" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>[이규범(<a class="github reference external" href="https://github.com/Gyu-BBB/os-2024">Gyu-BBB/os-2024</a>)</p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -555,8 +696,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fork">fork() 시스템 콜</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wait">wait() 시스템 콜</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exec">드디어, exec() 시스템 콜</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">왜, 이런 API를?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">여타 API들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">왜, 이런 API를?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">여타 API들</a></li>
 </ul>
   </nav></div>
 
