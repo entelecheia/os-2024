@@ -459,8 +459,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">프로세스 생성 단계</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">프로세스 상태</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">프로세스 상태</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">자료구조</a></li>
 </ul>
             </nav>
         </div>
@@ -563,11 +563,35 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="id8">
-<h2>프로세스 상태<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
-</section>
 <section id="id9">
-<h2>자료구조<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<h2>프로세스 상태<a class="footnote-reference brackets" href="#heesun016" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a><a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>프로세스 상태(state)를 단순화하면 다음 세 상태 중 하나에 존재할 수 있다.</p>
+<ul class="simple">
+<li><p>실행 (Running): 실행 상태에서 프로세스는 프로세서에서 실행 중이다. 즉, 프로스는 명령어를 실행하고 있다.</p></li>
+<li><p>준비 (Ready): 준비 상태에서 프로세스는 실행할 준비가 되어 있지만 운영체제가 다른 프로세스를 실행하고 있는 등의 이유로 대기 중이다.</p></li>
+<li><p>대기 (Blocked): 프로세스가 다른 사건을 기다리는 동안 프로세스의 수행을 중단시키는 연산이다. 흔한 예 : 프로세스가 디스크에 대한 입출력 요청을 하였을 때 프로세스는 입출력이 완료될 때까지 대기 상태가 되고, 다른 프로세스가 실행 상태로 될 수 있다.</p></li>
+</ul>
+<p>이를 그림으로 표현하면 아래에 있는 이미지와 같이 될 것이다.</p>
+<img src="https://github.com/chu-aie/os-2024/assets/103018072/e40ad322-4dd4-4466-92ca-b905707ef660" width="560" height="400"/>
+<p>위에서 보이는 듯 프로세스는 ‘준비’ 상태와 ‘실행’ 상태를 운영체제의 정책에 따라 이동한다. 프로세스는 운영체제의 스케줄링 정책에 따라 스케줄이 되면 ‘준비’ 상태에서 ‘실행’ 상태로 전이한다.</p>
+<p>‘실행’ 상태에서 ‘준비’ 상태로의 전이는 프로세스가 나중에 다시 스케줄 될 수 있는 상태가 되었다는 것을 의미한다. 프로세스가 입출력 요청 등의 이유로 대기 상태가 되면 요청 완료 등의 이벤트가 발생할 때까지 대기 상태로 유지된다. 이벤트가 발생하면 프로세스는 다시 준비 상태로 전이되고 운영체제의 결정에 따라 바로 다시 실행될 수 있다.</p>
+<p>두 개의 프로세스가 어떻게 전이될 수 있는지를 한번 알아보자. 먼저 실행 중인 두 프로세스가 있다고 했을 때, 각 프로세스가 오직 CPU만 사용하고 입출력을 행하지 않을 때의 프로세스 상태 추이를 나타내면 아래와 같다.</p>
+<img src="https://github.com/chu-aie/os-2024/assets/103018072/c71dbbbe-6e57-49bc-9739-216054256ef5" width="750" height="500"/>
+<p>위에서 보이다시피 첫 번째 프로세스가 어느 정도 실행한 후에 입출력을 요청한다. 그 순간 프로세스는 대기 상태가 되고 다른 프로세스에게 실행 기회를 준다. 이걸 자세히 보면 아래와 같다.</p>
+<img src="https://github.com/chu-aie/os-2024/assets/103018072/1fc92971-1a49-4977-9d9f-2670a7afbeb5" width= "780" height="440"/>
+<p>순서를 자세히 살펴보면,</p>
+<ol class="arabic simple">
+<li><p>Process0은 입출력을 요청하고 요청한 작업이 완료되기를 기다린다</p></li>
+<li><p>프로세스는 디스크를 읽거나 네트워크로부터 패킷을 기다릴 때 대기 상태로 전이한다.</p></li>
+<li><p>운영체제는 Process0이 CPU를 사용하지 않는다는 것을 감지하고, Process1을 실행시킨다.</p></li>
+<li><p>Process1이 실행되는 동안 입출력이 완료되고 Process0은 준비 상태로 다시 전이된다.</p></li>
+<li><p>Process1은 종료되고, Process0이 실행되어 종료된다.</p></li>
+</ol>
+<p>이처럼 간단한 예에서조차 운영체제가 내려야 할 결정은 매우 많다. 우선 시스템이 Process0이 입출력을 요청할 때 Process1의 실행 여부를 결정해야 한다. Process1을 실행키로 한 결정은 CPU를 계속 동작시키므로 자원 이용률을 높인다. 또한, 시스템은 Process0이 요청한 입출력이 완료되었을 때, Process0을 바로 실행하지 않고 실행 중이던 Process1을 계속 실행하였다. 이게 좋은 결정이었는지는 확실하지 않다.</p>
+<p>운영체제는 스케줄러를 통해 이러한 결정을 내린다. 운영체제의 스케줄러는 차후에 자세히 다룰 예정이다.</p>
+</section>
+<section id="id10">
+<h2>자료구조<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="parkeunseongkr" role="doc-footnote">
@@ -581,6 +605,10 @@ document.write(`
 <aside class="footnote brackets" id="ypilseong" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://github.com/ypilseong">양필성</a></p>
+</aside>
+<aside class="footnote brackets" id="heesun016" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">4</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/heesun016">장희선</a></p>
 </aside>
 </aside>
 </section>
@@ -656,8 +684,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">프로세스 생성 단계</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">프로세스 상태</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">자료구조</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">프로세스 상태</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">자료구조</a></li>
 </ul>
   </nav></div>
 
