@@ -534,6 +534,7 @@ document.write(`
 </section>
 <section id="id6">
 <h2>프로세스 생성 : 좀 더 자세하게<a class="footnote-reference brackets" href="#ypilseong" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>프로그램을 실행하기 위해 운영체제가 가장 먼저 하는 일은 프로그램의 코드와 정적 데이터(초기값이 있는 변수 등)를 메모리, 즉 프로세스의 주소 공간으로 불러오는 것입니다. 이를 ‘로딩(loading)’이라고 합니다. 프로그램은 보통 디스크나 요즘에는 SSD에 실행 파일 형태로 저장되어 있는데, 운영체제는 이 파일에서 필요한 부분을 읽어 메모리에 적재합니다.</p>
 <p>초기의 운영체제는 프로그램 실행 전에 코드와 데이터 전체를 메모리에 로딩했지만, 최근의 운영체제는 이를 지연시켜 필요할 때만 메모리에 적재하는 방식을 사용합니다. 이를 정확히 이해하려면 페이징(paging)과 스와핑(swapping)에 대한 지식이 필요한데, 이는 추후 메모리 가상화를 다룰 때 자세히 설명하겠습니다.</p>
 <p>코드와 정적 데이터를 메모리에 로딩한 후, 운영체제는 프로그램 실행을 위해 몇 가지 준비 작업을 더 수행합니다.</p>
 <ol class="arabic simple">
@@ -610,8 +611,7 @@ document.write(`
 </aside>
 <aside class="footnote brackets" id="ypilseong" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://github.com/ypilseong">양필성</a>
-프로그램을 실행하기 위해 운영체제가 가장 먼저 하는 일은 프로그램의 코드와 정적 데이터(초기값이 있는 변수 등)를 메모리, 즉 프로세스의 주소 공간으로 불러오는 것입니다. 이를 ‘로딩(loading)’이라고 합니다. 프로그램은 보통 디스크나 요즘에는 SSD에 실행 파일 형태로 저장되어 있는데, 운영체제는 이 파일에서 필요한 부분을 읽어 메모리에 적재합니다.</p>
+<p><a class="reference external" href="https://github.com/ypilseong">양필성</a></p>
 </aside>
 <aside class="footnote brackets" id="heesun016" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">4</a><span class="fn-bracket">]</span></span>
