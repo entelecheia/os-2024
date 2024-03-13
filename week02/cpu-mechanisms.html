@@ -454,9 +454,22 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">기본 원리 : 제한적 직접 실행</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">문제점 1: 제한된 연산</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">문제점 2: 프로세스 간 전환</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">병행성이 걱정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">문제점 1: 제한된 연산</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">핵심 질문: 프로세스가 제한된 연산을 수행하는 방법은 무엇인가?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">시스템 콜이 일반 함수 호출과 비슷해 보이는 이유</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">문제점 2: 프로세스 간 전환</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">협조적 스케줄링: 운영체제가 시스템 콜을 기다리는 방식</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">비협조적 스케줄링: 운영체제가 강제로 CPU 제어권을 획득하는 방식</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">문맥 저장과 복원</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">병행성이 걱정</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">인터럽트 처리 중 인터럽트 발생의 문제</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">정리</a></li>
 </ul>
             </nav>
         </div>
@@ -470,17 +483,117 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>제한적 직접 실행 원리<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>운영체제는 CPU 가상화를 위해 제한적 직접 실행이라는 기법을 사용합니다. 이 기법의 기본 아이디어는 프로그램을 CPU에서 직접 실행시키되, 운영체제가 CPU 제어권을 잃지 않도록 프로세스의 행동에 제한을 두는 것입니다.</p>
 <section id="id2">
 <h2>기본 원리 : 제한적 직접 실행<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>프로그램을 실행할 때 운영체제는 다음과 같은 절차를 따릅니다:</p>
+<ol class="arabic simple">
+<li><p>프로세스를 위한 메모리를 할당하고 프로그램을 메모리에 적재합니다.</p></li>
+<li><p>CPU를 사용자 모드로 전환하고 프로그램의 main() 함수로 이동합니다.</p></li>
+<li><p>프로그램이 실행되면서 시스템 콜이 호출되면 커널 모드로 전환되고 운영체제가 해당 요청을 처리합니다.</p></li>
+<li><p>요청 처리가 완료되면 다시 사용자 모드로 돌아가 프로그램 실행을 계속합니다.</p></li>
+</ol>
+<p>이런 직접 실행 방식은 CPU 가상화를 구현하는 데 있어 몇 가지 문제를 야기합니다.</p>
+<p>첫째, 프로그램을 그대로 실행시킨다면 운영체제가 원하지 않는 동작을 프로그램이 수행하지 않는다는 것을 어떻게 보장할 수 있을까요? 프로그램에 아무런 제한을 두지 않는다면, 운영체제의 통제를 벗어나는 일이 발생할 수 있습니다.</p>
+<p>둘째, 프로세스를 실행할 때 운영체제가 CPU 사용을 적절히 분배하려면 프로그램 실행을 중단하고 다른 프로세스로 전환할 수 있어야 합니다. 이를 시분할(time sharing)이라고 하는데, 직접 실행 방식으로는 이를 구현하기 어렵습니다.</p>
+<p>여기서 시분할(time sharing)이란 여러 프로세스가 CPU를 돌아가며 사용하도록 하여, 마치 동시에 실행되는 것처럼 보이게 하는 기술을 말합니다. 이는 CPU 가상화를 위해 필수적인 개념입니다.</p>
+<p>이 문제들에 대한 해답을 찾아가는 과정에서 우리는 CPU 가상화에 필요한 사항들을 더 잘 이해하게 될 것입니다. 그리고 “제한적 직접 실행”이라는 이름에 담긴 의미, 즉 프로그램 실행에 일정한 제한을 가하는 것의 중요성도 깨닫게 될 것입니다.</p>
+<p>만약 프로그램 실행을 제한하지 않는다면 운영체제는 아무것도 통제할 수 없게 되고, 그저 단순한 라이브러리에 지나지 않게 됩니다. 이는 운영체제가 제 역할을 하기 위해서는 매우 바람직하지 않은 상황이 될 것입니다.</p>
 </section>
 <section id="id3">
 <h2>문제점 1: 제한된 연산<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-</section>
+<p>그러나 프로세스가 모든 연산을 수행하도록 허용하면 시스템의 안정성과 보안에 문제가 생길 수 있습니다. 따라서 사용자 모드에서 실행되는 코드는 특정 연산에 제한을 받습니다. 제한된 연산을 수행하려면 시스템 콜을 통해 운영체제에 요청해야 합니다.</p>
 <section id="id4">
-<h2>문제점 2: 프로세스 간 전환<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h3>핵심 질문: 프로세스가 제한된 연산을 수행하는 방법은 무엇인가?<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>프로세스는 파일 입출력과 같은 제한된 연산을 수행해야 할 때가 있습니다. 그러나 프로세스는 시스템의 모든 자원에 직접 접근할 권한이 없기 때문에 이러한 연산을 직접 수행할 수 없습니다. 그렇다면 운영체제와 하드웨어는 어떤 방식으로 프로세스가 제한된 연산을 수행할 수 있도록 도와줄까요?</p>
+<p>팁: 하드웨어의 도움으로 보호된 제어 양도</p>
+<p>하드웨어는 두 가지 실행 모드를 제공하여 운영체제를 지원합니다:</p>
+<ol class="arabic simple">
+<li><p>사용자 모드(user mode): 응용 프로그램이 실행되는 모드로, 하드웨어 자원에 대한 접근이 제한됩니다.</p></li>
+<li><p>커널 모드(kernel mode): 운영체제가 실행되는 모드로, 모든 하드웨어 자원에 접근할 수 있는 권한을 가집니다.</p></li>
+</ol>
+<p>프로세스가 제한된 연산을 수행하려면 사용자 모드에서 커널 모드로 전환되어야 합니다. 이를 위해 하드웨어는 다음과 같은 특수 명령어를 제공합니다:</p>
+<ul class="simple">
+<li><p>trap: 사용자 모드에서 커널 모드로 전환하는 명령어</p></li>
+<li><p>return-from-trap: 커널 모드에서 사용자 모드로 돌아가는 명령어</p></li>
+</ul>
+<p>또한 운영체제는 트랩이 발생했을 때 실행할 코드의 주소를 담고 있는 트랩 테이블(trap table)을 하드웨어에 알려주어야 합니다.</p>
+<p>이러한 하드웨어의 지원을 바탕으로, 프로세스는 제한된 연산이 필요할 때 시스템 콜을 호출하여 trap을 발생시키고, 운영체제는 요청받은 연산을 대신 수행한 뒤 return-from-trap을 통해 다시 프로세스에게 제어를 넘겨줍니다.</p>
 </section>
 <section id="id5">
-<h2>병행성이 걱정<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h3>시스템 콜이 일반 함수 호출과 비슷해 보이는 이유<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>open()이나 read()같은 시스템 콜을 호출하는 코드를 보면, C언어의 일반적인 함수 호출 코드와 매우 유사합니다. 그렇다면 시스템 콜과 함수 호출이 동일한 형태라면, 운영체제는 어떻게 이 둘을 구분하여 시스템 콜에 맞는 동작을 수행할 수 있을까요?</p>
+<p>답은 간단합니다. 시스템 콜도 사실 함수 호출이지만, 그 안에는 trap이라는 특수 명령어가 숨어있기 때문입니다. 좀 더 자세히 설명하면 다음과 같습니다.</p>
+<p>예를 들어 open() 시스템 콜을 호출하는 코드를 생각해 봅시다. 이 코드가 실행되면 사실 C 라이브러리 내부의 open() 함수가 호출됩니다. 이 라이브러리 함수는 운영체제 커널과 미리 약속된 규칙에 따라, open()에 전달된 인자들과 시스템 콜 번호를 정해진 위치(스택이나 특정 레지스터)에 저장합니다. 그리고 나서 trap 명령어를 실행하여 운영체제로 제어를 넘깁니다.</p>
+<p>운영체제는 trap 핸들러를 실행하여 요청받은 시스템 콜을 처리하고, 그 결과를 다시 약속된 위치에 저장합니다. 이제 trap 명령어에 의해 실행이 중단되었던 라이브러리 함수로 다시 제어가 돌아오면, 라이브러리 함수는 이 결과값을 받아 시스템 콜을 호출한 원래 프로그램에 반환합니다.</p>
+<p>여기서 주목할 점은, 시스템 콜을 호출하는 라이브러리 함수의 코드는 대부분 어셈블리어로 작성되어 있다는 것입니다. 이는 함수의 인자와 반환값을 처리하고 trap을 실행하는 과정이 하드웨어마다 조금씩 다르기 때문에, 이 부분은 어셈블리어로 구현되어야 합니다.</p>
+<p>다행히 프로그램 개발자가 직접 어셈블리 코드를 작성할 필요는 없습니다. 시스템 콜을 C 함수처럼 호출하기만 하면, 나머지는 라이브러리가 알아서 처리해 주기 때문이죠.</p>
+</section>
+</section>
+<section id="id6">
+<h2>문제점 2: 프로세스 간 전환<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>운영체제는 여러 프로세스를 번갈아 가며 실행해야 하므로, CPU 제어권을 다시 얻어 문맥 교환을 수행할 수 있어야 합니다. 이를 위해 하드웨어 타이머를 사용하여 주기적으로 인터럽트를 발생시킵니다. 타이머 인터럽트가 발생하면 운영체제는 CPU 제어권을 되찾아 현재 프로세스의 상태를 저장하고 다음에 실행할 프로세스의 정보를 복원하여 실행을 계속합니다.</p>
+<section id="id7">
+<h3>협조적 스케줄링: 운영체제가 시스템 콜을 기다리는 방식<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>초기의 몇몇 운영체제들은 협조적(cooperative) 스케줄링 방식을 사용했습니다. 대표적인 예로는 초기 버전의 매킨토시 운영체제나 제록스 알토 시스템이 있죠. 이 방식에서 운영체제는 프로세스들이 공정하게 CPU를 양보할 것이라고 가정합니다. 만약 어떤 프로세스가 너무 오랫동안 CPU를 독점할 것 같으면, 그 프로세스는 정기적으로 CPU 사용권을 운영체제에게 넘겨줘서 다른 프로세스들이 실행될 수 있게 해야 합니다.</p>
+<p>그럼 이런 질문을 할 수 있겠네요. “이 이상적인 상황에서 프로세스는 어떻게 자발적으로 CPU를 양보하나요?” 대부분의 프로세스는 파일 입출력, 네트워크 통신, 새 프로세스 생성 등의 작업을 위해 시스템 콜을 자주 호출하게 됩니다. 프로세스가 시스템 콜을 호출하면 자연스럽게 CPU 제어권이 운영체제로 넘어가게 되죠. 심지어 어떤 운영체제들은 ‘yield’라는 시스템 콜을 제공하기도 하는데, 이 호출은 특별히 할 일이 없어도 자발적으로 CPU를 양보하는 역할을 합니다.</p>
+<p>팁: 오작동하는 프로그램을 어떻게 처리할까요?</p>
+<p>하지만 운영체제는 가끔 규칙을 어기는 프로세스들을 처리해야 할 때도 있습니다. 프로그래밍 오류나 악의적인 의도로 인해, 어떤 프로세스들은 허용되지 않은 동작을 시도할 수도 있거든요. 현대 운영체제는 이런 비정상적인 프로세스를 그냥 강제 종료시킵니다. 야구로 치면 “One strike, you’re out!” 같은 거죠. 좀 가혹해 보일 수도 있지만, 불법 메모리 접근이나 잘못된 명령어 실행 같은 상황에서 운영체제가 할 수 있는 일이 그리 많지는 않습니다.</p>
+<p>만약 프로세스가 잘못된 행동을 하면 대개 트랩(trap)이 발생하고 CPU 제어권이 운영체제에게 넘어갑니다. 예를 들어 0으로 나누기를 시도한다거나 접근 권한이 없는 메모리 영역에 접근하려 하면 트랩이 발생하는 식이죠. 트랩이 발생하면 운영체제는 문제를 일으킨 프로세스를 강제 종료시킬 수 있습니다.</p>
+<p>그러니까 협조적 스케줄링 방식에서는 운영체제가 시스템 콜이나 트랩(불법 연산)이 발생하기를 기다렸다가 CPU를 다시 획득하는 방식입니다. 하지만 이런 수동적인 방법에는 문제가 있습니다. 만약 어떤 프로세스가 악의적으로든, 실수로든 무한 루프에 빠져서 전혀 시스템 콜을 호출하지 않는다면 어떻게 될까요? 이런 상황에서 운영체제는 속수무책으로 당할 수밖에 없겠죠.</p>
+</section>
+<section id="cpu">
+<h3>비협조적 스케줄링: 운영체제가 강제로 CPU 제어권을 획득하는 방식<a class="headerlink" href="#cpu" title="Link to this heading">#</a></h3>
+<p>이제, 프로세스들이 자발적으로 CPU를 양보하지 않고 계속 실행을 독점하려 할 때는 어떻게 해야 할까요? 안타깝게도 하드웨어의 추가적인 지원 없이는 운영체제가 할 수 있는 일이 거의 없습니다. 사실 협조적 스케줄링에서 프로세스가 무한 루프에 빠졌을 때 운영체제가 할 수 있는 유일한 방법은 컴퓨터를 재부팅하는 것뿐이었죠. 이는 오랫동안 모든 컴퓨터 문제를 해결하는 만능키 같은 역할을 해왔습니다. 하지만 CPU 제어권을 되찾기 위해 매번 재부팅을 한다는 건 그리 현명한 방법은 아닙니다.</p>
+<p>핵심 질문: 비협조적인 프로세스로부터 어떻게 CPU를 되찾을 수 있을까?</p>
+<p>운영체제가 비협조적인 프로세스로부터 CPU 제어권을 빼앗아 오기 위해서는 어떤 방법이 필요할까요? 우리는 악의적인 프로세스가 마음대로 시스템을 장악하는 것을 막아야만 합니다.</p>
+<p>이 문제에 대한 해결책은 수십 년 전 초기 컴퓨터 시스템을 설계했던 엔지니어들에 의해 고안되었습니다. 그 해결책은 바로 ‘타이머 인터럽트(timer interrupt)’를 이용하는 것입니다. 타이머 장치를 프로그래밍하여 일정 시간(보통 몇 밀리초)마다 인터럽트를 발생시키도록 하는 거죠. 타이머 인터럽트가 발생하면, 현재 실행 중이던 프로세스는 즉시 중단되고 미리 정해진 인터럽트 핸들러(interrupt handler)로 제어가 넘어갑니다. 이 핸들러는 운영체제의 코드입니다. 따라서 이 시점에서 운영체제는 CPU를 다시 장악하게 되고, 원하는 작업(현재 프로세스를 중단하고 다른 프로세스로 전환하는 등)을 수행할 수 있게 되는 것입니다.</p>
+<p>팁: 타이머 인터럽트로 CPU를 다시 장악하기</p>
+<p>타이머 인터럽트 기능은 프로세스가 비협조적일 때도 운영체제가 주기적으로 CPU를 되찾을 수 있게 해주는 핵심 메커니즘입니다. 이를 통해 운영체제는 시스템에 대한 제어권을 유지할 수 있습니다.</p>
+<p>물론 운영체제는 타이머 인터럽트가 발생했을 때 어떤 코드를 실행해야 하는지 하드웨어에 알려주어야 합니다. 이 작업은 시스템이 부팅되는 동안 이루어집니다. 부팅 과정에서 운영체제는 타이머를 시작시키고, 타이머 인터럽트가 발생하면 자신에게 제어가 넘어올 것이라는 사실을 알기에 안심하고 사용자 프로그램을 실행할 수 있게 되는 것이죠. 물론 운영체제는 필요할 때 타이머를 멈출 수도 있습니다. 이에 대한 자세한 내용은 병행성을 다룰 때 더 살펴보겠습니다.</p>
+<p>타이머 인터럽트가 발생했을 때 하드웨어도 해야 할 일이 있습니다. 현재 실행 중이던 프로그램의 상태(레지스터 값들)를 저장해서, 추후 인터럽트 처리가 끝나고 해당 프로그램으로 복귀할 때 그대로 실행을 재개할 수 있도록 해야 하는 것이죠. 이 과정은 시스템 콜이 호출되었을 때 일어나는 일과 매우 유사합니다. 다양한 레지스터 값들이 커널 스택에 저장되었다가, ‘return-from-trap’ 명령어에 의해 복원됩니다.</p>
+</section>
+<section id="id8">
+<h3>문맥 저장과 복원<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>운영체제가 시스템 콜이나 타이머 인터럽트를 통해 CPU 제어권을 되찾았다면, 그 다음에는 중요한 결정을 내려야 합니다. 바로 “현재 실행 중이던 프로세스를 계속 실행할 것인가, 아니면 다른 프로세스로 전환할 것인가”를 결정해야 하는 것이죠. 이 결정은 운영체제 내의 스케줄러(scheduler)라는 모듈이 담당합니다. 스케줄러가 어떤 정책에 따라 이 결정을 내리는지에 대해서는 이후 장에서 더 자세히 살펴보겠습니다.</p>
+<p>만약 스케줄러가 다른 프로세스로 전환하기로 결정했다면, 운영체제는 ‘문맥 교환(context switch)’이라 불리는 작업을 수행합니다. 문맥 교환의 기본 개념은 간단합니다. 현재 실행 중인 프로세스의 레지스터 값들을 모두 저장하고(주로 커널 스택에), 다음에 실행할 프로세스의 레지스터 값들을 복원하는 것입니다. 이렇게 하면 ‘return-from-trap’ 명령어가 실행될 때, 원래 실행 중이던 프로세스로 돌아가는 것이 아니라 새로운 프로세스로 가서 실행을 시작하게 되는 것이죠.</p>
+<p>문맥 교환을 위해 운영체제는 저수준 어셈블리어를 사용합니다. 현재 프로세스의 범용 레지스터, 프로그램 카운터(PC), 커널 스택 포인터 등을 모두 저장하고, 다음 프로세스의 값들을 복원합니다. 이렇게 하면 인터럽트가 발생했을 때의 프로세스에서 문맥 교환 코드를 호출하고, 새 프로세스의 문맥으로 복귀하게 되는 것입니다. ‘return-from-trap’이 실행되면, 새 프로세스가 실행 중인 프로세스가 되고, 문맥 교환이 완료됩니다.</p>
+<p>문맥 교환 과정에서는 레지스터 값의 저장과 복원이 두 번 일어난다는 점에 주목해야 합니다.</p>
+<ol class="arabic simple">
+<li><p>첫 번째는 타이머 인터럽트 등에 의해 인터럽트가 발생했을 때입니다. 이때는 하드웨어가 자동으로 현재 프로세스의 사용자 레지스터를 커널 스택에 저장합니다.</p></li>
+<li><p>두 번째는 운영체제가 프로세스 전환을 결정했을 때입니다. 이때는 운영체제 커널이 현재 프로세스의 나머지 레지스터(커널 레지스터)를 프로세스의 PCB(Process Control Block)에 저장합니다.</p></li>
+</ol>
+<p>이렇게 하면 마치 원래 실행 중이던 프로세스 A가 아니라, 새 프로세스 B에서 인터럽트가 발생한 것처럼 보이게 됩니다.</p>
+</section>
+</section>
+<section id="id9">
+<h2>병행성이 걱정<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>다만 인터럽트나 시스템 콜 처리 도중에 다른 인터럽트가 발생하면 까다로운 상황이 연출될 수 있습니다. 이를 방지하기 위해 운영체제는 인터럽트 처리 중에는 추가 인터럽트를 불가능하게 하거나, 내부 자료구조에 대한 동시 접근을 막기 위한 잠금 기법을 사용합니다.</p>
+<section id="id10">
+<h3>인터럽트 처리 중 인터럽트 발생의 문제<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>운영체제는 인터럽트나 트랩을 처리하는 도중에 또 다른 인터럽트가 발생할 경우를 매우 신중하게 다뤄야 합니다. 사실 이 주제는 운영체제에서의 병행성(concurrency)과 밀접한 관련이 있기에, 자세한 내용은 이 책의 후반부에서 다루도록 하겠습니다.</p>
+<p>운영체제가 취할 수 있는 가장 간단한 방법은 인터럽트를 처리하는 동안 추가 인터럽트를 막는 것입니다. 이렇게 하면 인터럽트 처리 루틴이 실행되는 동안에는 다른 인터럽트가 CPU로 전달되지 않습니다. 물론 운영체제는 이런 인터럽트 차단을 매우 신중하게 사용해야 합니다. 인터럽트를 너무 오랫동안 비활성화하면 중요한 이벤트를 놓칠 수 있고, 시스템 성능에도 안 좋은 영향을 줄 수 있거든요.</p>
+<p>운영체제는 또한 ‘락(lock)’이라고 불리는 정교한 기법들을 사용하여, 커널 내부의 자료구조에 동시에 접근하는 것을 방지합니다. 이런 락 메커니즘은 커널 내에서 여러 활동이 동시에 일어날 수 있도록 허용하면서도, 자료의 일관성을 유지할 수 있게 해줍니다. 하지만 병행성을 다루는 장에서 보게 될 것처럼, 이런 락 기법은 상당히 복잡해질 수 있고, 때로는 찾기 힘든 버그를 만들어내기도 합니다.</p>
+</section>
+</section>
+<section id="id11">
+<h2>정리<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>지금까지 우리는 CPU 가상화를 구현하기 위한 중요한 저수준 기법인 ‘제한적 직접 실행’에 대해 알아보았습니다. 이 기법의 핵심 아이디어는 간단합니다. 바로 실행하고자 하는 프로그램을 CPU에서 직접 실행시키되, 운영체제가 CPU 제어권을 잃지 않도록 프로세스의 행동에 제한을 걸어두는 것이죠.</p>
+<p>이런 접근 방식은 우리 일상생활에서도 찾아볼 수 있습니다. 아기가 있는 집이라면 아기 보호 장치를 설치하는 것에 익숙할 것입니다. 위험한 물건이 있는 서랍을 잠그고, 전기 콘센트에 안전 덮개를 씌우는 식으로요. 이렇게 안전 장치를 마련해 두면 대부분의 위험 요인은 차단되므로, 아기가 자유롭고 안전하게 돌아다닐 수 있습니다.</p>
+<p>운영체제도 이와 비슷한 방식으로 CPU에 안전 메커니즘을 마련합니다. 시스템이 부팅될 때 트랩 핸들러를 설정하고, 타이머 인터럽트를 시작시킨 다음, 프로세스들이 제한된 모드에서만 실행되도록 합니다. 이렇게 하면 운영체제는 프로세스를 효율적으로 실행시키면서도, 특별한 작업(프로세스의 CPU 독점, 다른 프로세스로의 전환 등)이 필요할 때만 개입할 수 있습니다.</p>
+<p>이로써 우리는 CPU 가상화의 기본 개념을 배웠습니다. 그러나 아직 중요한 질문이 남아 있습니다. “특정 시점에 어떤 프로세스를 실행해야 할까요?” 이는 운영체제의 스케줄러가 답해야 할 질문이며, 우리가 다음에 공부할 주제이기도 합니다.</p>
+<div class="admonition- admonition">
+<p class="admonition-title">리부팅의 유용성</p>
+<p>협조적 선점 방식에서는 프로세스가 무한 루프에 빠지는 등의 문제가 발생했을 때, 이를 해결할 수 있는 유일한 방법은 컴퓨터를 재부팅하는 것뿐이었습니다. 이는 단순하고 원시적인 방법처럼 보일 수 있지만, 연구에 따르면 재부팅이나 소프트웨어 재시작은 견고한 시스템을 구축하는 데 매우 효과적이라고 합니다[Can+04].</p>
+<p>구체적으로 말해, 재부팅은 다음과 같은 이유로 유용합니다:</p>
+<ol class="arabic simple">
+<li><p>소프트웨어를 이미 알려지고 검증된 상태로 되돌릴 수 있습니다.</p></li>
+<li><p>오래되거나 제어를 벗어난 자원을 시스템에 반환할 수 있습니다. 이런 자원들은 반환되지 않으면 처리하기 어려울 수 있습니다.</p></li>
+<li><p>재부팅 과정을 자동화하기 쉽습니다.</p></li>
+</ol>
+<p>이런 장점들로 인해, 대규모 클러스터 기반 인터넷 서비스를 관리하는 소프트웨어에서는 주기적으로 일부 컴퓨터를 재부팅하는 것이 일반적인 관행으로 자리 잡았습니다. 이를 통해 앞서 언급한 모든 이점을 얻을 수 있기 때문이죠.</p>
+<p>따라서 재부팅이 단순하고 원시적인 방법이라고 치부할 순 없습니다. 오히려 이는 컴퓨터 시스템의 안정성과 성능을 향상시키기 위해 충분히 검증되고 효과가 입증된 기법 중 하나라고 할 수 있습니다.</p>
+</div>
 </section>
 </section>
 
@@ -549,9 +662,22 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">기본 원리 : 제한적 직접 실행</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">문제점 1: 제한된 연산</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">문제점 2: 프로세스 간 전환</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">병행성이 걱정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">문제점 1: 제한된 연산</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">핵심 질문: 프로세스가 제한된 연산을 수행하는 방법은 무엇인가?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">시스템 콜이 일반 함수 호출과 비슷해 보이는 이유</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">문제점 2: 프로세스 간 전환</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">협조적 스케줄링: 운영체제가 시스템 콜을 기다리는 방식</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">비협조적 스케줄링: 운영체제가 강제로 CPU 제어권을 획득하는 방식</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">문맥 저장과 복원</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">병행성이 걱정</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">인터럽트 처리 중 인터럽트 발생의 문제</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">정리</a></li>
 </ul>
   </nav></div>
 
