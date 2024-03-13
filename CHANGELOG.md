@@ -1,5 +1,16 @@
 <!--next-version-placeholder-->
 
+## v0.3.0 (2024-03-13)
+
+### Feature
+
+* Update cpu-mechanisms ([`916c2dd`](https://github.com/chu-aie/os-2024/commit/916c2dd7b0c5af18d28859acd460f9de1adc71fd))
+* **installation:** Add installation instructions and usage guide for the OS 4 package. ([`1dc3ddc`](https://github.com/chu-aie/os-2024/commit/1dc3ddc071bfcda959288c508caa888fd1dc56c9))
+
+### Fix
+
+* **os2024:** Fix link format in cpu-api.md ([`90f1aaf`](https://github.com/chu-aie/os-2024/commit/90f1aaf8918568e8ffd2aaeae72d9179f5ee89a8))
+
 ## v0.2.1 (2024-03-10)
 
 ### Fix
