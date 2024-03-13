@@ -38,9 +38,6 @@ def main(build: bool = False, local: bool = False) -> None:
     """
     This is the cli function of the package.
     It opens the book in the browser or builds the book.
-
-    Args:
-        build (bool, optional): Build the book. Defaults to False.
     """
     if build:
         click.echo("Building the book...")
@@ -59,7 +56,9 @@ def open_book(local: bool = False) -> None:
         # check if the book is built
         if not os.path.isfile(html_path):
             click.echo(f"The `{html_path}` was not found.")
-            click.echo("The book is not built yet. Please run 'os2024 build' first.")
+            click.echo(
+                f"The book is not built yet. Please run '{__package_name__} --build' first."
+            )
             return
         click.echo("Opening the book locally...")
         webbrowser.open_new_tab(f"file://{html_path}")
