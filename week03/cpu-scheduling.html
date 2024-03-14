@@ -458,16 +458,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">워크로드에 대한 가정</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">스케줄링 평가 항목</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">선입선출</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">최단 작업 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최소 잔여시간 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">라운드 로빈</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">입출력 연산의 고려</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">워크로드에 대한 가정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">스케줄링 평가 항목</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">선입선출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최단 작업 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">최소 잔여시간 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">새로운 평가 기준 : 응답 시간</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -493,8 +493,8 @@ document.write(`
 <li><p>컴퓨터 시스템 초창기에 사용된 기본 접근 방식은 무엇일까요?</p></li>
 </ol>
 <p>이러한 질문에 대한 답을 찾아가면서, 스케줄링 정책의 개발 과정과 그 기반이 되는 개념들을 이해할 수 있을 것입니다. 이를 통해 운영체제의 스케줄링 메커니즘에 대한 포괄적인 지식을 갖추게 될 것입니다.</p>
-<section id="id2">
-<h2>워크로드에 대한 가정<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h2>워크로드에 대한 가정<a class="footnote-reference brackets" href="#ji-nyu" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>스케줄링 정책을 개발하기에 앞서, 우리는 프로세스에 대해 몇 가지 가정을 해야 합니다. 이러한 가정들은 시스템에서 실행되는 프로세스들의 집합인 워크로드(Workload)를 정의하는 데 도움을 줍니다. 워크로드에 대해 잘 이해할수록 그에 맞는 최적의 스케줄링 정책을 설계할 수 있습니다.</p>
 <p>우리는 시스템에서 실행 중인 프로세스 또는 작업에 대해 다음과 같은 가정을 합니다:</p>
 <ol class="arabic simple">
@@ -527,32 +527,39 @@ document.write(`
 <p>하지만 이러한 가정들은 현실 세계와는 거리가 멉니다. 특히 작업의 실행 시간을 미리 알고 있다는 가정은 매우 비현실적입니다. 이는 마치 스케줄러가 모든 것을 알고 있다고 가정하는 것과 같습니다.</p>
 <p>이러한 가정들은 스케줄링 정책을 단순화하여 이해하기 쉽게 만들어 주지만, 실제 시스템에 적용할 때는 현실적인 제약 사항들을 고려해야 합니다. 그럼에도 불구하고, 이 가정들은 스케줄링 정책의 기본 개념을 이해하는 데 도움을 줍니다.</p>
 </section>
-<section id="id3">
-<h2>스케줄링 평가 항목<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-</section>
 <section id="id4">
-<h2>선입선출<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2>스케줄링 평가 항목<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 </section>
 <section id="id5">
-<h2>최단 작업 우선<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2>선입선출<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 </section>
 <section id="id6">
-<h2>최소 잔여시간 우선<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h2>최단 작업 우선<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 </section>
 <section id="id7">
-<h2>새로운 평가 기준 : 응답 시간<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2>최소 잔여시간 우선<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 </section>
 <section id="id8">
-<h2>라운드 로빈<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2>새로운 평가 기준 : 응답 시간<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 </section>
 <section id="id9">
-<h2>입출력 연산의 고려<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<h2>라운드 로빈<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+</section>
+<section id="id10">
+<h2>입출력 연산의 고려<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 </section>
 <section id="no-more-oracle">
 <h2>만병통치약은 없다 (No More Oracle)<a class="headerlink" href="#no-more-oracle" title="Link to this heading">#</a></h2>
 </section>
-<section id="id10">
-<h2>요약<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h2>요약<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="ji-nyu" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/ji-nyu">박진우</a></p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -620,16 +627,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">워크로드에 대한 가정</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">스케줄링 평가 항목</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">선입선출</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">최단 작업 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최소 잔여시간 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">라운드 로빈</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">입출력 연산의 고려</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">워크로드에 대한 가정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">스케줄링 평가 항목</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">선입선출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최단 작업 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">최소 잔여시간 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">새로운 평가 기준 : 응답 시간</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">요약</a></li>
 </ul>
   </nav></div>
 
