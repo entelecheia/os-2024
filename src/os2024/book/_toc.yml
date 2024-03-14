@@ -22,6 +22,8 @@ parts:
       - file: week03/index
         sections:
           - file: week03/cpu-scheduling
+          - file: week03/mlfq
+          - file: week03/lottery
   - caption: References
     chapters:
       - file: references/ostep/index
