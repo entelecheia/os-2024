@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>수업계획서 &#8212; 운영체제 2024</title>
+    <title>스케줄링: 개요 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'syllabus/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week03/cpu-scheduling';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="만든 사람들" href="../about/index.html" />
-    <link rel="prev" title="Projects" href="../references/ostep-projects/index.html" />
+    <link rel="next" title="스케줄링: 멀티 레벨 피드백 큐" href="mlfq.html" />
+    <link rel="prev" title="Week 3 - 스케줄링" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -204,7 +204,7 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - 운영체제: 아주 쉬운 세 가지 이야기</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week01/intro.html">운영체제 개요</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
@@ -219,10 +219,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../week02/tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week03/cpu-scheduling.html">스케줄링: 개요</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week03/mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week03/lottery.html">스케줄링: 비례 배분(Proportional Share)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 3 - 스케줄링</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">스케줄링: 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lottery.html">스케줄링: 비례 배분(Proportional Share)</a></li>
 </ul>
 </li>
 </ul>
@@ -235,8 +235,8 @@
 <li class="toctree-l1"><a class="reference external" href="https://kuleuven-diepenbeek.github.io/osc-course/">Operating Systems and C</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">수업계획서</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
@@ -317,7 +317,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/syllabus/index.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week03/cpu-scheduling.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -334,7 +334,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fsyllabus/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek03/cpu-scheduling.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -364,7 +364,7 @@
       
       
       
-      <li><a href="../_sources/syllabus/index.md" target="_blank"
+      <li><a href="../_sources/week03/cpu-scheduling.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -448,7 +448,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>수업계획서</h1>
+    <h1>스케줄링: 개요</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -458,29 +458,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">수업 설명</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">학습 목표</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">전제 조건</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">수업 개요</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1주차: 운영체제 소개</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2주차: 운영체제 아키텍처</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3주차: 프로세스 관리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4주차: 프로세스 동기화</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">5주차: CPU 스케줄링</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deadlock">6주차: 교착 상태 (Deadlock)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7주차: 메모리 관리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8주차: 가상 메모리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">9주차: 파일 시스템 인터페이스</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">10주차: 파일 시스템 구현</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">11주차: 보조 저장소 관리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o">12주차: 장치 및 I/O 시스템</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">13주차: 심화 Linux 시스템 관리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">14주차: 사례 연구 및 실제 적용</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">15주차: 복습 및 최종 프로젝트</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">성적 평가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">교재 및 참고 자료</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">워크로드에 대한 가정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">스케줄링 평가 항목</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">선입선출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">최단 작업 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최소 잔여시간 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">새로운 평가 기준 : 응답 시간</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">입출력 연산의 고려</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -493,234 +480,36 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>수업계획서<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>스케줄링: 개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
-<h2>수업 설명<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>이 수업에서는 컴퓨터 시스템의 작동에 필수적인 운영체제의 설계, 기능, 관리에 대해 포괄적으로 다룹니다. 프로세스 관리, 메모리 관리, 파일 시스템 등 운영체제의 이론적・실질적 측면과 리눅스 운영체제에 대한 깊은 이해를 얻게 됩니다. 강의, 실습, 프로젝트를 통해 운영체제의 작동 방식, 하드웨어 및 소프트웨어와의 상호 작용, 운영체제 리소스의 효율적인 관리 방법을 배울 것입니다.</p>
+<h2>워크로드에 대한 가정<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 </section>
 <section id="id3">
-<h2>학습 목표<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>이 수업을 성공적으로 마치면 학생들은 다음을 할 수 있습니다:</p>
-<ul class="simple">
-<li><p>운영체제의 기본 구성 요소와 상호 작용에 대한 이해.</p></li>
-<li><p>프로세스 관리, 메모리 관리, 교착 상태 (deadlock) 관리 정책의 선택 및 적용.</p></li>
-<li><p>파일, 장치, 디스크 저장소 관리의 기초 이해.</p></li>
-<li><p>기본 명령어, 프로세스 관리, 시스템 호출 등 리눅스 운영체제를 활용한 실질적인 경험.</p></li>
-</ul>
+<h2>스케줄링 평가 항목<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 </section>
 <section id="id4">
-<h2>전제 조건<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>컴퓨터 시스템의 기초</p></li>
-<li><p>프로그래밍 입문</p></li>
-</ul>
+<h2>선입선출<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 </section>
 <section id="id5">
-<h2>수업 개요<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2>최단 작업 우선<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+</section>
 <section id="id6">
-<h3>1주차: 운영체제 소개<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>운영체제 개념, 구성 요소, 작업에 대한 개요.</p></li>
-<li><p>운영체제에서의 보호와 보안.</p></li>
-<li><p>컴퓨팅 환경과 운영체제의 추상적 관점.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>운영체제의 역할 및 목적 이해.</p></li>
-<li><p>운영체제의 구성 요소와 작동 파악.</p></li>
-<li><p>컴퓨팅 환경에서 보호 및 보안의 필요성 인식.</p></li>
-</ul>
+<h2>최소 잔여시간 우선<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 </section>
 <section id="id7">
-<h3>2주차: 운영체제 아키텍처<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>컴퓨터 시스템 아키텍처: 단일 프로세서 및 멀티 프로세서 시스템.</p></li>
-<li><p>운영체제 유형: 배치, 다중 프로그램, 시분할, 실시간, 분산.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>다양한 컴퓨터 시스템 아키텍처 이해.</p></li>
-<li><p>다양한 유형의 운영체제와 그 응용 분야 구분.</p></li>
-</ul>
+<h2>새로운 평가 기준 : 응답 시간<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 </section>
 <section id="id8">
-<h3>3주차: 프로세스 관리<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>프로세스 개념, 프로세스 연산, 협력 프로세스, 프로세스 간 통신, 스레드.</p></li>
-<li><p>Linux OS 소개 및 기본 명령어.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>운영체제에서 프로세스의 개념 및 관리 이해</p></li>
-<li><p>Linux OS 명령어 활용한 초기 실습 경험.</p></li>
-</ul>
+<h2>라운드 로빈<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 </section>
 <section id="id9">
-<h3>4주차: 프로세스 동기화<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>임계 영역 문제, 동기화 하드웨어, 세마포어, 고전적인 동기화 문제.</p></li>
-<li><p>기본 Linux 프로세스 관리 명령어 및 시스템 호출.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>프로세스 동기화 및 임계 영역 문제에 대한 해결책 이해.</p></li>
-<li><p>프로세스 관리를 위한 Linux 명령어 적용.</p></li>
-</ul>
+<h2>입출력 연산의 고려<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 </section>
-<section id="cpu">
-<h3>5주차: CPU 스케줄링<a class="headerlink" href="#cpu" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>스케줄링 기준, 스케줄링 알고리즘, 다단계 큐 스케줄링, 다단계 피드백 큐 스케줄링.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>CPU 스케줄링의 원리 이해.</p></li>
-<li><p>다양한 CPU 스케줄링 알고리즘 평가.</p></li>
-</ul>
-</section>
-<section id="deadlock">
-<h3>6주차: 교착 상태 (Deadlock)<a class="headerlink" href="#deadlock" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>교착 상태의 특징, 예방, 회피, 감지 및 복구.</p></li>
-<li><p>은행가 알고리즘 (Banker’s algorithm) 소개.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>교착 상태와 이를 처리하는 방법 이해.</p></li>
-<li><p>교착 상태 회피를 위한 은행가 알고리즘 적용.</p></li>
-</ul>
+<section id="no-more-oracle">
+<h2>만병통치약은 없다 (No More Oracle)<a class="headerlink" href="#no-more-oracle" title="Link to this heading">#</a></h2>
 </section>
 <section id="id10">
-<h3>7주차: 메모리 관리<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>연속 메모리 할당, 단편화, 페이징, 세그먼테이션.</p></li>
-<li><p>가상 메모리 개념 소개.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>메모리 관리 전략의 이해.</p></li>
-<li><p>페이징 및 세그먼테이션의 개념 이해.</p></li>
-</ul>
-</section>
-<section id="id11">
-<h3>8주차: 가상 메모리<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>요구 페이징, 페이지 교체 알고리즘, 프레임 할당, 스래싱(thrashing).</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>가상 메모리의 작동 방식 이해.</p></li>
-<li><p>페이지 교체 알고리즘 평가.</p></li>
-</ul>
-</section>
-<section id="id12">
-<h3>9주차: 파일 시스템 인터페이스<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>파일 시스템 인터페이스의 개념, 접근 방법, 디렉터리 및 디스크 구조.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>파일 시스템 인터페이스와 접근 방법 이해.</p></li>
-<li><p>디렉터리 및 디스크 구조 인식.</p></li>
-</ul>
-</section>
-<section id="id13">
-<h3>10주차: 파일 시스템 구현<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>파일 시스템 구조, 구현, 디렉토리 구현, 할당 방법, 여유 공간 관리.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>파일 시스템의 구현 이해.</p></li>
-<li><p>할당 방법 및 여유 공간 관리 기술 이해.</p></li>
-</ul>
-</section>
-<section id="id14">
-<h3>11주차: 보조 저장소 관리<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>대용량 저장소 구조, 디스크 구조, 디스크 스케줄링 알고리즘, 디스크 관리, RAID 구조.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>보조 저장소 관리의 원리 이해.</p></li>
-<li><p>다양한 디스크 스케줄링 알고리즘 평가.</p></li>
-</ul>
-</section>
-<section id="i-o">
-<h3>12주차: 장치 및 I/O 시스템<a class="headerlink" href="#i-o" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>장치의 종류, 채널 및 제어 장치, 다중 경로, 블록 멀티플렉싱.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>장치 및 I/O 시스템의 관리 이해.</p></li>
-<li><p>채널, 제어 장치, 블록 멀티플렉싱의 개념 이해.</p></li>
-</ul>
-</section>
-<section id="linux">
-<h3>13주차: 심화 Linux 시스템 관리<a class="headerlink" href="#linux" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>Linux의 메모리 관리 명령어 및 시스템 호출.</p></li>
-<li><p>Linux의 파일 관리 명령어 및 시스템 호출.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>Linux 시스템 관리에 대한 고급 기술 습득.</p></li>
-<li><p>메모리 및 파일 관리를 위한 Linux 명령어 적용.</p></li>
-</ul>
-</section>
-<section id="id15">
-<h3>14주차: 사례 연구 및 실제 적용<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>실제 운영체제 사례 연구 분석.</p></li>
-<li><p>실제 시나리오에서 운영체제 개념의 적용에 대한 논의.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>실제 운영체제 구성 및 관리 전략 분석.</p></li>
-<li><p>이론적 개념을 실제 운영체제 문제에 적용.</p></li>
-</ul>
-</section>
-<section id="id16">
-<h3>15주차: 복습 및 최종 프로젝트<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
-<p><strong>개요</strong>:</p>
-<ul class="simple">
-<li><p>강의에서 다룬 핵심 개념 복습.</p></li>
-<li><p>운영체제 관리 및 적용에 중점을 둔 기말 프로젝트 완료 및 발표.</p></li>
-</ul>
-<p><strong>주요 학습 성과</strong>:</p>
-<ul class="simple">
-<li><p>수업을 통해 습득한 지식 강화.</p></li>
-<li><p>포괄적인 기말 프로젝트를 통해 운영체제 관리에 대한 실질적인 기술 입증.</p></li>
-</ul>
-</section>
-</section>
-<section id="id17">
-<h2>성적 평가<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>수업 참여: 20%</p></li>
-<li><p>과제: 40%</p></li>
-<li><p>기말 프로젝트: 40%</p></li>
-</ul>
-</section>
-<section id="id18">
-<h2>교재 및 참고 자료<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
-<p>이 수업에 필수 교재는 없지만, 추가 자료를 원할 경우 다음 책을 권장합니다:</p>
-<p><a class="reference external" href="https://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems: Three Easy Pieces by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (University of Wisconsin-Madison)</a></p>
+<h2>요약<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -737,7 +526,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./syllabus"
+            path: "./week03"
         },
         predefinedOutput: true
     }
@@ -755,20 +544,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../references/ostep-projects/index.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Projects</p>
+        <p class="prev-next-title">Week 3 - 스케줄링</p>
       </div>
     </a>
     <a class="right-next"
-       href="../about/index.html"
+       href="mlfq.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">만든 사람들</p>
+        <p class="prev-next-title">스케줄링: 멀티 레벨 피드백 큐</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -788,29 +577,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">수업 설명</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">학습 목표</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">전제 조건</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">수업 개요</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1주차: 운영체제 소개</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2주차: 운영체제 아키텍처</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3주차: 프로세스 관리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4주차: 프로세스 동기화</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu">5주차: CPU 스케줄링</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deadlock">6주차: 교착 상태 (Deadlock)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7주차: 메모리 관리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8주차: 가상 메모리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">9주차: 파일 시스템 인터페이스</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">10주차: 파일 시스템 구현</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">11주차: 보조 저장소 관리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o">12주차: 장치 및 I/O 시스템</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">13주차: 심화 Linux 시스템 관리</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">14주차: 사례 연구 및 실제 적용</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">15주차: 복습 및 최종 프로젝트</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">성적 평가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">교재 및 참고 자료</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">워크로드에 대한 가정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">스케줄링 평가 항목</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">선입선출</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">최단 작업 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최소 잔여시간 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">새로운 평가 기준 : 응답 시간</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">입출력 연산의 고려</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
   </nav></div>
 
