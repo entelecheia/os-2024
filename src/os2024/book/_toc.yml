@@ -20,6 +20,8 @@ parts:
           - file: week02/lab
           - file: week02/tip
       - file: week03/index
+        sections:
+          - file: week03/cpu-scheduling
   - caption: References
     chapters:
       - file: references/ostep/index
