@@ -460,14 +460,18 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">워크로드에 대한 가정</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">스케줄링 평가 항목</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">선입선출</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최단 작업 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">최소 잔여시간 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">라운드 로빈</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">입출력 연산의 고려</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">선입선출</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">장점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">단점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">최단 작업 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최소 잔여시간 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">새로운 평가 기준 : 응답 시간</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -530,34 +534,94 @@ document.write(`
 <section id="id4">
 <h2>스케줄링 평가 항목<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 </section>
-<section id="id5">
-<h2>선입선출<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-</section>
 <section id="id6">
-<h2>최단 작업 우선<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-</section>
+<h2>선입선출<a class="footnote-reference brackets" href="#ypilseong" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>선입선출(First-Come, First-Served)은 가장 간단한 스케줄링 알고리즘 중 하나입니다. 이 알고리즘은 작업이 도착한 순서대로 실행되는 방식으로, 먼저 도착한 작업이 먼저 실행되고, 그 다음으로 도착한 작업이 실행됩니다.</p>
+<img src=./img/fcfs.png>
+<p>선입선출 스케줄링은 비선점형 스케줄링이므로 프로세스가 자발적으로 CPU를 반납할 때 까지 CPU를 빼앗지 않습니다.</p>
+<div class="admonition- admonition">
+<p class="admonition-title">비선점형 스케줄링</p>
+<p>실행 중인 프로세스가 CPU를 점유하고 있을 때 다른 프로세스가 CPU를 빼앗을 수 없는 방식입니다.</p>
+<p>예를 들어, 실행 중인 프로세스가 입출력 작업을 요청하거나 종료될 때까지 CPU를 계속 사용합니다.
+이렇게 하면, 프로세스의 교체가 적게 일어나서 오버헤드가 줄고, 실행 순서가 예측하기 쉽습니다. 하지만, 긴 작업이 CPU를 오랫동안 점유하면 다른 작업들이 오래 기다려야 합니다.</p>
+<p>비전형 스케줄링의 예로는 선입선출(FIFO), 최단 작업 우선 스케줄링(SJF) 등이 있습니다.</p>
+</div>
+<p>예를 들어, 프로세스 A, B, C가 각각 3초, 5초, 2초의 서비스 시간을 가지고 있고, A가 먼저 도착하고 B가 그 다음에 도착하고 C가 마지막에 도착한다면, FCFS 스케줄링은 다음과 같은 순서로 프로세스를 실행합니다.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>프로세스</p></th>
+<th class="head text-center"><p>서비스 시간</p></th>
+<th class="head text-center"><p>대기 시간</p></th>
+<th class="head text-center"><p>응답 시간</p></th>
+<th class="head text-center"><p>반환 시간</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>A</p></td>
+<td class="text-center"><p>3초</p></td>
+<td class="text-center"><p>0초</p></td>
+<td class="text-center"><p>0초</p></td>
+<td class="text-center"><p>3초</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>B</p></td>
+<td class="text-center"><p>5초</p></td>
+<td class="text-center"><p>3초</p></td>
+<td class="text-center"><p>3초</p></td>
+<td class="text-center"><p>8초</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>C</p></td>
+<td class="text-center"><p>2초</p></td>
+<td class="text-center"><p>8초</p></td>
+<td class="text-center"><p>8초</p></td>
+<td class="text-center"><p>10초</p></td>
+</tr>
+</tbody>
+</table>
+<p>이렇게 되면 평균 대기 시간은 (0 + 3 + 8) / 3 = 3.67초, 평균 응답 시간은 (0 + 3 + 8) / 3 = 3.67초, 평균 반환 시간은 (3 + 8 + 10) / 3 = 7초가 됩니다.</p>
 <section id="id7">
-<h2>최소 잔여시간 우선<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h3>장점<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>구현이 쉽습니다.</p></li>
+<li><p>선착순으로 처리하기 때문에 프로세스를 공평하게 처리할 수 있습니다.</p></li>
+</ul>
 </section>
 <section id="id8">
-<h2>새로운 평가 기준 : 응답 시간<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h3>단점<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>짧은 작업이 긴 작업보다 늦게 도착하면 긴 작업을 기다려야 하므로 평균 대기 시간이 증가할 수 있습니다. 이를 호위 효과(convoy effect)라고 합니다.</p></li>
+<li><p>FCFS 스케줄링은 비선점형(nonpreemptive) 방식이므로 한 프로세스가 CPU를 점유하고 있으면 다른 프로세스는 CPU를 빼앗을 수 없습니다. 이는 CPU 사용률을 낮추고 I/O 바운드 프로세스의 대기 시간을 증가시킬 수 있습니다.</p></li>
+</ul>
+</section>
 </section>
 <section id="id9">
-<h2>라운드 로빈<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<h2>최단 작업 우선<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 </section>
 <section id="id10">
-<h2>입출력 연산의 고려<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<h2>최소 잔여시간 우선<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+</section>
+<section id="id11">
+<h2>새로운 평가 기준 : 응답 시간<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+</section>
+<section id="id12">
+<h2>라운드 로빈<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+</section>
+<section id="id13">
+<h2>입출력 연산의 고려<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
 </section>
 <section id="no-more-oracle">
 <h2>만병통치약은 없다 (No More Oracle)<a class="headerlink" href="#no-more-oracle" title="Link to this heading">#</a></h2>
 </section>
-<section id="id11">
-<h2>요약<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id14">
+<h2>요약<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="ji-nyu" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://github.com/ji-nyu">박진우</a></p>
+</aside>
+<aside class="footnote brackets" id="ypilseong" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">2</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/ypilseong">양필성</a></p>
 </aside>
 </aside>
 </section>
@@ -629,14 +693,18 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">워크로드에 대한 가정</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">스케줄링 평가 항목</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">선입선출</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">최단 작업 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">최소 잔여시간 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">라운드 로빈</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">입출력 연산의 고려</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">선입선출</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">장점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">단점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">최단 작업 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최소 잔여시간 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">새로운 평가 기준 : 응답 시간</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">요약</a></li>
 </ul>
   </nav></div>
 
