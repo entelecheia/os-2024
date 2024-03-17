@@ -533,6 +533,13 @@ document.write(`
 </section>
 <section id="id4">
 <h2>스케줄링 평가 항목<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>스케줄링 알고리즘을 평가하기 위해서는 워크로드에 대한 가정뿐만 아니라 평가 기준도 정해야 합니다. 스케줄링 분야에서는 다양한 평가 기준이 사용되지만, 여기서는 간단히 반환 시간(turnaround time)이라는 하나의 척도만 살펴보겠습니다.</p>
+<p>반환 시간이란 어떤 작업이 시스템에 도착한 시점부터 완료되는 시점까지 걸린 총 시간을 말합니다. 수식으로 표현하면 다음과 같습니다.</p>
+<p><span class="math notranslate nohighlight">\(T_{turnaround} = T_{completion} - T_{arrival}\)</span></p>
+<p>여기서 <span class="math notranslate nohighlight">\(T_{turnaround}\)</span>은 반환 시간, <span class="math notranslate nohighlight">\(T_{completion}\)</span>은 작업 완료 시각, <span class="math notranslate nohighlight">\(T_{arrival}\)</span>은 작업 도착 시각입니다.</p>
+<p>지금은 모든 작업이 동시에 도착한다고 가정하므로 <span class="math notranslate nohighlight">\(T_{arrival} = 0\)</span>이라 할 수 있습니다. 따라서 반환 시간은 곧 작업 완료 시각과 같아집니다. 나중에는 이 가정을 완화해 나가도록 하겠습니다.</p>
+<p>반환 시간은 시스템의 성능 측면에서 본 척도라는 점에 주목할 필요가 있습니다. 또 다른 중요한 기준으로는 공정성(fairness)이 있는데, 이는 Jain’s Fairness Index와 같은 지표로 측정될 수 있습니다.</p>
+<p>스케줄링에서 성능과 공정성은 종종 상충되는 목표가 됩니다. 예를 들어 스케줄러가 시스템 성능을 극대화하기 위해 일부 작업을 오랫동안 미루게 되면, 그만큼 공정성은 나빠지게 됩니다. 안타깝게도 우리 삶의 많은 부분이 그렇듯 모든 것을 다 잡기란 쉽지 않습니다.</p>
 </section>
 <section id="id6">
 <h2>선입선출<a class="footnote-reference brackets" href="#ypilseong" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
