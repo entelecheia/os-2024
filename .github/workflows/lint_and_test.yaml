@@ -10,6 +10,8 @@ on:
     paths:
       - "src/**"
       - "tests/**"
+      # exclude the following paths
+      - "!src/**/book/**"
 
 jobs:
   build:
