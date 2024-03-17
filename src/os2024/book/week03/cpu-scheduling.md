@@ -69,7 +69,10 @@ $T_{turnaround} = T_{completion} - T_{arrival}$
 
 선입선출(First-Come, First-Served)은 가장 간단한 스케줄링 알고리즘 중 하나입니다. 이 알고리즘은 작업이 도착한 순서대로 실행되는 방식으로, 먼저 도착한 작업이 먼저 실행되고, 그 다음으로 도착한 작업이 실행됩니다.
 
-<img src=./img/fcfs.png>
+```{image} ./figs/fcfs.png
+:width: 80%
+:align: center
+```
 
 선입선출 스케줄링은 비선점형 스케줄링이므로 프로세스가 자발적으로 CPU를 반납할 때 까지 CPU를 빼앗지 않습니다.
 
