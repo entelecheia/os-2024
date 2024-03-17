@@ -465,13 +465,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">단점</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">최단 작업 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최소 잔여시간 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">라운드 로빈</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">입출력 연산의 고려</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최단 작업 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">최소 잔여시간 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">새로운 평가 기준 : 응답 시간</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -600,50 +600,63 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="id9">
-<h2>최단 작업 우선<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
-<p>이 문제는 간단히 해결할 수 있다. 사실 이 아이디어는 오퍼레이션 리서치 분야에서 차용하여 컴퓨터 시스템의 작업 스케줄링에 적용한 것이다. 새로운 스케줄링 개념용 최단 작업 우선으로 이름 자체가 정책을 설명하고 있기 때문에 기억하기 쉽다. 이 원칙은 가장 짧은 실행 시간을 가진 작업을 먼저 실행시킨다.</p>
-<p>모든 작업이 동시에 도착한다면 SJF가 최적(optimal)의 스케줄링 알고리즘임을 증명할 수 있다. 지금은 이론이나 오퍼레이션 리서치 수업이 아니라 시스템 수업을 듣고 있기 때문에 이에 대한 증명은 하지 않을 것이다.</p>
-<p>SJF라는 좋은 스케줄링 기법을 개발하였지만 가정이 아직 비현실적이다.</p>
-<p>가정을 완화해보기 위해서 예를 들면 A는 t = 0에 도착하고 100초의 실행 시간을 가지고 있고, 반면에 B와 C는 t = 10에 도착하고 각각 10초의 실행 시간을 가진다고 가정하자. 순수한 SJF로 스케줄 했을 경우의 스케줄이 B와 C가 A 바로 뒤에 도착한다고 하더라도 A가 끝날 때까지 기다릴 수밖에 없어서 이전의 convoy 문제가 다시 발생한다. 이 경우 평균 반환 시간은
-103.33( (100+(110−10)+(120−10))/3)이다.</p>
-</section>
 <section id="id10">
-<h2>최소 잔여시간 우선<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
-<p>언제든 새로운 작업이 시스템에 들어오면, 이 스케줄러는 남아 있는 작업과 새로운 작업의 잔여 실행 시간을 계산하고 그 중 가장 적은 잔여 실행 시간을 가진 작업을 스케줄한다</p>
-<p>예를 들어 STCF는 A를 선점하고 B와C를 끝날 때까지 실행시킨다. 두 작업이 모두 끝난 후에 A가 스케줄되어 남은 실행 시간 만큼 실행된다.</p>
-<p>작업들이 동시에 도착할 경우, SFJ가 최적의 결과를 낸다는 것을 고려하면, STCF가 최적의 스케줄링이 되는 이유를 쉽게 알 수 있을것이다</p>
+<h2>최단 작업 우선<a class="footnote-reference brackets" href="#parkeunseongkr" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>이 문제는 ‘최단 작업 우선(Shortest Job First, SJF)’ 스케줄링 기법을 적용하면 쉽게 해결할 수 있습니다. SJF는 이름 그대로 실행 시간이 가장 짧은 작업을 가장 먼저 처리하는 방식인데, 사실 이 아이디어는 원래 운영 연구(Operations Research) 분야에서 유래한 것을 컴퓨터 시스템의 작업 스케줄링에 적용한 것입니다.</p>
+<p>모든 작업이 동시에 도착한다는 가정 하에서는 SJF가 최적(optimal)의 스케줄링 알고리즘임을 증명할 수 있습니다. 하지만 지금은 이론이나 운영 연구 수업이 아닌 시스템 수업이므로 증명은 생략하겠습니다.</p>
+<p>그런데 SJF라는 훌륭한 기법을 고안했음에도 불구하고, 앞서 세운 가정은 여전히 비현실적입니다.</p>
+<p>이 가정을 좀 더 현실에 가깝게 완화해 보기 위해, 다음과 같은 상황을 생각해 봅시다. 작업 A는 시간 0에 도착하고 실행 시간이 100초인 반면, 작업 B와 C는 시간 10에 도착하고 실행 시간은 각각 10초라고 합니다.</p>
+<p>순수한 SJF 스케줄링을 적용하면, B와 C가 A 바로 뒤인 시간 10에 도착함에도 불구하고 A가 끝날 때까지 기다려야만 합니다. 이렇게 되면 이전에 봤던 호위 효과(convoy effect) 문제가 다시 발생하게 됩니다.</p>
+<p>이 경우 평균 반환 시간은 다음과 같이 계산됩니다.</p>
+<p><span class="math notranslate nohighlight">\(\frac{100 + (110 - 10) + (120 - 10)}{3} = 103.33\)</span></p>
+<p>즉, <span class="math notranslate nohighlight">\((100 + 100 + 110) / 3 = 103.33\)</span>이 됩니다.</p>
 </section>
 <section id="id11">
-<h2>새로운 평가 기준 : 응답 시간<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
-<p>작업의 길이를 미리 알고 있고, 작업이 오직 CPU만 사용하며, 평가 기준이 반환 시간 하나라면, STCF는 매우 훌륭한 정책이다. 초기 일괄처리 컴퓨터 시스템에서는 이러한 스케줄링 알고리즘이 의미가 있었다. 그러나 시분할 컴퓨터의 등장이 모든 것을 바꾸었다. 이제 사용자는 터미널에서 작ᨦ하게 되어 시스템에게 상호작용을 원활히 하기 위한 성능을 요구하게 되었다. 응답 시간(response time)이라는 새로운 평가 기준이 태어나게 된다. 응답 시간은 작업이 도착할 때부터 처음 스케줄 될 때까지의 시간으로 정의된다.</p>
-<p>예를 들어, 3개의 작업이 동시에 도착한 경우, 세 번째 작업은 딱 한 번 스케줄 되기 위해 먼저 실행된 두 작업이 완전히 끝날 때까지 기다린다. 반환 시간 기준으로는 매우 훌륭한 반면, 응답 시간과 상호작용 측면에서는 매우 나쁜 방법이다</p>
+<h2>최소 잔여시간 우선<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>이 문제를 해결하기 위해 ‘최소 잔여시간 우선(Shortest Time-to-Completion First, STCF)’ 스케줄링 기법을 적용해 보겠습니다. 이 기법은 SJF를 조금 변형한 것인데, 작업의 총 실행 시간이 아니라 남아있는 실행 시간, 즉 잔여 실행 시간을 기준으로 삼는다는 점이 다릅니다.</p>
+<p>STCF에서는 새로운 작업이 시스템에 도착할 때마다 현재 실행 중인 작업의 잔여 실행 시간과 새 작업의 실행 시간을 비교합니다. 그리고 그 중 가장 짧은 잔여 실행 시간을 가진 작업을 선택하여 실행합니다. 필요하다면 현재 작업을 선점(preemption)하고 새 작업에게 CPU를 할당하는 것이죠.</p>
+<p>앞서 예시로 든 시나리오에서 STCF를 적용해 보면, 작업 A가 시작된 후 10초 시점에 B와 C가 도착했을 때, 스케줄러는 A를 선점하고 B 또는 C를 먼저 실행할 것입니다. B와 C는 실행 시간이 각각 10초로 동일하므로 둘 중 어느 것을 먼저 실행해도 상관없습니다. B와 C가 모두 끝난 후에야 비로소 A가 다시 스케줄되어 남은 시간 동안 실행을 이어나가게 됩니다.</p>
+<p>모든 작업이 동시에 도착하는 특별한 경우에는 SJF가 최적의 스케줄을 보장한다는 사실을 떠올려 봅시다. 그렇다면 작업들이 서로 다른 시간에 도착하는 일반적인 상황에서는 STCF가 최적이 될 것이라는 점을 직관적으로 이해할 수 있을 것입니다. STCF는 새 작업의 도착마다 남은 작업량을 재평가하여 그때그때 최적의 선택을 내리기 때문입니다.</p>
 </section>
 <section id="id12">
-<h2>라운드 로빈<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
-<p>응답 시간 문제를 해결하기 위하여 라운드 로빈(RR) 스케줄링이라 불리는 스케줄링 알고리즘을 도입한다.</p>
-<p>RR은 작업이 끝날 때까지 기다리지 않는다. 대신 일정 시간 동안 실행한 후 실행 큐의 다음 작업으로 전환한다. 이때 작업이 실행되는 일정 시간을 타임 슬라이스(ts) 또는 스케줄링 퀀텀(sq) 이라 부른다. 작업이 완료될 때까지 이런 식으로 계속
-진행된다. 이러한 이유로 RR은 때때로 타임 슬라이싱이라고 불린다. 타임 슬라이스의 길이는 타이머 인터럽트 주기의 배수여야 한다. 타이머가 10 msec 마다 인터럽트를 발생시킨다면 타임 슬라이스는 10, 20 등 10 msec의 배수가 될 수 있다.</p>
-<p>타임 슬라이스의 길이는 RR에게 매우 중요하다. 타임 슬라이스가 짧을수록, 응답 시간 기준으로 RR의 성능은 더 좋아진다. 그러나 타임 슬라이스를 너무 짧게 지정하면 문제가 생긴다. 짧게 지정하면 문맥 교환 비용이 전체 성능에 큰 영향을 미치게 된다. 시스템 설계자는 시스템이 최적의 상태로 동작할 수 있도록 타임 슬라이스의 길이를 결정해야 한다.</p>
+<h2>새로운 평가 기준 : 응답 시간<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>STCF는 작업의 실행 시간을 미리 알고, CPU만을 사용하며, 반환 시간이라는 단일 평가 기준을 가정할 때는 매우 효과적인 스케줄링 정책입니다. 초기의 일괄 처리(batch processing) 시스템에서는 이런 알고리즘이 적절했습니다. 그러나 시분할(time-sharing) 시스템의 등장으로 상황이 달라졌습니다.</p>
+<p>이제 사용자들은 터미널을 통해 컴퓨터와 상호작용하게 되었고, 이에 따라 시스템의 응답성(responsiveness)이 중요한 성능 지표로 부상했습니다. 이를 반영하기 위해 ‘응답 시간(response time)’이라는 새로운 평가 기준이 도입되었는데, 이는 작업이 도착한 시점부터 실제로 처음 실행되기 시작할 때까지 걸린 시간을 말합니다.</p>
+<p>예를 들어 세 개의 작업 A, B, C가 동시에 도착했다고 합시다. STCF 스케줄링을 적용하면 실행 시간이 가장 긴 작업, 가령 C는 나머지 두 작업이 모두 끝날 때까지 기다려야 비로소 CPU를 할당받을 수 있습니다. 반환 시간 측면에서는 최적일 수 있지만, 응답 시간 측면에서 보면 형편없는 결과라 할 수 있겠죠.</p>
+<p>사용자와의 상호작용이 중요해진 상황에서 STCF는 더이상 적절한 스케줄링 기법이 아닙니다. 응답 시간을 개선하면서도 시스템의 전반적인 성능을 높일 수 있는 새로운 스케줄링 알고리즘이 필요해진 것입니다.</p>
 </section>
 <section id="id13">
-<h2>입출력 연산의 고려<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
-<p>입출력 작업을 요청한 경우 스케줄러는 다음에 어떤 작업을 실행할지를 결정해야 한다. 현재 실행 중인 작업은 입출력이 완료될 때까지 CPU를 사용하지 않을 것이기 때문이다. 입출력 요청을 발생시킨 작업은 입출력 완료를 기다리며 대기 상태가 된다. 입출력이 하드 디스크 드라이브에 보내진 경우, 프로세스는 드라이브의 현재 입출력 워크로드에 따라 몇 초 또는 좀 더 긴 시간 동안 블록될 것이다. 스케줄러는 그 시간 동안 실행될 다른 작업을 스케줄 해야 한다.</p>
-<p>마찬가지로 스케줄러는 입출력 완료 시에도 의사 결정을 해야 한다. 입출력이 완료되면 인터럽트가 발생하고 운영체제가 실행되어 입출력을 요청한 프로세스를 대기상태에서 준비 상태로 다시 이동시킨다. 물론, 인터럽트가 발생했을 때 요청 프로세스를 즉시 실행시키기로 결정할 수도 있다.</p>
+<h2>라운드 로빈<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>응답 시간 문제를 해결하기 위해 ‘라운드 로빈(Round Robin, RR)’ 스케줄링이라는 새로운 알고리즘이 도입되었습니다.</p>
+<p>RR에서는 각 작업이 완료될 때까지 기다리지 않고, 대신 정해진 시간 동안만 실행한 후 다음 작업으로 전환합니다. 이때 각 작업에 할당되는 실행 시간을 ‘타임 슬라이스(time slice, ts)’ 또는 ‘스케줄링 퀀텀(scheduling quantum, sq)’이라고 부릅니다. 이 과정은 모든 작업이 끝날 때까지 계속 반복되는데, 이런 특성 때문에 RR을 ‘타임 슬라이싱(time slicing)’이라고도 합니다.</p>
+<p>타임 슬라이스의 길이는 타이머 인터럽트 주기의 배수로 설정해야 합니다. 예를 들어 타이머 인터럽트가 10밀리초(msec)마다 발생한다면, 타임 슬라이스는 10, 20, 30 등 10의 배수로 정해질 수 있습니다.</p>
+<p>RR 스케줄링에서 타임 슬라이스의 길이는 매우 중요한 요소입니다. 일반적으로 타임 슬라이스가 짧을수록 응답 시간 측면에서의 성능은 좋아집니다. 그러나 너무 짧게 설정하면 문맥 교환(context switch) 오버헤드가 전체 성능에 부정적인 영향을 미칠 수 있습니다.</p>
+<p>따라서 시스템 설계자는 문맥 교환에 드는 비용과 응답 시간 개선 효과를 고려하여 최적의 타임 슬라이스 길이를 결정해야 합니다. 이는 해당 시스템의 특성과 워크로드에 따라 달라질 수 있는 중요한 튜닝 포인트 중 하나입니다.</p>
+</section>
+<section id="id14">
+<h2>입출력 연산의 고려<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p>지금까지는 CPU 작업만 고려했지만, 실제 시스템에서는 입출력(I/O) 작업도 빈번하게 발생합니다. 이는 스케줄링에 또 다른 도전 과제를 제기합니다.</p>
+<p>어떤 프로세스가 I/O 작업을 요청하면, 그 프로세스는 I/O가 완료될 때까지 CPU를 사용하지 않습니다. 대신 I/O 작업이 끝나기를 기다리면서 ‘대기(blocked)’ 상태로 전환됩니다. 특히 하드 디스크 드라이브 같은 장치에 I/O 요청을 보냈다면, 현재의 I/O 부하에 따라 몇 초 또는 그 이상 블록 상태로 남아있게 됩니다.</p>
+<p>이때 스케줄러의 역할은 블록된 프로세스 대신 실행할 다른 프로세스를 선택하는 것입니다. 이를 통해 CPU가 쉬지 않고 일할 수 있도록 해야 하죠.</p>
+<p>반대로, I/O 작업이 완료되면 스케줄러는 또 다른 결정을 내려야 합니다. I/O 완료는 인터럽트를 발생시키고, 이를 처리하기 위해 운영체제가 실행됩니다. 운영체제는 I/O를 요청했던 프로세스를 대기 상태에서 준비(ready) 상태로 전환시킵니다. 여기서 스케줄러는 해당 프로세스를 바로 실행할 것인지, 아니면 다른 프로세스에게 CPU를 할당할 것인지 결정합니다.</p>
+<p>이렇듯 I/O 작업은 스케줄링 문제를 더욱 복잡하게 만듭니다. 스케줄러는 CPU 사용 패턴뿐만 아니라 I/O 특성까지 고려하여 적절한 프로세스를 선택해야 합니다. 이를 통해 전체 시스템의 CPU 활용도와 응답성을 높이는 것이 목표입니다.</p>
 </section>
 <section id="no-more-oracle">
 <h2>만병통치약은 없다 (No More Oracle)<a class="headerlink" href="#no-more-oracle" title="Link to this heading">#</a></h2>
-<p>입출력을 고려한 기본적인 접근 방식에 대해 논의하였으므로 마지막 가정에 대해 생각해보자. 스케줄러가 각 작업의 실행 시간을 알고 있다는 가정이다. 전에 얘기했듯이, 이 가정은 아마 우리가 할 수 있는 최악의 가정이다.</p>
-<p>사실 범용 운영체제에서 작업의 길이에 대해서 알 수 있는 길은 없다. 따라서 아무런 사전 지식 없이 SJF/STCF 처럼 행동하는 알고리즘을 구축할 수 있을까? 게다가, 응답 시간도 좋게 하기 위하여 RR 스케줄러의 경우에 보았던 아이디어를 어떻게 하면 포함시킬 수 있을까?</p>
+<p>이제 입출력을 고려한 기본적인 스케줄링 접근 방식에 대해 살펴보았으니, 마지막으로 남은 가정에 대해 생각해 봅시다. 바로 스케줄러가 각 작업의 실행 시간을 미리 알고 있다는 가정인데, 앞서 언급했듯이 이는 아마도 우리가 할 수 있는 가정 중 가장 비현실적인 것일 겁니다.</p>
+<p>사실 범용 운영체제에서는 개별 작업의 실행 시간을 정확히 예측하는 것이 거의 불가능합니다. 프로세스의 행동은 입력 데이터, 사용자 상호작용, 외부 이벤트 등 다양한 요인에 따라 달라지기 때문이죠.</p>
+<p>그렇다면 작업의 실행 시간에 대한 사전 지식 없이도 SJF나 STCF처럼 동작하는 스케줄링 알고리즘을 만들 수 있을까요? 나아가 이런 알고리즘에 라운드 로빈에서 봤던 것처럼 응답 시간을 개선하는 아이디어도 접목시킬 수 있을까요?</p>
+<p>안타깝게도 이 모든 조건을 완벽히 만족시키는 만병통치약 같은 솔루션은 존재하지 않습니다. 스케줄러가 완벽한 정보를 가질 수 없는 상황에서는 어떤 알고리즘을 사용하더라도 트레이드오프가 발생할 수밖에 없습니다.</p>
+<p>하지만 현대의 스케줄러들은 과거의 실행 이력, 휴리스틱, 피드백 등을 활용하여 이 문제에 대한 나름의 해법을 모색하고 있습니다. 비록 최적解는 아닐지라도, 주어진 환경에서 최선의 성능을 끌어내기 위해 노력하고 있는 것이죠. 다음 장에서는 이런 아이디어들을 적용한 몇 가지 실제 스케줄링 알고리즘을 소개하도록 하겠습니다.</p>
 </section>
-<section id="id14">
-<h2>요약<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
-<p>우리는 스케줄링의 기본적인 개념과 두 가지 부류의 접근법을 살펴보았다.</p>
-<p>첫 번째 부류는 남아 있는 작업 중 실행 시간이 제일 짧은 작업을 수행하고, 반환 시간을 최소화한다.</p>
-<p>두 번째 부류는 모든 작업을 번갈아 실행시키고 응답 시간을 최소화한다.</p>
-<p>안타깝게도 반환 시간과 응답 시간 중 하나를 최적화하면 나머지 하나는 좋지 않은 특성을 나타낸다.
-이는 시스템에서 흔히 보이는 절충을 요구하는 상황이다.</p>
-<p>전체적인 그림에 입출력 어떻게 통합해야 하는지도 보았다. 그렇지만 미래를 예측할 수 없는 운영체제의 근본적인 문제는 해결할 수 없다.</p>
+<section id="id15">
+<h2>요약<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<p>이번 장에서는 스케줄링의 기본 개념과 두 가지 주요 접근 방식에 대해 알아보았습니다.</p>
+<p>첫 번째 접근법은 SJF(Shortest Job First)와 STCF(Shortest Time-to-Completion First)로 대표되는데, 남은 작업들 중 실행 시간이 가장 짧은 것을 우선적으로 처리함으로써 전체 반환 시간(turnaround time)을 최소화하는 것이 목표입니다.</p>
+<p>두 번째 접근법은 라운드 로빈(Round Robin) 스케줄링으로, 모든 작업에게 동등한 CPU 시간을 할당하고 순환하며 실행함으로써 응답 시간(response time)을 최소화하고자 합니다.</p>
+<p>그러나 안타깝게도 이 두 가지 목표, 즉 반환 시간과 응답 시간은 상호 보완적인 관계에 있습니다. 하나를 최적화하면 다른 하나는 희생될 수밖에 없는 것이죠. 이는 시스템 설계에서 흔히 마주치는 트레이드오프(trade-off) 상황의 전형적인 예라 할 수 있습니다.</p>
+<p>우리는 또한 입출력(I/O) 작업이 스케줄링에 미치는 영향에 대해서도 살펴보았습니다. I/O bound 프로세스와 CPU bound 프로세스를 적절히 섞어 스케줄링하는 것이 전체 시스템 성능에 중요한 요소임을 확인했습니다.</p>
+<p>하지만 운영체제가 개별 프로세스의 실행 시간을 정확히 예측할 수 없다는 근본적인 한계는 여전히 남아 있습니다. 결국 완벽한 스케줄링 알고리즘이란 존재하기 힘들며, 주어진 상황에서 최선의 trade-off를 찾아내는 것이 관건이라 할 수 있겠습니다.</p>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="ji-nyu" role="doc-footnote">
@@ -653,6 +666,10 @@ document.write(`
 <aside class="footnote brackets" id="ypilseong" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">2</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://github.com/ypilseong">양필성</a></p>
+</aside>
+<aside class="footnote brackets" id="parkeunseongkr" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">3</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/ParkEunSeongKR">박은성</a></p>
 </aside>
 </aside>
 </section>
@@ -729,13 +746,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">단점</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">최단 작업 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최소 잔여시간 우선</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">라운드 로빈</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">입출력 연산의 고려</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최단 작업 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">최소 잔여시간 우선</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">새로운 평가 기준 : 응답 시간</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">요약</a></li>
 </ul>
   </nav></div>
 
