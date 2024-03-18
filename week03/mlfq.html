@@ -459,11 +459,17 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mlfq">MLFQ: 기본 규칙</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">시도 1: 우선순위의 변경</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">시도 2: 우선순위의 상향 조정</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">시도 3: 더 나은 시간 측정</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">MLFQ 조정과 다른 쟁점들</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">MLFQ: 요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">시도 1: 우선순위의 변경</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">예 1: 한 개의 긴 실행 시간을 가진 작업</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">예 2: 짧은 작업과 함께</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">예 3: 입출력 작업에 대해서는 어떻게?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">현재 MLFQ의 문제점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">시도 2: 우선순위의 상향 조정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">시도 3: 더 나은 시간 측정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">MLFQ 조정과 다른 쟁점들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">MLFQ: 요약</a></li>
 </ul>
             </nav>
         </div>
@@ -477,7 +483,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id2">
 <h1>스케줄링: 멀티 레벨 피드백 큐<a class="footnote-reference brackets" href="#jo-sehyun" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
-<p>멀티 레벨 피드백 큐 (MLFQ) 스케줄러는 Compatible Time-Sharing System(CTSS)에 사용되며 Corbato 등에 의해 1962년에 최초로 소개되었ᨩ습니다. 이 연구와 Multics에 대한 후속 연구로 Corbato는 최고 영예인 Turing Award를 안았습니다. 이 스케줄러는 수년 동안 다듬어져 일부 현대 시스템에까지 발전되었습니다.</p>
+<p>멀티 레벨 피드백 큐 (MLFQ) 스케줄러는 Compatible Time-Sharing System(CTSS)에 사용되며 Corbato 등에 의해 1962년에 최초로 소개되었습니다. 이 연구와 Multics에 대한 후속 연구로 Corbato는 최고 영예인 Turing Award를 안았습니다. 이 스케줄러는 수년 동안 다듬어져 일부 현대 시스템에까지 발전되었습니다.</p>
 <p>MLFQ가 해결하려고 하는 기본적인 문제는 두 가지입니다.</p>
 <ol class="arabic simple">
 <li><p>짧은 작업을 먼저 실행시켜 반환 시간을 최적화하고자 합니다. SJF나 STCF 같은 알고리즘은 작업ᨦ의 실행 시간 정보를 필요로 하지만, 불행히도 운영체제는 이 실행 시간을 미리 알 수 없습니다.</p></li>
@@ -494,15 +500,15 @@ document.write(`
 </div>
 <section id="mlfq">
 <h2>MLFQ: 기본 규칙<a class="headerlink" href="#mlfq" title="Link to this heading">#</a></h2>
-<p>멀티 레벨 피드백 큐의 기본 알고리즘을 설명합니다. 현재 구현되어 있는 여러 MLFQ들은 자세하하게 살펴보면 차이가 있지만, 기본적으로 비슷한 방법을 사용하고 있습니다.
-MLFQ는 여러 개의 큐로 구성되며, 각각 다른 우선순위(priority level)가 배정됩니다. 실행 준비가 된 프로세스는 이 중 하나의 큐에 존재합니다. MLFQ는 실행할 프로세스를 결정하기 위하여 우선순위를 사용합니다. 높은 우선순위를 가진 작업이, 즉 높은 우선순위 큐에 존재하는 작업이 선택됩니다.</p>
+<p>멀티 레벨 피드백 큐의 기본 알고리즘을 설명합니다. 현재 구현되어 있는 여러 MLFQ들은 자세하하게 살펴보면 차이가 있지만, 기본적으로 비슷한 방법을 사용하고 있습니다.</p>
+<p>MLFQ는 여러 개의 큐로 구성되며, 각각 다른 우선순위(priority level)가 배정됩니다. 실행 준비가 된 프로세스는 이 중 하나의 큐에 존재합니다. MLFQ는 실행할 프로세스를 결정하기 위하여 우선순위를 사용합니다. 높은 우선순위를 가진 작업이, 즉 높은 우선순위 큐에 존재하는 작업이 선택됩니다.</p>
 <div class="admonition- admonition">
 <p class="admonition-title">팁: 역사로부터 배우다</p>
-<p>멀티 레벨 피드백 큐는 미래를 예측하기 위해 과거의 경험을 활용하는 훌륭한 예입니다. 이러한 접근 방식은 운영체제 (하드웨어 분기 예측기와 캐시 알고리즘을 포함한 컴퓨터 과학의 다른 많은 분야에서도) 분야에서 흔히 사용됩니다. 이러한 방식은 작ᨦ업이 단계별로 진행되어 예측 가능할 때 잘 동작합니다. 물론, 신중하게 사용해야 합니다. 잘못 동작하기 쉬우며, 이러한 정보가 없을 때 보다 더 나쁜 결정을 하게 만들 수 있기 때문입니다.</p>
+<p>멀티 레벨 피드백 큐는 미래를 예측하기 위해 과거의 경험을 활용하는 훌륭한 예입니다. 이러한 접근 방식은 운영체제 (하드웨어 분기 예측기와 캐시 알고리즘을 포함한 컴퓨터 과학의 다른 많은 분야에서도) 분야에서 흔히 사용됩니다. 이러한 방식은 작업이 단계별로 진행되어 예측 가능할 때 잘 동작합니다. 물론, 신중하게 사용해야 합니다. 잘못 동작하기 쉬우며, 이러한 정보가 없을 때 보다 더 나쁜 결정을 하게 만들 수 있기 때문입니다.</p>
 </div>
-<p>큐에 둘 이상의 작업이 존재할 수 있습니다. 이들은 모두 같은 우선순위를 가집니다. 이 작업들 사이에서는 라운드 로빈 (Round-Robin, RR) 스케줄링 알고리즘이 사용됩니다.
-MLFQ 스케줄링의 핵심은 우선순위를 정하는 방식입니다. MLFQ는 각 작업ᨦ에 고정된 우선순위를 부여하는 것이 아니라 각 작업ᨦ의 특성에 따라 동적으로 우선순위를 부여합니다. 예를 들어, 어떤 작업이 키보드 입력을 기다리며 반복적으로 CPU를 양보하면 MLFQ는 해당 작업의 우선순위를 높게 유지합니다. 이러한 패턴은 대화형 프로세스가 나타내는 패턴입니다. 대신에 한 작업이 긴 시간 동안 CPU를 집중적으로 사용하면 MLFQ는 해당 작업의 우선순위를 낮춥니다. 이렇게 MLFQ는 작업이 진행되는 동안 해당 작업의 정보를 얻고, 이 정보를 이용하여 미래 행동을 예측합니다.
-MLFQ의 두 가지 기본 규칙은 다음과 같습니다.</p>
+<p>큐에 둘 이상의 작업이 존재할 수 있습니다. 이들은 모두 같은 우선순위를 가집니다. 이 작업들 사이에서는 라운드 로빈 (Round-Robin, RR) 스케줄링 알고리즘이 사용됩니다.</p>
+<p>MLFQ 스케줄링의 핵심은 우선순위를 정하는 방식입니다. MLFQ는 각 작업에 고정된 우선순위를 부여하는 것이 아니라 각 작업ᨦ의 특성에 따라 동적으로 우선순위를 부여합니다. 예를 들어, 어떤 작업이 키보드 입력을 기다리며 반복적으로 CPU를 양보하면 MLFQ는 해당 작업의 우선순위를 높게 유지합니다. 이러한 패턴은 대화형 프로세스가 나타내는 패턴입니다. 대신에 한 작업이 긴 시간 동안 CPU를 집중적으로 사용하면 MLFQ는 해당 작업의 우선순위를 낮춥니다. 이렇게 MLFQ는 작업이 진행되는 동안 해당 작업의 정보를 얻고, 이 정보를 이용하여 미래 행동을 예측합니다.</p>
+<p>MLFQ의 두 가지 기본 규칙은 다음과 같습니다.</p>
 <ul class="simple">
 <li><p>규칙 1: Priority(A) &gt; Priority(B) 이면, B는 실행되지 않고 A가 실행됩니다.</p></li>
 <li><p>규칙 2: Priority(A) = Priority(B) 이면, A와 B는 RR 방식으로 실행됩니다.</p></li>
@@ -510,18 +516,69 @@ MLFQ의 두 가지 기본 규칙은 다음과 같습니다.</p>
 </section>
 <section id="id3">
 <h2>시도 1: 우선순위의 변경<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-</section>
+<p>MLFQ가 작업의 우선순위를 어떻게 바꿀 것인지 결정해야 합니다. 작업의 우선순위를 변경하는 것은 작업이 존재할 큐를 결정하는 것과 마찬가지입니다. 이를 위해서 우리는 워크로드의 특성을 반영해야 합니다. 짧은 실행 시간을 갖는 CPU를 자주 양보하는 대화형 작업과 많은 CPU 시간을 요구하지만 응답 시간은 중요하지 않은 긴 실행 시간의 CPU 위주 작업이 혼재되어 있습니다. 우선 순위 조정 알고리즘을 위한 첫 번째 시도는 다음과 같습니다.</p>
+<p><img alt="11 1" src="https://github.com/chu-aie/os-2024/assets/162019986/8c215acb-dff6-4dff-8fee-03e2f1c0570b" /></p>
+<p>임의의 시간에 큐의 모양은 그림 11.1과 같습니다. 그림에서 두 작업(A와 B)이 가장 높은 우선 순위에 존재하고, C는 중간, D는 가장 낮은 우선순위 큐에 존재합니다. 우리가 알고 있는 MLFQ의 동작을 고려하면 스케줄러는 가장 높은 우선순위의 큐의 A와 B를 번갈아 실행할 것입니다. 정적인 스냅 사진만으로는 MLFQ가 어떻게 동작하는지 알 수 없습니다. 작업 우선순위가 시간에 따라 어떻게 변화하는지 알아봅니다.</p>
+<ul class="simple">
+<li><p>규칙 3: 작업이 시스템에 진입하면, 가장 높은 우선순위, 즉 맨 위의 큐에 놓여집니다.</p></li>
+<li><p>규칙 4a: 주어진 타임 슬라이스를 모두 사용하면 우선순위는 낮아집니다. 한 단계 아래 큐로 이동합니다.</p></li>
+<li><p>규칙 4b: 타임 슬라이스를 소진하기 전에 CPU를 양도하면 같은 우선순위를 유지합니다.</p></li>
+</ul>
 <section id="id4">
-<h2>시도 2: 우선순위의 상향 조정<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h3>예 1: 한 개의 긴 실행 시간을 가진 작업<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>몇 가지 예를 살펴봅시다. 우선 긴 실행 시간을 가진 작업이 도착했을 때 어떤 일이 일어나는지 알아보겠습니다. 그림 11.2는 세 개의 큐로 이루어진 스케줄러에서 시간이 지남에 따라 작업의 우선 순위가 어떻게 변하는지 보입니다.</p>
+<p><img alt="11 2" src="https://github.com/chu-aie/os-2024/assets/162019986/148fae3e-7cd2-4307-9eea-63de41acfe2e" /></p>
+<p>예에서 보는 것처럼 작업은 최고 우선순위로 진입합니다. (Q2) 10 msec 타임 슬라이스가 하나 지나면 스케줄러는 작업의 우선순위를 한 단계 낮추어 해당 작업을 Q1으로 이동시킵니다. 다시 하나의 타임 슬라이스 동안 Q1에서 실행한 후 작업은 마침내 가장 낮은 우선순위를 가지게 되고 Q0로 이동됩니다. 이후에는 Q0에 계속 머무르게 됩니다.</p>
 </section>
 <section id="id5">
-<h2>시도 3: 더 나은 시간 측정<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h3>예 2: 짧은 작업과 함께<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>좀 더 복잡한 예를 살펴보겠습니다. MLFQ가 어떻게 SJF에 근접할 수 있는지 이해해야 합니다. 이 예에서는 2개의 작업이 존재합니다. A는 오래 실행되는 CPU 위주 작업이고 B는 짧은 대화형 작업입니다. A는 얼마 동안 이미 실행해 온 상태이고 B는 이제 도착했다고 가정할 때 어떤 일이 벌어질까? MLFQ는 SJF와 근사하게 동작해서 B를 선호할 것인가?</p>
+<p><img alt="11 3" src="https://github.com/chu-aie/os-2024/assets/162019986/6d54f8da-7743-438c-9063-ef7e04cc0db5" /></p>
+<p>그림 11.3은 이 시나리오의 결과를 보입니다. 다른 오래 실행되는 CPU 위주 작업들처럼 A(검은색)는 가장 낮은 우선순위 큐에서 실행되고 있습니다. B(회색)는 T = 100에 시스템에 도착하고 가장 높은 우선순위 큐에 놓입니다. 실행 시간이 짧기 때문에 (20 ms), 두 번의 타임 슬라이스를 소모하면 B는 바닥의 큐에 도착하기 전에 종료합니다. 그런 후에 A는 낮은 우선순위에서 실행을 재개합니다.</p>
+<p>이 예에서 이 알고리즘의 주요 목표를 알 수 있습니다. 스케줄러는 작업이 짧은 작업인지 긴 작업인지 알 수 없기 때문에 일단 짧은 작업이라고 가정하여 높은 우선순위를 부여합니다. 진짜 짧은 작업이면 빨리 실행되고 바로 종료할 것입니다. 짧은 작업이 아니라면 천천히 아래 큐로 이동하게 되고 스스로 긴 배치형 작업이라는 것을 증명하게 됩니다. 이러한 방식으로 MLFQ는 SJF를 근사할 수 있습니다.</p>
 </section>
 <section id="id6">
-<h2>MLFQ 조정과 다른 쟁점들<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h3>예 3: 입출력 작업에 대해서는 어떻게?<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>다음으로 입출력 작업을 수행하는 예를 살펴봅니다. 규칙 4b가 말하는 것처럼, 프로세스가 타임 슬라이스를 소진하기 전에 프로세서를 양도하면 같은 우선순위를 유지하게 합니다. 이 규칙의 의도는 대화형 작업이 키보드나 마우스로부터 사용자 입력을 대기하며 자주 입출력을 수행하면 타임 슬라이스가 종료되기 전에 CPU를 양도하게 될 것입니다. 그런 경우 동일한 우선순위를 유지하게 하는 것입니다.</p>
+<p><img alt="11 4" src="https://github.com/chu-aie/os-2024/assets/162019986/536008c5-cd3b-456d-987c-1a2a949e064d" /></p>
+<p>그림 11.4는 이 규칙이 동작하는 예를 보이고 있습니다. B(회색)는 대화형 작업으로서 입출력을 수행하기 전에 1 msec 동안만 실행됩니다. A(검정색)는 긴 배치형 작업으로 B 와 CPU를 사용하기 위하여 경쟁합니다. B는 CPU를 계속해서 양도하기 때문에 MLFQ 방식은 B를 가장 높은 우선순위로 유지합니다. B가 대화형 작업이라면 MLFQ는 대화형 작업을 빨리 실행시킨다는 목표에 더 근접하게 됩니다.</p>
 </section>
 <section id="id7">
-<h2>MLFQ: 요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h3>현재 MLFQ의 문제점<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>현재 MLFQ는 단순합니다. CPU를 긴 작업들과 짧은 작업들 사이에 잘 공유하고, 입출력-중점 대화형 작업을 빨리 실행시키기 때문에 잘 동작하는 것처럼 보입니다. 이 방식은 심각한 결점을 가집니다.</p>
+<ol class="arabic simple">
+<li><p>기아 상태(starvation)가 발생할 수 있습니다. 시스템에 너무 많은 대화형 작업이 존재하면 그들이 모든 CPU 시간을 소모하게 될 것이고 따라서 긴 실행 시간 작ᨦ은 CPU 시간을 할당 받지 못할 것입니다. 이러한 시나리오에서도 긴 실행 시간 작업들도 진행이 되도록 만들면 좋을 것입니다.</p></li>
+</ol>
+<p><img alt="11 5" src="https://github.com/chu-aie/os-2024/assets/162019986/5a4b708d-83c4-418a-8c13-fb60fe55c33f" /></p>
+<ol class="arabic simple" start="2">
+<li><p>똑똑한 사용자라면 스케줄러를 자신에게 유리하게 동작하도록 프로그램을 다시 작성할 수 있습니다. 스케줄러를 자신에게 유리하게 동작 시킨다는 것은 일반적으로 스케줄러를 속여서 지정된 몫보다 더 많은 시간을 할당하도록 하게 만드는 것을 가리킵니다. 지금까지 논의한 알고리즘은 다음과 같은 공격에 취약합니다. 타임 슬라이스가 끝나기 전에 아무 파일을 대상으로 입출력 요청을 내려 CPU를 양도합니다. 그렇게 하면 같은 큐에 머무를 수 있고 따라서 더 높은 퍼센트의 CPU 시간을 얻게 됩니다. 제대로 된다면, 예를 들어 타임 슬라이스의 99%를 실행하고 CPU를 양도하게 되면 CPU를 거의 독점할 수 있습니다.</p></li>
+</ol>
+<p>마지막으로 프로그램은 시간 흐름에 따라 특성이 변할 수 있습니다. CPU 위주 작업이 대화형 작업으로 바뀔 수 있습니다. 현재 구현 방식으로는 그런 작업은 운이 없게도 다른 대화형 작업들과 같은 대우를 받을 수 없습니다.</p>
+</section>
+</section>
+<section id="id8">
+<h2>시도 2: 우선순위의 상향 조정<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>규칙을 보완하여 기아 문제를 방지할 수 있는지 살펴봅시다. CPU 위주 작업이 조금이라도 진행하는 것을 보장하기 위해서 무엇을 할 수 있는가?</p>
+<p>간단한 아이디어는 주기적으로 모든 작업의 우선순위를 상향 조정(boost) 하는 것입니다. 목적을 달성하기 위해 여러 방법이 존재하지만 간단한 방법을 사용하기로 합시다. 모두 최상위 큐로 보내는 것입니다. 새로운 규칙은 다음과 같습니다.</p>
+<ul class="simple">
+<li><p>규칙 5: 일정 기간 S가 지나면, 시스템의 모든 작업을 최상위 큐로 이동시킵니다.</p></li>
+</ul>
+<p>새 규칙은 두 가지 문제를 한 번에 해결합니다.</p>
+<ol class="arabic simple">
+<li><p>프로세스는 굶지 않는다는 것을 보장받습니다. 최상위 큐에 존재하는 동안 작업은 다른 높은 우선 순위 작업들과 라운드 로빈 방식으로 CPU를 공유하게 되고 서비스를 받게 됩니다.</p></li>
+<li><p>CPU 위주의 작업이 대화형 작업으로 특성이 변할 경우 우선순위 상향을 통해 스케줄러가 변경된 특성에 적합한 스케줄링 방법을 적용합니다.</p></li>
+</ol>
+<p>예를 들어 긴 실행 시간을 가진 작업이 두 개의 대화형 작업과 CPU를 두고 경쟁할 때의 행동을 보여주는 시나리오입니다. 이 두 개의 그래프가 그림 11.5에 나와 있습니다. 왼쪽 그래프는 우선 순위 상향이 없는 경우를 보이고 있습니다. 긴 실행 시간 작업은 두 개의 짧은 작업이 도착한 이후에는 굶게 됩니다. 오른쪽 그래프는 50 msec 마다 우선 순위 상향이 일어납니다. 너무 짧은 시간이지만 예를 위해 사용되었습니다. 긴 실행 시간 작업도 꾸준히 진행된다는 것을 보장할 수 있으며, 50 msec 마다 상향되고 따라서 주기적으로 실행됩니다.</p>
+<p>물론 S값의 결정이 필요합니다. S를 얼마로 해야 하는가? 존경받는 시스템 연구자인 John Ousterhout [Ous11]는 이러한 종류의 값을 부두 상수(voo-doo constants)라고 불렀습니다. 이러한 값을 정확하게 결정하기 위해서는 흑마술이 필요한 것처럼 보이기 때문입니다. 불행하게도 S는 그러한 종류의 변수입니다. 너무 크면 긴 실행 시간을 가진 작업은 굶을 수 있으며 너무 작으면 대화형 작업이 적절한 양의 CPU 시간을 사용할 수 없게 됩니다.</p>
+</section>
+<section id="id9">
+<h2>시도 3: 더 나은 시간 측정<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+</section>
+<section id="id10">
+<h2>MLFQ 조정과 다른 쟁점들<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+</section>
+<section id="id11">
+<h2>MLFQ: 요약<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="jo-sehyun" role="doc-footnote">
@@ -597,11 +654,17 @@ MLFQ의 두 가지 기본 규칙은 다음과 같습니다.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mlfq">MLFQ: 기본 규칙</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">시도 1: 우선순위의 변경</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">시도 2: 우선순위의 상향 조정</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">시도 3: 더 나은 시간 측정</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">MLFQ 조정과 다른 쟁점들</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">MLFQ: 요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">시도 1: 우선순위의 변경</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">예 1: 한 개의 긴 실행 시간을 가진 작업</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">예 2: 짧은 작업과 함께</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">예 3: 입출력 작업에 대해서는 어떻게?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">현재 MLFQ의 문제점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">시도 2: 우선순위의 상향 조정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">시도 3: 더 나은 시간 측정</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">MLFQ 조정과 다른 쟁점들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">MLFQ: 요약</a></li>
 </ul>
   </nav></div>
 
