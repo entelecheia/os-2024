@@ -1,4 +1,7 @@
-# 스케줄링: 비례 배분(Proportional Share)
+# 스케줄링: 비례 배분(Proportional Share)[^sadey7645][^Gyu-BBB]
+
+[^sadey7645]: [김진우](https://github.com/sadey7645)
+[^Gyu-BBB]: [이규범](https://github.com/Gyu-BBB)
 
 ## 기본 개념 : 추첨권이 당신의 몫을 나타낸다
 
