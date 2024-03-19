@@ -99,8 +99,6 @@ main(int argc, char *argv[])
 
 ### p2.c - 부모 프로세스의 대기
 
-Here's the code with comments in Korean:
-
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -163,8 +161,6 @@ int main(int argc, char *argv[])
 이 코드는 `fork()` 함수를 사용하여 자식 프로세스를 생성하고, 자식 프로세스에서는 1초 동안 대기한 후 종료되며, 부모 프로세스에서는 자식 프로세스가 종료될 때까지 기다리는 예제입니다.
 
 ### p3.c - 새로운 프로그램 실행
-
-Here's the code with comments in Korean:
 
 ```c
 #include <stdio.h>
@@ -242,8 +238,6 @@ int main(int argc, char *argv[])
 이 코드는 `fork()` 함수를 사용하여 자식 프로세스를 생성하고, 자식 프로세스에서는 `execvp()` 함수를 사용하여 "wc" 프로그램을 실행하여 "p3.c" 파일의 단어 개수를 세는 예제입니다. 부모 프로세스는 자식 프로세스가 종료될 때까지 기다립니다.
 
 ### p4.c - 표준 출력 리다이렉션
-
-Here's the code with comments in Korean:
 
 ```c
 #include <stdio.h>
