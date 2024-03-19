@@ -2,52 +2,52 @@
 
 Code from OSTEP chapter [Interlude: Process API](http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf).
 
-## 실습 제목
+## Lab Title
 
-**프로세스 생성과 실행 기초**
+**Basics of Process Creation and Execution**
 
-## 실습 목표
+## Lab Objectives
 
-이 실습은 다음과 같은 목표를 달성하기 위해 설계되었습니다.
+This lab is designed to achieve the following objectives:
 
-1. fork() 함수를 사용하여 새로운 프로세스를 생성하는 방법을 이해합니다.
-2. 부모 프로세스와 자식 프로세스의 실행 흐름을 이해합니다.
-3. wait() 함수를 사용하여 부모 프로세스가 자식 프로세스의 종료를 기다리는 방법을 익힙니다.
-4. execvp() 함수를 사용하여 새로운 프로그램을 실행하는 방법을 배웁니다.
-5. 표준 출력을 파일로 리다이렉션하는 방법을 알아봅니다.
+1. Understand how to create a new process using the fork() function.
+2. Understand the execution flow of parent and child processes.
+3. Learn how to use the wait() function to make the parent process wait for the child process to terminate.
+4. Learn how to execute a new program using the execvp() function.
+5. Discover how to redirect standard output to a file.
 
-## 실습 내용
+## Lab Contents
 
-이 실습에서는 4개의 C 프로그램 파일(p1.c, p2.c, p3.c, p4.c)과 하나의 Makefile을 사용하여 프로세스 생성과 실행에 대해 학습합니다.
+In this lab, we will use 4 C program files (p1.c, p2.c, p3.c, p4.c) and one Makefile to learn about process creation and execution.
 
-1. p1.c - 프로세스 생성 기초
+1. p1.c - Basics of Process Creation
 
-   - fork() 함수를 사용하여 새로운 자식 프로세스를 생성합니다.
-   - 부모 프로세스와 자식 프로세스의 실행 흐름을 확인합니다.
-   - 프로세스 ID(PID)를 출력하여 부모 프로세스와 자식 프로세스를 구분합니다.
+   - Use the fork() function to create a new child process.
+   - Verify the execution flow of parent and child processes.
+   - Print the process ID (PID) to distinguish between parent and child processes.
 
-2. p2.c - 부모 프로세스의 대기
+2. p2.c - Waiting for Parent Process
 
-   - fork() 함수를 사용하여 새로운 자식 프로세스를 생성합니다.
-   - 자식 프로세스에서 sleep() 함수를 사용하여 일정 시간 동안 대기합니다.
-   - 부모 프로세스에서 wait() 함수를 사용하여 자식 프로세스가 종료될 때까지 기다립니다.
+   - Use the fork() function to create a new child process.
+   - Use the sleep() function in the child process to wait for a certain period of time.
+   - Use the wait() function in the parent process to wait for the child process to terminate.
 
-3. p3.c - 새로운 프로그램 실행
+3. p3.c - Executing a New Program
 
-   - fork() 함수를 사용하여 새로운 자식 프로세스를 생성합니다.
-   - 자식 프로세스에서 execvp() 함수를 사용하여 "wc" 프로그램을 실행합니다.
-   - execvp() 함수에 전달할 인자들을 설정하여 "p3.c" 파일의 단어 개수를 셉니다.
+   - Use the fork() function to create a new child process.
+   - Use the execvp() function in the child process to execute the "wc" program.
+   - Set the arguments to be passed to the execvp() function to count the number of words in the "p3.c" file.
 
-4. p4.c - 표준 출력 리다이렉션
-   - fork() 함수를 사용하여 새로운 자식 프로세스를 생성합니다.
-   - 자식 프로세스에서 표준 출력을 닫고 "./p4.output" 파일로 리다이렉션합니다.
-   - execvp() 함수를 사용하여 "wc" 프로그램을 실행하고 "p4.c" 파일의 단어 개수를 셉니다.
-   - 부모 프로세스에서 자식 프로세스가 종료될 때까지 기다립니다.
+4. p4.c - Standard Output Redirection
+   - Use the fork() function to create a new child process.
+   - Close the standard output in the child process and redirect it to the "./p4.output" file.
+   - Use the execvp() function to execute the "wc" program and count the number of words in the "p4.c" file.
+   - Make the parent process wait for the child process to terminate.
 
 Makefile:
 
-- "make all" 명령어를 사용하여 모든 프로그램(p1, p2, p3, p4)을 한 번에 컴파일할 수 있습니다.
-- 각 프로그램에 대한 컴파일 규칙이 정의되어 있습니다.
-- "make clean" 명령어를 사용하여 생성된 실행 파일을 삭제할 수 있습니다.
+- Use the "make all" command to compile all programs (p1, p2, p3, p4) at once.
+- Define compilation rules for each program.
+- Use the "make clean" command to delete the generated executable files.
 
-실습을 통해 프로세스 생성, 부모-자식 프로세스 간의 실행 흐름, 새로운 프로그램 실행, 표준 출력 리다이렉션 등의 개념을 익힐 수 있습니다. 각 프로그램 파일에는 자세한 주석이 포함되어 있어 코드의 동작을 이해하는 데 도움이 될 것입니다.
+Through this lab, you can learn the concepts of process creation, execution flow between parent and child processes, executing new programs, and redirecting standard output. Each program file includes detailed comments to help understand the code's behavior.
