@@ -469,10 +469,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최단 작업 우선</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">최소 잔여시간 우선</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#round-robin">라운드 로빈(Round Robin)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">작동 방식</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">라운드 로빈</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">요약</a></li>
@@ -492,46 +489,39 @@ document.write(`
 <p>이제 프로세스를 실행하기 위해 필요한 문맥 교환(Context Switch)과 같은 저수준 기술에 대해 명확히 이해하고 있어야 합니다. 만약 이러한 기술들의 동작 방식에 대해 잘 모르겠다면, 앞서 배운 내용을 다시 복습하는 것이 좋습니다. 또한, 운영체제 스케줄러의 고수준 정책에 대한 이해도 필요합니다.</p>
 <p>지금부터는 다양한 스케줄링 정책(Scheduling Policy)을 소개하고, 이에 대한 이해를 높이는 데 집중하겠습니다. 이러한 정책은 스케줄링 기법(Scheduling Discipline)이라고도 불리며, 많은 優秀하고 부지런한 연구자들이 오랜 시간 동안 개발해 온 것들입니다.</p>
 <p>사실, 스케줄링의 기원은 컴퓨터 시스템이 개발되기 이전으로 거슬러 올라갑니다. 초기의 스케줄링 방법들은 생산 관리(Production Management) 분야에서 개발되었고, 이후 컴퓨터 시스템에 적용되었습니다. 이는 그리 놀라운 일이 아닙니다. 생산 공정과 인간의 다양한 활동에서도 스케줄링이 필요하고, 효율성 향상과 같은 공통된 목표를 가지고 있기 때문입니다.</p>
-<p>우리가 해결해야 할 핵심 질문은 다음과 같습니다:</p>
-<ol class="arabic simple">
-<li><p>스케줄링 정책은 어떻게 개발할 수 있을까요?</p></li>
-<li><p>스케줄링 정책을 설계하기 위한 기본적인 프레임워크는 무엇일까요?</p></li>
-<li><p>정책 개발에 필요한 핵심 가정은 무엇일까요?</p></li>
-<li><p>어떤 평가 기준이 중요할까요?</p></li>
-<li><p>컴퓨터 시스템 초창기에 사용된 기본 접근 방식은 무엇일까요?</p></li>
-</ol>
+<p>우리가 해결해야 할 핵심 질문은 다음과 같습니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. 스케줄링 정책은 어떻게 개발할 수 있을까요?
+2. 스케줄링 정책을 설계하기 위한 기본적인 프레임워크는 무엇일까요?
+3. 정책 개발에 필요한 핵심 가정은 무엇일까요?
+4. 어떤 평가 기준이 중요할까요?
+5. 컴퓨터 시스템 초창기에 사용된 기본 접근 방식은 무엇일까요?
+</pre></div>
+</div>
 <p>이러한 질문에 대한 답을 찾아가면서, 스케줄링 정책의 개발 과정과 그 기반이 되는 개념들을 이해할 수 있을 것입니다. 이를 통해 운영체제의 스케줄링 메커니즘에 대한 포괄적인 지식을 갖추게 될 것입니다.</p>
 <section id="id3">
 <h2>워크로드에 대한 가정<a class="footnote-reference brackets" href="#ji-nyu" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>스케줄링 정책을 개발하기에 앞서, 우리는 프로세스에 대해 몇 가지 가정을 해야 합니다. 이러한 가정들은 시스템에서 실행되는 프로세스들의 집합인 워크로드(Workload)를 정의하는 데 도움을 줍니다. 워크로드에 대해 잘 이해할수록 그에 맞는 최적의 스케줄링 정책을 설계할 수 있습니다.</p>
-<p>우리는 시스템에서 실행 중인 프로세스 또는 작업에 대해 다음과 같은 가정을 합니다:</p>
-<ol class="arabic simple">
-<li><p>모든 작업의 실행 시간은 동일합니다.</p>
-<ul class="simple">
-<li><p>예를 들어, 모든 작업이 정확히 10초 동안 실행된다고 가정합니다.</p></li>
-</ul>
-</li>
-<li><p>모든 작업은 동시에 시스템에 도착합니다.</p>
-<ul class="simple">
-<li><p>즉, 모든 작업이 시작 시점에 한꺼번에 도착한다는 것입니다.</p></li>
-</ul>
-</li>
-<li><p>각 작업은 한 번 시작되면 중간에 중단되지 않고 완료될 때까지 실행됩니다.</p>
-<ul class="simple">
-<li><p>작업이 실행되는 동안 다른 작업으로 전환되지 않습니다.</p></li>
-</ul>
-</li>
-<li><p>모든 작업은 오직 CPU 자원만 사용합니다.</p>
-<ul class="simple">
-<li><p>작업 실행 중에는 입출력(I/O) 작업이 발생하지 않는다고 가정합니다.</p></li>
-</ul>
-</li>
-<li><p>각 작업의 실행 시간은 스케줄러가 미리 알고 있습니다.</p>
-<ul class="simple">
-<li><p>스케줄러는 작업의 실행 시간을 사전에 파악하고 있다고 가정합니다.</p></li>
-</ul>
-</li>
-</ol>
+<p>우리는 시스템에서 실행 중인 프로세스 또는 작업에 대해 다음과 같은 가정을 합니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">모든</span> <span class="n">작업의</span> <span class="n">실행</span> <span class="n">시간은</span> <span class="n">동일합니다</span><span class="o">.</span>
+
+   <span class="o">-</span> <span class="n">예를</span> <span class="n">들어</span><span class="p">,</span> <span class="n">모든</span> <span class="n">작업이</span> <span class="n">정확히</span> <span class="mi">10</span><span class="n">초</span> <span class="n">동안</span> <span class="n">실행된다고</span> <span class="n">가정합니다</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="n">모든</span> <span class="n">작업은</span> <span class="n">동시에</span> <span class="n">시스템에</span> <span class="n">도착합니다</span><span class="o">.</span>
+
+   <span class="o">-</span> <span class="n">즉</span><span class="p">,</span> <span class="n">모든</span> <span class="n">작업이</span> <span class="n">시작</span> <span class="n">시점에</span> <span class="n">한꺼번에</span> <span class="n">도착한다는</span> <span class="n">것입니다</span><span class="o">.</span>
+
+<span class="mf">3.</span> <span class="n">각</span> <span class="n">작업은</span> <span class="n">한</span> <span class="n">번</span> <span class="n">시작되면</span> <span class="n">중간에</span> <span class="n">중단되지</span> <span class="n">않고</span> <span class="n">완료될</span> <span class="n">때까지</span> <span class="n">실행됩니다</span><span class="o">.</span>
+
+   <span class="o">-</span> <span class="n">작업이</span> <span class="n">실행되는</span> <span class="n">동안</span> <span class="n">다른</span> <span class="n">작업으로</span> <span class="n">전환되지</span> <span class="n">않습니다</span><span class="o">.</span>
+
+<span class="mf">4.</span> <span class="n">모든</span> <span class="n">작업은</span> <span class="n">오직</span> <span class="n">CPU</span> <span class="n">자원만</span> <span class="n">사용합니다</span><span class="o">.</span>
+
+   <span class="o">-</span> <span class="n">작업</span> <span class="n">실행</span> <span class="n">중에는</span> <span class="n">입출력</span><span class="p">(</span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="p">)</span> <span class="n">작업이</span> <span class="n">발생하지</span> <span class="n">않는다고</span> <span class="n">가정합니다</span><span class="o">.</span>
+
+<span class="mf">5.</span> <span class="n">각</span> <span class="n">작업의</span> <span class="n">실행</span> <span class="n">시간은</span> <span class="n">스케줄러가</span> <span class="n">미리</span> <span class="n">알고</span> <span class="n">있습니다</span><span class="o">.</span>
+   <span class="o">-</span> <span class="n">스케줄러는</span> <span class="n">작업의</span> <span class="n">실행</span> <span class="n">시간을</span> <span class="n">사전에</span> <span class="n">파악하고</span> <span class="n">있다고</span> <span class="n">가정합니다</span><span class="o">.</span>
+</pre></div>
+</div>
 <p>하지만 이러한 가정들은 현실 세계와는 거리가 멉니다. 특히 작업의 실행 시간을 미리 알고 있다는 가정은 매우 비현실적입니다. 이는 마치 스케줄러가 모든 것을 알고 있다고 가정하는 것과 같습니다.</p>
 <p>이러한 가정들은 스케줄링 정책을 단순화하여 이해하기 쉽게 만들어 주지만, 실제 시스템에 적용할 때는 현실적인 제약 사항들을 고려해야 합니다. 그럼에도 불구하고, 이 가정들은 스케줄링 정책의 기본 개념을 이해하는 데 도움을 줍니다.</p>
 </section>
@@ -554,7 +544,8 @@ document.write(`
 <p class="admonition-title">비선점형 스케줄링</p>
 <p>실행 중인 프로세스가 CPU를 점유하고 있을 때 다른 프로세스가 CPU를 빼앗을 수 없는 방식입니다.</p>
 <p>예를 들어, 실행 중인 프로세스가 입출력 작업을 요청하거나 종료될 때까지 CPU를 계속 사용합니다.
-이렇게 하면, 프로세스의 교체가 적게 일어나서 오버헤드가 줄고, 실행 순서가 예측하기 쉽습니다. 하지만, 긴 작업이 CPU를 오랫동안 점유하면 다른 작업들이 오래 기다려야 합니다.</p>
+이렇게 하면, 프로세스의 교체가 적게 일어나서 오버헤드가 줄고, 실행 순서가 예측하기 쉽습니다.
+하지만 긴 작업이 CPU를 오랫동안 점유하면 다른 작업들이 오래 기다려야 합니다.</p>
 <p>비전형 스케줄링의 예로는 선입선출(FIFO), 최단 작업 우선 스케줄링(SJF) 등이 있습니다.</p>
 </div>
 <p>예를 들어, 프로세스 A, B, C가 각각 3초, 5초, 2초의 서비스 시간을 가지고 있고, A가 먼저 도착하고 B가 그 다음에 도착하고 C가 마지막에 도착한다면, FCFS 스케줄링은 다음과 같은 순서로 프로세스를 실행합니다.</p>
@@ -620,7 +611,7 @@ document.write(`
 <p>이 문제를 해결하기 위해 ‘최소 잔여시간 우선(Shortest Time-to-Completion First, STCF)’ 스케줄링 기법을 적용해 보겠습니다. 이 기법은 SJF를 조금 변형한 것인데, 작업의 총 실행 시간이 아니라 남아있는 실행 시간, 즉 잔여 실행 시간을 기준으로 삼는다는 점이 다릅니다.</p>
 <p>STCF에서는 새로운 작업이 시스템에 도착할 때마다 현재 실행 중인 작업의 잔여 실행 시간과 새 작업의 실행 시간을 비교합니다. 그리고 그 중 가장 짧은 잔여 실행 시간을 가진 작업을 선택하여 실행합니다. 필요하다면 현재 작업을 선점(preemption)하고 새 작업에게 CPU를 할당하는 것이죠.</p>
 <p>앞서 예시로 든 시나리오에서 STCF를 적용해 보면, 작업 A가 시작된 후 10초 시점에 B와 C가 도착했을 때, 스케줄러는 A를 선점하고 B 또는 C를 먼저 실행할 것입니다. B와 C는 실행 시간이 각각 10초로 동일하므로 둘 중 어느 것을 먼저 실행해도 상관없습니다. B와 C가 모두 끝난 후에야 비로소 A가 다시 스케줄되어 남은 시간 동안 실행을 이어나가게 됩니다.</p>
-<p>모든 작업이 동시에 도착하는 특별한 경우에는 SJF가 최적의 스케줄을 보장한다는 사실을 떠올려 봅시다. 그렇다면 작업들이 서로 다른 시간에 도착하는 일반적인 상황에서는 STCF가 최적이 될 것이라는 점을 직관적으로 이해할 수 있을 것입니다. STCF는 새 작업의 도착마다 남은 작업량을 재평가하여 그때그때 최적의 선택을 내리기 때문입니다.</p>
+<p>모든 작업이 동시에 도착하는 특별한 경우에는 SJF가 최적의 스케줄을 보장한다는 사실을 떠올려 봅시다. 그렇다면 작업들이 서로 다른 시간에 도착하는 일반적인 상황에서는 STCF가 최적이 될 것이라는 점을 직관적으로 이해할 수 있을 것입니다. STCF는 새 작업이 도착할 때마다 잔여 작업량을 재평가하여 그때그때 가장 적절한 프로세스를 선택하기 때문입니다.</p>
 </section>
 <section id="id12">
 <h2>새로운 평가 기준 : 응답 시간<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
@@ -629,23 +620,13 @@ document.write(`
 <p>예를 들어 세 개의 작업 A, B, C가 동시에 도착했다고 합시다. STCF 스케줄링을 적용하면 실행 시간이 가장 긴 작업, 가령 C는 나머지 두 작업이 모두 끝날 때까지 기다려야 비로소 CPU를 할당받을 수 있습니다. 반환 시간 측면에서는 최적일 수 있지만, 응답 시간 측면에서 보면 형편없는 결과라 할 수 있겠죠.</p>
 <p>사용자와의 상호작용이 중요해진 상황에서 STCF는 더이상 적절한 스케줄링 기법이 아닙니다. 응답 시간을 개선하면서도 시스템의 전반적인 성능을 높일 수 있는 새로운 스케줄링 알고리즘이 필요해진 것입니다.</p>
 </section>
-<section id="round-robin">
-<h2>라운드 로빈(Round Robin)<a class="headerlink" href="#round-robin" title="Link to this heading">#</a></h2>
-<p>응답 시간 문제를 해결하기 위해 ‘라운드 로빈(Round Robin, RR)’ 스케줄링이라는 새로운 알고리즘이 도입되었습니다.</p>
-<p>RR에서는 각 작업이 완료될 때까지 기다리지 않고, 대신 정해진 시간 동안만 실행한 후 다음 작업으로 전환합니다.
-<strong>이때 각 작업에 할당되는 실행 시간을 ‘타임 슬라이스(time slice, ts)’ 또는 ‘스케줄링 퀀텀(scheduling quantum, sq)’이라고 부릅니다.</strong> 이 과정은 모든 작업이 끝날 때까지 계속 반복되는데, 이런 특성 때문에 RR을 ‘타임 슬라이싱(time slicing)’이라고도 합니다.</p>
 <section id="id13">
-<h3>작동 방식<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>레디 큐(Ready Queue)에 있는 모든 프로세스는 일정한 타임 퀀텀 동안 CPU 시간을 할당받습니다. 이는 공평한 처리 시간 배분을 목적으로 합니다.</p></li>
-<li><p>할당된 시간 동안 프로세스가 실행되면, 그 시간이 만료된 후 프로세스는 프로세서를 반환하고 레디 큐의 끝에 다시 위치하게 됩니다.</p></li>
-<li><p>CPU는 다음 프로세스에게 동일한 방식으로 타임 슬라이스를 할당하고, 이 과정을 모든 프로세스가 종료될 때까지 순환 반복합니다.</p></li>
-</ol>
-<p><img alt="image" src="https://github.com/chu-aie/os-2024/assets/133697595/4018bf18-3cfd-44b9-aa78-6ee150d37539" /></p>
+<h2>라운드 로빈<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>응답 시간 문제를 해결하기 위해 ‘라운드 로빈(Round Robin, RR)’ 스케줄링이라는 새로운 알고리즘이 도입되었습니다.</p>
+<p>RR에서는 각 작업이 완료될 때까지 기다리지 않고, 대신 정해진 시간 동안만 실행한 후 다음 작업으로 전환합니다. 이때 각 작업에 할당되는 실행 시간을 ‘타임 슬라이스(time slice, ts)’ 또는 ‘스케줄링 퀀텀(scheduling quantum, sq)’이라고 부릅니다. 이 과정은 모든 작업이 끝날 때까지 계속 반복되는데, 이런 특성 때문에 RR을 ‘타임 슬라이싱(time slicing)’이라고도 합니다.</p>
 <p>타임 슬라이스의 길이는 타이머 인터럽트 주기의 배수로 설정해야 합니다. 예를 들어 타이머 인터럽트가 10밀리초(msec)마다 발생한다면, 타임 슬라이스는 10, 20, 30 등 10의 배수로 정해질 수 있습니다.</p>
 <p>RR 스케줄링에서 타임 슬라이스의 길이는 매우 중요한 요소입니다. 일반적으로 타임 슬라이스가 짧을수록 응답 시간 측면에서의 성능은 좋아집니다. 그러나 너무 짧게 설정하면 문맥 교환(context switch) 오버헤드가 전체 성능에 부정적인 영향을 미칠 수 있습니다.</p>
 <p>따라서 시스템 설계자는 문맥 교환에 드는 비용과 응답 시간 개선 효과를 고려하여 최적의 타임 슬라이스 길이를 결정해야 합니다. 이는 해당 시스템의 특성과 워크로드에 따라 달라질 수 있는 중요한 튜닝 포인트 중 하나입니다.</p>
-</section>
 </section>
 <section id="id14">
 <h2>입출력 연산의 고려<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
@@ -763,10 +744,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최단 작업 우선</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">최소 잔여시간 우선</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#round-robin">라운드 로빈(Round Robin)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">작동 방식</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">라운드 로빈</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">요약</a></li>
