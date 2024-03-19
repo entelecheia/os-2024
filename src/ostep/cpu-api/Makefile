@@ -40,4 +40,4 @@ p4: p4.c ## Build target p4
 ##@ Clean-up
 
 clean: ## Remove all build artifacts
-	rm -f p1 p2 p3 p4
+	rm -f p1 p2 p3 p4 p4.output
