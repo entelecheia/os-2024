@@ -25,6 +25,7 @@ parts:
           - file: week03/mlfq
           - file: week03/lottery
           - file: week03/lab
+          - file: week03/wsl-setup
   - caption: References
     chapters:
       - file: references/ostep/index
