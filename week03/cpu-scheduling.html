@@ -632,12 +632,12 @@ document.write(`
 <section id="round-robin">
 <h2>라운드 로빈(Round Robin)<a class="headerlink" href="#round-robin" title="Link to this heading">#</a></h2>
 <p>응답 시간 문제를 해결하기 위해 ‘라운드 로빈(Round Robin, RR)’ 스케줄링이라는 새로운 알고리즘이 도입되었습니다.</p>
-<p>RR에서는 각 작업이 완료될 때까지 기다리지 않고, 대신 정해진 시간 동안만 실행한 후 다음 작업으로 전환합니다.<br />
+<p>RR에서는 각 작업이 완료될 때까지 기다리지 않고, 대신 정해진 시간 동안만 실행한 후 다음 작업으로 전환합니다.
 <strong>이때 각 작업에 할당되는 실행 시간을 ‘타임 슬라이스(time slice, ts)’ 또는 ‘스케줄링 퀀텀(scheduling quantum, sq)’이라고 부릅니다.</strong> 이 과정은 모든 작업이 끝날 때까지 계속 반복되는데, 이런 특성 때문에 RR을 ‘타임 슬라이싱(time slicing)’이라고도 합니다.</p>
 <section id="id13">
 <h3>작동 방식<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>**레디 큐(Ready Queue)**에 있는 모든 프로세스는 일정한 타임 퀀텀 동안 CPU 시간을 할당받습니다. 이는 공평한 처리 시간 배분을 목적으로 합니다.</p></li>
+<li><p>레디 큐(Ready Queue)에 있는 모든 프로세스는 일정한 타임 퀀텀 동안 CPU 시간을 할당받습니다. 이는 공평한 처리 시간 배분을 목적으로 합니다.</p></li>
 <li><p>할당된 시간 동안 프로세스가 실행되면, 그 시간이 만료된 후 프로세스는 프로세서를 반환하고 레디 큐의 끝에 다시 위치하게 됩니다.</p></li>
 <li><p>CPU는 다음 프로세스에게 동일한 방식으로 타임 슬라이스를 할당하고, 이 과정을 모든 프로세스가 종료될 때까지 순환 반복합니다.</p></li>
 </ol>
