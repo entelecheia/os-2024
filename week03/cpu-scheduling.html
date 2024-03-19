@@ -469,7 +469,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최단 작업 우선</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">최소 잔여시간 우선</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#round-robin">라운드 로빈(Round Robin)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">작동 방식</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">요약</a></li>
@@ -626,13 +629,23 @@ document.write(`
 <p>예를 들어 세 개의 작업 A, B, C가 동시에 도착했다고 합시다. STCF 스케줄링을 적용하면 실행 시간이 가장 긴 작업, 가령 C는 나머지 두 작업이 모두 끝날 때까지 기다려야 비로소 CPU를 할당받을 수 있습니다. 반환 시간 측면에서는 최적일 수 있지만, 응답 시간 측면에서 보면 형편없는 결과라 할 수 있겠죠.</p>
 <p>사용자와의 상호작용이 중요해진 상황에서 STCF는 더이상 적절한 스케줄링 기법이 아닙니다. 응답 시간을 개선하면서도 시스템의 전반적인 성능을 높일 수 있는 새로운 스케줄링 알고리즘이 필요해진 것입니다.</p>
 </section>
-<section id="id13">
-<h2>라운드 로빈<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<section id="round-robin">
+<h2>라운드 로빈(Round Robin)<a class="headerlink" href="#round-robin" title="Link to this heading">#</a></h2>
 <p>응답 시간 문제를 해결하기 위해 ‘라운드 로빈(Round Robin, RR)’ 스케줄링이라는 새로운 알고리즘이 도입되었습니다.</p>
-<p>RR에서는 각 작업이 완료될 때까지 기다리지 않고, 대신 정해진 시간 동안만 실행한 후 다음 작업으로 전환합니다. 이때 각 작업에 할당되는 실행 시간을 ‘타임 슬라이스(time slice, ts)’ 또는 ‘스케줄링 퀀텀(scheduling quantum, sq)’이라고 부릅니다. 이 과정은 모든 작업이 끝날 때까지 계속 반복되는데, 이런 특성 때문에 RR을 ‘타임 슬라이싱(time slicing)’이라고도 합니다.</p>
+<p>RR에서는 각 작업이 완료될 때까지 기다리지 않고, 대신 정해진 시간 동안만 실행한 후 다음 작업으로 전환합니다.<br />
+<strong>이때 각 작업에 할당되는 실행 시간을 ‘타임 슬라이스(time slice, ts)’ 또는 ‘스케줄링 퀀텀(scheduling quantum, sq)’이라고 부릅니다.</strong> 이 과정은 모든 작업이 끝날 때까지 계속 반복되는데, 이런 특성 때문에 RR을 ‘타임 슬라이싱(time slicing)’이라고도 합니다.</p>
+<section id="id13">
+<h3>작동 방식<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>**레디 큐(Ready Queue)**에 있는 모든 프로세스는 일정한 타임 퀀텀 동안 CPU 시간을 할당받습니다. 이는 공평한 처리 시간 배분을 목적으로 합니다.</p></li>
+<li><p>할당된 시간 동안 프로세스가 실행되면, 그 시간이 만료된 후 프로세스는 프로세서를 반환하고 레디 큐의 끝에 다시 위치하게 됩니다.</p></li>
+<li><p>CPU는 다음 프로세스에게 동일한 방식으로 타임 슬라이스를 할당하고, 이 과정을 모든 프로세스가 종료될 때까지 순환 반복합니다.</p></li>
+</ol>
+<p><img alt="image" src="https://github.com/chu-aie/os-2024/assets/133697595/4018bf18-3cfd-44b9-aa78-6ee150d37539" /></p>
 <p>타임 슬라이스의 길이는 타이머 인터럽트 주기의 배수로 설정해야 합니다. 예를 들어 타이머 인터럽트가 10밀리초(msec)마다 발생한다면, 타임 슬라이스는 10, 20, 30 등 10의 배수로 정해질 수 있습니다.</p>
 <p>RR 스케줄링에서 타임 슬라이스의 길이는 매우 중요한 요소입니다. 일반적으로 타임 슬라이스가 짧을수록 응답 시간 측면에서의 성능은 좋아집니다. 그러나 너무 짧게 설정하면 문맥 교환(context switch) 오버헤드가 전체 성능에 부정적인 영향을 미칠 수 있습니다.</p>
 <p>따라서 시스템 설계자는 문맥 교환에 드는 비용과 응답 시간 개선 효과를 고려하여 최적의 타임 슬라이스 길이를 결정해야 합니다. 이는 해당 시스템의 특성과 워크로드에 따라 달라질 수 있는 중요한 튜닝 포인트 중 하나입니다.</p>
+</section>
 </section>
 <section id="id14">
 <h2>입출력 연산의 고려<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
@@ -750,7 +763,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">최단 작업 우선</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">최소 잔여시간 우선</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">새로운 평가 기준 : 응답 시간</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">라운드 로빈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#round-robin">라운드 로빈(Round Robin)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">작동 방식</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">입출력 연산의 고려</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-more-oracle">만병통치약은 없다 (No More Oracle)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">요약</a></li>
