@@ -459,13 +459,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">기본 개념 : 추첨권이 당신의 몫을 나타낸다</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">추첨 기법</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">예제</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">추첨권 배분 방식</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deterministic">왜 결정론적 (Deterministic) 방법을 사용하지 않는가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">기본 개념 : 추첨권이 당신의 몫을 나타낸다</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개념 설명</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">특징</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">추첨 기법</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">장단점</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">장점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">단점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">예제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -481,39 +488,133 @@ document.write(`
 <h1>스케줄링: 비례 배분(Proportional Share)<a class="headerlink" href="#proportional-share" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>기본 개념 : 추첨권이 당신의 몫을 나타낸다<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>스케줄링에서 비례 배분은 시스템 리소스를 사용하는 여러 프로세스 또는 작업 간에 리소스를 공정하게 나누는 방법입니다.
-이것은 각 프로세스가 추첨권을 할당받아 리소스에 대한 접근을 결정하는데 사용됩니다.
-추첨권은 각 프로세스의 상대적인 우선순위를 나타냅니다.</p>
-</section>
+<p>스케줄링에서 비례 배분은 시스템 리소스를 사용하는 여러 프로세스 또는 작업 간에 리소스를 공정하게 나누는 방법이다.<br />
+이것은 각 프로세스가 추첨권을 할당받아 리소스에 대한 접근을 결정하는데 사용된다.<br />
+추첨권은 각 프로세스의 상대적인 우선순위를 나타낸다.</p>
 <section id="id2">
-<h2>추첨 기법<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>추첨 기법은 각 프로세스에게 추첨권을 할당하여 해당 추첨권에 따라 리소스를 할당합니다.
-이 추첨 과정은 무작위성을 기반으로 합니다.</p>
+<h3>개념 설명<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>각 프로세스에는 일정한 비율의 ‘티켓(ticket)’ 또는 ‘가중치(weight)’가 할당된다.<br />
+프로세스의 상대적 중요도가 높을수록 더 많은 티켓이 할당된다.<br />
+CPU 스케줄러는 프로세스들의 누적 티켓 수에 비례하여 CPU 시간을 할당한다.<br />
+예를 들어 프로세스 A가 4개의 티켓, 프로세스 B가 2개의 티켓을 가지면, A는 2배 많은 CPU 시간을 할당받게 된다.</p>
 </section>
 <section id="id3">
-<h2>구현<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>비례 배분을 구현하는 방법에는 다양한 알고리즘이 있지만, 일반적으로 추첨권을 할당하고, 이를 기반으로 프로세스에게 리소스를 할당하는 방식으로 구현됩니다.</p>
+<h3>특징<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>프로세스의 상대적 중요도를 티켓 수로 표현하여 CPU 사용 시간을 결정한다.<br />
+티켓의 비율에 따라 CPU 시간을 비례적으로 분배하므로 ‘비례 배분’이라 불린다.<br />
+프로세스의 우선순위 변경이 용이하며, 새로운 프로세스 추가 시에도 유연하게 대응할 수 있다.<br />
+이처럼 비례 배분 스케줄링은 프로세스의 상대적 중요도를 티켓으로 표현하고, 그 비율에 따라 CPU 시간을 공정하게 할당하는 기법이다.</p>
+</section>
 </section>
 <section id="id4">
-<h2>예제<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>시스템에서 CPU 시간을 할당하는 경우, 각 프로세스에게 추첨권을 할당하고 이를 기반으로 CPU 시간을 할당합니다.
-이는 프로세스가 CPU를 사용하는 상대적인 비율에 따라 시간을 할당하는 것을 의미합니다.</p>
+<h2>추첨 기법<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>비례 배분 스케줄링에서 CPU 시간을 할당하기 위해 사용되는 기법은 ‘추첨(lottery)’ 방식이다.<br />
+이 방식에서는 각 프로세스에게 할당된 티켓 수에 비례하여 CPU 시간이 할당된다.</p>
+<p>추첨 과정은 다음과 같이 이루어진다.</p>
+<ol class="arabic simple">
+<li><p>각 프로세스에게 상대적 중요도에 따라 티켓이 할당된다.</p></li>
+<li><p>스케줄러는 프로세스들의 전체 티켓 수를 계산한다.</p></li>
+<li><p>스케줄러는 전체 티켓 수 범위 내에서 무작위로 한 번호를 선택한다.</p></li>
+<li><p>선택된 번호가 속한 프로세스에게 CPU 시간이 할당된다.</p></li>
+<li><p>이 과정을 주기적으로 반복하여 CPU 시간을 할당한다.</p></li>
+</ol>
+<p>예를 들어, 다음과 같이 3개의 프로세스가 있다고 가정한다.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>프로세스</p></th>
+<th class="head"><p>티켓 수</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>이 경우 전체 티켓 수는 7이다. 스케줄러가 1부터 7 사이의 숫자 중 하나를 무작위로 선택한다고 가정하면.</p>
+<ul class="simple">
+<li><p>1, 2, 3, 4 중 하나가 선택되면 프로세스 A에게 CPU 시간이 할당된다.</p></li>
+<li><p>5, 6이 선택되면 프로세스 B에게 CPU 시간이 할당된다.</p></li>
+<li><p>7이 선택되면 프로세스 C에게 CPU 시간이 할당된다.</p></li>
+</ul>
+<p>이렇게 무작위로 번호를 선택하고 해당 프로세스에 CPU 시간을 할당하는 과정을 주기적으로 반복함으로써, 프로세스의 티켓 수 비율에 따라 CPU 시간이 비례적으로 할당된다.</p>
+<p>이 추첨 방식은 프로세스의 상대적 중요도를 티켓 수로 표현하고, 무작위성을 기반으로 하여 CPU 시간을 공정하게 분배할 수 있다.</p>
 </section>
 <section id="id5">
-<h2>추첨권 배분 방식<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>추첨권은 프로세스의 우선순위를 나타내며, 보통 우선순위가 높은 프로세스는 더 많은 추첨권을 할당받게 됩니다.
-이를 통해 리소스가 해당 프로세스의 상대적 우선순위에 따라 공정하게 분배됩니다.</p>
-</section>
-<section id="deterministic">
-<h2>왜 결정론적 (Deterministic) 방법을 사용하지 않는가<a class="headerlink" href="#deterministic" title="Link to this heading">#</a></h2>
-<p>결정론적 방법은 예측 가능한 결과를 제공할 수 있지만, 시스템에서 다양한 우선순위와 요구에 대응하기 어렵습니다.
-따라서 결정론적 방법은 각 프로세스의 우선순위를 고려하지 못하고, 일부 프로세스가 과도하게 혜택을 받거나 불이익을 받을 수 있습니다.</p>
+<h2>구현<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>비례 배분 스케줄링을 구현하는 대표적인 알고리즘으로 ‘티켓 기반 추첨(Ticket-Based Lottery)’ 알고리즘이 있다.</p>
+<ol class="arabic simple">
+<li><p>각 프로세스에게 상대적 중요도에 따라 일정 수의 ‘티켓’을 할당한다.</p></li>
+<li><p>전체 티켓 수를 계산한다.</p></li>
+<li><p>0부터 전체 티켓 수 범위 내에서 무작위로 한 번호를 추첨한다.</p></li>
+<li><p>선택된 번호가 속한 프로세스에게 CPU 시간을 할당한다.</p></li>
+<li><p>주기적으로 3, 4번 단계를 반복하여 CPU 시간을 할당한다.</p></li>
+</ol>
+<p>예를 들어, 다음과 같이 3개의 프로세스가 있다고 가정한다.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>프로세스</p></th>
+<th class="head"><p>티켓 수</p></th>
+<th class="head"><p>CPU 사용 시간</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>4</p></td>
+<td><p>200ms</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>2</p></td>
+<td><p>100ms</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>1</p></td>
+<td><p>50ms</p></td>
+</tr>
+</tbody>
+</table>
+<p>이 경우 전체 티켓 수는 7이다. 스케줄러가 1부터 7 사이의 숫자 중 하나를 무작위로 선택한다고 가정하면</p>
+<ul class="simple">
+<li><p>1, 2, 3, 4 중 하나가 선택되면 프로세스 A에게 200ms의 CPU 시간이 할당된다.</p></li>
+<li><p>5, 6이 선택되면 프로세스 B에게 100ms의 CPU 시간이 할당된다.</p></li>
+<li><p>7이 선택되면 프로세스 C에게 50ms의 CPU 시간이 할당된다.</p></li>
+</ul>
+<p>다음과 같은 과정을 주기적으로 반복하여 각 프로세스에게 할당된 CPU 시간의 합이 티켓 수 비율과 일치하도록 한다.</p>
+<p>이처럼 티켓 기반 추첨 알고리즘은 프로세스의 상대적 중요도를 티켓 수로 표현하고, 무작위성을 기반으로 CPU 시간을 공정하게 할당할 수 있다.<br />
+이 알고리즘은 비례 배분 스케줄링의 핵심 아이디어를 구현하는 대표적인 방식으로 프로세스의 상대적 중요도를 티켓 수로 표현하고, 무작위성을 기반으로 CPU 시간을 공정하게 할당할 수 있다.</p>
 </section>
 <section id="id6">
-<h2>요약<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>비례 배분은 시스템 리소스를 공정하게 나누기 위해 추첨권을 사용하는 스케줄링 방법입니다.
-각 프로세스에게 추첨권을 할당하여 이를 기반으로 리소스를 할당함으로써 상대적인 우선순위에 따라 공정한 접근을 제공합니다.
-결정론적 방법보다 유연성과 공정성 면에서 우수한 결과를 제공합니다.</p>
+<h2>장단점<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h3>장점<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>프로세스의 상대적 중요도를 유연하게 반영할 수 있다.
+새로운 프로세스 추가 시 간단히 티켓 수를 조정하는 것만으로 대응할 수 있다.
+장기적으로는 각 프로세스에게 공정한 CPU 시간 할당을 보장한다.</p>
+</section>
+<section id="id8">
+<h3>단점<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>단기적으로는 무작위성으로 인해 공정성이 다소 저해될 수 있다.
+추첨 과정에서 오버헤드가 발생할 수 있다.</p>
+</section>
+</section>
+<section id="id9">
+<h2>예제<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>시스템에서 CPU 시간을 할당하는 경우, 각 프로세스에게 추첨권을 할당하고 이를 기반으로 CPU 시간을 할당한다. 이는 프로세스가 CPU를 사용하는 상대적인 비율에 따라 시간을 할당하는 것을 의미한다.</p>
+<p>추첨권은 프로세스의 우선순위를 나타내며, 보통 우선순위가 높은 프로세스는 더 많은 추첨권을 할당받게 된다. 이를 통해 리소스가 해당 프로세스의 상대적 우선순위에 따라 공정하게 분배된다.</p>
+<p>결정론적 스케줄링 방법은 미리 정해진 규칙에 따라 CPU 시간을 할당하기 때문에 프로세스의 상대적 중요도를 고려하기 어렵다. 반면, 비례 배분 스케줄링은 각 프로세스의 상대적 중요도를 티켓 수로 표현하여 CPU 시간을 차등 할당할 수 있다. 이를 통해 시스템의 다양한 요구사항과 우선순위를 유연하게 수용할 수 있다.</p>
+</section>
+<section id="id10">
+<h2>요약<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>비례 배분 스케줄링은 각 프로세스에게 상대적 중요도에 따른 티켓 수를 할당하고, 무작위 추첨을 통해 CPU 시간을 할당하는 방식이다.<br />
+이를 통해 프로세스의 우선순위를 유연하게 반영할 수 있으며, 새로운 프로세스 추가 시에도 쉽게 대응할 수 있다.<br />
+결정론적 방법과 달리 비례 배분 방식은 단기적으로는 공정성이 다소 저해될 수 있지만, 장기적으로는 각 프로세스에게 공정한 CPU 시간 할당을 보장한다.<br />
+또한, 시스템의 다양한 요구사항과 우선순위에 유연하게 대응할 수 있어 효율적인 자원 관리가 가능하다.</p>
 </section>
 </section>
 
@@ -581,13 +682,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">기본 개념 : 추첨권이 당신의 몫을 나타낸다</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">추첨 기법</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">예제</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">추첨권 배분 방식</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deterministic">왜 결정론적 (Deterministic) 방법을 사용하지 않는가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">기본 개념 : 추첨권이 당신의 몫을 나타낸다</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개념 설명</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">특징</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">추첨 기법</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">장단점</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">장점</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">단점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">예제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
   </nav></div>
 
