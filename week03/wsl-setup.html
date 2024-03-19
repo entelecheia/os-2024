@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 1 - 운영체제: 아주 쉬운 세 가지 이야기 &#8212; 운영체제 2024</title>
+    <title>WSL에서 Ubuntu 환경구축 및 GitHub 설정하기 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week01/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week03/wsl-setup';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="운영체제 개요" href="intro.html" />
-    <link rel="prev" title="Home" href="../index.html" />
+    <link rel="next" title="OSTEP (Korean Version)" href="../references/ostep/index.html" />
+    <link rel="prev" title="Lab: 프로세스 생성과 실행 기초" href="lab.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -205,8 +205,8 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 1 - 운영체제: 아주 쉬운 세 가지 이야기</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html">운영체제 개요</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - 운영체제: 아주 쉬운 세 가지 이야기</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/intro.html">운영체제 개요</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
 </ul>
 </li>
@@ -219,12 +219,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../week02/tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week03/cpu-scheduling.html">스케줄링: 개요</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week03/mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week03/lottery.html">스케줄링: 비례 배분(Proportional Share)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week03/lab.html">Lab: 프로세스 생성과 실행 기초</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week03/wsl-setup.html">WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 3 - 스케줄링</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpu-scheduling.html">스케줄링: 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lottery.html">스케줄링: 비례 배분(Proportional Share)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab.html">Lab: 프로세스 생성과 실행 기초</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</a></li>
 </ul>
 </li>
 </ul>
@@ -319,7 +319,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week01/index.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week03/wsl-setup.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -336,7 +336,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek01/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek03/wsl-setup.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -366,7 +366,7 @@
       
       
       
-      <li><a href="../_sources/week01/index.md" target="_blank"
+      <li><a href="../_sources/week03/wsl-setup.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -437,7 +437,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -448,11 +450,30 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 1 - 운영체제: 아주 쉬운 세 가지 이야기</h1>
+    <h1>WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl-vs-code">WSL에서 VS Code 사용하기</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl">WSL 설치하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">WSL 확장 설치하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-wsl">VS Code에서 WSL 열기</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl-github">WSL에서 GitHub 설정하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles">dotfiles를 이용한 셸 설정</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Dotfiles 설치</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Dotfiles 초기화</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -462,59 +483,98 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-1">
-<h1>Week 1 - 운영체제: 아주 쉬운 세 가지 이야기<a class="headerlink" href="#week-1" title="Link to this heading">#</a></h1>
-<p>이 대화는 <a class="reference external" href="https://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems: Three Easy Pieces by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (University of Wisconsin-Madison)</a>에 나오는 대화를 일부 재구성한 것입니다.</p>
-<blockquote>
-<div><p><strong>교수:</strong> 안녕! “운영체제: 아주 쉬운 세 가지 이야기”에 온 걸 환영하네. 나는 운영체제의 비밀을 널에게 알려줄 “교수”라고 불린다네. 자네는 누구인가?</p>
-</div></blockquote>
-<p><strong>학생:</strong> 교수님 안녕하세요! 저는 배움에 목말라 “학생”이라고 합니다.</p>
-<blockquote>
-<div><p><strong>교수:</strong> 질문 있나?</p>
-</div></blockquote>
-<p><strong>학생:</strong> 네, 왜 이 책은 “아주 쉬운 세 가지 이야기”라고 불리는 거죠?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 흥미로운 질문이군! 물리학자 Richard Feynman의 유명한 강의를 들어본 적 있나?</p>
-</div></blockquote>
-<p><strong>학생:</strong> 네, “Surely You’re Joking, Mr. Feynman”을 쓴 사람이죠? 재미있을 것 같아요!</p>
-<blockquote>
-<div><p><strong>교수:</strong> 음… 글쎄, 그의 물리학 노트 “Six Easy Pieces”와 비슷하다고 생각하면 돼. 우리는 운영체제의 핵심적인 세 가지 주제, 즉 가상화, 병행성, 영속성에 대해 이야기할 거야. 물리학만큼 어렵지는 않으니 걱정 마.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 기대되네요! 그 세 가지 주제는 무엇인가요?</p>
-<blockquote>
-<div><p><strong>교수:</strong> CPU가 다음에 실행할 프로그램을 결정하는 방법, 가상 메모리 시스템, 가상 머신 모니터, 디스크 관리, 분산 시스템 등 운영체제의 핵심을 배우게 될 거야.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 듣기만 해도 어렵네요…</p>
-<blockquote>
-<div><p><strong>교수:</strong> 걱정 마! 자네가 여기에 온 이유가 바로 그거야.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 이 과목을 잘 공부하는 방법은 무엇인가요?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 수업에 집중하고, 매주 교재를 읽고, 과제와 프로젝트를 열심히 해. 특히 코딩 프로젝트는 중요해. 공자의 말처럼 “듣고 잊는 것보다 보고 기억하고, 하고 이해하는 것”이 중요하지.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 저도 공자의 팬입니다! “I hear and I forget. I see and I remember. I do and I understand.” 말씀하시는 거죠?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 정말 놀랍다! 우리는 잘 지낼 수 있을 것 같구나.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 교수님, 이 대화의 목적은 무엇인가요? 바로 주제를 설명하지 않고…</p>
-<blockquote>
-<div><p><strong>교수:</strong> 좋은 질문이군! 때론 듣는 것에서 벗어나 생각하는 시간이 필요하지. 이 대화는 바로 그 시간이야. 함께 생각할 준비는 되어 있나?</p>
-</div></blockquote>
-<p><strong>학생:</strong> 네, 준비됐습니다!</p>
-<blockquote>
-<div><p><strong>교수:</strong> 그럼 함께 출발해 보세!</p>
-</div></blockquote>
-<p><strong>흥미진진한 여정이 시작되다! 과연 학생은 운영체제의 비밀을 밝혀낼 수 있을까?</strong></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>공자의 말은 실제로는 Xunzi라는 학자의 말이다.</p>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">운영체제 개요</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
+  <section class="tex2jax_ignore mathjax_ignore" id="wsl-ubuntu-github">
+<h1>WSL에서 Ubuntu 환경구축 및 GitHub 설정하기<a class="headerlink" href="#wsl-ubuntu-github" title="Link to this heading">#</a></h1>
+<section id="wsl-vs-code">
+<h2>WSL에서 VS Code 사용하기<a class="headerlink" href="#wsl-vs-code" title="Link to this heading">#</a></h2>
+<section id="wsl">
+<h3>WSL 설치하기<a class="headerlink" href="#wsl" title="Link to this heading">#</a></h3>
+<p>웹사이트: <a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">https://learn.microsoft.com/ko-kr/windows/wsl/install</a></p>
+<ol class="arabic simple">
+<li><p>관리자 모드로 PowerShell을 엽니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--install</span></code> 명령어를 실행합니다.</p></li>
+<li><p>재시작합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--list</span> <span class="pre">--online</span></code> 명령어를 실행하여 사용 가능한 Linux 배포판을 확인합니다.</p>
+<ul class="simple">
+<li><p>WSL(Windows Subsystem for Linux): Windows에서 Linux 환경을 사용할 수 있게 해주는 기능입니다.</p></li>
 </ul>
+</li>
+<li><p>Ubuntu-22.04 배포판을 설치합니다: <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--install</span> <span class="pre">Ubuntu-22.04</span></code></p>
+<ul class="simple">
+<li><p>Ubuntu: 가장 인기 있는 Linux 배포판 중 하나입니다.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>과 <code class="docutils literal notranslate"><span class="pre">password</span></code>를 생성합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">-l</span> <span class="pre">-v</span></code> 명령어를 실행하여 버전을 확인합니다. 버전 2가 표시되어야 합니다.</p></li>
+</ol>
+</section>
+<section id="id1">
+<h3>WSL 확장 설치하기<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>VS Code 확장에서 WSL을 설치합니다.</p></li>
+</ol>
+</section>
+<section id="vs-code-wsl">
+<h3>VS Code에서 WSL 열기<a class="headerlink" href="#vs-code-wsl" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Ubuntu 앱을 엽니다 (<code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">키</span> <span class="pre">&gt;</span> <span class="pre">Ubuntu</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">.</span></code> 명령어를 실행합니다.</p></li>
+<li><p>탐색기를 오른쪽 클릭하여 폴더 경로를 확인하고 저장합니다.</p></li>
+</ol>
+</section>
+</section>
+<section id="wsl-github">
+<h2>WSL에서 GitHub 설정하기<a class="headerlink" href="#wsl-github" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>자격 증명 설정하기</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;사용자이름&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;이메일@gmail.com&quot;</span>
+</pre></div>
 </div>
+<ol class="arabic simple" start="2">
+<li><p>SSH 키 생성 및 복사하기</p>
+<ul class="simple">
+<li><p>SSH(Secure Shell): 네트워크 상의 다른 컴퓨터에 로그인하거나 원격 시스템에서 명령을 실행할 때 사용되는 프로토콜입니다.</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;이메일@gmail.com&quot;</span>
+cat<span class="w"> </span>~/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>GitHub의 <code class="docutils literal notranslate"><span class="pre">설정</span> <span class="pre">&gt;</span> <span class="pre">SSH</span> <span class="pre">및</span> <span class="pre">GPG</span> <span class="pre">키</span> <span class="pre">&gt;</span> <span class="pre">새</span> <span class="pre">SSH</span> <span class="pre">키</span></code>에 키를 붙여넣습니다.</p></li>
+<li><p>저장소를 클론하고 시작할 준비가 되었습니다!</p></li>
+</ol>
+</section>
+<section id="dotfiles">
+<h2><a class="reference external" href="https://dotfiles.entelecheia.ai/">dotfiles</a>를 이용한 셸 설정<a class="headerlink" href="#dotfiles" title="Link to this heading">#</a></h2>
+<p>다음 가이드는 <a class="reference external" href="https://dotfiles.entelecheia.ai/">Dotfiles 프로젝트</a>를 여러분의 컴퓨터에 설치하고 초기화하는 과정을 안내해 드립니다. 이를 통해 다양한 시스템에서 일관된 개발 환경을 설정하여 워크플로우를 간소화하고 다른 사람들과의 협업을 보다 쉽게 할 수 있습니다.</p>
+<section id="id2">
+<h3><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/">Dotfiles 설치</a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Dotfiles 프로젝트를 여러분의 컴퓨터에 설치하려면, 설치 스크립트를 가져와 실행해야 합니다. <code class="docutils literal notranslate"><span class="pre">wget</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">curl</span></code>을 사용하여 다음을 수행할 수 있습니다:</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">wget</span></code> 사용:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dotfiles.entelecheia.ai/install<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">curl</span></code> 사용:</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://dotfiles.entelecheia.ai/install<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>위 명령어들은 설치 스크립트를 다운로드하고 실행합니다. 이 과정에서 Dotfiles 저장소가 여러분의 컴퓨터에 복제되고 필요한 설정이 이루어집니다.</p>
+</section>
+<section id="id3">
+<h3>Dotfiles 초기화<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>설치가 완료되면, 초기화 과정이 자동으로 시작됩니다. 이 단계는 dotfiles에 정의된 설정을 시스템에 적용하여 일관된 개발 환경을 보장합니다.</p>
+<p>dotfiles를 수동으로 다시 초기화해야 하는 경우 다음 명령을 실행할 수 있습니다:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dotu<span class="w"> </span>init
+</pre></div>
+</div>
+<p>이 명령은 dotfiles의 최신 설정으로 시스템을 업데이트하여 여러분이 변경한 사항과 환경을 동기화된 상태로 유지합니다.</p>
+<p>초기화 과정이 완료되면 새로 설정된 개발 환경을 사용할 수 있습니다. 제공된 설정을 자유롭게 살펴보고 환경 설정에 맞게 사용자 지정하세요.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -530,7 +590,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week01"
+            path: "./week03"
         },
         predefinedOutput: true
     }
@@ -548,20 +608,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="lab.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Home</p>
+        <p class="prev-next-title">Lab: 프로세스 생성과 실행 기초</p>
       </div>
     </a>
     <a class="right-next"
-       href="intro.html"
+       href="../references/ostep/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">운영체제 개요</p>
+        <p class="prev-next-title">OSTEP (Korean Version)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -572,7 +632,31 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl-vs-code">WSL에서 VS Code 사용하기</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl">WSL 설치하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">WSL 확장 설치하기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-wsl">VS Code에서 WSL 열기</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl-github">WSL에서 GitHub 설정하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles">dotfiles를 이용한 셸 설정</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Dotfiles 설치</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Dotfiles 초기화</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
