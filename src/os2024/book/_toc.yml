@@ -20,6 +20,11 @@ parts:
           - file: week02/lab
           - file: week02/tip
       - file: week03/index
+        sections:
+          - file: week03/cpu-scheduling
+          - file: week03/mlfq
+          - file: week03/lottery
+          - file: week03/lab
   - caption: References
     chapters:
       - file: references/ostep/index
