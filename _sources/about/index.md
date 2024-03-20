@@ -7,7 +7,7 @@
 ### 이영준
 
 ```{image} images/yjlee.jpeg
-:width: 130
+:width: 100
 :align: left
 ```
 
