@@ -11,7 +11,6 @@
 :align: left
 ```
 
-- 전공: 경영학(박사), 경제학(석사), 정보산업공학(학사)
 - 관심분야: 인공지능, 자연어처리, Generative AI, Multimodal AI, Robotics, Sustainability
 - 주요담당분야: 자연어처리, 생성형 AI, 빅데이터, DevOps & MLOps
 - E-Mail: [yj.lee@chu.ac.kr](mailto:yj.lee@chu.ac.kr)
