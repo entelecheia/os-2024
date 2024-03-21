@@ -22,10 +22,15 @@ parts:
       - file: week03/index
         sections:
           - file: week03/cpu-scheduling
-          - file: week03/mlfq
-          - file: week03/lottery
           - file: week03/lab
           - file: week03/wsl-setup
+      - file: week04/index
+        sections:
+          - file: week04/mlfq
+          - file: week04/lottery
+      - file: week05/index
+        sections:
+          - file: week05/vm-intro
   - caption: References
     chapters:
       - file: references/ostep/index
