@@ -1,4 +1,4 @@
-# Week 1 - 운영체제: 아주 쉬운 세 가지 이야기
+# Week 1 - 아주 쉬운 세 가지 이야기
 
 이 대화는 [Operating Systems: Three Easy Pieces by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (University of Wisconsin-Madison)](https://pages.cs.wisc.edu/~remzi/OSTEP/)에 나오는 대화를 일부 재구성한 것입니다.
 
