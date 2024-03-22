@@ -500,7 +500,7 @@ document.write(`
 <h1>주소 공간의 개념<a class="footnote-reference brackets" href="#ypilseong" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
 <section id="id3">
 <h2>초기 시스템<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<a class="reference internal image-reference" href="../_images/os_img_1.png"><img alt="../_images/os_img_1.png" class="align-center" src="../_images/os_img_1.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../_images/os_img_1.png"><img alt="../_images/os_img_1.png" class="align-center" src="../_images/os_img_1.png" style="width: 40%;" /></a>
 <p>운영체제는 메모리에(그림에서는 물리주소 0부터) 상주하는 루틴(라이브러리)의 집합이였습니다. 물리 메모리에 하나의 실행 중인 프로그램(프로세스)이 존재하였고(그림에서는 물리 주소 64KB부터 시작하여) 나머지 메모리를 사용했습니다.</p>
 <div class="admonition- admonition">
 <p class="admonition-title">물리 주소</p>
@@ -517,7 +517,7 @@ document.write(`
 <p>그 후에, 이 프로세스를 중단하고 중단 시점의 모든 상태를 디스크 종류의 장치에 저장하고 다른 프로세스의 상태를 탑재하여 짧은 시간동안 실행시키는 것이였습니다.</p>
 <p>이 방법에는 큰 문제가 있었는데, 레지스터 상태를 저장하고 복원하는 것은 빠르지만 메모리 내용 전체를 디스크에 저장하는 것이 느렸다는 것이였습니다.</p>
 <p>→ 이것을 해결하기위해, 프로세스를 전환할 때 프로세스를 메모리에 그대로 유지하면서 OS가 시분할을 효율적으로 구현할 수 있게 하는 것이 메모리 가상화의 목표입니다.</p>
-<a class="reference internal image-reference" href="../_images/os_img_2.png"><img alt="../_images/os_img_2.png" class="align-center" src="../_images/os_img_2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../_images/os_img_2.png"><img alt="../_images/os_img_2.png" class="align-center" src="../_images/os_img_2.png" style="width: 40%;" /></a>
 <p>그림에 세 개의 프로세스 A,B,C가 있습니다.</p>
 <p>각 프로세는 512KB의 물리 메모리에서 각자 작은 부분을 할당 받았고, A는 실행 중이며 B,C는 준비 큐에서 실행을 기다리고 있습니다.</p>
 <p>그런데, 이렇게 여러 프로세스들이 한 메모리에 존재하게 되면 서로 데이터를 침범할 수 있는 가능성이 존재합니다.</p>
@@ -529,7 +529,7 @@ document.write(`
 <p>이 개념이 주소 공간(address space)입니다.</p>
 <p>주소 공간은 프로그램의 모든 메모리 상태를 갖고 있습니다.</p>
 <p>코드, 스택, 힙과 같이 프로그램을 실행시키기 위한 모든 상태를 주소공간이 가지고 있습니다.</p>
-<a class="reference internal image-reference" href="../_images/os_img_3.png"><img alt="../_images/os_img_3.png" class="align-center" src="../_images/os_img_3.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="../_images/os_img_3.png"><img alt="../_images/os_img_3.png" class="align-center" src="../_images/os_img_3.png" style="width: 40%;" /></a>
 <section id="stack">
 <h3>Stack 영역:<a class="headerlink" href="#stack" title="Link to this heading">#</a></h3>
 <ul class="simple">
