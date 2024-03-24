@@ -489,7 +489,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#protection">보호 (Protection)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">메모리 관리의 변천</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">메모리 가상화의 도입</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">주소 공간 구성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">가상 메모리 시스템의 목표</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">결론</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -625,9 +632,54 @@ BSS 영역의 변수들은 프로그램 실행 시 0 또는 NULL 값으로 자�
 </section>
 <section id="id7">
 <h2>요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<p>메모리 가상화를 통해 프로세스들에게 전용공간이라는 환상을 프로그램에게 제공할 책임이 있으며, 이 공간에 프로그램의 명령어와 데이터 전부가 저장됩니다.</p>
-<p>하드웨어의 도움을 받아 운영체제는 가상 메모리 주소를 받아 물리 메모리 주소로 변환을 합니다.</p>
-<p>이러한 작업을 통해 운영체제는 각 프로세스들과 운영체제를 보호하며 격리합니다.</p>
+<section id="id8">
+<h3>메모리 관리의 변천<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>초기 운영 체제는 <strong>물리 메모리</strong>에 단일 프로그램만 실행시키는 구조였다.</p></li>
+<li><p><strong>멀티프로그래밍</strong>과 <strong>시분할 시스템</strong>의 도입으로, 다수의 프로세스가 동시에 실행되는 환경이 마련되었다.</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>메모리 가상화의 도입<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>메모리 가상화</strong>는 각 프로세스에 독립된 주소 공간을 제공하여, 프로세스가 전체 메모리를 독점하는 것처럼 환상을 제공한다.</p></li>
+<li><p>가상화의 목적은 메모리의 효율적 사용과 프로세스 간의 보호다.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>주소 공간 구성<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>코드(텍스트) 영역:</strong> CPU가 실행할 기계어 코드를 저장한다.</p></li>
+<li><p><strong>데이터 영역:</strong> 전역 변수와 정적 변수를 저장한다.</p></li>
+<li><p><strong>힙 영역:</strong> 동적으로 할당되는 데이터를 저장한다.</p></li>
+<li><p><strong>스택 영역:</strong> 함수의 호출과 지역 변수를 저장한다.</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>가상 메모리 시스템의 목표<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>투명성(Transparency):</strong></p>
+<ul class="simple">
+<li><p>프로세스가 독립된 주소 공간을 가지고 있는 것처럼 느끼게 함으로써, 물리 메모리의 복잡성을 응용 프로그램으로부터 숨긴다.</p></li>
+</ul>
+</li>
+<li><p><strong>효율성(Efficiency):</strong></p>
+<ul class="simple">
+<li><p>가상 주소를 물리 주소로 변환하는 과정에서 발생하는 오버헤드를 최소화하여, 시스템 자원을 최적으로 활용한다.</p></li>
+</ul>
+</li>
+<li><p><strong>보호(Protection):</strong></p>
+<ul class="simple">
+<li><p>각 프로세스가 자신의 메모리 영역 안에서만 작동하도록 제한하여, 프로세스 간의 데이터 침범을 방지한다.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id12">
+<h3>결론<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>운영 체제의 메모리 관리와 가상화 기술은 멀티프로그래밍 환경에서 프로세스의 효율적 실행과 데이터의 안전한 관리를 가능하게 한다.</p></li>
+</ul>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="ypilseong" role="doc-footnote">
@@ -635,6 +687,7 @@ BSS 영역의 변수들은 프로그램 실행 시 0 또는 NULL 값으로 자�
 <p><a class="reference external" href="https://github.com/ypilseong">양필성</a></p>
 </aside>
 </aside>
+</section>
 </section>
 </section>
 
@@ -717,7 +770,14 @@ BSS 영역의 변수들은 프로그램 실행 시 0 또는 NULL 값으로 자�
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#protection">보호 (Protection)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">메모리 관리의 변천</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">메모리 가상화의 도입</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">주소 공간 구성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">가상 메모리 시스템의 목표</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">결론</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
