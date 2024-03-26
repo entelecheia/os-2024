@@ -28,6 +28,7 @@ parts:
         sections:
           - file: week04/mlfq
           - file: week04/lottery
+          - file: week04/lab
       - file: week05/index
         sections:
           - file: week05/vm-intro
