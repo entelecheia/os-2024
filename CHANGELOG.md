@@ -1,5 +1,37 @@
 <!--next-version-placeholder-->
 
+## v0.4.0 (2024-03-26)
+
+### Feature
+
+* **scheduler:** Add lab schedule for scheduling algorithm simulator ([`0690fa1`](https://github.com/chu-aie/os-2024/commit/0690fa1cd59b6d227cbf4f189c53ea24b839a5ca))
+* **cpu-sched:** Add scheduler.py for job scheduling simulation ([`b2127eb`](https://github.com/chu-aie/os-2024/commit/b2127ebe27de2aa8a4a8020a07a180f9c0b8adb7))
+* **course:** Add lab section for week 04 ([`6b021cc`](https://github.com/chu-aie/os-2024/commit/6b021cc5e559516c7d2559d72680fc322419d3b8))
+* **cpu-sched-lottery:** Add implementation of the Lottery Scheduling Algorithm ([`519ad16`](https://github.com/chu-aie/os-2024/commit/519ad16c2fa8a0bdc93179fc5cd2b175820c0bac))
+* **cpu-sched-lottery:** Add Makefile for lottery program ([`5d89077`](https://github.com/chu-aie/os-2024/commit/5d890776633d8460784c01ad00e9ff364d33dd93))
+* **cpu-sched-lottery:** Add lottery scheduling algorithm implementation ([`4f45f83`](https://github.com/chu-aie/os-2024/commit/4f45f838e6d869d2f4b168b2952bb198bbd8fc81))
+* **lab:** Add Lottery Scheduling Algorithm implementation in lab.md ([`df5aa06`](https://github.com/chu-aie/os-2024/commit/df5aa0676c4dcf17d30bb1149477f36f067cc21e))
+* **os2024:** Add Week 5 content for virtualization ([`7521b6e`](https://github.com/chu-aie/os-2024/commit/7521b6ede75348c1f68b879d6457d2e6ef2a11a3))
+* **os2024:** Add WSL setup documentation for Week 03章 and subfile; add 'wsl-setup' page in Week 03章 and updated Table of Contents. ([`cc20a4e`](https://github.com/chu-aie/os-2024/commit/cc20a4ed6046133888e1d98c4a4331a8cd9ee12b))
+* **os2024:** Describe MLFQ scheduling algorithm ([`494e403`](https://github.com/chu-aie/os-2024/commit/494e403df63dd0b7bb9cb543958037bfba9e590d))
+* **os2024:** Add lab to week03 in table of contents ([`89f0c80`](https://github.com/chu-aie/os-2024/commit/89f0c80ae17da12008d4e98f596301ce8cf36c51))
+* **cpu-api:** Add CPU API code from OSTEP chapter Inter: Process API ([`54e0760`](https://github.com/chu-aie/os-2024/commit/54e0760058083e2a1d5ff33b09d54b828c372db2))
+* **os2024:** Add lab.md for week03 ([`1c9810d`](https://github.com/chu-aie/os-2024/commit/1c9810d8ca706c0aa46e732b90d73dcc398d9abd))
+* **cpu-api:** Add Makefile with build and clean-up rules ([`953ab56`](https://github.com/chu-aie/os-2024/commit/953ab5643fba51f6935abcfc647e808f16c3e5a4))
+* **cpu-api:** Add multiple new C programs for process creation and interaction. (p1, p2, p3, p4) ([`bca665d`](https://github.com/chu-aie/os-2024/commit/bca665d15e3568ed9c14309ffda99fb27fdaa834))
+* **week03:** Add content on CPU scheduling theory ([`87c19ce`](https://github.com/chu-aie/os-2024/commit/87c19cedb9ef7c1235270852b79e8586fcf8380d))
+* **os2024:** Add MLFQ and Lottery sections to Week 03 in the table of contents ([`c8985b8`](https://github.com/chu-aie/os-2024/commit/c8985b8860fe1ab2f81f36091457c5e7fff63d15))
+* **book:** Add new lottery chapter ([`ad96a6e`](https://github.com/chu-aie/os-2024/commit/ad96a6e2e666c6c12529e6d4e7b02180d0ace736))
+* **os2024:** Add MLFQ documentation ([`eb90103`](https://github.com/chu-aie/os-2024/commit/eb90103dc978756b5f9f63eb57e56965eee32ebf))
+* **book:** Add cpu scheduling chapter in week 03 & update configuration ([`660e5f1`](https://github.com/chu-aie/os-2024/commit/660e5f131551b38a9949b5a5539ced4feb85fcd3))
+
+### Fix
+
+* **vm-intro:** Fix image alignment and formatting in vm-intro.md ([`e7eae34`](https://github.com/chu-aie/os-2024/commit/e7eae34d9f1d895749b0f758ce1103e34a310e3b))
+* **os2024/mlfq:** Clarify examples in the MLFQ chapter to improve readability and understanding ([`8f65605`](https://github.com/chu-aie/os-2024/commit/8f656058731ec5a445374b6d6ffad8c23a33d531))
+* **cpu-api:** Fix clean target to remove p4.output file ([`28e5c3b`](https://github.com/chu-aie/os-2024/commit/28e5c3be15d0639a4e300491d537968528e9e411))
+* **scheduling:** Update image path of FCFS algorithm ([`677760b`](https://github.com/chu-aie/os-2024/commit/677760b30e61b9b41cc0dc80898d40c53e3237ac))
+
 ## v0.3.0 (2024-03-13)
 
 ### Feature
