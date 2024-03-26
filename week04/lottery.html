@@ -501,6 +501,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="proportional-share">
 <h1>스케줄링: 비례 배분(Proportional Share)<a class="footnote-reference brackets" href="#sadey7645" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#gyu-bbb" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#proportional-share" title="Link to this heading">#</a></h1>
+<p>비례 배분은 반환 시간이나 응답 시간을 최적화하는 대신 스케줄러가 각 작업에게 CPU의 일정 비율을 보장하는 것이 목적입니다.</p>
+<p>비례 배분 스케줄링의 좋은 예시는 Waldspurger와 Weihl의 연구입니다. 이 방법은 추첨 스케줄링(Lottery Scheduling)으로도 알려져 있는데요. 이 아이디어는 꽤 오래되었고, 기본 아이디어는 매우 간단합니다. 다음으로 실행될 프로세스를 추첨을 통해 결정하고, 더 자주 수행되어야 하는 프로세스는 당첨 기회를 더 많이 주면 되는겁니다. 이에 대한 자세한 사항을 알아보기 전에 문제를 먼저 살펴봅시다.</p>
+<blockquote>
+<div><p><strong>핵심 질문: 어떻게 CPU를 정해진 비율로 배분할 수 있는가</strong></p>
+<p>특정 비율로 CPU를 배분하는 스케줄러를 어떻게 설계할 수 있을까요?
+그리고 그렇게 하기 위한 중요한 기법은 무엇이며 그 기법은 얼마나 효과적인가요?</p>
+</div></blockquote>
 <section id="id3">
 <h2>기본 개념 : 추첨권이 당신의 몫을 나타낸다<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>스케줄링에서 비례 배분은 시스템 리소스를 사용하는 여러 프로세스 또는 작업 간에 리소스를 공정하게 나누는 방법이다.<br />
