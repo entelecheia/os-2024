@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>WSL에서 Ubuntu 환경구축 및 GitHub 설정하기 &#8212; 운영체제 2024</title>
+    <title>Lab: 스케줄링 알고리즘 시뮬레이터 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week03/wsl-setup';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week04/lab-sched';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Week 4 - 스케줄링 2" href="../week04/index.html" />
-    <link rel="prev" title="Lab: 프로세스 생성과 실행 기초" href="lab.html" />
+    <link rel="next" title="Lab: Lottery 스케줄링 알고리즘 구현" href="lab-lottery.html" />
+    <link rel="prev" title="스케줄링: 비례 배분(Proportional Share)" href="lottery.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -226,17 +226,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../week02/tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 3 - 스케줄링 1</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpu-scheduling.html">스케줄링: 개요</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lab.html">Lab: 프로세스 생성과 실행 기초</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링 1</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/cpu-scheduling.html">스케줄링: 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/lab.html">Lab: 프로세스 생성과 실행 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/wsl-setup.html">WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4 - 스케줄링 2</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week04/mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week04/lottery.html">스케줄링: 비례 배분(Proportional Share)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week04/lab-sched.html">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week04/lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 4 - 스케줄링 2</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lottery.html">스케줄링: 비례 배분(Proportional Share)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - 메모리 가상화</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -335,7 +335,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week03/wsl-setup.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week04/lab-sched.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +352,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek03/wsl-setup.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek04/lab-sched.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -382,7 +382,7 @@
       
       
       
-      <li><a href="../_sources/week03/wsl-setup.md" target="_blank"
+      <li><a href="../_sources/week04/lab-sched.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -466,7 +466,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</h1>
+    <h1>Lab: 스케줄링 알고리즘 시뮬레이터</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -476,18 +476,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl-vs-code">WSL에서 VS Code 사용하기</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl">WSL 설치하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">WSL 확장 설치하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-wsl">VS Code에서 WSL 열기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">실습 목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">실습 내용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scheduler-py">scheduler.py 프로그램 사용 방법</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl-github">WSL에서 GitHub 설정하기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles">dotfiles를 이용한 셸 설정</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Dotfiles 설치</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Dotfiles 초기화</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">실습 절차</a></li>
 </ul>
             </nav>
         </div>
@@ -499,97 +493,70 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="wsl-ubuntu-github">
-<h1>WSL에서 Ubuntu 환경구축 및 GitHub 설정하기<a class="headerlink" href="#wsl-ubuntu-github" title="Link to this heading">#</a></h1>
-<section id="wsl-vs-code">
-<h2>WSL에서 VS Code 사용하기<a class="headerlink" href="#wsl-vs-code" title="Link to this heading">#</a></h2>
-<section id="wsl">
-<h3>WSL 설치하기<a class="headerlink" href="#wsl" title="Link to this heading">#</a></h3>
-<p>웹사이트: <a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">https://learn.microsoft.com/ko-kr/windows/wsl/install</a></p>
-<ol class="arabic simple">
-<li><p>관리자 모드로 PowerShell을 엽니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--install</span></code> 명령어를 실행합니다.</p></li>
-<li><p>재시작합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--list</span> <span class="pre">--online</span></code> 명령어를 실행하여 사용 가능한 Linux 배포판을 확인합니다.</p>
-<ul class="simple">
-<li><p>WSL(Windows Subsystem for Linux): Windows에서 Linux 환경을 사용할 수 있게 해주는 기능입니다.</p></li>
-</ul>
-</li>
-<li><p>Ubuntu-22.04 배포판을 설치합니다: <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--install</span> <span class="pre">Ubuntu-22.04</span></code></p>
-<ul class="simple">
-<li><p>Ubuntu: 가장 인기 있는 Linux 배포판 중 하나입니다.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>과 <code class="docutils literal notranslate"><span class="pre">password</span></code>를 생성합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">-l</span> <span class="pre">-v</span></code> 명령어를 실행하여 버전을 확인합니다. 버전 2가 표시되어야 합니다.</p></li>
-</ol>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab">
+<h1>Lab: 스케줄링 알고리즘 시뮬레이터<a class="headerlink" href="#lab" title="Link to this heading">#</a></h1>
 <section id="id1">
-<h3>WSL 확장 설치하기<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h2>실습 목표<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>이 실습은 다음과 같은 목표를 달성하기 위해 설계되었습니다.</p>
 <ol class="arabic simple">
-<li><p>VS Code 확장에서 WSL을 설치합니다.</p></li>
+<li><p>FIFO(First-In-First-Out), SJF(Shortest-Job-First), RR(Round-Robin) 스케줄링 알고리즘의 동작 원리를 이해합니다.</p></li>
+<li><p>각 스케줄링 알고리즘에 따른 작업의 응답 시간, 반환 시간, 대기 시간을 계산하는 방법을 배웁니다.</p></li>
+<li><p>스케줄링 문제를 생성하고 해답을 확인하는 방법을 익힙니다.</p></li>
+<li><p>커맨드 라인 인터페이스를 통해 스케줄링 시뮬레이터를 사용하는 방법을 알아봅니다.</p></li>
 </ol>
 </section>
-<section id="vs-code-wsl">
-<h3>VS Code에서 WSL 열기<a class="headerlink" href="#vs-code-wsl" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h2>실습 내용<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>이 실습에서는 <a class="reference external" href="http://scheduler.py">scheduler.py</a> 프로그램을 사용하여 다양한 스케줄링 알고리즘의 성능을 비교하고 분석합니다.</p>
+<section id="scheduler-py">
+<h3><a class="reference external" href="http://scheduler.py">scheduler.py</a> 프로그램 사용 방법<a class="headerlink" href="#scheduler-py" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Ubuntu 앱을 엽니다 (<code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">키</span> <span class="pre">&gt;</span> <span class="pre">Ubuntu</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">.</span></code> 명령어를 실행합니다.</p></li>
-<li><p>탐색기를 오른쪽 클릭하여 폴더 경로를 확인하고 저장합니다.</p></li>
-</ol>
-</section>
-</section>
-<section id="wsl-github">
-<h2>WSL에서 GitHub 설정하기<a class="headerlink" href="#wsl-github" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>자격 증명 설정하기</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;사용자이름&quot;</span>
-git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;이메일@gmail.com&quot;</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>SSH 키 생성 및 복사하기</p>
+<li><p>기본 사용법:</p>
 <ul class="simple">
-<li><p>SSH(Secure Shell): 네트워크 상의 다른 컴퓨터에 로그인하거나 원격 시스템에서 명령을 실행할 때 사용되는 프로토콜입니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./scheduler.py</span> <span class="pre">-p</span> <span class="pre">&lt;스케줄링</span> <span class="pre">정책&gt;</span> <span class="pre">-j</span> <span class="pre">&lt;작업</span> <span class="pre">개수&gt;</span> <span class="pre">-s</span> <span class="pre">&lt;랜덤</span> <span class="pre">시드&gt;</span></code></p></li>
+<li><p>예: <code class="docutils literal notranslate"><span class="pre">./scheduler.py</span> <span class="pre">-p</span> <span class="pre">FIFO</span> <span class="pre">-j</span> <span class="pre">3</span> <span class="pre">-s</span> <span class="pre">100</span></code></p></li>
+<li><p>이 명령은 FIFO 스케줄링 정책을 사용하여 3개의 작업을 생성하고, 랜덤 시드 100을 사용하여 문제를 출제합니다.</p></li>
+</ul>
+</li>
+<li><p>정답 확인:</p>
+<ul class="simple">
+<li><p>기본 사용법에 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 옵션을 추가하면 해당 문제에 대한 정답을 확인할 수 있습니다.</p></li>
+<li><p>예: <code class="docutils literal notranslate"><span class="pre">./scheduler.py</span> <span class="pre">-p</span> <span class="pre">FIFO</span> <span class="pre">-j</span> <span class="pre">3</span> <span class="pre">-s</span> <span class="pre">100</span> <span class="pre">-c</span></code></p></li>
+<li><p>이 명령은 이전에 출제된 문제의 정답을 보여줍니다.</p></li>
+</ul>
+</li>
+<li><p>사용자 정의 작업 목록 사용:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-l</span></code> 옵션을 사용하여 직접 작업 목록을 지정할 수 있습니다.</p></li>
+<li><p>예: <code class="docutils literal notranslate"><span class="pre">./scheduler.py</span> <span class="pre">-p</span> <span class="pre">SJF</span> <span class="pre">-l</span> <span class="pre">5,10,15</span></code></p></li>
+<li><p>이 명령은 SJF 스케줄링 정책을 사용하여 길이가 5, 10, 15인 작업을 스케줄링합니다.</p></li>
+</ul>
+</li>
+<li><p>도움말 확인:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">./scheduler.py</span> <span class="pre">-h</span></code> 명령을 사용하여 사용 가능한 모든 옵션과 설명을 확인할 수 있습니다.</p></li>
 </ul>
 </li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;이메일@gmail.com&quot;</span>
-cat<span class="w"> </span>~/.ssh/id_rsa.pub
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>GitHub의 <code class="docutils literal notranslate"><span class="pre">설정</span> <span class="pre">&gt;</span> <span class="pre">SSH</span> <span class="pre">및</span> <span class="pre">GPG</span> <span class="pre">키</span> <span class="pre">&gt;</span> <span class="pre">새</span> <span class="pre">SSH</span> <span class="pre">키</span></code>에 키를 붙여넣습니다.</p></li>
-<li><p>저장소를 클론하고 시작할 준비가 되었습니다!</p></li>
-</ol>
 </section>
-<section id="dotfiles">
-<h2><a class="reference external" href="https://dotfiles.entelecheia.ai/">dotfiles</a>를 이용한 셸 설정<a class="headerlink" href="#dotfiles" title="Link to this heading">#</a></h2>
-<p>다음 가이드는 <a class="reference external" href="https://dotfiles.entelecheia.ai/">Dotfiles 프로젝트</a>를 여러분의 컴퓨터에 설치하고 초기화하는 과정을 안내해 드립니다. 이를 통해 다양한 시스템에서 일관된 개발 환경을 설정하여 워크플로우를 간소화하고 다른 사람들과의 협업을 보다 쉽게 할 수 있습니다.</p>
-<section id="id2">
-<h3><a class="reference external" href="https://dotfiles.entelecheia.ai/usage/">Dotfiles 설치</a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>Dotfiles 프로젝트를 여러분의 컴퓨터에 설치하려면, 설치 스크립트를 가져와 실행해야 합니다. <code class="docutils literal notranslate"><span class="pre">wget</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">curl</span></code>을 사용하여 다음을 수행할 수 있습니다:</p>
-<p><strong><code class="docutils literal notranslate"><span class="pre">wget</span></code> 사용:</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dotfiles.entelecheia.ai/install<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-<p><strong><code class="docutils literal notranslate"><span class="pre">curl</span></code> 사용:</strong></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://dotfiles.entelecheia.ai/install<span class="k">)</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
-<p>위 명령어들은 설치 스크립트를 다운로드하고 실행합니다. 이 과정에서 Dotfiles 저장소가 여러분의 컴퓨터에 복제되고 필요한 설정이 이루어집니다.</p>
 </section>
 <section id="id3">
-<h3>Dotfiles 초기화<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>설치가 완료되면, 초기화 과정이 자동으로 시작됩니다. 이 단계는 dotfiles에 정의된 설정을 시스템에 적용하여 일관된 개발 환경을 보장합니다.</p>
-<p>dotfiles를 수동으로 다시 초기화해야 하는 경우 다음 명령을 실행할 수 있습니다:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dotu<span class="w"> </span>init
-</pre></div>
-</div>
-<p>이 명령은 dotfiles의 최신 설정으로 시스템을 업데이트하여 여러분이 변경한 사항과 환경을 동기화된 상태로 유지합니다.</p>
-<p>초기화 과정이 완료되면 새로 설정된 개발 환경을 사용할 수 있습니다. 제공된 설정을 자유롭게 살펴보고 환경 설정에 맞게 사용자 지정하세요.</p>
-</section>
+<h2>실습 절차<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>터미널에서 <code class="docutils literal notranslate"><span class="pre">./scheduler.py</span> <span class="pre">-p</span> <span class="pre">FIFO</span> <span class="pre">-j</span> <span class="pre">3</span> <span class="pre">-s</span> <span class="pre">100</span></code> 명령을 실행하여 FIFO 스케줄링 문제를 생성합니다.</p></li>
+<li><p>출력된 작업 목록을 보고, 각 작업의 응답 시간, 반환 시간, 대기 시간을 계산해봅니다.</p></li>
+<li><p>계산이 끝나면 <code class="docutils literal notranslate"><span class="pre">./scheduler.py</span> <span class="pre">-p</span> <span class="pre">FIFO</span> <span class="pre">-j</span> <span class="pre">3</span> <span class="pre">-s</span> <span class="pre">100</span> <span class="pre">-c</span></code> 명령을 실행하여 정답을 확인합니다.</p></li>
+<li><p>다양한 옵션을 사용하여 서로 다른 스케줄링 문제를 생성하고 풀어봅니다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code> 옵션으로 스케줄링 정책을 변경할 수 있습니다. (FIFO, SJF, RR)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-j</span></code> 옵션으로 작업 개수를 변경할 수 있습니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> 옵션으로 랜덤 시드를 변경하여 다양한 문제를 생성할 수 있습니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-l</span></code> 옵션으로 직접 작업 목록을 지정할 수 있습니다.</p></li>
+</ul>
+</li>
+<li><p>각 스케줄링 정책의 특성과 성능 차이를 이해하고, 스케줄링 알고리즘의 동작 원리를 파악합니다.</p></li>
+</ol>
+<p>이 실습을 통해 다양한 스케줄링 알고리즘의 동작 원리를 이해하고, 주어진 작업 목록에 대한 응답 시간, 반환 시간, 대기 시간을 계산하는 방법을 배울 수 있습니다. 또한, 커맨드 라인 인터페이스를 사용하여 스케줄링 시뮬레이터를 다루는 방법도 익힐 수 있습니다.</p>
 </section>
 </section>
 
@@ -606,7 +573,7 @@ cat<span class="w"> </span>~/.ssh/id_rsa.pub
         },
         kernelOptions: {
             name: "python3",
-            path: "./week03"
+            path: "./week04"
         },
         predefinedOutput: true
     }
@@ -624,20 +591,20 @@ cat<span class="w"> </span>~/.ssh/id_rsa.pub
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="lab.html"
+       href="lottery.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lab: 프로세스 생성과 실행 기초</p>
+        <p class="prev-next-title">스케줄링: 비례 배분(Proportional Share)</p>
       </div>
     </a>
     <a class="right-next"
-       href="../week04/index.html"
+       href="lab-lottery.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 4 - 스케줄링 2</p>
+        <p class="prev-next-title">Lab: Lottery 스케줄링 알고리즘 구현</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -657,18 +624,12 @@ cat<span class="w"> </span>~/.ssh/id_rsa.pub
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl-vs-code">WSL에서 VS Code 사용하기</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl">WSL 설치하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">WSL 확장 설치하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-wsl">VS Code에서 WSL 열기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">실습 목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">실습 내용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scheduler-py">scheduler.py 프로그램 사용 방법</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wsl-github">WSL에서 GitHub 설정하기</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dotfiles">dotfiles를 이용한 셸 설정</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Dotfiles 설치</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Dotfiles 초기화</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">실습 절차</a></li>
 </ul>
   </nav></div>
 
