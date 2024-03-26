@@ -617,14 +617,13 @@ BSS 영역의 변수들은 프로그램 실행 시 0 또는 NULL 값으로 자�
 </section>
 <section id="protection">
 <h3>보호 (Protection)<a class="headerlink" href="#protection" title="Link to this heading">#</a></h3>
-<ul class="simple">
+<ul>
 <li><p>메모리 가상화는 각 프로세스를 서로 및 운영 체제로부터 보호하는 데 필수적이다.</p></li>
-<li><p>프로세스는 자신의 가상 주소 공간 내에서만 메모리에 접근할 수 있으며, 다른 프로세스의 공간에는 접근할 수 없어야한다.</p></li>
-</ul>
+<li><p>프로세스는 자신의 가상 주소 공간 내에서만 메모리에 접근할 수 있으며, 다른 프로세스의 공간에는 접근할 수 없어야한다.</p>
 <blockquote>
 <div><p>(메모리 접근 권한을 철저히 관리함으로써 달성가능)</p>
 </div></blockquote>
-<ul class="simple">
+</li>
 <li><p>가상 메모리 시스템은 각 페이지 또는 세그먼트에 대한 접근 권한(읽기, 쓰기, 실행)을 설정하여, 잘못된 접근 시도나 악의적인 활동을 방지한다.</p></li>
 <li><p>이러한 보호 성질을 이용하여, 프로세스를 격리 ( isolation ) 시켜야한다.</p></li>
 </ul>
