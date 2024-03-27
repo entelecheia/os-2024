@@ -1,4 +1,4 @@
-# 스케줄링: 비례 배분)[^sadey7645][^Gyu-BBB]
+# 스케줄링: 비례 배분[^sadey7645][^Gyu-BBB]
 
 [^sadey7645]: [김진우](https://github.com/sadey7645)
 [^Gyu-BBB]: [이규범](https://github.com/Gyu-BBB)
