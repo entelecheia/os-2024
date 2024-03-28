@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 4 - 스케줄링 2 &#8212; 운영체제 2024</title>
+    <title>메모리 관리 API &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week04/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week05/vm-api';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="스케줄링: 멀티 레벨 피드백 큐" href="mlfq.html" />
-    <link rel="prev" title="WSL에서 Ubuntu 환경구축 및 GitHub 설정하기" href="../week03/wsl-setup.html" />
+    <link rel="next" title="주소 변환의 원리" href="vm-mechanism.html" />
+    <link rel="prev" title="주소 공간의 개념" href="vm-intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -225,17 +225,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../week03/wsl-setup.html">WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 4 - 스케줄링 2</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lottery.html">스케줄링: 비례 배분</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lab-sched.html">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4 - 스케줄링 2</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/lottery.html">스케줄링: 비례 배분</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/lab-sched.html">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - 메모리 가상화</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week05/vm-intro.html">주소 공간의 개념</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/vm-api.html">메모리 관리 API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/vm-mechanism.html">주소 변환의 원리</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 5 - 메모리 가상화</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vm-intro.html">주소 공간의 개념</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">메모리 관리 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-mechanism.html">주소 변환의 원리</a></li>
 </ul>
 </li>
 </ul>
@@ -330,7 +330,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week04/index.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week05/vm-api.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -347,7 +347,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek04/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek05/vm-api.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -377,7 +377,7 @@
       
       
       
-      <li><a href="../_sources/week04/index.md" target="_blank"
+      <li><a href="../_sources/week05/vm-api.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -448,7 +448,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -459,11 +461,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 4 - 스케줄링 2</h1>
+    <h1>메모리 관리 API</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">메모리 공간의 종류</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#malloc">malloc() 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free">free() 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">운영체제의 지원</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">기타 함수들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">요약</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -473,59 +488,26 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-4-2">
-<h1>Week 4 - 스케줄링 2<a class="headerlink" href="#week-4-2" title="Link to this heading">#</a></h1>
-<p><strong>CPU 가상화 마무리 대화</strong></p>
-<blockquote>
-<div><p><strong>교수:</strong> 자, 이제 CPU 가상화에 대해 얼마나 배웠는지 알아볼까?</p>
-</div></blockquote>
-<p><strong>학생:</strong> (교수의 의도를 간파하며) 교수님은 제가 “예”라고 대답하기를 원하시는 것 같네요.</p>
-<blockquote>
-<div><p><strong>교수:</strong> (웃으며) 그건 사실이지만, 진심으로 궁금하기도 하다. 그럼, 나에게 쉴 틈을 좀 주지 않겠나?</p>
-</div></blockquote>
-<p><strong>학생:</strong> 네, 물론입니다. 제가 배운 내용을 말씀드릴게요. 우선 CPU 가상화 방법에 대해 알게 되었고, 트랩, 인터럽트, 프로세스 전환 등 중요한 기법들을 이해하게 되었어요.</p>
-<blockquote>
-<div><p><strong>교수:</strong> 좋아, 잘 알았네!</p>
-</div></blockquote>
-<p><strong>학생:</strong> 하지만 이 모든 상호작용은 다소 복잡해 보이네요. 어떻게 더 자세히 알 수 있을까요?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 좋은 질문이야. 실제로 해보는 것만큼 좋은 방법은 없지. 단순히 책만 읽는 것보다 직접 프로젝트를 해보면 훨씬 더 많이 이해할 수 있을거야.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 네, 그럴 것 같아요. 그런데 운영체제의 철학에 대해서는 어떻게 생각하시나요?</p>
-<p><strong>학생:</strong> 운영체제는 꽤 편집증적인 성향을 가지고 있는 것 같아요. 컴퓨터를 장악하고 싶어하는 의도가 느껴지고, 프로그램의 효율적인 실행을 원하면서도 악성 프로세스를 막고 싶어하는 모습이 보이죠. 마치 편집증 환자가 승리한 것 같아요. 그래서 우리는 운영체제를 자원 관리자라고 부르는 것 같습니다.</p>
-<blockquote>
-<div><p><strong>교수:</strong> 그렇게 말할 수도 있겠군. 자네는 이제 정리를 시작하는 것 같아 보이는데, 매우 좋아!</p>
-</div></blockquote>
-<p><strong>학생:</strong> 감사합니다. 그럼 정책에 대해서는 어떻게 생각하시나요?</p>
-<p><strong>학생:</strong> 스케줄링 정책은 이해하기 쉬웠지만, 동시에 SJF와 RR처럼 동작하는 스케줄러를 구축하는 것은 어려울 것 같아요. MLFQ는 꽤 깔끔했지만, 실제로 구현하는 것은 쉽지 않을 것 같습니다.</p>
-<blockquote>
-<div><p><strong>교수:</strong> 사실이야. 어떤 스케줄러를 사용해야 하는지에 대한 논란은 오늘날까지 이어지고 있다네. 예를 들어, Linux의 CFS, BFS와 O(1) 스케줄러 사이의 다툼을 한 번 보게.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 정말 정답이 있는 건가요?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 아마 없을 것 같아. 결국, 평가 기준마다 결과가 달라질 수 있거든. 스케줄러가 반환 시간이 좋으면 응답 시간이 나쁘고, 그 반대도 참이지. Lampson이 말했듯이 아마도 목표는 최선의 해결책을 찾는 것이 아니라 사고를 피하는 것이지.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 그건 조금 우울하네요.</p>
-<blockquote>
-<div><p><strong>교수:</strong> 공학은 원래 그런거야. 하지만 실용적인 관점에서 생각하면 모든 문제가 깔끔하고 쉬운 해결책을 가지는 것은 아니지.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 스케줄러를 의도대로 움직이게 하는 개념이 정말 맘에 들었어요. 다음에 제가 Amazon의 EC2에서 작업할 때 조사해 볼 무언가가 있을 것 같습니다.</p>
-<blockquote>
-<div><p><strong>교수:</strong> (웃으며) 내가 괴물을 만들어 낸 것 같네!</p>
-</div></blockquote>
-<p><strong>학생:</strong> 하지만 원래 그런 의도 아니셨습니까? 우리가 흥미를 느껴서 스스로 조사하게 만드는 것?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 그렇게 생각하지만, 그게 효과가 있을 줄은 몰랐지!</p>
-</div></blockquote>
-<p><strong>흥미진진한 대화는 끝났지만, 학생의 탐구는 계속된다. 과연 그는 CPU 가상화의 비밀을 완전히 밝혀낼 수 있을까?</strong></p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lottery.html">스케줄링: 비례 배분</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab-sched.html">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
-</ul>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="api">
+<h1>메모리 관리 API<a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>메모리 공간의 종류<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+<section id="malloc">
+<h2>malloc() 함수<a class="headerlink" href="#malloc" title="Link to this heading">#</a></h2>
+</section>
+<section id="free">
+<h2>free() 함수<a class="headerlink" href="#free" title="Link to this heading">#</a></h2>
+</section>
+<section id="id2">
+<h2>운영체제의 지원<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+</section>
+<section id="id3">
+<h2>기타 함수들<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+</section>
+<section id="id4">
+<h2>요약<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -541,7 +523,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week04"
+            path: "./week05"
         },
         predefinedOutput: true
     }
@@ -559,20 +541,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../week03/wsl-setup.html"
+       href="vm-intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</p>
+        <p class="prev-next-title">주소 공간의 개념</p>
       </div>
     </a>
     <a class="right-next"
-       href="mlfq.html"
+       href="vm-mechanism.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">스케줄링: 멀티 레벨 피드백 큐</p>
+        <p class="prev-next-title">주소 변환의 원리</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -583,7 +565,25 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">메모리 공간의 종류</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#malloc">malloc() 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free">free() 함수</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">운영체제의 지원</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">기타 함수들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">요약</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
