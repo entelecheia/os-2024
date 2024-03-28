@@ -33,6 +33,8 @@ parts:
       - file: week05/index
         sections:
           - file: week05/vm-intro
+          - file: week05/vm-api
+          - file: week05/vm-mechanism
   - caption: References
     chapters:
       - file: references/ostep/index
