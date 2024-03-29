@@ -471,12 +471,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">메모리 공간의 종류</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">메모리 공간의 종류</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#malloc">malloc() 함수</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free">free() 함수</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">운영체제의 지원</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">기타 함수들</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">운영체제의 지원</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">기타 함수들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -490,8 +490,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="api">
 <h1>메모리 관리 API<a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>메모리 공간의 종류<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2>메모리 공간의 종류<a class="footnote-reference brackets" href="#parkeunseongkr" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>C 프로그램이 실행되면, 두 가지 유형의 메모리 공간이 할당된다.</p>
 <p>첫 번째는 스택 (stack)</p>
 <p>메모리라고 불리며 할당과 반환은 프로그래머를 위해 컴파일러에 의해 암묵적으로 이루어진다. 이러한 이유 때문에 때로는 자동(automatic) 메모리라고 불린다.</p>
@@ -541,7 +541,7 @@ printf(“%d\n ”, sizeof(x));
 </pre></div>
 </div>
 <p>이 경우에는 변수 x에 40ၵ이트가 할당되ᨩ다는 것을 컴파일러가 알 수 있는 정적인 정보가 충분하다.</p>
-<p>또 하나 조심해야 하는 경우는 문자열을 다룰 때이다. 문자열을 위한 공간을 선언할 때에는 다음과 같은 문장을 사용한다 : mallocc(strlen(s) + 1). 이 문장은 strlen() 함수를 사용하여 문자열의 길이를 얻어낸 뒤 문자열-끝을 나타내는 문자를 위한 공간을 확보하기 위해 1ၵ이트를 더한다.</p>
+<p>또 하나 조심해야 하는 경우는 문자열을 다룰 때이다. 문자열을 위한 공간을 선언할 때에는 다음과 같은 문장을 사용한다 : mallocc(strlen(s) + 1). 이 문장은 strlen() 함수를 사용하여 문자열의 길이를 얻어낸 뒤 문자열-끝을 나타내는 문자를 위한 공간을 확보하기 위해 1바이트를 더한다.</p>
 <p>sizeof()의 사용은 여기서 문제를 일으킬 수 있다.</p>
 <p>malloc()은 void 타입에 대한 포인터를 반환한다는 것을 알았을 것이다. 그렇게 하는 것은 주소만 넘겨주고 해당 주소 공간에 어떤 타입의 자료를 저장할 지는 프로그래머가 결정하게 하는 전형적인 C의 방식이다.</p>
 <p>프로그래머는 타입 변환(type casting)을 이용하여 공간 활용을 결정한다. 위의 예에서 프로그래머는 malloc()이 반환한 데이터 타입을 double 형을 가리키는 포인터 타입으로 변환하였다.</p>
@@ -558,14 +558,21 @@ printf(“%d\n ”, sizeof(x));
 </div>
 <p>한 개의 인자, malloc()에 의해 반환된 포인터를 받는다. 할당된 영역의 크기는 전달되지 않는다. 할당된 메모리의 크기는 메모리 할당 라이브러리가 알고 있어야 한다.</p>
 </section>
-<section id="id2">
-<h2>운영체제의 지원<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-</section>
 <section id="id3">
-<h2>기타 함수들<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h2>운영체제의 지원<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 </section>
 <section id="id4">
-<h2>요약<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2>기타 함수들<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+</section>
+<section id="id5">
+<h2>요약<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="parkeunseongkr" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/ParkEunSeongKR">박은성</a></p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -633,12 +640,12 @@ printf(“%d\n ”, sizeof(x));
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">메모리 공간의 종류</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">메모리 공간의 종류</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#malloc">malloc() 함수</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free">free() 함수</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">운영체제의 지원</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">기타 함수들</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">운영체제의 지원</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">기타 함수들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">요약</a></li>
 </ul>
   </nav></div>
 
