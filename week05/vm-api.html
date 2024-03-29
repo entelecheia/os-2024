@@ -492,12 +492,71 @@ document.write(`
 <h1>메모리 관리 API<a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>메모리 공간의 종류<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>C 프로그램이 실행되면, 두 가지 유형의 메모리 공간이 할당된다.</p>
+<p>첫 번째는 스택 (stack)</p>
+<p>메모리라고 불리며 할당과 반환은 프로그래머를 위해 컴파일러에 의해 암묵적으로 이루어진다. 이러한 이유 때문에 때로는 자동(automatic) 메모리라고 불린다.</p>
+<p>C 프로그램에서 스택에 메모리를 선언하는 것은 쉽다. 예를 들어, func()라는 함수 안에서 x라 불리는 정수를 위한 공간이 필요하다고 하자. 이러한 메모리를 선언하려면 다음과 같이 하면 된다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vode</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">int</span> <span class="n">x</span><span class="p">;</span> <span class="o">//</span> <span class="n">스택에</span> <span class="nb">int</span> <span class="n">형을</span> <span class="n">선언</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>컴파일러가 나머지 작업을 수행하여, func()가 호출될 때 스택에 공간을 확보한다.</p>
+<p>오랫동안 값이 유지되어야 하는 변수를 위해 힙(heap) 메모리라고 불리는 두 번째 유형의 메모리가 필요하다. 모든 할당과 반환이 프로그래머에 의해 명시적으로 처리된다.</p>
+<p>다음 코드는 정수에 대한 포인터를 힙에 할당하는 예를 보여 준다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">int</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이 코드에 대한 주의 사항이 몇 개 있다.</p>
+<p>첫째, 한 행에 스택과 힙 할당이 모두 발생한다.</p>
+<p>우선 컴파일러가 포인터 변수의 선언 (int *x)을 만나면 정수 포인터를 위한 공간을 할당해야 한다는 것을 안다.</p>
+<p>프로그램이 malloc()을 호출하여 정수를 위한 공간을 힙으로부터 요구한다 malloc()은 그 정수의 주소를 반환한다 (성공한 경우, 실패한 경우에는 NULL을 반환). 이 반환된 주소는 스택에 저장되어 프로그램에 의해 사용된다.</p>
+<p>이런 명시적 성질과 다양한 쓰임새 때문에 힙 메모리의 사용은 사용자와 시스템 모두에게 어려운 숙제다. 남은 논의는 힙 메모리에 초점을 맞출 것이다.</p>
 </section>
 <section id="malloc">
 <h2>malloc() 함수<a class="headerlink" href="#malloc" title="Link to this heading">#</a></h2>
+<p>malloc() 호출은 매우 간단하다. 힙에 요청할 공간의 크기를 넘겨 주면, 성공했을 경우 새로 할당된 공간에 대한 포인터를 사용자에게 반환하고 실패했을 경우 NULL을 반환한다.</p>
+<p>매뉴얼 페이지는 malloc을 사용하는 데 필요한 일을 보여 준다. 명령어 라인에 manmalloc이라고 입력하면 다음과 같은 내용을 볼 것이다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdlib.h&gt;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="n">void</span> <span class="o">*</span><span class="n">malloc</span><span class="p">(</span><span class="n">size_t</span> <span class="n">size</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 정보로부터 malloc을 사용하기 위해서 할 일은 헤더 파일 stdlib.h를 소스 코드에 포함시키는 것 뿐이라는 것을 알 수 있다</p>
+<p>malloc()의 인자는 size_t 타입의 변수이고 이 변수는 필요 공간의 크기를 바이트 단위로 표시한 것이다.</p>
+<p>이 malloc() 호출에서는 정확한 크기의 공간을 요청하기 위하여 sizeof() 연산자를 사용한다. C 언어에서 이 sizeof()는 통상 컴파일 시간 연산자이다. sizeof()는 숫자 (이 경우 double의 크기인 8)로 대체되어 malloc()에 전달된다. 이러한 이유로, sizeof()는 연산자로 간주되는 게 맞으며 함수 호출이 아니다</p>
+<p>데이터 타입뿐 아니라 변수의 이름도 sizeof()의 인자로 전달할 수 있다. 그러나 원하는 결과를 얻지 못할 때도 있으므로 조심해야 한다. 예를 들어, 다음과 같은 코드를 살펴보자.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int *x = malloc(10 * sizeof(int));
+printf(“%d\n ”, sizeof(x));
+</pre></div>
+</div>
+<p>첫 번째 행에서, 정수형 원소 10개를 가지는 배열을 위한 공간을 선언하였다.</p>
+<p>그러나 다음 줄에서 sizeof()를 사용하면 4(32비트 컴퓨터에서) 또는 8(64비트 컴퓨터에서) 값을 반환한다. 이 경우 sizeof()는 동적으로 할당받은 메모리의 크기가 얼마인지가 아니라, 정수를 가리키는 포인터의 크기가 얼마인지 물어본다고 생각하기 때문이다. 그러나 때때로 sizeof()는 기대한 대로 동작할 때도 있다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int x[10];
+printf(“%d\n ”, sizeof(x));
+</pre></div>
+</div>
+<p>이 경우에는 변수 x에 40ၵ이트가 할당되ᨩ다는 것을 컴파일러가 알 수 있는 정적인 정보가 충분하다.</p>
+<p>또 하나 조심해야 하는 경우는 문자열을 다룰 때이다. 문자열을 위한 공간을 선언할 때에는 다음과 같은 문장을 사용한다 : mallocc(strlen(s) + 1). 이 문장은 strlen() 함수를 사용하여 문자열의 길이를 얻어낸 뒤 문자열-끝을 나타내는 문자를 위한 공간을 확보하기 위해 1ၵ이트를 더한다.</p>
+<p>sizeof()의 사용은 여기서 문제를 일으킬 수 있다.</p>
+<p>malloc()은 void 타입에 대한 포인터를 반환한다는 것을 알았을 것이다. 그렇게 하는 것은 주소만 넘겨주고 해당 주소 공간에 어떤 타입의 자료를 저장할 지는 프로그래머가 결정하게 하는 전형적인 C의 방식이다.</p>
+<p>프로그래머는 타입 변환(type casting)을 이용하여 공간 활용을 결정한다. 위의 예에서 프로그래머는 malloc()이 반환한 데이터 타입을 double 형을 가리키는 포인터 타입으로 변환하였다.</p>
+<p>malloc()의 결과에 타입을 명시함으로써, 프로그래머는 정확한 타입을 “확인”한 정도이며, 프로그램이 제대로 동작하는 데 있어서 캐스트가 반드시 필요한 것은 아니다.</p>
 </section>
 <section id="free">
 <h2>free() 함수<a class="headerlink" href="#free" title="Link to this heading">#</a></h2>
+<p>“메모리 할당”은 우리가 고민하고 있는 문제들 중 쉬운 쪽이다.</p>
+<p>할당된 메모리를 언제, 어떻게 해제하고 더욱이 해제 여부를 확인하는 것이 더 어려운 문제이다. 더 이상 사용 되지 않는 힙 메모리를 해제하기 위해 프로그래머는 free()를 호출한다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="n">free</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>한 개의 인자, malloc()에 의해 반환된 포인터를 받는다. 할당된 영역의 크기는 전달되지 않는다. 할당된 메모리의 크기는 메모리 할당 라이브러리가 알고 있어야 한다.</p>
 </section>
 <section id="id2">
 <h2>운영체제의 지원<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
