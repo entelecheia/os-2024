@@ -236,7 +236,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../week05/vm-intro.html">주소 공간의 개념</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week05/vm-api.html">메모리 관리 API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week05/vm-mechanism.html">주소 변환의 원리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/lab-linux-cmd.html">Linux: 기본 명령어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/lab.html">Lab: 메모리 구조 탐색하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
 </ul>
 </li>
 </ul>
@@ -509,17 +510,17 @@ document.write(`
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/time.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;assert.h&gt;</span>
-<span class="cp">#include “common.h”</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common.h&quot;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="err">“</span><span class="n">사용법</span><span class="o">:</span><span class="w"> </span><span class="n">cpu</span><span class="w"> </span><span class="o">&lt;</span><span class="n">문자열</span><span class="o">&gt;</span><span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;사용법: cpu &lt;문자열&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Spin</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="o">%</span><span class="n">s</span><span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -533,17 +534,17 @@ document.write(`
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
-<span class="cp">#include “common.h”</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;common.h&quot;</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span><span class="w"> </span><span class="c1">// 정수형 포인터 p에 메모리 할당</span>
 <span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"> </span><span class="c1">// p가 NULL이 아닌지 확인</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="p">(</span><span class="o">%</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="n">p의</span><span class="w"> </span><span class="n">메모리</span><span class="w"> </span><span class="n">주소</span><span class="o">:</span><span class="w"> </span><span class="o">%</span><span class="mi">08</span><span class="n">x</span><span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">,</span><span class="w"> </span><span class="n">getpid</span><span class="p">(),</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// 프로세스 ID와 p의 메모리 주소 출력</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;(%d) p의 메모리 주소: %08x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">getpid</span><span class="p">(),</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// 프로세스 ID와 p의 메모리 주소 출력</span>
 <span class="w">    </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// p가 가리키는 값을 0으로 초기화</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Spin</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1초 대기</span>
 <span class="w">        </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// p가 가리키는 값을 1 증가</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="p">(</span><span class="o">%</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="o">:</span><span class="w"> </span><span class="o">%</span><span class="n">d</span><span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">,</span><span class="w"> </span><span class="n">getpid</span><span class="p">(),</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// 프로세스 ID와 p가 가리키는 값 출력</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;(%d) p: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">getpid</span><span class="p">(),</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// 프로세스 ID와 p가 가리키는 값 출력</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>

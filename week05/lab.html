@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 2 - 가상화의 세계 &#8212; 운영체제 2024</title>
+    <title>Lab: 메모리 구조 탐색하기 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week05/lab';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="프로세스의 개념" href="cpu-intro.html" />
-    <link rel="prev" title="운영체제 개요" href="../week01/intro.html" />
+    <link rel="next" title="Tip: Linux 기본 명령어" href="tip-linux-cmd.html" />
+    <link rel="prev" title="주소 변환의 원리" href="vm-mechanism.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -210,13 +210,13 @@
 <li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 2 - 가상화의 세계</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpu-intro.html">프로세스의 개념</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpu-api.html">프로세스 API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="shells.html">리눅스 셸 (Linux Shells)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lab.html">Lab: Shell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - 가상화의 세계</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-intro.html">프로세스의 개념</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-api.html">프로세스 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/shells.html">리눅스 셸 (Linux Shells)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/lab.html">Lab: Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링 1</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -232,12 +232,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../week04/lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - 메모리 가상화</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week05/vm-intro.html">주소 공간의 개념</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/vm-api.html">메모리 관리 API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/vm-mechanism.html">주소 변환의 원리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/lab.html">Lab: 메모리 구조 탐색하기</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 5 - 메모리 가상화</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vm-intro.html">주소 공간의 개념</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-api.html">메모리 관리 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-mechanism.html">주소 변환의 원리</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab: 메모리 구조 탐색하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
 </ul>
 </li>
 </ul>
@@ -332,7 +332,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week02/index.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week05/lab.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -349,7 +349,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek05/lab.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -379,7 +379,7 @@
       
       
       
-      <li><a href="../_sources/week02/index.md" target="_blank"
+      <li><a href="../_sources/week05/lab.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -450,7 +450,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -461,11 +463,27 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 2 - 가상화의 세계</h1>
+    <h1>Lab: 메모리 구조 탐색하기</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">준비사항</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">실습 내용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-va-c">1. C 프로그램 (<code class="docutils literal notranslate"><span class="pre">va.c</span></code>) 작성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#makefile">2. Makefile 작성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. 프로그램 빌드 및 실행</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">결론</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -475,51 +493,107 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-2">
-<h1>Week 2 - 가상화의 세계<a class="headerlink" href="#week-2" title="Link to this heading">#</a></h1>
-<p>이 대화는 <a class="reference external" href="https://pages.cs.wisc.edu/~remzi/OSTEP/">Operating Systems: Three Easy Pieces by Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau (University of Wisconsin-Madison)</a>에 나오는 대화를 일부 재구성한 것입니다.</p>
-<blockquote>
-<div><p><strong>교수:</strong> 드디어 운영체제의 첫 번째 주제, 가상화에 대해 이야기할 시간이 왔네!</p>
-</div></blockquote>
-<p><strong>학생:</strong> 가상화가 뭐죠? 혹시 복숭아와 관련이 있나요?</p>
-<blockquote>
-<div><p><strong>교수:</strong> (미소 지으며) 흥미로운 질문이군. 가상화는 마치 복숭아 마술과 같다고 할 수 있네. 하나의 진짜 복숭아로부터 여러 개의 가상 복숭아를 만들어 내는 것처럼, 컴퓨터 시스템에서도 한 개의 자원을 여러 개의 가상 자원으로 만들어 낼 수 있지.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 어떻게요? 복숭아를 복사하는 건가요?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 복숭아를 복사하는 것은 아니야. 마치 사람들에게 환상을 보여주는 것과 같지. 사람들은 각자 자신만의 복숭아를 가지고 있다고 생각하지만, 실제로는 하나의 복숭아만 존재하는 거야.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 그럼… 제가 다른 사람에게 복숭아를 주면 어떻게 되나요?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 자네는 똑똑한 학생이군! 다른 사람에게 복숭아를 주더라도, 대부분의 사람들은 눈치채지 못하지. 그들은 낮잠을 자거나 다른 일을 하고 있기 때문에, 자네는 그 사이에 다른 사람에게 복숭아를 넘겨줄 수 있지. 마치 마술처럼 말이야.</p>
-</div></blockquote>
-<p><strong>학생:</strong> 그래도 한 개의 복숭아밖에 없잖아요. 어떻게 여러 사람에게 나눠 줄 수 있나요?</p>
-<blockquote>
-<div><p><strong>교수:</strong> 컴퓨터 시스템에서 가장 기본적인 자원인 CPU를 예로 들어 보자. 시스템에 CPU가 하나만 있다고 가정하면, 가상화는 이 CPU를 여러 개의 응용 프로그램에게 여러 개의 CPU인 것처럼 보이도록 만들어 주는 거야. 마치 복숭아 마술과 비슷하지 않나?</p>
-</div></blockquote>
-<p><strong>학생:</strong> 와, 정말 마술 같네요! 어떻게 동작하는지 좀 더 자세히 알려주세요.</p>
-<blockquote>
-<div><p><strong>교수:</strong> 젊은이, 조급하지 마. 천천히 설명하겠네. 자네도 이제 가상화의 세계에 발을 들여놓았으니, 함께 마법의 비밀을 탐험해 보자!</p>
-</div></blockquote>
-<p><strong>학생:</strong> 네, 준비됐습니다! 복숭아 얘기는 그만하고…</p>
-<blockquote>
-<div><p><strong>교수:</strong> (웃으며) 걱정 마. 앞으로는 복숭아 대신 컴퓨터 자원에 대한 이야기를 할 거야. 그럼, 가상화의 신비로운 세계로 떠나보자!</p>
-</div></blockquote>
-<p><strong>흥미진진한 여정이 시작되다! 과연 학생은 가상화의 비밀을 밝혀낼 수 있을까?</strong></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>복숭아 비유는 가상화 개념을 이해하는 데 도움을 주지만, 실제 시스템에서의 작동 방식과는 다를 수 있습니다.</p>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cpu-intro.html">프로세스의 개념</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpu-api.html">프로세스 API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shells.html">리눅스 셸 (Linux Shells)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab.html">Lab: Shell</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab">
+<h1>Lab: 메모리 구조 탐색하기<a class="headerlink" href="#lab" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>목표<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>이 실습에서는 C 프로그램에서 메모리의 다양한 영역(코드, 힙, 스택)의 위치를 확인하는 방법을 배웁니다. 또한, Makefile을 사용하여 프로그램을 편리하게 빌드, 실행 및 정리하는 방법도 알아봅니다.</p>
+</section>
+<section id="id2">
+<h2>준비사항<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>C 컴파일러 (gcc)</p></li>
+<li><p>텍스트 에디터 (VS Code, Sublime Text, Vim 등)</p></li>
+<li><p>터미널 (Linux, macOS) 또는 Command Prompt (Windows)</p></li>
 </ul>
+</section>
+<section id="id3">
+<h2>실습 내용<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="c-va-c">
+<h3>1. C 프로그램 (<code class="docutils literal notranslate"><span class="pre">va.c</span></code>) 작성<a class="headerlink" href="#c-va-c" title="Link to this heading">#</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;location of code : %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;location of heap : %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mf">100e6</span><span class="p">));</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;location of stack: %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+<p>이 프로그램은 다음과 같은 작업을 수행합니다:</p>
+<ol class="arabic simple">
+<li><p>필요한 헤더 파일을 포함시킵니다: 입출력 함수를 위한 <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code>와 메모리 할당 함수를 위한 <code class="docutils literal notranslate"><span class="pre">stdlib.h</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code> 함수에서:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code> 함수의 주소를 사용하여 코드 영역의 위치를 출력합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">malloc</span></code>을 사용하여 大량의 메모리(1억 바이트)를 할당하고, 힙의 위치를 출력합니다.</p></li>
+<li><p>정수 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code>를 선언하고, <code class="docutils literal notranslate"><span class="pre">x</span></code>의 주소를 사용하여 스택의 위치를 출력합니다.</p></li>
+</ul>
+</li>
+<li><p>마지막으로 0을 반환하여 프로그램이 성공적으로 실행되었음을 나타냅니다.</p></li>
+</ol>
+<p>이 프로그램의 목적은 실행 중인 프로그램에서 다양한 메모리 영역(코드, 힙, 스택)의 위치를 보여주는 것입니다.</p>
+</section>
+<section id="makefile">
+<h3>2. Makefile 작성<a class="headerlink" href="#makefile" title="Link to this heading">#</a></h3>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">.DEFAULT_GOAL</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">help</span>
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">help</span>
+<span class="nf">help</span><span class="o">:</span><span class="w"> </span><span class="c">## Display this help</span>
+<span class="w">	</span>@awk<span class="w"> </span><span class="s1">&#39;BEGIN {FS = &quot;:.*##&quot;; printf &quot;\nUsage:\n make \033[36m&lt;target&gt;\033[0m\n&quot;} /^[a-zA-Z_-]+:.*?##/ { printf &quot; \033[36m%-25s\033[0m %s\n&quot;, $$1, $$2 } /^##@/ { printf &quot;\n\033[1m%s\033[0m\n&quot;, substr($$0, 5) } &#39;</span><span class="w"> </span><span class="k">$(</span>MAKEFILE_LIST<span class="k">)</span>
+
+<span class="c">##@ Build</span>
+
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="n">va</span> <span class="c">## Build all targets</span>
+
+<span class="nf">va</span><span class="o">:</span><span class="w"> </span><span class="c">## Build target va</span>
+<span class="w">	</span>gcc<span class="w"> </span>-o<span class="w"> </span>va<span class="w"> </span>va.c<span class="w"> </span>-Wall
+
+<span class="c">##@ Run</span>
+
+<span class="nf">run</span><span class="o">:</span><span class="w"> </span><span class="c">## Run the lottery program</span>
+<span class="w">	</span>./va
+
+<span class="c">##@ Clean-up</span>
+
+<span class="nf">clean</span><span class="o">:</span><span class="w"> </span><span class="c">## Remove all build artifacts</span>
+<span class="w">	</span>rm<span class="w"> </span>-f<span class="w"> </span>va
+</pre></div>
+</div>
+<p>이 Makefile은 프로그램을 빌드, 실행 및 정리하기 위한 여러 타겟과 명령을 제공합니다:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.DEFAULT_GOAL</span></code>은 <code class="docutils literal notranslate"><span class="pre">help</span></code>로 설정되어 있어, 타겟 없이 <code class="docutils literal notranslate"><span class="pre">make</span></code>를 실행하면 도움말 메시지가 표시됩니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">help</span></code> 타겟은 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 명령을 사용하여 Makefile을 파싱하고, 사용 가능한 타겟과 그에 대한 설명이 포함된 도움말 메시지를 표시합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">all</span></code> 타겟은 <code class="docutils literal notranslate"><span class="pre">va</span></code> 타겟에 의존하며, 모든 타겟(여기서는 <code class="docutils literal notranslate"><span class="pre">va</span></code> 뿐)을 빌드하는 데 사용됩니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">va</span></code> 타겟은 <code class="docutils literal notranslate"><span class="pre">gcc</span></code>를 사용하여 <code class="docutils literal notranslate"><span class="pre">va.c</span></code> 파일을 컴파일하고 <code class="docutils literal notranslate"><span class="pre">va</span></code>라는 실행 파일을 생성합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code> 타겟은 <code class="docutils literal notranslate"><span class="pre">va</span></code> 프로그램을 실행합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clean</span></code> 타겟은 생성된 실행 파일 <code class="docutils literal notranslate"><span class="pre">va</span></code>를 제거합니다.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>3. 프로그램 빌드 및 실행<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">va.c</span></code>와 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>을 같은 디렉토리에 저장합니다.</p></li>
+<li><p>터미널을 열고 해당 디렉토리로 이동합니다.</p></li>
+<li><p>다음 명령을 실행합니다:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">help</span></code>: 사용 가능한 타겟이 포함된 도움말 메시지를 표시합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">va</span></code>: <code class="docutils literal notranslate"><span class="pre">va.c</span></code> 파일을 컴파일하고 <code class="docutils literal notranslate"><span class="pre">va</span></code> 실행 파일을 생성합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">run</span></code>: <code class="docutils literal notranslate"><span class="pre">va</span></code> 프로그램을 실행합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code>: <code class="docutils literal notranslate"><span class="pre">va</span></code> 실행 파일을 제거합니다.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="id5">
+<h2>결론<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>이 실습을 통해 C 프로그램에서 메모리의 다양한 영역의 위치를 확인하는 방법과 Makefile을 사용하여 프로그램을 편리하게 관리하는 방법을 배웠습니다. 이러한 기술은 C 프로그래밍과 시스템 프로그래밍에서 유용하게 활용될 수 있습니다.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -535,7 +609,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week02"
+            path: "./week05"
         },
         predefinedOutput: true
     }
@@ -553,20 +627,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../week01/intro.html"
+       href="vm-mechanism.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">운영체제 개요</p>
+        <p class="prev-next-title">주소 변환의 원리</p>
       </div>
     </a>
     <a class="right-next"
-       href="cpu-intro.html"
+       href="tip-linux-cmd.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">프로세스의 개념</p>
+        <p class="prev-next-title">Tip: Linux 기본 명령어</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -577,7 +651,28 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">준비사항</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">실습 내용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-va-c">1. C 프로그램 (<code class="docutils literal notranslate"><span class="pre">va.c</span></code>) 작성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#makefile">2. Makefile 작성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. 프로그램 빌드 및 실행</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">결론</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
