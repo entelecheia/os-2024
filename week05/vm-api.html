@@ -490,32 +490,60 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="api">
 <h1>메모리 관리 API<a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
+<p>이 장에서는 Unix 시스템에서 메모리를 관리하기 위한 API(Application Programming Interface)에 대해 알아보겠습니다. 여기서 말하는 메모리란 프로세스의 사용자 주소 공간을 의미합니다. 우리가 해결하고자 하는 핵심 질문은 다음과 같습니다.</p>
+<div class="admonition- admonition">
+<p class="admonition-title">핵심 질문</p>
+<p>프로그램에서 메모리를 어떻게 할당하고 관리해야 할까?</p>
+</div>
+<p>Unix/C 프로그램에서 메모리를 효과적으로 사용하는 방법을 이해하는 것은 안정적이고 강력한 소프트웨어를 개발하는 데 있어 매우 중요합니다. 어떤 API가 제공되고, 어떤 실수를 피해야 하는지 살펴보도록 하겠습니다.</p>
 <section id="id2">
 <h2>메모리 공간의 종류<a class="footnote-reference brackets" href="#parkeunseongkr" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>C 프로그램이 실행되면, 두 가지 유형의 메모리 공간이 할당된다.</p>
-<p>첫 번째는 스택 (stack)</p>
-<p>메모리라고 불리며 할당과 반환은 프로그래머를 위해 컴파일러에 의해 암묵적으로 이루어진다. 이러한 이유 때문에 때로는 자동(automatic) 메모리라고 불린다.</p>
-<p>C 프로그램에서 스택에 메모리를 선언하는 것은 쉽다. 예를 들어, func()라는 함수 안에서 x라 불리는 정수를 위한 공간이 필요하다고 하자. 이러한 메모리를 선언하려면 다음과 같이 하면 된다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vode</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nb">int</span> <span class="n">x</span><span class="p">;</span> <span class="o">//</span> <span class="n">스택에</span> <span class="nb">int</span> <span class="n">형을</span> <span class="n">선언</span>
-  <span class="o">...</span>
+<p>C 프로그램이 실행될 때, 크게 두 가지 유형의 메모리 공간이 할당됩니다.</p>
+<p>첫 번째는 ‘스택(stack)’ 메모리입니다. 스택 메모리의 할당과 해제는 프로그래머를 대신하여 컴파일러가 자동으로 처리해줍니다. 그래서 때로는 ‘자동(automatic)’ 메모리라고도 불립니다.</p>
+<p>C에서 스택에 메모리를 할당하는 것은 매우 간단합니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">func()</span></code>라는 함수 내에서 <code class="docutils literal notranslate"><span class="pre">x</span></code>라는 이름의 정수 변수를 선언한다고 해 보죠.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">  </span><span class="c1">// 스택에 정수형 변수 선언</span>
+<span class="w">    </span><span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>컴파일러가 나머지 작업을 수행하여, func()가 호출될 때 스택에 공간을 확보한다.</p>
-<p>오랫동안 값이 유지되어야 하는 변수를 위해 힙(heap) 메모리라고 불리는 두 번째 유형의 메모리가 필요하다. 모든 할당과 반환이 프로그래머에 의해 명시적으로 처리된다.</p>
-<p>다음 코드는 정수에 대한 포인터를 힙에 할당하는 예를 보여 준다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">func</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nb">int</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span>
-  <span class="o">...</span>
+<p>컴파일러는 <code class="docutils literal notranslate"><span class="pre">func()</span></code>가 호출될 때 스택 프레임 내에 <code class="docutils literal notranslate"><span class="pre">x</span></code>를 위한 공간을 마련해 둡니다.</p>
+<p>두 번째 유형은 ‘힙(heap)’ 메모리입니다. 힙은 함수 호출이 끝난 후에도 유지되어야 하는 데이터를 저장하는 데 사용됩니다. 힙 메모리의 할당과 해제는 프로그래머가 직접 관리해야 합니다.</p>
+<p>다음은 힙에 정수 포인터를 할당하는 예시 코드입니다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<span class="w">    </span><span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>이 코드에 대한 주의 사항이 몇 개 있다.</p>
-<p>첫째, 한 행에 스택과 힙 할당이 모두 발생한다.</p>
-<p>우선 컴파일러가 포인터 변수의 선언 (int *x)을 만나면 정수 포인터를 위한 공간을 할당해야 한다는 것을 안다.</p>
-<p>프로그램이 malloc()을 호출하여 정수를 위한 공간을 힙으로부터 요구한다 malloc()은 그 정수의 주소를 반환한다 (성공한 경우, 실패한 경우에는 NULL을 반환). 이 반환된 주소는 스택에 저장되어 프로그램에 의해 사용된다.</p>
-<p>이런 명시적 성질과 다양한 쓰임새 때문에 힙 메모리의 사용은 사용자와 시스템 모두에게 어려운 숙제다. 남은 논의는 힙 메모리에 초점을 맞출 것이다.</p>
+<p>이 코드에는 몇 가지 주목할 점이 있습니다.</p>
+<p>먼저 한 줄 안에서 스택과 힙 할당이 동시에 일어납니다. 컴파일러는 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*x</span></code> 선언을 보고 정수 포인터를 위한 공간을 스택에 마련합니다. 그리고 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code> 함수 호출을 통해 정수 자체를 저장할 공간을 힙에서 동적으로 할당받습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">malloc()</span></code>이 반환하는 것은 새로 할당된 공간의 주소값입니다. 성공 시에는 해당 주소를, 실패 시에는 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>을 돌려주죠. 이 주소값은 스택의 <code class="docutils literal notranslate"><span class="pre">x</span></code> 변수에 저장되어 프로그램에서 사용됩니다.</p>
+<p>이처럼 명시적으로 메모리를 관리해야 하고 다양한 용도로 사용되는 힙 메모리는 프로그래머에게나 시스템에게나 쉽지 않은 도전 과제입니다. 앞으로의 논의는 주로 힙 메모리 관리에 초점을 맞출 것입니다.</p>
+<p>몇 가지 핵심 용어를 정리해 보겠습니다.</p>
+<ul class="simple">
+<li><p>API (Application Programming Interface)</p>
+<ul>
+<li><p>운영체제나 라이브러리가 제공하는 함수나 메서드의 집합을 말합니다. 프로그래머는 API를 통해 시스템 자원에 접근하고 제어할 수 있습니다.</p></li>
+</ul>
+</li>
+<li><p>스택 (Stack)</p>
+<ul>
+<li><p>함수 호출 시 할당되는 메모리 영역으로, 함수의 매개변수, 지역변수, 리턴 주소 등이 저장됩니다. LIFO(Last-In-First-Out) 구조를 가지며, 함수 호출이 완료되면 자동으로 해제됩니다.</p></li>
+</ul>
+</li>
+<li><p>힙 (Heap)</p>
+<ul>
+<li><p>프로그램이 실행 중에 동적으로 할당하고 해제할 수 있는 메모리 영역입니다. 프로그래머가 직접 메모리 생명주기를 관리해야 합니다. 힙은 스택과 달리 비연속적이고 임의 접근 가능한 메모리 블록들로 구성됩니다.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">malloc()</span></code></p>
+<ul>
+<li><p>C 언어에서 힙 메모리를 동적 할당하기 위해 사용하는 함수입니다. 할당할 바이트 수를 인자로 받아, 성공 시 할당된 메모리의 주소를 <code class="docutils literal notranslate"><span class="pre">void*</span></code> 타입으로 반환합니다.</p></li>
+</ul>
+</li>
+</ul>
+<p>이제 실제로 어떤 API들이 있는지, 그리고 메모리 관리에서 주의해야 할 점은 무엇인지 하나씩 살펴보도록 하겠습니다.</p>
 </section>
 <section id="malloc">
 <h2>malloc() 함수<a class="headerlink" href="#malloc" title="Link to this heading">#</a></h2>
