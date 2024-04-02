@@ -49,14 +49,12 @@ if options.jlist == "":
     for jobnum in range(options.jobs):
         runtime = int(options.maxlen * random.random()) + 1
         joblist.append([jobnum, runtime])
-        print("  작업", jobnum, "( 길이 = " + str(runtime) + " )")
+        print("  작업", jobnum, f"( 길이 = {str(runtime)} )")
 else:
-    jobnum = 0
-    for runtime in options.jlist.split(","):
+    for jobnum, runtime in enumerate(options.jlist.split(",")):
         joblist.append([jobnum, float(runtime)])
-        jobnum += 1
     for job in joblist:
-        print("  작업", job[0], "( 길이 = " + str(job[1]) + " )")
+        print("  작업", job[0], f"( 길이 = {str(job[1])} )")
 print("\n")
 
 # 스케줄링 정책에 따른 시뮬레이션 결과 출력 부분입니다. `options.solve`가 참일 경우, 사용자가 지정한 스케줄링 정책에 따라 작업의 실행 순서와 각 작업에 대한 통계를 계산하고 출력합니다. 이 예에서는 FIFO(First In First Out), SJF(Shortest Job First), 그리고 RR(Round Robin) 세 가지 정책을 지원합니다.
@@ -66,7 +64,7 @@ print("\n")
 #   SJF(Shortest Job First): 실행 시간이 가장 짧은 작업부터 먼저 실행합니다.
 #   RR(Round Robin): 각 작업에 동일한 시간(quantum)만큼 실행 기회를 주고, 주어진 시간 동안 완료되지 않은 작업은 대기 목록의 끝으로 이동합니다.
 
-if options.solve:
+if options:
     print("** 해결책 **\n")
     if options.policy == "SJF":
         joblist = sorted(joblist, key=lambda job: job[1])  # 실행 시간 기준으로 정렬
@@ -75,18 +73,64 @@ if options.solve:
     if options.policy == "FIFO":
         thetime = 0
         print("실행 흔적:")
+        waiting_times = []
+        turnaround_times = []
+        response_times = []
         for job in joblist:
+            response_time = (
+                thetime  # FIFO에서는 작업이 대기하는 시간이 응답 시간과 같다
+            )
             print(
                 "  [ 시간 %3d ] 작업 %d 실행 %.2f 초 ( 완료 시간 %.2f )"
                 % (thetime, job[0], job[1], thetime + job[1])
             )
+            waiting_time = thetime
             thetime += job[1]
-        # 통계 계산 및 출력...
+            turnaround_time = thetime
+            waiting_times.append(waiting_time)
+            turnaround_times.append(turnaround_time)
+            response_times.append(response_time)
+
+        # 통계 출력
+        print("\n통계:")
+        total_jobs = len(joblist)
+        average_waiting_time = sum(waiting_times) / total_jobs
+        average_turnaround_time = sum(turnaround_times) / total_jobs
+        average_response_time = sum(response_times) / total_jobs
+        print(f"평균 대기 시간: {average_waiting_time:.2f} 초")
+        print(f"평균 회전 시간: {average_turnaround_time:.2f} 초")
+        print(f"평균 응답 시간: {average_response_time:.2f} 초")
 
     elif options.policy == "RR":
         print("실행 흔적:")
-        # RR 스케줄링 로직...
-        # 통계 계산 및 출력...
+        thetime = 0
+        queue = joblist.copy()  # 작업 목록을 대기열로 복사
+        completions = []  # 완료된 작업 정보 저장
+
+        while queue:
+            job = queue.pop(0)  # 대기열에서 첫 번째 작업을 가져옴
+            runtime = min(
+                job[1], options.quantum
+            )  # 실행 시간은 작업 시간과 quantum 중 작은 값
+            print(
+                f"  [ 시간 {thetime:3d} ] 작업 {job[0]} 실행 {runtime:.2f} 초 ( 남은 시간 {job[1]-runtime:.2f} )"
+            )
+            thetime += runtime
+            job[1] -= runtime
+            if job[1] > 0:  # 작업이 완료되지 않았다면 대기열 끝으로
+                queue.append(job)
+            else:
+                completions.append((job[0], thetime))  # 완료된 작업 저장
+
+        # 통계 계산 및 출력
+        print("\n통계:")
+        turnaround_times = [0] * len(joblist)
+        for job, complete_time in completions:
+            turnaround_times[job] = complete_time  # 회전 시간 계산
+
+        for i, turnaround in enumerate(turnaround_times):
+            print(f"  작업 {i} 회전 시간: {turnaround} 초")
+        print(f"평균 회전 시간: {sum(turnaround_times)/len(turnaround_times):.2f} 초")
 
     else:
         print("오류: 정책", options.policy, "는 사용할 수 없습니다.")

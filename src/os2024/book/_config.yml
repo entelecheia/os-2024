@@ -51,8 +51,7 @@ html:
       data-sponsor-link="https://chat.entelecheia.app/workspace/os2024"
       src="https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js">
     </script>
-  announcement: |
-    4주차는 3주차에 다루지 못한 내용을 다룹니다. 따라서, 신규 내용은 없습니다. 기존 내용을 보강하는 것이 과제입니다.
+  announcement: ""
 
 sphinx:
   config:
