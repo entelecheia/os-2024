@@ -236,6 +236,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vm-intro.html">주소 공간의 개념</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">메모리 관리 API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm-mechanism.html">주소 변환의 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab-linux-cmd.html">Linux: 기본 명령어</a></li>
 </ul>
 </li>
 </ul>
@@ -547,83 +548,83 @@ document.write(`
 </section>
 <section id="malloc">
 <h2>malloc() 함수<a class="headerlink" href="#malloc" title="Link to this heading">#</a></h2>
-<p>malloc() 호출은 매우 간단하다. 힙에 요청할 공간의 크기를 넘겨 주면, 성공했을 경우 새로 할당된 공간에 대한 포인터를 사용자에게 반환하고 실패했을 경우 NULL을 반환한다.</p>
-<p>매뉴얼 페이지는 malloc을 사용하는 데 필요한 일을 보여 준다. 명령어 라인에 manmalloc이라고 입력하면 다음과 같은 내용을 볼 것이다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdlib.h&gt;</span>
-<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
-<span class="n">void</span> <span class="o">*</span><span class="n">malloc</span><span class="p">(</span><span class="n">size_t</span> <span class="n">size</span><span class="p">);</span>
+<p>malloc()은 힙에서 메모리를 동적으로 할당하는 함수입니다. 사용법은 매우 간단한데요, 필요한 메모리의 크기(바이트 단위)를 인자로 전달하면 됩니다. 할당에 성공하면 새로 할당된 메모리 블록의 시작 주소를 가리키는 포인터를 반환하고, 실패하면 NULL을 반환합니다.</p>
+<p>malloc()을 사용하려면 어떻게 해야 할까요? 먼저 관련 함수 원형이 선언된 헤더 파일 <code class="docutils literal notranslate"><span class="pre">&lt;stdlib.h&gt;</span></code>를 소스 코드에 포함시켜야 합니다. 그리고 다음과 같은 형태로 함수를 호출하면 됩니다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="nf">malloc</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>이 정보로부터 malloc을 사용하기 위해서 할 일은 헤더 파일 stdlib.h를 소스 코드에 포함시키는 것 뿐이라는 것을 알 수 있다</p>
-<p>malloc()의 인자는 size_t 타입의 변수이고 이 변수는 필요 공간의 크기를 바이트 단위로 표시한 것이다.</p>
-<p>이 malloc() 호출에서는 정확한 크기의 공간을 요청하기 위하여 sizeof() 연산자를 사용한다. C 언어에서 이 sizeof()는 통상 컴파일 시간 연산자이다. sizeof()는 숫자 (이 경우 double의 크기인 8)로 대체되어 malloc()에 전달된다. 이러한 이유로, sizeof()는 연산자로 간주되는 게 맞으며 함수 호출이 아니다</p>
-<p>데이터 타입뿐 아니라 변수의 이름도 sizeof()의 인자로 전달할 수 있다. 그러나 원하는 결과를 얻지 못할 때도 있으므로 조심해야 한다. 예를 들어, 다음과 같은 코드를 살펴보자.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int *x = malloc(10 * sizeof(int));
-printf(“%d\n ”, sizeof(x));
+<p>여기서 <code class="docutils literal notranslate"><span class="pre">size</span></code>는 할당받고자 하는 메모리의 크기를 바이트 단위로 나타낸 값입니다. 이 크기를 정확히 지정하기 위해 보통 <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code> 연산자를 사용합니다.</p>
+<p>C에서 <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code>는 컴파일 시점에 평가되는 연산자로, 인자로 전달된 데이터 타입이나 변수의 크기를 바이트 단위로 반환합니다. 따라서 <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code>는 함수 호출이 아니라 연산자로 취급됩니다.</p>
+<p>예를 들어 <code class="docutils literal notranslate"><span class="pre">malloc(sizeof(double))</span></code>과 같이 호출하면, <code class="docutils literal notranslate"><span class="pre">sizeof(double)</span></code>은 컴파일 시점에 상수 값 8(64비트 시스템 기준)으로 대체되어 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>에 전달되는 거죠.</p>
+<p>그런데 <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code>를 변수에 적용할 때는 주의해야 합니다. 다음 코드를 봅시다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>첫 번째 행에서, 정수형 원소 10개를 가지는 배열을 위한 공간을 선언하였다.</p>
-<p>그러나 다음 줄에서 sizeof()를 사용하면 4(32비트 컴퓨터에서) 또는 8(64비트 컴퓨터에서) 값을 반환한다. 이 경우 sizeof()는 동적으로 할당받은 메모리의 크기가 얼마인지가 아니라, 정수를 가리키는 포인터의 크기가 얼마인지 물어본다고 생각하기 때문이다. 그러나 때때로 sizeof()는 기대한 대로 동작할 때도 있다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int x[10];
-printf(“%d\n ”, sizeof(x));
+<p>첫 번째 줄에서는 정수 10개를 저장할 수 있는 배열을 위한 메모리를 할당했습니다. 그런데 두 번째 줄에서 <code class="docutils literal notranslate"><span class="pre">sizeof(x)</span></code>를 출력해 보면, 4(32비트 시스템)나 8(64비트 시스템)이 나옵니다.</p>
+<p>왜 그럴까요? 여기서 <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code>는 <code class="docutils literal notranslate"><span class="pre">x</span></code>가 가리키는 메모리 블록의 크기가 아니라, 포인터 변수 <code class="docutils literal notranslate"><span class="pre">x</span></code> 자체의 크기를 반환하기 때문입니다.</p>
+<p>반면 다음과 같이 정적 배열에 <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code>를 적용하면 기대한 대로 동작합니다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="w">  </span><span class="c1">// 40 출력 (32비트 시스템 기준)</span>
 </pre></div>
 </div>
-<p>이 경우에는 변수 x에 40ၵ이트가 할당되ᨩ다는 것을 컴파일러가 알 수 있는 정적인 정보가 충분하다.</p>
-<p>또 하나 조심해야 하는 경우는 문자열을 다룰 때이다. 문자열을 위한 공간을 선언할 때에는 다음과 같은 문장을 사용한다 : mallocc(strlen(s) + 1). 이 문장은 strlen() 함수를 사용하여 문자열의 길이를 얻어낸 뒤 문자열-끝을 나타내는 문자를 위한 공간을 확보하기 위해 1바이트를 더한다.</p>
-<p>sizeof()의 사용은 여기서 문제를 일으킬 수 있다.</p>
-<p>malloc()은 void 타입에 대한 포인터를 반환한다는 것을 알았을 것이다. 그렇게 하는 것은 주소만 넘겨주고 해당 주소 공간에 어떤 타입의 자료를 저장할 지는 프로그래머가 결정하게 하는 전형적인 C의 방식이다.</p>
-<p>프로그래머는 타입 변환(type casting)을 이용하여 공간 활용을 결정한다. 위의 예에서 프로그래머는 malloc()이 반환한 데이터 타입을 double 형을 가리키는 포인터 타입으로 변환하였다.</p>
-<p>malloc()의 결과에 타입을 명시함으로써, 프로그래머는 정확한 타입을 “확인”한 정도이며, 프로그램이 제대로 동작하는 데 있어서 캐스트가 반드시 필요한 것은 아니다.</p>
+<p>문자열을 다룰 때도 조심해야 합니다. 문자열을 저장할 공간을 동적 할당할 때는 보통 <code class="docutils literal notranslate"><span class="pre">malloc(strlen(s)</span> <span class="pre">+</span> <span class="pre">1)</span></code>과 같은 코드를 사용합니다. <code class="docutils literal notranslate"><span class="pre">strlen()</span></code>으로 문자열의 길이를 구한 뒤, 마지막 NULL 문자를 저장할 공간까지 확보하는 거죠. 이때 <code class="docutils literal notranslate"><span class="pre">sizeof()</span></code>를 쓰면 원하는 결과를 얻지 못합니다.</p>
+<p>한 가지 더 눈여겨볼 점은 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>의 반환 타입이 <code class="docutils literal notranslate"><span class="pre">void*</span></code>라는 것입니다. 이는 C 언어의 특징을 잘 보여주는데요, <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>은 그저 메모리 블록의 주소만 반환할 뿐, 그 공간을 어떤 타입의 데이터를 저장하는 데 사용할지는 전적으로 프로그래머에게 맡기는 겁니다.</p>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>이 반환한 <code class="docutils literal notranslate"><span class="pre">void*</span></code> 값은 적절한 타입의 포인터로 캐스팅해서 사용해야 합니다. 앞선 예제에서 <code class="docutils literal notranslate"><span class="pre">(int*)</span></code>로 캐스팅한 것처럼 말이죠. 사실 캐스팅이 없어도 프로그램은 돌아가지만, 명시적 캐스팅을 통해 의도를 분명히 하는 게 좋은 습관입니다.</p>
 </section>
 <section id="free">
 <h2>free() 함수<a class="headerlink" href="#free" title="Link to this heading">#</a></h2>
-<p>“메모리 할당”은 우리가 고민하고 있는 문제들 중 쉬운 쪽이다.</p>
-<p>할당된 메모리를 언제, 어떻게 해제하고 더욱이 해제 여부를 확인하는 것이 더 어려운 문제이다. 더 이상 사용 되지 않는 힙 메모리를 해제하기 위해 프로그래머는 free()를 호출한다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span>
-<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<p>사실 메모리 할당보다 더 어려운 문제는 할당한 메모리를 언제, 어떻게 해제할 것인가 하는 점입니다.</p>
+<p>힙에서 동적 할당한 메모리가 더 이상 필요 없어졌을 때, 이를 시스템에 반환하는 작업은 전적으로 프로그래머의 책임입니다. 이를 위해 <code class="docutils literal notranslate"><span class="pre">free()</span></code> 함수를 사용합니다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<span class="c1">// ...</span>
 <span class="n">free</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>한 개의 인자, malloc()에 의해 반환된 포인터를 받는다. 할당된 영역의 크기는 전달되지 않는다. 할당된 메모리의 크기는 메모리 할당 라이브러리가 알고 있어야 한다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">free()</span></code>는 인자로 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>이 반환한 포인터 값 하나만 받습니다. 해제할 메모리 블록의 크기는 전달하지 않는데요, 메모리 할당 라이브러리가 내부적으로 관리하고 있기 때문입니다.</p>
+<p>여기서 주목할 점은, 동적 할당한 메모리를 해제하는 것이 전적으로 프로그래머의 책임이라는 사실입니다. 메모리 누수(memory leak)를 방지하려면 불필요해진 메모리를 빠짐없이 <code class="docutils literal notranslate"><span class="pre">free()</span></code>로 해제해야 합니다.</p>
+<p>반대로 이미 해제된 메모리를 또 다시 해제하려 하면 언디파인드 비헤이비어(undefined behavior)를 초래할 수 있으므로, 이 점도 주의해야 겠죠.</p>
+<p>이처럼 동적 메모리 관리는 C 프로그래밍에서 가장 까다롭고 중요한 주제 중 하나입니다. <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>과 <code class="docutils literal notranslate"><span class="pre">free()</span></code>의 사용법을 정확히 익히고, 메모리 누수나 이중 해제와 같은 실수를 피하는 것이 안정적인 프로그램을 작성하는 핵심 요령이라 할 수 있겠습니다.</p>
 </section>
 <section id="id4">
 <h2>운영체제의 지원 <a class="footnote-reference brackets" href="#jo-sehyun" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>malloc()과 free() 함수는 표준 C 라이브러리 함수로, 메모리 할당과 해제를 담당한다. 이들 함수는 시스템 콜이 아니라 라이브러리 함수이며, malloc 라이브러리가 프로세스 가상 주소 공간 안의 공간을 관리하지만 라이브러리 자체는 시스템에게 더 많은 메모리를 요구하고 반환하는 시스템 콜을 기반으로 구축되는데 그런 시스템 콜 중 하나가 brk 시스템 콜이다.</p>
-<p>brk 시스템 콜은 프로그램의 break 위치를 변경하여 힙의 크기를 증가 또는 감소시킨다. break는 힙의 끝을 나타내는데, brk 시스템 콜은 새로운 break 주소를 인자로 받아 이를 기준으로 힙의 크기를 조절한다. sbrk 함수는 brk와 비슷한 용도로 사용되지만, 증가량만을 인자로 받는다.</p>
-<p>중요한 점은 직접적으로 brk나 sbrk를 호출해서는 안 된다는 것이다. 이들은 메모리 할당 라이브러리에 의해 내부적으로 사용되므로 직접적인 호출은 예측할 수 없는 결과를 초래할 수 있다. 반드시 malloc()과 free()를 사용하여 메모리를 할당하고 해제해야 한다.</p>
-<p>또한, mmap() 함수를 사용하여 운영체제로부터 메모리를 얻을 수도 있다. mmap() 함수는 올바른 인자를 전달하면 프로그램에 특정 파일과 연결되지 않은 스왑 공간(swap space)에 연결된 anonymous 메모리 영역을 만들어준다. 이 메모리 영역은 힙과 유사하게 취급되며 관리된다. 이러한 방법은 특히 대용량 메모리 할당이 필요한 경우에 유용하다.</p>
+<p>C 표준 라이브러리에서 제공하는 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>과 <code class="docutils literal notranslate"><span class="pre">free()</span></code> 함수는 각각 메모리 할당과 해제를 담당합니다. 이들은 시스템 콜이 아닌 라이브러리 함수로, 프로세스의 가상 주소 공간 내에서 힙 메모리를 관리하는 역할을 합니다.</p>
+<p>하지만 라이브러리 자체는 운영체제에게 메모리를 요청하고 반환하는 시스템 콜을 기반으로 동작합니다. 대표적인 예가 <code class="docutils literal notranslate"><span class="pre">brk</span></code> 시스템 콜인데요, 이는 프로그램의 ‘브레이크(break)’ 위치를 조정하여 힙의 크기를 늘리거나 줄이는 기능을 합니다.</p>
+<p>여기서 브레이크란 힙의 끝을 가리키는 포인터를 말합니다. <code class="docutils literal notranslate"><span class="pre">brk</span></code> 시스템 콜은 새로운 브레이크 주소값을 인자로 받아, 그에 맞춰 힙 영역을 조정하는 거죠. 비슷한 역할을 하는 <code class="docutils literal notranslate"><span class="pre">sbrk</span></code> 함수도 있는데, 이는 브레이크 위치를 얼마나 옮길지 그 증감량을 인자로 받습니다.</p>
+<p>그런데 중요한 점은 프로그래머가 직접 <code class="docutils literal notranslate"><span class="pre">brk</span></code>나 <code class="docutils literal notranslate"><span class="pre">sbrk</span></code>를 호출해서는 안 된다는 것입니다. 이들은 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>이나 <code class="docutils literal notranslate"><span class="pre">free()</span></code> 같은 메모리 할당 라이브러리 내부에서만 사용되어야 합니다. 직접 호출할 경우 예측 불가능한 문제가 발생할 수 있으므로, 반드시 표준 라이브러리 함수를 통해 메모리를 다뤄야 합니다.</p>
+<p>또 다른 방법으로는 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code> 함수를 사용하여 운영체제로부터 메모리를 받아올 수도 있습니다. 적절한 인자를 전달하면 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code>은 파일과 연결되지 않은 익명(anonymous) 메모리 영역을 할당해 주는데요, 이 공간은 힙과 유사하게 다룰 수 있습니다. 특히 대용량 메모리가 필요할 때 유용하게 활용할 수 있는 방법입니다.</p>
 </section>
 <section id="id5">
 <h2>기타 함수들<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>메모리 할당과 관련하여 몇 가지 추가 함수들이 있다.</p>
+<p>메모리 관리와 관련하여 알아두면 좋은 추가 함수들이 몇 가지 더 있습니다.</p>
 <ol class="arabic simple">
-<li><p>calloc()</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">calloc()</span></code></p>
 <ul class="simple">
-<li><p>calloc() 함수는 메모리를 할당하고 해당 영역을 0으로 초기화하여 반환한다.</p></li>
-<li><p>이 함수는 초기화하는 것을 잊어버리는 오류를 방지하기 위해 사용된다.</p></li>
-<li><p>예를 들어, 동적으로 할당된 배열을 초기화할 때 유용하다. 이 함수는 메모리를 할당하고 0으로 초기화된 영역을 반환한다.</p></li>
-<li><p>이는 “초기화되지 않은 읽기”에 관련된 문제를 방지하는 데 도움이 된다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">malloc()</span></code>과 비슷하지만, 할당된 메모리 블록을 모두 0으로 초기화한 뒤 반환합니다.</p></li>
+<li><p>초기화를 빠뜨리는 실수를 방지하고자 할 때 유용합니다.</p></li>
+<li><p>특히 동적 할당한 배열을 0으로 초기화할 때 많이 쓰이며, ‘초기화되지 않은 읽기’와 같은 미묘한 버그를 예방하는 데 도움이 됩니다.</p></li>
 </ul>
 </li>
-<li><p>realloc()</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">realloc()</span></code></p>
 <ul class="simple">
-<li><p>realloc() 함수는 이미 할당된 메모리 공간에 대해 추가적인 공간이 필요할 때 사용된다.</p></li>
-<li><p>예를 들어, 배열의 크기를 늘리거나 줄일 때 사용된다.</p></li>
-<li><p>이 함수는 더 큰 새로운 영역을 확보하고 이전 영역의 내용을 새 영역으로 복사한 후, 새 영역에 대한 포인터를 반환한다.</p></li>
-<li><p>이를 통해 메모리를 재사용하고 효율적으로 관리할 수 있다.</p></li>
+<li><p>이미 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>이나 <code class="docutils literal notranslate"><span class="pre">calloc()</span></code>으로 할당한 메모리 블록의 크기를 조정할 때 사용합니다.</p></li>
+<li><p>예컨대 동적 할당한 배열의 크기를 늘리거나 줄일 때 유용하죠.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">realloc()</span></code>을 호출하면 기존 블록보다 큰 새 메모리 블록을 할당하고, 이전 블록의 내용을 모두 복사해 옵니다. 그리고 새 블록의 주소를 반환하죠.</p></li>
+<li><p>이를 통해 메모리를 재사용하면서도 블록 크기를 유연하게 변경할 수 있습니다.</p></li>
 </ul>
 </li>
 </ol>
 </section>
 <section id="id6">
 <h2>요약<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>이 장에서는 C 프로그램에서 사용되는 두 가지 유형의 메모리 공간에 대해 설명했다.</p>
+<p>이번 장에서는 C 프로그램에서 사용되는 두 가지 메모리 영역, 스택(stack)과 힙(heap)에 대해 살펴보았습니다.</p>
 <ol class="arabic simple">
-<li><p>스택(Stack): 스택 메모리는 함수 호출 및 지역 변수와 같은 자동 메모리 할당에 사용된다. 프로그래머가 명시적으로 할당 및 반환할 필요 없이 컴파일러가 자동으로 관리한다. 예를 들어, 함수 내에서 변수를 선언할 때 스택에 메모리가 할당된다.</p></li>
-<li><p>힙(Heap): 힙 메모리는 프로그램이 실행되는 동안 동적으로 할당되며, 직접적인 관리가 필요하다. 모든 할당과 반환은 프로그래머가 명시적으로 처리해야 한다. 예를 들어, malloc() 함수를 사용하여 힙에서 메모리를 할당하고, free() 함수를 사용하여 할당된 메모리를 해제한다.</p></li>
+<li><p>스택: 함수 호출과 관련된 지역 변수, 매개변수, 리턴 주소 등을 저장하는 메모리 영역입니다. 컴파일러에 의해 자동으로 관리되므로 프로그래머가 직접 할당하거나 해제할 필요가 없죠. 함수 내에서 변수를 선언하면 해당 함수의 스택 프레임에 메모리가 할당됩니다.</p></li>
+<li><p>힙: 프로그램 실행 중에 동적으로 할당하고 해제하는 메모리 영역입니다. 모든 할당과 해제를 프로그래머가 직접 관리해야 하는 게 특징이에요. <code class="docutils literal notranslate"><span class="pre">malloc()</span></code> 함수로 힙에서 원하는 크기의 블록을 할당받고, 다 쓴 뒤에는 <code class="docutils literal notranslate"><span class="pre">free()</span></code>로 반환하는 식이죠.</p></li>
 </ol>
-<p>이 외에도 calloc() 함수는 메모리를 할당하고 0으로 초기화하여 반환하며, realloc() 함수는 이미 할당된 메모리 공간을 재할당하여 크기를 조정한다.</p>
-<p>프로그램에서는 주로 스택과 힙 메모리를 조합하여 필요한 데이터를 관리하며, 각 메모리 유형은 서로 다른 목적과 동작 방식을 가지고 있다.</p>
+<p>이 두 메모리 영역은 각기 다른 용도와 수명 주기를 가지고 있습니다. 따라서 프로그램에서는 보통 스택과 힙을 적절히 조합하여 필요한 데이터를 저장하고 관리하게 되죠.</p>
+<p>부가적으로 <code class="docutils literal notranslate"><span class="pre">calloc()</span></code>이나 <code class="docutils literal notranslate"><span class="pre">realloc()</span></code> 같은 함수를 활용하면 메모리 초기화나 크기 조정도 손쉽게 할 수 있습니다.</p>
+<p>이처럼 운영체제와 시스템 콜의 도움을 받아 구현된 다양한 메모리 관리 라이브러리 함수들을 잘 이용한다면, 보다 안전하고 효율적인 프로그램을 만들 수 있을 것입니다.</p>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="parkeunseongkr" role="doc-footnote">
