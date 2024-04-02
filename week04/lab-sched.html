@@ -553,7 +553,7 @@ document.write(`
 <li><p>각 스케줄링 정책의 특성과 성능 차이를 이해하고, 스케줄링 알고리즘의 동작 원리를 파악합니다.</p></li>
 </ol>
 <p>이 실습을 통해 다양한 스케줄링 알고리즘의 동작 원리를 이해하고, 주어진 작업 목록에 대한 응답 시간, 반환 시간, 대기 시간을 계산하는 방법을 배울 수 있습니다. 또한, 커맨드 라인 인터페이스를 사용하여 스케줄링 시뮬레이터를 다루는 방법도 익힐 수 있습니다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -604,14 +604,12 @@ document.write(`
     <span class="k">for</span> <span class="n">jobnum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">jobs</span><span class="p">):</span>
         <span class="n">runtime</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">maxlen</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">joblist</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">jobnum</span><span class="p">,</span> <span class="n">runtime</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  작업&quot;</span><span class="p">,</span> <span class="n">jobnum</span><span class="p">,</span> <span class="s2">&quot;( 길이 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; )&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  작업&quot;</span><span class="p">,</span> <span class="n">jobnum</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;( 길이 = </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span><span class="si">}</span><span class="s2"> )&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">jobnum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">runtime</span> <span class="ow">in</span> <span class="n">options</span><span class="o">.</span><span class="n">jlist</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">jobnum</span><span class="p">,</span> <span class="n">runtime</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">jlist</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)):</span>
         <span class="n">joblist</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">jobnum</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">runtime</span><span class="p">)])</span>
-        <span class="n">jobnum</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">joblist</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  작업&quot;</span><span class="p">,</span> <span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;( 길이 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; )&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  작업&quot;</span><span class="p">,</span> <span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;( 길이 = </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2"> )&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># 스케줄링 정책에 따른 시뮬레이션 결과 출력 부분입니다. `options.solve`가 참일 경우, 사용자가 지정한 스케줄링 정책에 따라 작업의 실행 순서와 각 작업에 대한 통계를 계산하고 출력합니다. 이 예에서는 FIFO(First In First Out), SJF(Shortest Job First), 그리고 RR(Round Robin) 세 가지 정책을 지원합니다.</span>
@@ -621,7 +619,7 @@ document.write(`
 <span class="c1">#   SJF(Shortest Job First): 실행 시간이 가장 짧은 작업부터 먼저 실행합니다.</span>
 <span class="c1">#   RR(Round Robin): 각 작업에 동일한 시간(quantum)만큼 실행 기회를 주고, 주어진 시간 동안 완료되지 않은 작업은 대기 목록의 끝으로 이동합니다.</span>
 
-<span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">solve</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">options</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;** 해결책 **</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s2">&quot;SJF&quot;</span><span class="p">:</span>
         <span class="n">joblist</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">joblist</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">job</span><span class="p">:</span> <span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># 실행 시간 기준으로 정렬</span>
@@ -634,7 +632,9 @@ document.write(`
         <span class="n">turnaround_times</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">response_times</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">joblist</span><span class="p">:</span>
-            <span class="n">response_time</span> <span class="o">=</span> <span class="n">thetime</span>  <span class="c1"># FIFO에서는 작업이 대기하는 시간이 응답 시간과 같다</span>
+            <span class="n">response_time</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">thetime</span>  <span class="c1"># FIFO에서는 작업이 대기하는 시간이 응답 시간과 같다</span>
+            <span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span>
                 <span class="s2">&quot;  [ 시간 </span><span class="si">%3d</span><span class="s2"> ] 작업 </span><span class="si">%d</span><span class="s2"> 실행 </span><span class="si">%.2f</span><span class="s2"> 초 ( 완료 시간 </span><span class="si">%.2f</span><span class="s2"> )&quot;</span>
                 <span class="o">%</span> <span class="p">(</span><span class="n">thetime</span><span class="p">,</span> <span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">thetime</span> <span class="o">+</span> <span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -656,7 +656,6 @@ document.write(`
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;평균 회전 시간: </span><span class="si">{</span><span class="n">average_turnaround_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> 초&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;평균 응답 시간: </span><span class="si">{</span><span class="n">average_response_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> 초&quot;</span><span class="p">)</span>
 
-
     <span class="k">elif</span> <span class="n">options</span><span class="o">.</span><span class="n">policy</span> <span class="o">==</span> <span class="s2">&quot;RR&quot;</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;실행 흔적:&quot;</span><span class="p">)</span>
         <span class="n">thetime</span> <span class="o">=</span> <span class="mi">0</span>
@@ -665,8 +664,12 @@ document.write(`
 
         <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
             <span class="n">job</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 대기열에서 첫 번째 작업을 가져옴</span>
-            <span class="n">runtime</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">options</span><span class="o">.</span><span class="n">quantum</span><span class="p">)</span>  <span class="c1"># 실행 시간은 작업 시간과 quantum 중 작은 값</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  [ 시간 </span><span class="si">{</span><span class="n">thetime</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> ] 작업 </span><span class="si">{</span><span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> 실행 </span><span class="si">{</span><span class="n">runtime</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> 초 ( 남은 시간 </span><span class="si">{</span><span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">runtime</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> )&quot;</span><span class="p">)</span>
+            <span class="n">runtime</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                <span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">options</span><span class="o">.</span><span class="n">quantum</span>
+            <span class="p">)</span>  <span class="c1"># 실행 시간은 작업 시간과 quantum 중 작은 값</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;  [ 시간 </span><span class="si">{</span><span class="n">thetime</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> ] 작업 </span><span class="si">{</span><span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> 실행 </span><span class="si">{</span><span class="n">runtime</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> 초 ( 남은 시간 </span><span class="si">{</span><span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">runtime</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> )&quot;</span>
+            <span class="p">)</span>
             <span class="n">thetime</span> <span class="o">+=</span> <span class="n">runtime</span>
             <span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">runtime</span>
             <span class="k">if</span> <span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># 작업이 완료되지 않았다면 대기열 끝으로</span>
@@ -683,7 +686,6 @@ document.write(`
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">turnaround</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">turnaround_times</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  작업 </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> 회전 시간: </span><span class="si">{</span><span class="n">turnaround</span><span class="si">}</span><span class="s2"> 초&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;평균 회전 시간: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">turnaround_times</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">turnaround_times</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> 초&quot;</span><span class="p">)</span>
-
 
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;오류: 정책&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">policy</span><span class="p">,</span> <span class="s2">&quot;는 사용할 수 없습니다.&quot;</span><span class="p">)</span>
