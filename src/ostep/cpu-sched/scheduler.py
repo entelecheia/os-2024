@@ -75,18 +75,60 @@ if options.solve:
     if options.policy == "FIFO":
         thetime = 0
         print("실행 흔적:")
+        waiting_times = []
+        turnaround_times = []
+        response_times = []
         for job in joblist:
+            response_time = thetime  # FIFO에서는 작업이 대기하는 시간이 응답 시간과 같다
             print(
                 "  [ 시간 %3d ] 작업 %d 실행 %.2f 초 ( 완료 시간 %.2f )"
                 % (thetime, job[0], job[1], thetime + job[1])
             )
+            waiting_time = thetime
             thetime += job[1]
-        # 통계 계산 및 출력...
+            turnaround_time = thetime
+            waiting_times.append(waiting_time)
+            turnaround_times.append(turnaround_time)
+            response_times.append(response_time)
+
+        # 통계 출력
+        print("\n통계:")
+        total_jobs = len(joblist)
+        average_waiting_time = sum(waiting_times) / total_jobs
+        average_turnaround_time = sum(turnaround_times) / total_jobs
+        average_response_time = sum(response_times) / total_jobs
+        print(f"평균 대기 시간: {average_waiting_time:.2f} 초")
+        print(f"평균 회전 시간: {average_turnaround_time:.2f} 초")
+        print(f"평균 응답 시간: {average_response_time:.2f} 초")
+
 
     elif options.policy == "RR":
         print("실행 흔적:")
-        # RR 스케줄링 로직...
-        # 통계 계산 및 출력...
+        thetime = 0
+        queue = joblist.copy()  # 작업 목록을 대기열로 복사
+        completions = []  # 완료된 작업 정보 저장
+
+        while queue:
+            job = queue.pop(0)  # 대기열에서 첫 번째 작업을 가져옴
+            runtime = min(job[1], options.quantum)  # 실행 시간은 작업 시간과 quantum 중 작은 값
+            print(f"  [ 시간 {thetime:3d} ] 작업 {job[0]} 실행 {runtime:.2f} 초 ( 남은 시간 {job[1]-runtime:.2f} )")
+            thetime += runtime
+            job[1] -= runtime
+            if job[1] > 0:  # 작업이 완료되지 않았다면 대기열 끝으로
+                queue.append(job)
+            else:
+                completions.append((job[0], thetime))  # 완료된 작업 저장
+
+        # 통계 계산 및 출력
+        print("\n통계:")
+        turnaround_times = [0] * len(joblist)
+        for job, complete_time in completions:
+            turnaround_times[job] = complete_time  # 회전 시간 계산
+
+        for i, turnaround in enumerate(turnaround_times):
+            print(f"  작업 {i} 회전 시간: {turnaround} 초")
+        print(f"평균 회전 시간: {sum(turnaround_times)/len(turnaround_times):.2f} 초")
+
 
     else:
         print("오류: 정책", options.policy, "는 사용할 수 없습니다.")
