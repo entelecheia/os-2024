@@ -475,9 +475,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가정</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">사례</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">동적 (하드웨어-기반) 재배치</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">하드웨어 지원: 요약</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">운영체제 이슈</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">예제: 베이스와 바운드를 이용한 주소 변환</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">하드웨어 지원: 요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">운영체제 이슈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -518,22 +519,46 @@ document.write(`
 <p>베이스와 바운드 레지스터는 CPU칩에 존재하는 하드웨어 구조다. 주소 변환에 도움을 주는 프로세서의 일부를 메모리 관리 장치(MMU : Memory Management Unit) 라고 부른다.</p>
 <p>바운드 레지스터는 두 가지 방식 중 하나로 정의될 수 있다. 한 가지 방법은 주소 공간의 크기를 저장하는 방식으로 하드웨어는 가상주소를 베이스 레지스터에 더하기 전에 먼저 바운드 레지스터와 비교한다. 두 번째 방식은 주소공간의 마지막 물리주소를 저장하는 방식으로 하드웨어는 먼저 베이스 레지스터를 더하고 그 결과가 바운드 안에 있는지를 검사한다.</p>
 <p>가상주소가 너무 크거나 음수일 경우 폴트를 일으키고 예외가 발생한다.</p>
-<p>##예제</p>
-<p>베이스와 ၵ운드를 이용한 주소 변환을 상세하게 이해하기 위해 하나의 예를 살펴보자.
-주소 공간의 크기가 4 KB(비현실적으로 작기는 하다)인 프로세스가 물리 주소 16 KB에
-탑재되어 있다고 가정하자. 주소 변환의 결과는 다음과 같다.
-가상 주소 물리 주소
-0 → 16 KB
-1 KB → 17 KB
-3000 → 19384
-4400 → 폴트 (ၵ운드 벗어남)
-예에서 볼 수있는 것처럼 물리 주소를 얻기 위해서는 간단히 가상 주소에 베이스
-주소를 더하기만 하면 된다 (가상 주소를 주소 공간 내에서의 오프셋을 나타낸다고 생각할
-수 있음). 가상 주소가 너무 크거나 음수일 경우에 폴트를 일으키고 예외가 발생하게
-된다.</p>
 </section>
 <section id="id6">
-<h2>하드웨어 지원: 요약<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h2>예제: 베이스와 바운드를 이용한 주소 변환<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>베이스와 바운드 레지스터를 활용한 주소 변환 과정을 더 자세히 이해하기 위해 간단한 예시를 살펴보겠습니다.</p>
+<p>가상 주소 공간의 크기가 4KB인 프로세스가 있다고 가정해 보죠. (현실에서는 매우 작은 크기이지만, 이해를 돕기 위한 예시입니다.) 이 프로세스는 물리 메모리의 16KB 지점에 적재되어 있습니다. 이 경우 주소 변환은 다음과 같이 이루어집니다.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>가상 주소</p></th>
+<th class="head"><p>물리 주소</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>16KB</p></td>
+</tr>
+<tr class="row-odd"><td><p>1KB</p></td>
+<td><p>17KB</p></td>
+</tr>
+<tr class="row-even"><td><p>3000</p></td>
+<td><p>19384</p></td>
+</tr>
+<tr class="row-odd"><td><p>4400</p></td>
+<td><p>폴트 (바운드 초과)</p></td>
+</tr>
+</tbody>
+</table>
+<p>이 예시에서 알 수 있듯이, 물리 주소를 얻으려면 가상 주소에 베이스 레지스터의 값(여기서는 16KB)을 더해주면 됩니다. 가상 주소는 프로세스의 주소 공간 내에서의 오프셋(offset)으로 생각할 수 있습니다.</p>
+<p>만약 가상 주소가 주소 공간의 크기(여기서는 4KB)를 초과하거나 음수라면, 즉 바운드 레지스터로 정의된 범위를 벗어나면 폴트(fault)가 발생하고 예외(exception)가 처리됩니다.</p>
+<p>여기서 사용된 주요 용어들을 정리해 보겠습니다.</p>
+<ul class="simple">
+<li><p>베이스 레지스터(base register): 프로세스의 물리 메모리 시작 주소를 가리키는 레지스터입니다. 주소 변환 시 가상 주소에 더해집니다.</p></li>
+<li><p>바운드 레지스터(bound register): 프로세스의 주소 공간 크기를 나타내는 레지스터입니다. 가상 주소가 이 범위 내에 있는지 확인하는 데 사용됩니다.</p></li>
+<li><p>가상 주소(virtual address): 프로세스가 사용하는 주소 공간 내의 주소입니다. 0부터 시작하여 프로세스 주소 공간의 크기까지의 값을 가집니다.</p></li>
+<li><p>물리 주소(physical address): 실제 물리 메모리 상의 주소입니다. 가상 주소를 베이스 레지스터의 값과 더함으로써 얻어집니다.</p></li>
+<li><p>폴트(fault): 가상 주소가 유효하지 않을 때(바운드를 초과하거나 음수일 때) 발생하는 예외 상황입니다. 운영체제는 폴트를 처리하여 프로세스를 안전하게 종료시키거나 다른 적절한 조치를 취합니다.</p></li>
+</ul>
+<p>이처럼 베이스와 바운드 레지스터를 사용한 주소 변환은 프로세스 별로 독립적인 주소 공간을 제공하면서, 동시에 잘못된 메모리 접근으로부터 시스템을 보호하는 간단하면서도 효과적인 메커니즘입니다.</p>
+</section>
+<section id="id7">
+<h2>하드웨어 지원: 요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>커널, 유저 모드가 구분되어야 한다.</p></li>
 <li><p>베이스, 바운드 레지스터를 제공해야 한다.</p></li>
@@ -542,8 +567,8 @@ document.write(`
 <li><p>오류가 발생했을 때 오류를 발생할 수 있어야 한다.</p></li>
 </ul>
 </section>
-<section id="id7">
-<h2>운영체제 이슈<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h2>운영체제 이슈<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>베이스와 바운드 방식의 가상 메모리 구현을 위해서 운영체제가 반드시 개입되어야 하는 중요한 세 개의 시점이 존재한다.</p>
 <ul class="simple">
 <li><p>첫째, 프로세스가 생성될 때 운영체제는 주소공간이 저장 될 메모리 공간을 찾아 조치를 취해야 한다. 운영체제는 물리 메모리를 슬롯의 배열로 보고 각 슬롯의 사용여부를 관리하다. 새로운 프로세스가 생성되면 운영체제는 새로운 주소 공간 할당에 필요한 영역을 찾기 위해 자료구조를 검색해야 한다. 검색을 통해 선택된 공간을 사용 중이라고 표시한다.</p></li>
@@ -553,8 +578,8 @@ document.write(`
 <li><p>넷째, 운영체제는 예외 핸들러 또는 호출될 함수를 제공해야 한다. 운영체제는 부팅할 때, 특권 명령어를 사용하여 이 핸들러를 설치한다. 프로세스가 바운드 밖의 메모리에 접근하려는 경우 CPU는 예외를 발생시킨다. 운영체제는 불법 행위를 한 프로세스를 종료한다.</p></li>
 </ul>
 </section>
-<section id="id8">
-<h2>요약<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<section id="id9">
+<h2>요약<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>주소 변환은 프로세스에게 투명하다</p></li>
 <li><p>OS는 프로세스로부터 메모리 접근을 통제 가능</p></li>
@@ -638,9 +663,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가정</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">사례</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">동적 (하드웨어-기반) 재배치</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">하드웨어 지원: 요약</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">운영체제 이슈</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">예제: 베이스와 바운드를 이용한 주소 변환</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">하드웨어 지원: 요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">운영체제 이슈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">요약</a></li>
 </ul>
   </nav></div>
 
