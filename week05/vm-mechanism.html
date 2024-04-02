@@ -492,20 +492,81 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id2">
 <h1>주소 변환의 원리<a class="footnote-reference brackets" href="#ji-nyu" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
-<p>메모리 가상화는 가상화를 제공하는 동시에 효율성과 제어 모두를 추구한다. 효율성을 높이려면 하드웨어 지원을 활용할 수 밖에 없다. 제어는 응용 프로그램이 자기 자신의 메모리 이외에는 다른 메모리에 접근하지 못한다는 것을 운영체제가 보장하는 것을 의미한다. 유연성 측면에서 프로그래머가 원하는대로 주소공간을 사용하고 프로그래밍 하기 쉬운 시스템을 만들기를 원한다.</p>
-<p>주소변환(Address translation)을 통해 하드웨어는 명령어 반입, 탑재, 저장 등의 가상주소를 정보가 실제 존재하는 물리주소로 변환한다. 프로그램의 모든 메모리 참조를 실제 메모리 위치로 재지정하기 위하여 하드웨어가 주소를 변환한다.
+<p>메모리 가상화는 가상화를 제공하는 동시에 효율성과 제어 모두를 추구한다.</p>
+<ul class="simple">
+<li><p>효율성: 레지스터, TLB등의 하드웨어 지원을 활용해 효율을 높인다.</p></li>
+<li><p>제어: 응용 프로그램이 자기 자신의 메모리 이외에는 다른 메모리에 접근하지 못한다.</p></li>
+<li><p>유연성: 프로그래머가 원하는대로 주소공간을 사용하고 프로그래밍 하기 쉬운 시스템을 만들기를 원한다.</p></li>
+</ul>
+<p>주소변환(Address translation)을 통해 하드웨어는 명령어 반입, 탑재, 저장 등의 가상주소를 정보가 실제 존재하는 물리주소로 변환한다. (하드웨어 기반 주소 변환)</p>
+<p>프로그램의 모든 메모리 참조를 실제 메모리 위치로 재지정하기 위하여 하드웨어가 주소를 변환한다.
 운영체제는 메모리의 빈 공간과 사용중인 공간을 항상 알고 있어야 하고, 메모리 사용을 제어하고 관리한다.</p>
 <section id="id3">
 <h2>가정<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>사용자 주소공간은 물리 메모리에 연속적으로 배치되어야 한다고 가정한다.</p></li>
-<li><p>주소공간의 크기가 너무 크지 않다고 가정한다.</p></li>
-<li><p>주소공간은 물리메모리 크기보다 작다. 우리는 또한 각 주소 공간의 크기가 같다고 가정한다.</p></li>
+<li><p>주소공간의 크기가 너무 크지 않다고 가정한다. (물리 메모리 크기보다 작다.)</p></li>
+<li><p>각 주소 공간의 크기가 같다고 가정한다.</p></li>
 </ul>
 </section>
 <section id="id4">
 <h2>사례<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>프로그램 관점에서 주소공간은 주소 0부터 시작하여 최대 16KB까지이다. 프로그램이 생성하는 모든 메모리 참조는 이 범위내에 있어야 한다. 메모리 가상화를 위해 운영체제는 프로세스를 물리메모리 주소 0이 아닌 다른 곳에 위치시키고 싶다. 어떻게 하면 프로세스 모르게 메모리를 다른 위치에 재배치 하느냐가 우리가 해결해야 할 문제이다.</p>
+<ol class="arabic simple">
+<li><p>가상 주소 공간 설정</p>
+<ul class="simple">
+<li><p>프로세스마다 독립적인 가상 주소 공간이 할당됩니다. 이 예제에서는 16KB의 가상 주소 공간이 할당되었습니다.</p></li>
+<li><p>가상 주소 공간은 프로세스가 메모리에 접근할 때 사용하는 논리적인 주소 공간입니다.</p></li>
+</ul>
+</li>
+<li><p>물리 메모리 공간 설정</p>
+<ul class="simple">
+<li><p>실제 물리 메모리는 32KB로 가정합니다.</p></li>
+<li><p>물리 메모리는 시스템의 실제 하드웨어 메모리를 의미합니다.</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">가상</span> <span class="n">주소</span> <span class="n">공간</span> <span class="n">크기</span><span class="p">:</span> <span class="mi">16</span><span class="n">KB</span>
+<span class="o">//</span> <span class="n">물리</span> <span class="n">메모리</span> <span class="n">크기</span><span class="p">:</span> <span class="mi">32</span><span class="n">KB</span>
+
+<span class="c1">#define VIRTUAL_MEM_SIZE (16 * 1024)</span>
+<span class="c1">#define PHYSICAL_MEM_SIZE (32 * 1024)</span>
+
+<span class="n">char</span> <span class="n">virtual_mem</span><span class="p">[</span><span class="n">VIRTUAL_MEM_SIZE</span><span class="p">];</span>
+<span class="n">char</span> <span class="n">physical_mem</span><span class="p">[</span><span class="n">PHYSICAL_MEM_SIZE</span><span class="p">];</span>
+
+<span class="o">//</span> <span class="n">가상</span> <span class="n">주소를</span> <span class="n">물리</span> <span class="n">주소로</span> <span class="n">변환하는</span> <span class="n">함수</span>
+<span class="n">char</span><span class="o">*</span> <span class="n">translate_address</span><span class="p">(</span><span class="n">char</span><span class="o">*</span> <span class="n">virtual_addr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">가상</span> <span class="n">주소</span> <span class="n">공간</span> <span class="n">내에</span> <span class="n">있는지</span> <span class="n">검사</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">virtual_addr</span> <span class="o">&gt;=</span> <span class="n">virtual_mem</span> <span class="o">&amp;&amp;</span> <span class="n">virtual_addr</span> <span class="o">&lt;</span> <span class="n">virtual_mem</span> <span class="o">+</span> <span class="n">VIRTUAL_MEM_SIZE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">가상</span> <span class="n">주소와</span> <span class="n">물리</span> <span class="n">주소</span> <span class="n">사이의</span> <span class="n">오프셋</span> <span class="n">계산</span>
+        <span class="nb">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">virtual_addr</span> <span class="o">-</span> <span class="n">virtual_mem</span><span class="p">;</span>
+        
+        <span class="o">//</span> <span class="n">오프셋을</span> <span class="n">이용하여</span> <span class="n">물리</span> <span class="n">주소</span> <span class="n">계산</span>
+        <span class="n">char</span><span class="o">*</span> <span class="n">physical_addr</span> <span class="o">=</span> <span class="n">physical_mem</span> <span class="o">+</span> <span class="n">offset</span><span class="p">;</span>
+        
+        <span class="k">return</span> <span class="n">physical_addr</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">가상</span> <span class="n">주소</span> <span class="n">공간</span> <span class="n">밖의</span> <span class="n">주소에</span> <span class="n">접근하려는</span> <span class="n">경우</span> <span class="n">예외</span> <span class="n">처리</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Invalid virtual address access!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">가상</span> <span class="n">주소</span> <span class="n">공간에</span> <span class="n">데이터</span> <span class="n">쓰기</span>
+    <span class="n">virtual_mem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span><span class="p">;</span>
+    <span class="n">virtual_mem</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;B&#39;</span><span class="p">;</span>
+    
+    <span class="o">//</span> <span class="n">가상</span> <span class="n">주소를</span> <span class="n">물리</span> <span class="n">주소로</span> <span class="n">변환하여</span> <span class="n">접근</span>
+    <span class="n">char</span><span class="o">*</span> <span class="n">physical_addr</span> <span class="o">=</span> <span class="n">translate_address</span><span class="p">(</span><span class="n">virtual_mem</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Physical data: </span><span class="si">%c%c</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">physical_addr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">physical_addr</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>translate_address 함수는 주어진 가상 주소가 가상 주소 공간 내에 있는지 검사한 후, 그렇다면 가상 주소와 물리 주소 사이의 오프셋을 계산하여 실제 물리 주소를 계산합니다.</p>
+<p>main 함수에서는 가상 주소 공간에 ‘A’와 ‘B’를 씁니다. 그리고 translate_address 함수를 호출하여 가상 주소를 물리 주소로 변환한 후, 해당 물리 주소에 저장된 데이터를 출력합니다.</p>
 </section>
 <section id="id5">
 <h2>동적 (하드웨어-기반) 재배치<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
