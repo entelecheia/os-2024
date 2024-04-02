@@ -1,5 +1,24 @@
 <!--next-version-placeholder-->
 
+## v0.5.0 (2024-04-02)
+
+### Feature
+
+* **workflows:** Add release branch to trigger lint and test workflows ([`e1cba28`](https://github.com/chu-aie/os-2024/commit/e1cba287ce2cb3044ee0beabdeea8c9bc55221d0))
+* **os2024:** Add lab.md for Week 05 ([`2ce4174`](https://github.com/chu-aie/os-2024/commit/2ce417422f4f202f127c119f0dc145c6c3141fe2))
+* **vm-intro:** Add Makefile, README.md, and va.c files for the OSTEP chapter "The Abstraction: Address Spaces" ([`e25e18e`](https://github.com/chu-aie/os-2024/commit/e25e18eda02e397b2f4640a41926e0c9592a9511))
+* **vm-mechanism:** Update content and formatting in vm-mechanism.md ([`ad9e26d`](https://github.com/chu-aie/os-2024/commit/ad9e26d1e5dcf87fc40af6f28db16fa72d782758))
+* **linux-cmd:** Add basic linux command lab documentation ([`8c80406`](https://github.com/chu-aie/os-2024/commit/8c80406966941eeb57c4867a8f7cf8fc28cd1bba))
+* **os2024:** Add new sections to week05 in _toc.yml ([`f864cfc`](https://github.com/chu-aie/os-2024/commit/f864cfcd1e1308a2c99d702f24ab40fd411ff457))
+* **os2024:** Add vm mechanism chapter ([`d740408`](https://github.com/chu-aie/os-2024/commit/d740408165bd5f0cd4108a267b716def16ac9dc8))
+* **vm-api:** Add memory management API documentation ([`945415f`](https://github.com/chu-aie/os-2024/commit/945415fefa88b6d47b3bd2085d1d2546b3b626b3))
+
+### Fix
+
+* **week05:** Added missing lab-linux-cmd file to toc.yml ([`9f5f177`](https://github.com/chu-aie/os-2024/commit/9f5f177b3b37c61f7c097adccaf09f463372d629))
+* **vm-intro:** Improve readability and clarity in the content ([`5489fbd`](https://github.com/chu-aie/os-2024/commit/5489fbd57ff45fe6960b1f8142aec602bf80e42c))
+* **os2024:** Fix formatting in lottery.md ([`2f9c5e7`](https://github.com/chu-aie/os-2024/commit/2f9c5e7d8560824471d27871f10626de8efa5228))
+
 ## v0.4.0 (2024-03-26)
 
 ### Feature
