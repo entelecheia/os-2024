@@ -35,6 +35,7 @@ parts:
           - file: week05/vm-intro
           - file: week05/vm-api
           - file: week05/vm-mechanism
+          - file: week05/lab-linux-cmd
   - caption: References
     chapters:
       - file: references/ostep/index
