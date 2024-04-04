@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lab: Shell &#8212; 운영체제 2024</title>
+    <title>페이징: 개요 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/lab';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week06/vm-paging';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tip: 리눅스 프로세스 관리 명령어" href="tip.html" />
-    <link rel="prev" title="리눅스 셸 (Linux Shells)" href="shells.html" />
+    <link rel="next" title="OSTEP (Korean Version)" href="../references/ostep/index.html" />
+    <link rel="prev" title="빈 공간 관리" href="vm-freespace.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -210,13 +210,13 @@
 <li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 2 - 가상화의 세계</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpu-intro.html">프로세스의 개념</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpu-api.html">프로세스 API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="shells.html">리눅스 셸 (Linux Shells)</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab: Shell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - 가상화의 세계</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-intro.html">프로세스의 개념</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-api.html">프로세스 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/shells.html">리눅스 셸 (Linux Shells)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/lab.html">Lab: Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링 1</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -240,10 +240,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../week05/tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6 - 메모리 가상화 6</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week06/vm-segmentation.html">세그멘테이션</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week06/vm-freespace.html">빈 공간 관리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week06/vm-paging.html">페이징: 개요</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 6 - 메모리 가상화 6</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vm-segmentation.html">세그멘테이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-freespace.html">빈 공간 관리</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">페이징: 개요</a></li>
 </ul>
 </li>
 </ul>
@@ -338,7 +338,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week02/lab.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week06/vm-paging.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +355,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/lab.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek06/vm-paging.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,7 +385,7 @@
       
       
       
-      <li><a href="../_sources/week02/lab.md" target="_blank"
+      <li><a href="../_sources/week06/vm-paging.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -469,7 +469,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab: Shell</h1>
+    <h1>페이징: 개요</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -479,23 +479,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">프로그램 명세</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chesh">기본 셸: <code class="docutils literal notranslate"><span class="pre">chesh</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">명령어 실행</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">내장 명령어</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">프로그램 오류 처리</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">구현 팁</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">예제 코드</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">실행 방법</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1단계: 코드 저장하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2단계: 코드 컴파일하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3단계: 셸 실행하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4단계: 명령어 실행하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5단계: <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 종료하기</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">간단한 예제 및 개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">페이지 테이블은 어디에 저장되는가</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">페이지 테이블에는 실제 무엇이 있는가</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">페이징: 너무 느림</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">메모리 트레이스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -507,105 +496,25 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-shell">
-<h1>Lab: Shell<a class="headerlink" href="#lab-shell" title="Link to this heading">#</a></h1>
-<p>이 실습에서는 기본적인 Unix 셸을 구현할 것입니다. 이 셸은 명령어를 입력받아 해당 명령어를 실행하는 아주 간단한 구조로 되어 있습니다. 이 과정을 통해 리눅스 프로그래밍 환경에 익숙해지고, 프로세스 생성, 관리, 소멸에 대해 배우며, 셸이 필요로 하는 기본적인 기능들을 경험하게 됩니다.</p>
-<section id="id1">
-<h2>프로그램 명세<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<section id="chesh">
-<h3>기본 셸: <code class="docutils literal notranslate"><span class="pre">chesh</span></code><a class="headerlink" href="#chesh" title="Link to this heading">#</a></h3>
-<p>당신의 기본 셸, <code class="docutils literal notranslate"><span class="pre">chesh</span></code>(Cheju Shell의 약자)는 사용자로부터 명령어를 입력받아 실행하고 결과를 출력하는 반복 구조를 가집니다. 사용자가 <code class="docutils literal notranslate"><span class="pre">exit</span></code>를 입력하기 전까지 이 과정은 계속됩니다.</p>
-<ul class="simple">
-<li><p>인터랙티브 모드: 사용자가 직접 명령어를 입력할 수 있습니다.</p></li>
-<li><p>배치 모드: 명령어가 담긴 파일을 읽어 해당 명령어들을 순차적으로 실행합니다.</p></li>
-</ul>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>페이징: 개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
-<h3>명령어 실행<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>셸은 각 명령어를 별도의 프로세스로 실행해야 합니다(<code class="docutils literal notranslate"><span class="pre">fork()</span></code>, <code class="docutils literal notranslate"><span class="pre">exec()</span></code>, <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 사용).</p></li>
-<li><p>초기 셸 경로는 <code class="docutils literal notranslate"><span class="pre">/bin</span></code> 디렉토리를 포함해야 합니다.</p></li>
-</ul>
+<h2>간단한 예제 및 개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 </section>
 <section id="id3">
-<h3>내장 명령어<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">exit</span></code>: 셸을 종료합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code>: 현재 디렉토리를 변경합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: 실행 파일을 검색할 경로를 설정합니다.</p></li>
-</ul>
+<h2>페이지 테이블은 어디에 저장되는가<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 </section>
 <section id="id4">
-<h3>프로그램 오류 처리<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>오류 발생 시 “An error has occurred\n” 메시지를 출력하고, 적절하게 처리합니다.</p></li>
-</ul>
-</section>
+<h2>페이지 테이블에는 실제 무엇이 있는가<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 </section>
 <section id="id5">
-<h2>구현 팁<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>기본 기능 구현</strong>: 한 번에 하나의 명령어 실행에서 시작합니다.</p></li>
-<li><p><strong>내장 명령어 추가</strong>: <code class="docutils literal notranslate"><span class="pre">exit</span></code>, <code class="docutils literal notranslate"><span class="pre">cd</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code> 같은 내장 명령어를 구현합니다.</p></li>
-<li><p><strong>입력 처리</strong>: 공백, 탭 등 다양한 공백 문자를 적절히 처리할 수 있도록 합니다.</p></li>
-<li><p><strong>오류 검사</strong>: 모든 시스템 호출의 반환값을 검사하여 오류를 적절히 처리합니다.</p></li>
-<li><p><strong>테스트</strong>: 다양한 입력과 상황을 가정하여 셸이 올바르게 동작하는지 테스트합니다.</p></li>
-</ol>
+<h2>페이징: 너무 느림<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 </section>
 <section id="id6">
-<h2>예제 코드<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>예제 코드는 <a class="reference external" href="https://github.com/chu-aie/os-2024/blob/main/src/ostep/processes-shell/chesh.c"><code class="docutils literal notranslate"><span class="pre">src/ostep/processes-shell/chesh.c</span></code></a>에 있습니다. 이 코드는 <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 셸의 기본적인 동작을 보여주며, 추가적인 기능을 구현하여 확장할 수 있습니다.</p>
+<h2>메모리 트레이스<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 </section>
 <section id="id7">
-<h2>실행 방법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<p>리눅스 환경에서 위의 기본적인 셸 프로그램 <code class="docutils literal notranslate"><span class="pre">chesh</span></code>를 컴파일하고 실행하는 방법을 단계별로 설명하겠습니다. 이 튜토리얼은 GCC(GNU Compiler Collection)가 설치된 리눅스 시스템을 기준으로 합니다.</p>
-<section id="id8">
-<h3>1단계: 코드 저장하기<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
-<p>위에서 제공된 C 코드를 <code class="docutils literal notranslate"><span class="pre">chesh.c</span></code>라는 이름의 파일로 저장합니다. 이 작업은 텍스트 에디터를 사용하여 수행할 수 있습니다. 예를 들어, <code class="docutils literal notranslate"><span class="pre">nano</span></code>, <code class="docutils literal notranslate"><span class="pre">vim</span></code>, <code class="docutils literal notranslate"><span class="pre">gedit</span></code> 등의 에디터를 사용할 수 있습니다.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>chesh.c
-</pre></div>
-</div>
-<p>위 명령어는 <code class="docutils literal notranslate"><span class="pre">nano</span></code> 텍스트 에디터를 사용하여 새 파일을 생성하거나 기존 파일을 편집할 때 사용합니다. 위 코드를 복사하여 에디터에 붙여넣고 저장 후 종료합니다(<code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>를 누르고 <code class="docutils literal notranslate"><span class="pre">Enter</span></code>를 눌러 저장).</p>
-</section>
-<section id="id9">
-<h3>2단계: 코드 컴파일하기<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">gcc</span></code>를 사용하여 <code class="docutils literal notranslate"><span class="pre">chesh.c</span></code> 소스 파일을 컴파일하고 실행 파일을 생성합니다. 다음 명령어를 사용합니다:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>chesh.c<span class="w"> </span>-o<span class="w"> </span>chesh
-</pre></div>
-</div>
-<p>이 명령어는 <code class="docutils literal notranslate"><span class="pre">chesh.c</span></code> 파일을 컴파일하여 <code class="docutils literal notranslate"><span class="pre">chesh</span></code>라는 실행 파일을 생성합니다. <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">chesh</span></code> 옵션은 출력 파일의 이름을 지정합니다.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>만약 <code class="docutils literal notranslate"><span class="pre">gcc</span></code> 컴파일러가 설치되어 있지 않다면, 대부분의 리눅스 배포판에서 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">build-essential</span></code> (Debian, Ubuntu 등) 또는 해당 배포판의 패키지 관리자를 사용하여 설치할 수 있습니다.</p>
-</div>
-</section>
-<section id="id10">
-<h3>3단계: 셸 실행하기<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
-<p>컴파일이 성공적으로 완료되면, 생성된 <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 실행 파일을 다음과 같이 실행할 수 있습니다:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./chesh
-</pre></div>
-</div>
-<p>이 명령어는 현재 디렉토리에 있는 <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 실행 파일을 실행합니다. 성공적으로 실행되면, 사용자에게 명령어 입력을 위한 프롬프트 <code class="docutils literal notranslate"><span class="pre">chesh&gt;</span> </code>가 표시됩니다.</p>
-</section>
-<section id="id11">
-<h3>4단계: 명령어 실행하기<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">chesh</span></code> 셸이 실행되고 나면, 다양한 리눅스 명령어를 입력하여 실행할 수 있습니다. 예를 들어, 현재 디렉토리의 파일 목록을 보려면 <code class="docutils literal notranslate"><span class="pre">ls</span></code> 명령어를 사용합니다:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chesh&gt;<span class="w"> </span>ls
-</pre></div>
-</div>
-<p>또는 현재 디렉토리를 변경하려면 <code class="docutils literal notranslate"><span class="pre">cd</span></code> 명령어와 함께 원하는 경로를 입력합니다:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chesh&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/directory
-</pre></div>
-</div>
-</section>
-<section id="id12">
-<h3>5단계: <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 종료하기<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">chesh</span></code> 셸을 종료하려면, 내장 명령어인 <code class="docutils literal notranslate"><span class="pre">exit</span></code>을 입력합니다:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chesh&gt;<span class="w"> </span><span class="nb">exit</span>
-</pre></div>
-</div>
-<p>이 튜토리얼을 따라 하면, 기본적인 셸 프로그램 <code class="docutils literal notranslate"><span class="pre">chesh</span></code>를 컴파일하고 실행하여 간단한 명령어를 수행할 수 있습니다. 추가 기능이나 개선이 필요한 경우, 소스 코드를 수정하여 더 많은 기능을 구현할 수 있습니다.</p>
-</section>
+<h2>요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -622,7 +531,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week02"
+            path: "./week06"
         },
         predefinedOutput: true
     }
@@ -640,20 +549,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="shells.html"
+       href="vm-freespace.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">리눅스 셸 (Linux Shells)</p>
+        <p class="prev-next-title">빈 공간 관리</p>
       </div>
     </a>
     <a class="right-next"
-       href="tip.html"
+       href="../references/ostep/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tip: 리눅스 프로세스 관리 명령어</p>
+        <p class="prev-next-title">OSTEP (Korean Version)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -673,23 +582,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">프로그램 명세</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chesh">기본 셸: <code class="docutils literal notranslate"><span class="pre">chesh</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">명령어 실행</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">내장 명령어</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">프로그램 오류 처리</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">구현 팁</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">예제 코드</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">실행 방법</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1단계: 코드 저장하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2단계: 코드 컴파일하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3단계: 셸 실행하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4단계: 명령어 실행하기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5단계: <code class="docutils literal notranslate"><span class="pre">chesh</span></code> 종료하기</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">간단한 예제 및 개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">페이지 테이블은 어디에 저장되는가</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">페이지 테이블에는 실제 무엇이 있는가</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">페이징: 너무 느림</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">메모리 트레이스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
 </ul>
   </nav></div>
 

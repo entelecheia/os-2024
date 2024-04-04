@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 5 - 메모리 가상화 &#8212; 운영체제 2024</title>
+    <title>Week 5 - 메모리 가상화 1 &#8212; 운영체제 2024</title>
   
   
   
@@ -232,12 +232,18 @@
 <li class="toctree-l2"><a class="reference internal" href="../week04/lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 5 - 메모리 가상화</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 5 - 메모리 가상화 1</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="vm-intro.html">주소 공간의 개념</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm-api.html">메모리 관리 API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm-mechanism.html">주소 변환의 원리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lab.html">Lab: 메모리 구조 탐색하기</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6 - 메모리 가상화 6</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-segmentation.html">세그멘테이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-freespace.html">빈 공간 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-paging.html">페이징: 개요</a></li>
 </ul>
 </li>
 </ul>
@@ -461,7 +467,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 5 - 메모리 가상화</h1>
+    <h1>Week 5 - 메모리 가상화 1</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -475,8 +481,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-5">
-<h1>Week 5 - 메모리 가상화<a class="headerlink" href="#week-5" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-5-1">
+<h1>Week 5 - 메모리 가상화 1<a class="headerlink" href="#week-5-1" title="Link to this heading">#</a></h1>
 <p><strong>학생:</strong> 가상화에 대한 이야기는 이제 끝인가요?</p>
 <blockquote>
 <div><p><strong>교수:</strong> 아니다! 아직 끝나지 않았네. 우리는 CPU 가상화에 대한 이야기를 마쳤을 뿐, 옷장 속에 숨어있는 진정한 괴물, 메모리 가상화는 아직 남아있지. 메모리 가상화는 CPU 가상화보다 훨씬 복잡하고, 하드웨어와 운영체제의 상호작용에 대한 더 깊은 이해를 필요로 하지.</p>
