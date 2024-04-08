@@ -1,6 +1,8 @@
 # 빈 공간 관리
 
-## 가정
+## 가정[^ParkEunSeongKR]
+
+[^ParkEunSeongKR]: [박은성](https://github.com/ParkEunSeongKR)
 
 이 논의의 대부분은 사용자 수준 메모리 할당 라이브러리에 존재하는 메모리 할당기의 발전 역사에 초점을 맞출 것이다.
 
