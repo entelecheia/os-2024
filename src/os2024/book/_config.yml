@@ -51,7 +51,7 @@ html:
       data-sponsor-link="https://chat.entelecheia.app/workspace/os2024"
       src="https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js">
     </script>
-  announcement: ""
+  announcement: "이번주 수업은 11일(목) 2시에 합니다."
 
 sphinx:
   config:
