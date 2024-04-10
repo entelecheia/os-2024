@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>페이징: 개요 &#8212; 운영체제 2024</title>
+    <title>Week 7 - 메모리 가상화 3 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week06/vm-paging';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week07/index';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="OSTEP (Korean Version)" href="../references/ostep/index.html" />
-    <link rel="prev" title="빈 공간 관리" href="vm-freespace.html" />
+    <link rel="next" title="페이징: 개요" href="vm-paging.html" />
+    <link rel="prev" title="Lab: 주소 변환 시뮬레이션" href="../week06/lab.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -241,15 +241,19 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - 메모리 가상화 1</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week05/vm-intro.html">주소 공간의 개념</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week05/vm-api.html">메모리 관리 API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week05/vm-mechanism.html">주소 변환의 원리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week05/lab.html">Lab: 메모리 구조 탐색하기</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week05/tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 6 - 메모리 가상화 2</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="vm-segmentation.html">세그멘테이션 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="vm-freespace.html">빈 공간 관리</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">페이징: 개요</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6 - 메모리 가상화 2</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-mechanism.html">주소 변환의 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-segmentation.html">세그멘테이션 </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-freespace.html">빈 공간 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/lab.html">Lab: 주소 변환 시뮬레이션</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 7 - 메모리 가상화 3</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="vm-paging.html">페이징: 개요</a></li>
 </ul>
 </li>
 </ul>
@@ -344,7 +348,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week06/vm-paging.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week07/index.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -361,7 +365,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek06/vm-paging.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek07/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -391,7 +395,7 @@
       
       
       
-      <li><a href="../_sources/week06/vm-paging.md" target="_blank"
+      <li><a href="../_sources/week07/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -462,9 +466,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -475,24 +477,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>페이징: 개요</h1>
+    <h1>Week 7 - 메모리 가상화 3</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">간단한 예제 및 개요</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">페이지 테이블은 어디에 저장되는가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">페이지 테이블에는 실제 무엇이 있는가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">페이징: 너무 느림</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">메모리 트레이스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -502,26 +491,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>페이징: 개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<section id="id2">
-<h2>간단한 예제 및 개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-</section>
-<section id="id3">
-<h2>페이지 테이블은 어디에 저장되는가<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-</section>
-<section id="id4">
-<h2>페이지 테이블에는 실제 무엇이 있는가<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-</section>
-<section id="id5">
-<h2>페이징: 너무 느림<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-</section>
-<section id="id6">
-<h2>메모리 트레이스<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-</section>
-<section id="id7">
-<h2>요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-7-3">
+<h1>Week 7 - 메모리 가상화 3<a class="headerlink" href="#week-7-3" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vm-paging.html">페이징: 개요</a></li>
+</ul>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -537,7 +513,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week06"
+            path: "./week07"
         },
         predefinedOutput: true
     }
@@ -555,20 +531,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="vm-freespace.html"
+       href="../week06/lab.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">빈 공간 관리</p>
+        <p class="prev-next-title">Lab: 주소 변환 시뮬레이션</p>
       </div>
     </a>
     <a class="right-next"
-       href="../references/ostep/index.html"
+       href="vm-paging.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">OSTEP (Korean Version)</p>
+        <p class="prev-next-title">페이징: 개요</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -579,25 +555,7 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">간단한 예제 및 개요</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">페이지 테이블은 어디에 저장되는가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">페이지 테이블에는 실제 무엇이 있는가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">페이징: 너무 느림</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">메모리 트레이스</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
