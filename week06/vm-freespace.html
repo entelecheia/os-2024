@@ -494,17 +494,17 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-fit">다음 적합(Next Fit)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">다른 접근법</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">다른 접근법</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segregated-list">개별 리스트(segregated list)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slab-allocator">슬랩 할당기(slab allocator)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">버디 할당</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">버디 할당</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-buddy-allocator">이진 버디 할당기(binary buddy allocator)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">기타 아이디어</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">기타 아이디어</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -556,8 +556,8 @@ document.write(`
 <p>항상 리스트의 처음부터 탐색하는 대신 다음적합 알고리즘은 마지막으로 찾았던 원소를 가리키는 추가의 포인터를 유지한다. 아이디어는 빈 공간 탐색을 리스트 전체에 더 균등하게 분산시키는 것이다. 리스트의 첫 부분에만 단편이 집중적으로 발생하는 것을 방지한다. 전제 탐색을 하지 않기 때문에 최초 적합의 성능과 비슷하다.</p>
 </section>
 </section>
-<section id="id7">
-<h2>다른 접근법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h2>다른 접근법<a class="footnote-reference brackets" href="#heeseon16" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>이외에도 메모리 할당을 향상시키기 위한 기술과 알고리즘이 있는데, 그 중 몇 가지를 여기서 소개하려고 한다. 단순히 최적 적합 할당에 그치지 않고, 그 이상에 대해서 생각해 보는 것이 목적이다.</p>
 <section id="segregated-list">
 <h3>개별 리스트(segregated list)<a class="headerlink" href="#segregated-list" title="Link to this heading">#</a></h3>
@@ -575,8 +575,8 @@ document.write(`
 <p>기존에 할당된 캐시 공간이 부족하면 상위 메모리 할당기에게 추가 슬랩을 요청한다. 슬랩 내 객체들에 대한 참조 횟수가 0이 되면 상위 메모리 할당기는 이 슬랩을 회수할 수 있다.</p>
 <p>슬랩 할당 방식은 빈 객체들을 사전에 초기화된 상태로 유지한다는 점에서 개별 리스트 방식보다 우수하다. 반납된 객체들을 초기화된 상태로 리스트에 유지하여 슬랩 할당기는 객체당 잦은 초기화와 반납의 작업을 피할 수 있어서 오버헤드를 현저히 감소시킨다.</p>
 </section>
-<section id="id8">
-<h3>버디 할당<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3>버디 할당<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>빈 공간의 합병을 간단히 하는 방법을 버디 할당이라고 한다.</p>
 <section id="binary-buddy-allocator">
 <h4>이진 버디 할당기(binary buddy allocator)<a class="headerlink" href="#binary-buddy-allocator" title="Link to this heading">#</a></h4>
@@ -587,14 +587,14 @@ document.write(`
 <p>버디 할당이 잘 작동하는 이유는 특정 블럭의 버디를 결정하기 쉽기 때문이다. 특정 블럭과 그 블럭의 버디의 주소는 오직 한 비트만 다르다. 어느 위치의 비트가 다른가는 버디 트리의 수준에 따라 달라진다.</p>
 </section>
 </section>
-<section id="id9">
-<h3>기타 아이디어<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h3>기타 아이디어<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <p>위에 설명한 접근 방식들의 한 가지 문제점은 확장성이다. 빈 공간들의 개수가 늘어남에 따라 리스트 검색이 매우 느려 질 수 있다.</p>
 <p>균형 이진 트리 (balanced binary tree), 스플레이 트리 (splay tree), 부분 정렬 트리 (partially ordered tree)와 같은 복잡한 자료구조를 할당기에 적용하여 성능을 높일 수 있다. 단순함과 성능은 반비례한다는 것이다.</p>
 </section>
 </section>
-<section id="id10">
-<h2>요약<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h2>요약<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p>이 장에서는 가장 기본적인 형태의 메모리 할당기에 대해 논의해봤다. 이러한 할당기는 많은 소프트웨어 및 운영 체제에서 사용되고 있다. 할당기를 구축할 때는 다양한 선택사항이 있으며, 워크로드를 이해하고 그에 맞게 조정하는 것이 중요하다. 다양한 워크로드에 대해 빠르고 효율적이며 확장 가능한 할당기를 만드는 것은 현대 컴퓨터 시스템의 숙제라 할 수 있다.</p>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
@@ -605,6 +605,10 @@ document.write(`
 <aside class="footnote brackets" id="ohgpwls" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://github.com/ohgpwls">오혜진</a></p>
+</aside>
+<aside class="footnote brackets" id="heeseon16" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">3</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://github.com/heeseon16">장희선</a></p>
 </aside>
 </aside>
 </section>
@@ -683,17 +687,17 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-fit">다음 적합(Next Fit)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">다른 접근법</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">다른 접근법</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segregated-list">개별 리스트(segregated list)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slab-allocator">슬랩 할당기(slab allocator)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">버디 할당</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">버디 할당</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-buddy-allocator">이진 버디 할당기(binary buddy allocator)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">기타 아이디어</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">기타 아이디어</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">요약</a></li>
 </ul>
   </nav></div>
 
