@@ -491,7 +491,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가정</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">사례</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">동적 (하드웨어-기반) 재배치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">동적 (하드웨어 기반) 재배치</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">예제: 베이스와 바운드를 이용한 주소 변환 </a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">하드웨어 지원: 요약</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">운영체제 이슈</a></li>
@@ -586,17 +586,46 @@ document.write(`
 <p>main 함수에서는 가상 주소 공간에 ‘A’와 ‘B’를 씁니다. 그리고 translate_address 함수를 호출하여 가상 주소를 물리 주소로 변환한 후, 해당 물리 주소에 저장된 데이터를 출력합니다.</p>
 </section>
 <section id="id5">
-<h2>동적 (하드웨어-기반) 재배치<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>각 CPU 마다, 2 개의 하드웨어 레지스터가 필요하다. 하나는 베이스 레지스터라고 불리고 다른 하나는 바운드 레지스터 혹은 한계 레지스터라고 불린다. 이 베이스와 바운드쌍은 우리가 원하는 위치에 주소 공간을 배치할 수 있게한다. 배치와 동시에 프로세스가 오직 자신의 주소 공간에만 접근한다는 것을 보장한다.</p>
-<p>이 설정에서 각 프로그램은 주소 0에 탑재되는 것처럼 작성되고 컴파일된다. 프로그램 시작시, 운영체제가 프로그램이 탑재될 물리 메모리 위치를 결정하고 베이스 레지스터를 그 주소로 지정한다.
-프로세스에 의해 생성되는 모든 주소가 다음과 같은 방법으로 프로세서에 의해 변환된다.</p>
-<p>Physical Address = Virtual Address + bios</p>
-<p>프로세스가 생성하는 메모리 참조는 가상주소다. 하드웨어는 베이스 레지스터의 내용을 이 주소에 더해서 물리주소를 생성한다.</p>
-<p>가상주소에서 물리주소로의 변환이 주소변환이라고 하는 기술이다. 하드웨어는 프로세스가 참조하는 가상주소를 받아들여 데이터가 실제로 존재하는 물리주소로 변환한다. 이 주소의 재배치는 실행시에 일어나고, 프로세스가 실행을 시작한 이후에도 주소공간을 이동할 수 있기 때문에, 동적 재배치(dynamic relocation)이라고도 불린다.</p>
-<p>바운드 레지스터는 보호를 지원하기 위해 사용된다. 프로세서는 메모리 참조가 합법적인가를 확인하기 위해 가상주소가 바운드 안에 있는지 확인한다. 바운드의 요점은 프로세스가 생성한 모든 주소가 합법적이고 프로세스의 범위에 있다는 것을 확인하는 것이다.</p>
-<p>베이스와 바운드 레지스터는 CPU칩에 존재하는 하드웨어 구조다. 주소 변환에 도움을 주는 프로세서의 일부를 메모리 관리 장치(MMU : Memory Management Unit) 라고 부른다.</p>
-<p>바운드 레지스터는 두 가지 방식 중 하나로 정의될 수 있다. 한 가지 방법은 주소 공간의 크기를 저장하는 방식으로 하드웨어는 가상주소를 베이스 레지스터에 더하기 전에 먼저 바운드 레지스터와 비교한다. 두 번째 방식은 주소공간의 마지막 물리주소를 저장하는 방식으로 하드웨어는 먼저 베이스 레지스터를 더하고 그 결과가 바운드 안에 있는지를 검사한다.</p>
-<p>가상주소가 너무 크거나 음수일 경우 폴트를 일으키고 예외가 발생한다.</p>
+<h2>동적 (하드웨어 기반) 재배치<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<p>동적 재배치는 프로세스의 주소 공간을 실행 시간에 동적으로 물리 메모리 상의 다른 위치로 이동할 수 있게 해주는 기술이다. 이를 위해 CPU에는 베이스 레지스터와 바운드 레지스터라는 두 개의 하드웨어 레지스터가 존재한다.</p>
+<ol class="arabic simple">
+<li><p><strong>베이스 레지스터 (Base Register)</strong></p>
+<ul class="simple">
+<li><p>프로세스의 주소 공간이 실제 물리 메모리 상에 위치한 시작 주소를 저장한다.</p></li>
+<li><p>주소 변환 시, 프로세스가 생성한 가상 주소에 베이스 레지스터 값을 더하여 실제 물리 주소를 계산한다.</p></li>
+<li><p>이를 통해 프로세스는 가상 주소 0에서 시작하는 것처럼 보이지만, 실제로는 다른 물리 메모리 영역에 위치할 수 있다.</p></li>
+</ul>
+</li>
+<li><p><strong>바운드 레지스터 (Bound Register)</strong></p>
+<ul class="simple">
+<li><p>프로세스의 주소 공간 크기 또는 마지막 주소를 저장한다.</p></li>
+<li><p>하드웨어는 가상 주소가 바운드 범위 내에 있는지 확인하여 메모리 보호를 수행한다.</p></li>
+<li><p>가상 주소가 바운드를 벗어나면 하드웨어는 예외를 발생시켜 운영체제에 알린다.</p></li>
+</ul>
+</li>
+<li><p><strong>주소 변환 과정</strong></p>
+<ul class="simple">
+<li><p>프로세스가 생성한 가상 주소에 베이스 레지스터 값을 더하여 물리 주소를 계산한다.</p></li>
+<li><p>계산된 물리 주소가 바운드 레지스터 값의 범위 내에 있는지 확인한다.</p></li>
+<li><p>유효한 범위 내라면 메모리 접근을 허용하고, 그렇지 않다면 예외를 발생시킨다.</p></li>
+</ul>
+</li>
+<li><p><strong>동적 재배치 과정</strong></p>
+<ul class="simple">
+<li><p>운영체제는 필요에 따라 프로세스의 주소 공간을 다른 물리 메모리 영역으로 이동할 수 있다.</p></li>
+<li><p>이동 시, 운영체제는 프로세스 제어 블록(PCB)에 저장된 베이스와 바운드 레지스터 값을 갱신한다.</p></li>
+<li><p>프로세스가 다시 실행되면 갱신된 값이 CPU에 로드되어 새로운 물리 메모리 영역에 접근할 수 있다.</p></li>
+</ul>
+</li>
+<li><p><strong>메모리 관리 장치 (MMU, Memory Management Unit)</strong></p>
+<ul class="simple">
+<li><p>CPU 내부의 메모리 관리 장치가 주소 변환과 메모리 보호 기능을 담당한다.</p></li>
+<li><p>MMU는 하드웨어적으로 베이스와 바운드 레지스터를 활용하여 가상 주소를 물리 주소로 변환하고 범위 검사를 수행한다.</p></li>
+</ul>
+</li>
+</ol>
+<p>동적 재배치 기술을 통해 운영체제는 메모리 관리를 유연하게 할 수 있으며, 메모리 단편화 문제를 완화할 수 있다. 또한, 프로세스 간 메모리 보호도 보장되어 시스템의 안전성이 향상된다.</p>
 </section>
 <section id="id7">
 <h2>예제: 베이스와 바운드를 이용한 주소 변환 <a class="footnote-reference brackets" href="#kodahee0" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
@@ -648,13 +677,35 @@ document.write(`
 <section id="id9">
 <h2>운영체제 이슈<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <p>베이스와 바운드 방식의 가상 메모리 구현을 위해서 운영체제가 반드시 개입되어야 하는 중요한 세 개의 시점이 존재한다.</p>
+<ol class="arabic simple">
+<li><p><strong>프로세스 생성 시</strong></p>
 <ul class="simple">
-<li><p>첫째, 프로세스가 생성될 때 운영체제는 주소공간이 저장 될 메모리 공간을 찾아 조치를 취해야 한다. 운영체제는 물리 메모리를 슬롯의 배열로 보고 각 슬롯의 사용여부를 관리하다. 새로운 프로세스가 생성되면 운영체제는 새로운 주소 공간 할당에 필요한 영역을 찾기 위해 자료구조를 검색해야 한다. 검색을 통해 선택된 공간을 사용 중이라고 표시한다.</p></li>
-<li><p>둘째, 프로세스가 종료할 때, 정상적으로 종료되거나 잘못된 행동을 하여 강제적으로 죽게될 때 프로세스가 사용하던 메모리를 회수하여 다른 프로세스나 운영체제가 사용할 수 있게 한다. 프로세스가 종료하면, 운영체제는 종료한 프로세스의 메모리를 다시 빈 공간 리스트에 넣고 연관된 자료구조를 모두 정리한다.</p></li>
-<li><p>셋째, 운영체제는 문맥교환이 일어날 때에도 몇 가지 추가 조치를 취해야 한다. CPU마다 한 쌍의 베이스-바운드 레지스터만 존재한고, 각 프로그램은 다른 물리주소에 탑재되어야 하기 때문에 실행중인 프로그램마다 다른 값을 가진다. 운영체제는 프로세스 전환시 베이스와 바운드 쌍을 저장하고 복원해야 한다.</p></li>
-<li><p>운영체제가 실행 중인 프로세스를 중단시키기로 결정하면 운영체제는 메모리에 존재하는 프로세스 별 자료구조 안에 베이스와 바운드 레지스터의 값을 저장해야 한다. 이 자료구조는 프로세스 구조체 또는 프로세스 제어블록(PCB)이라고 불린다. 운영체제는 실행 중인 프로세스를 다시 시작할 때 또는 처음 실행시킬 때, 이 프로세스에 맞는 값으로 CPU의 베이스와 바운드 값을 설정해야 한다. 프로세스가 중단되면, 운영체제가 메모리의 현 위치에서 다른 위치로 주소 공간을 비교적 쉽게 옮길 수 있다. 프로세스의 주소 공간을 이동시키려면 운영체제는 먼저 프로세스의 실행을 중지시킨다. 그런 후 운영체제는 현재 위치에서 새 위치로 주소공간을 복사한다. 마지막으로, 운영체제는 프로세스 구조체에 저장된 베이스 레지스터를 갱신하여 새 위치를 가리키도록 한다. 프로세스가 실행을 재개하면 새로운 베이스 레지스터가 복원되고 다시 실행을 시작하고, 명령어와 데이터가 전혀 다른 새 위치에 존재한다는 사실을 인식하지 못한다.</p></li>
-<li><p>넷째, 운영체제는 예외 핸들러 또는 호출될 함수를 제공해야 한다. 운영체제는 부팅할 때, 특권 명령어를 사용하여 이 핸들러를 설치한다. 프로세스가 바운드 밖의 메모리에 접근하려는 경우 CPU는 예외를 발생시킨다. 운영체제는 불법 행위를 한 프로세스를 종료한다.</p></li>
+<li><p>운영체제는 새로운 프로세스의 주소 공간을 할당할 물리 메모리 영역을 찾아야 한다.</p></li>
+<li><p>운영체제는 물리 메모리를 슬롯의 배열로 관리하며, 각 슬롯의 사용 여부를 추적한다.</p></li>
+<li><p>운영체제는 빈 슬롯을 검색하여 해당 영역을 프로세스의 주소 공간으로 할당하고, 사용 중으로 표시한다.</p></li>
 </ul>
+</li>
+<li><p><strong>프로세스 종료 시</strong></p>
+<ul class="simple">
+<li><p>운영체제는 종료된 프로세스가 사용하던 메모리 영역을 회수하여 다른 프로세스나 운영체제가 사용할 수 있게 한다.</p></li>
+<li><p>프로세스가 정상적으로 종료되거나 강제 종료될 때, 운영체제는 해당 프로세스의 메모리 영역을 빈 공간 리스트에 반환하고 관련 자료구조를 정리한다.</p></li>
+</ul>
+</li>
+<li><p><strong>문맥 교환 시</strong></p>
+<ul class="simple">
+<li><p>CPU에는 한 쌍의 베이스-바운드 레지스터만 존재하므로, 실행 중인 프로세스마다 다른 값을 가져야 한다.</p></li>
+<li><p>운영체제는 프로세스 전환 시 현재 프로세스의 베이스와 바운드 레지스터 값을 저장하고, 새로운 프로세스의 값으로 설정해야 한다.</p></li>
+<li><p>이 값들은 프로세스 제어 블록(PCB)에 저장되며, 운영체제는 PCB에서 읽어와 CPU 레지스터에 로드한다.</p></li>
+</ul>
+</li>
+<li><p><strong>메모리 보호 위반 시</strong></p>
+<ul class="simple">
+<li><p>운영체제는 부팅 시 특권 명령어를 사용하여 예외 핸들러를 설치한다.</p></li>
+<li><p>프로세스가 할당된 주소 공간 밖의 메모리에 접근하려 할 경우, CPU는 예외를 발생시한다.</p></li>
+<li><p>운영체제는 이 예외를 처리하여 해당 프로세스를 종료하거나 적절한 조치를 취다.</p></li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="id10">
 <h2>요약<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
@@ -744,7 +795,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가정</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">사례</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">동적 (하드웨어-기반) 재배치</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">동적 (하드웨어 기반) 재배치</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">예제: 베이스와 바운드를 이용한 주소 변환 </a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">하드웨어 지원: 요약</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">운영체제 이슈</a></li>
