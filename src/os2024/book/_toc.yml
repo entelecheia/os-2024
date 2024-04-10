@@ -34,11 +34,11 @@ parts:
         sections:
           - file: week05/vm-intro
           - file: week05/vm-api
-          - file: week05/vm-mechanism
           - file: week05/lab
           - file: week05/tip-linux-cmd
       - file: week06/index
         sections:
+          - file: week06/vm-mechanism
           - file: week06/vm-segmentation
           - file: week06/vm-freespace
           - file: week06/vm-paging
