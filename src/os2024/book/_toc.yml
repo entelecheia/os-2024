@@ -48,9 +48,9 @@ parts:
   - caption: Projects
     chapters:
       - file: projects/index
-      - file: projects/setup
         sections:
           - file: projects/template/index
+      - file: projects/setup
   - caption: References
     chapters:
       - file: references/ostep/index
