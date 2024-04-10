@@ -45,6 +45,12 @@ parts:
       - file: week07/index
         sections:
           - file: week07/vm-paging
+  - caption: Projects
+    chapters:
+      - file: projects/index
+      - file: projects/setup
+        sections:
+          - file: projects/template/index
   - caption: References
     chapters:
       - file: references/ostep/index
