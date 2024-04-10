@@ -494,8 +494,17 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-fit">다음 적합(Next Fit)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">다른 접근법</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">다른 접근법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segregated-list">개별 리스트(segregated list)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slab-allocator">슬랩 할당기(slab allocator)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">버디 할당</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-buddy-allocator">이진 버디 할당기(binary buddy allocator)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">기타 아이디어</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -520,18 +529,18 @@ document.write(`
 </section>
 <section id="id5">
 <h2>저수준 기법들<a class="footnote-reference brackets" href="#ohgpwls" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>세부 정책에 대해 자세히 설명하기 전에 먼저 대부분의 할당기에서 사용된느 일반적인 기법에 대해 논의한다.
-첫번째, 분할(splitting)과 병합(coalescing)의 기호에 대해서 알아본다.
-두번째, 할당된 영역의 크기를 빠르고 상대적으로 쉽게 파악할 수 있는 방법을 설명한다.
-마지막, 빈 공간과 사용 중인 공간을 추적하기 위해 빈 공간 내에 간단한 리스트를 구현하는 방법에 대해 설명한다.</p>
+<p>세부 정책에 대해 자세히 설명하기 전에 먼저 대부분의 할당기에서 사용된느 일반적인 기법에 대해 논의한다.</p>
+<p>첫번째, 분할(splitting)과 병합(coalescing)의 기호에 대해서 알아본다.</p>
+<p>두번째, 할당된 영역의 크기를 빠르고 상대적으로 쉽게 파악할 수 있는 방법을 설명한다.</p>
+<p>마지막, 빈 공간과 사용 중인 공간을 추적하기 위해 빈 공간 내에 간단한 리스트를 구현하는 방법에 대해 설명한다.</p>
 </section>
 <section id="id6">
 <h2>기본 전략<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p>이상적인 할당기는 속도가 빠르고 단편화를 최소를 해야 한다. 할당과 해제 요청 스트림은 무작위, 결국 프로그래머에 의해 결정되기 때문에, 어느 특정 전략도 잘 맞지 않는 입력을 만나면 성늘이 매우 좋지 않을 수 있다. 최선의 정책을 설명하는것이 아니라 몇 가지 기본 정책에 대해 이야기하고 각각의 장점과 단점을 논의한다.</p>
 <section id="best-fit">
 <h3>최적 적합(Best Fit)<a class="headerlink" href="#best-fit" title="Link to this heading">#</a></h3>
-<p>빈 공간 리스트를 검색하여 요청한 크기와 같거나 더 큰 빈 메모리 청크를 찾는다. 그 후, 후보자 그룹 중에서 가장 작은 크기의 청크를 반환한다. 이 청크는 최적 청크라고 불린다. 최소 적합이라고도 불릴 수 있다. 빈 공간 리스트를 한 번만 순회하면 반환할 정확한 블럭을 찾을 수 있다.
-최적 적합의 배경은 사용자가 요청한 크기에 가까운 블럭을 반환함으로써 최적 적합은 공간의 낭비를 줄이려고 노력한다. 그러나 비용이 수반된다. 정교하지 않은 구현은 해당 빈 블럭을 찾기 위해 항상 전체를 검색해야하기 때문에 엄청난 성능을 초래한다.</p>
+<p>빈 공간 리스트를 검색하여 요청한 크기와 같거나 더 큰 빈 메모리 청크를 찾는다. 그 후, 후보자 그룹 중에서 가장 작은 크기의 청크를 반환한다. 이 청크는 최적 청크라고 불린다. 최소 적합이라고도 불릴 수 있다. 빈 공간 리스트를 한 번만 순회하면 반환할 정확한 블럭을 찾을 수 있다.</p>
+<p>최적 적합의 배경은 사용자가 요청한 크기에 가까운 블럭을 반환함으로써 최적 적합은 공간의 낭비를 줄이려고 노력한다. 그러나 비용이 수반된다. 정교하지 않은 구현은 해당 빈 블럭을 찾기 위해 항상 전체를 검색해야하기 때문에 엄청난 성능을 초래한다.</p>
 </section>
 <section id="worst-fit">
 <h3>최악 적합(Worst Fit)<a class="headerlink" href="#worst-fit" title="Link to this heading">#</a></h3>
@@ -539,8 +548,8 @@ document.write(`
 </section>
 <section id="first-fit">
 <h3>최초 적합(First Fit)<a class="headerlink" href="#first-fit" title="Link to this heading">#</a></h3>
-<p>간단하게 요청보다 큰 첫 번째 블럭을 찾아서 요청만큼 반환한다. 남은 빈 공간은 후속 요청을 위해 계속 유지된다. 속도가 빠르다는 것이 장점이다. 원하는 블럭을 찾기 위해 항상 빈 공간 리스트 전체를 탐색할 필요가 없다. 그러나 리스트의 시작에 크키가 작은 객체가 많이 생길 수 있다. 따라서 할당기가 빈 공간 리스트의 순서를 관리하는 방법이 쟁점이다.
-주소-기반 정렬(address-based ordering) 사용하면 리스트를 주소로 정렬하여 병합을 쉽게 하고, 단편화로 감소시킨다.</p>
+<p>간단하게 요청보다 큰 첫 번째 블럭을 찾아서 요청만큼 반환한다. 남은 빈 공간은 후속 요청을 위해 계속 유지된다. 속도가 빠르다는 것이 장점이다. 원하는 블럭을 찾기 위해 항상 빈 공간 리스트 전체를 탐색할 필요가 없다. 그러나 리스트의 시작에 크키가 작은 객체가 많이 생길 수 있다. 따라서 할당기가 빈 공간 리스트의 순서를 관리하는 방법이 쟁점이다.</p>
+<p>주소-기반 정렬(address-based ordering) 사용하면 리스트를 주소로 정렬하여 병합을 쉽게 하고, 단편화로 감소시킨다.</p>
 </section>
 <section id="next-fit">
 <h3>다음 적합(Next Fit)<a class="headerlink" href="#next-fit" title="Link to this heading">#</a></h3>
@@ -549,9 +558,44 @@ document.write(`
 </section>
 <section id="id7">
 <h2>다른 접근법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>이외에도 메모리 할당을 향상시키기 위한 기술과 알고리즘이 있는데, 그 중 몇 가지를 여기서 소개하려고 한다. 단순히 최적 적합 할당에 그치지 않고, 그 이상에 대해서 생각해 보는 것이 목적이다.</p>
+<section id="segregated-list">
+<h3>개별 리스트(segregated list)<a class="headerlink" href="#segregated-list" title="Link to this heading">#</a></h3>
+<p>특정 응용 프로그램이 자주 요청하는 크기의 객체를 관리하기 위해 별도의 리스트를 유지하는 것을 개별 리스트라고 한다.</p>
+<p>이 방법의 장점은 특정 크기의 요청을 위한 메모리 청크를 유지하기 때문에 단편화 가능성을 상당히 줄일 수 있다. 요청된 크기의 청크만이 존재하기 때문에 복잡한 리스트 검색이 필요하지 않으므로 할다오가 해제 요청을 신속히 할 수 있다.</p>
+<blockquote>
+<div><p><strong>문제점</strong>
+지정된 크기의 메모리 풀과 일반적인 풀에 얼마만큼의 메모리를 할당해야 하는가?</p>
+</div></blockquote>
+</section>
+<section id="slab-allocator">
+<h3>슬랩 할당기(slab allocator)<a class="headerlink" href="#slab-allocator" title="Link to this heading">#</a></h3>
+<p>위의 문제는 특수 목적 할당이기인 슬랩 할당기가 더 나은 방법으로 해결했다. 커널이 부팅될 때 커널 객체를 위한 여러 객체 캐시(object cache)를 할당한다.</p>
+<p>여기서 커널 객체란 락, 파일 시스템 아이노드 등 자주 요청되는 자료 구조들을 일컫는다. 객체 캐시는 지정된 크기의 객체들로 구성된 빈 공간 리스트이고, 메모리 할당 및 해제 요청을 빠르게 하기 위해 사용된다.</p>
+<p>기존에 할당된 캐시 공간이 부족하면 상위 메모리 할당기에게 추가 슬랩을 요청한다. 슬랩 내 객체들에 대한 참조 횟수가 0이 되면 상위 메모리 할당기는 이 슬랩을 회수할 수 있다.</p>
+<p>슬랩 할당 방식은 빈 객체들을 사전에 초기화된 상태로 유지한다는 점에서 개별 리스트 방식보다 우수하다. 반납된 객체들을 초기화된 상태로 리스트에 유지하여 슬랩 할당기는 객체당 잦은 초기화와 반납의 작업을 피할 수 있어서 오버헤드를 현저히 감소시킨다.</p>
 </section>
 <section id="id8">
-<h2>요약<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h3>버디 할당<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>빈 공간의 합병을 간단히 하는 방법을 버디 할당이라고 한다.</p>
+<section id="binary-buddy-allocator">
+<h4>이진 버디 할당기(binary buddy allocator)<a class="headerlink" href="#binary-buddy-allocator" title="Link to this heading">#</a></h4>
+<img src="https://github.com/chu-aie/os-2024/assets/103018072/a474b2ce-6d9d-479c-89e0-8376fa29b3f2" width="530" height="300"/>
+<p>빈 메모리는 처음에 개념적으로 2ⁿ인 하나의 큰 공간으로 생각하면, 메모리 요청이 발생해 그 요청을 충족시키기에 충분한 공간이 발견될 때까지(그리고 더 분할하면 공간이 너무 작아져서 요청을 만족시킬 수 없을 때까지) 빈 공간을 2개로 계속 분할한다.</p>
+<p>위 사진의 예에서 7KB 크기의 요청이 들어와서 가장 왼쪽 8KB 블럭이 될 때까지 분할하고 사용자에게 반환된다. 이 방식은 2의 거듭제곱 크기의 블럭만 할당할 수 있기 때문에 내부 단편화가 발생할 수 있다.</p>
+<p>블럭 해제 시 해제를 한 블럭 옆에 있는 “버디” 블럭을 확인한다. 만약 비어있다면 두 블럭을 병합하고, 이 재귀 합병 과정은 트리를 따라 전체 빈 공간이 복원되거나 버디가 사용 중이라는 것이 밝혀질 때까지 계속 올라간다.</p>
+<p>버디 할당이 잘 작동하는 이유는 특정 블럭의 버디를 결정하기 쉽기 때문이다. 특정 블럭과 그 블럭의 버디의 주소는 오직 한 비트만 다르다. 어느 위치의 비트가 다른가는 버디 트리의 수준에 따라 달라진다.</p>
+</section>
+</section>
+<section id="id9">
+<h3>기타 아이디어<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>위에 설명한 접근 방식들의 한 가지 문제점은 확장성이다. 빈 공간들의 개수가 늘어남에 따라 리스트 검색이 매우 느려 질 수 있다.</p>
+<p>균형 이진 트리 (balanced binary tree), 스플레이 트리 (splay tree), 부분 정렬 트리 (partially ordered tree)와 같은 복잡한 자료구조를 할당기에 적용하여 성능을 높일 수 있다. 단순함과 성능은 반비례한다는 것이다.</p>
+</section>
+</section>
+<section id="id10">
+<h2>요약<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>이 장에서는 가장 기본적인 형태의 메모리 할당기에 대해 논의해봤다. 이러한 할당기는 많은 소프트웨어 및 운영 체제에서 사용되고 있다. 할당기를 구축할 때는 다양한 선택사항이 있으며, 워크로드를 이해하고 그에 맞게 조정하는 것이 중요하다. 다양한 워크로드에 대해 빠르고 효율적이며 확장 가능한 할당기를 만드는 것은 현대 컴퓨터 시스템의 숙제라 할 수 있다.</p>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="parkeunseongkr" role="doc-footnote">
@@ -639,8 +683,17 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-fit">다음 적합(Next Fit)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">다른 접근법</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">다른 접근법</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segregated-list">개별 리스트(segregated list)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slab-allocator">슬랩 할당기(slab allocator)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">버디 할당</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-buddy-allocator">이진 버디 할당기(binary buddy allocator)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">기타 아이디어</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
   </nav></div>
 
