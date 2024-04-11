@@ -10,7 +10,7 @@
 
 ```bash
 mkdir -p ~/workspace/projects \
-    && git clone https://github.com/[your_github_id]/os-2024.git \
+    && git clone https://github.com/[your_github_id]/os-2024.git ~/workspace/projects/os-2024 \
     && cd ~/workspace/projects/os-2024
 ```
 
@@ -133,7 +133,7 @@ cp -r src/os2024/book/projects/template src/os2024/book/projects/your_github_id
 ```bash
 git add src/os2024/book/projects/your_github_id \
     && git commit -m "feat: initialize project directory of your_github_id" \
-    && git push origin your_github_id/[project_patch_#]
+    && git push --set-upstream origin your_github_id/[project_patch_#]
 ```
 
 이 명령은 다음과 같은 작업을 수행합니다:

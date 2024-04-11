@@ -525,7 +525,7 @@ document.write(`
 <p>먼저, <a class="reference external" href="https://github.com/chu-aie/os-2024.git">os-2024</a> 저장소를 자신의 GitHub 계정으로 복제(Fork)합니다. 복제한 저장소의 URL은 <code class="docutils literal notranslate"><span class="pre">https://github.com/[your_github_id]/os-2024.git</span></code>와 같은 형식이 될 것입니다.</p>
 <p>그 다음, 복제한 저장소를 로컬 컴퓨터로 클론합니다. 아래 명령을 터미널에서 실행하세요:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/workspace/projects<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/<span class="o">[</span>your_github_id<span class="o">]</span>/os-2024.git<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/<span class="o">[</span>your_github_id<span class="o">]</span>/os-2024.git<span class="w"> </span>~/workspace/projects/os-2024<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/workspace/projects/os-2024
 </pre></div>
 </div>
@@ -634,7 +634,7 @@ document.write(`
 <p>프로젝트 폴더를 생성하고 설명을 작성했으면, 변경 사항을 커밋합니다:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>src/os2024/book/projects/your_github_id<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: initialize project directory of your_github_id&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>your_github_id/<span class="o">[</span>project_patch_#<span class="o">]</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>your_github_id/<span class="o">[</span>project_patch_#<span class="o">]</span>
 </pre></div>
 </div>
 <p>이 명령은 다음과 같은 작업을 수행합니다:</p>
