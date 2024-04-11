@@ -22,10 +22,35 @@ parts:
       - file: week03/index
         sections:
           - file: week03/cpu-scheduling
-          - file: week03/mlfq
-          - file: week03/lottery
           - file: week03/lab
           - file: week03/wsl-setup
+      - file: week04/index
+        sections:
+          - file: week04/mlfq
+          - file: week04/lottery
+          - file: week04/lab-sched
+          - file: week04/lab-lottery
+      - file: week05/index
+        sections:
+          - file: week05/vm-intro
+          - file: week05/vm-api
+          - file: week05/lab
+          - file: week05/tip-linux-cmd
+      - file: week06/index
+        sections:
+          - file: week06/vm-mechanism
+          - file: week06/vm-segmentation
+          - file: week06/vm-freespace
+          - file: week06/lab
+      - file: week07/index
+        sections:
+          - file: week07/vm-paging
+  - caption: Projects
+    chapters:
+      - file: projects/index
+        sections:
+          - file: projects/template/index
+      - file: projects/setup
   - caption: References
     chapters:
       - file: references/ostep/index

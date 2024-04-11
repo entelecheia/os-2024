@@ -8,8 +8,8 @@ on:
     branches:
       - release*
     paths:
-      - 'src/**'
-      - 'pyproject.toml'
+      - "src/**"
+      - "pyproject.toml"
 
 permissions:
   contents: write
