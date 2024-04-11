@@ -51,7 +51,7 @@ html:
       data-sponsor-link="https://chat.entelecheia.app/workspace/os2024"
       src="https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js">
     </script>
-  announcement: "이번주 수업은 11일(목) 2시에 합니다."
+  announcement: "16일(수)전까지 <a href='https://os2024.halla.ai/projects/setup.html'>프로젝트 환경설정</a>을 완료해주세요."
 
 sphinx:
   config:
