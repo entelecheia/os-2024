@@ -4,18 +4,18 @@
 
 ## 리포 복제
 
-먼저, [os-2024](https://github.com/chu-aie/os-2024.git) 저장소를 자신의 GitHub 계정으로 복제(Fork)합니다. 복제한 저장소의 URL은 `https://github.com/[your_github_id]/os-2024.git`와 같은 형식이 될 것입니다.
+먼저, [os-2024](https://github.com/chu-aie/os-2024.git) 저장소를 자신의 GitHub 계정으로 복제(Fork)합니다. 복제한 저장소의 URL은 `https://github.com/your_github_id/os-2024.git`와 같은 형식이 될 것입니다.
 
 그 다음, 복제한 저장소를 로컬 컴퓨터로 클론합니다. 아래 명령을 터미널에서 실행하세요:
 
 ```bash
 mkdir -p ~/workspace/projects \
-    && git clone https://github.com/[your_github_id]/os-2024.git ~/workspace/projects/os-2024 \
+    && git clone https://github.com/your_github_id/os-2024.git ~/workspace/projects/os-2024 \
     && cd ~/workspace/projects/os-2024
 ```
 
 - `mkdir -p ~/workspace/projects`: `~/workspace/projects` 디렉토리를 생성합니다. 이 디렉토리는 프로젝트를 저장할 공간입니다.
-- `git clone https://github.com/[your_github_id]/os-2024.git`: 복제한 저장소를 로컬로 클론합니다. `[your_github_id]` 부분은 본인의 GitHub 아이디로 대체해주세요.
+- `git clone https://github.com/your_github_id/os-2024.git`: 복제한 저장소를 로컬로 클론합니다. `your_github_id` 부분은 본인의 GitHub 아이디로 대체해주세요.
 - `cd ~/workspace/projects/os-2024`: 클론한 저장소의 디렉토리로 이동합니다.
 
 ## 가상 환경 생성 및 활성화
@@ -87,10 +87,10 @@ git remote add upstream https://github.com/chu-aie/os-2024.git \
 - `git remote add upstream https://github.com/chu-aie/os-2024.git`: 원본 리포를 `upstream`이라는 이름으로 추가합니다.
 - `git fetch upstream`: `upstream` 리포의 최신 변경사항을 가져옵니다.
 
-그런 다음, 프로젝트를 위한 새 브랜치를 생성합니다. 브랜치 이름은 `your_github_id/[project_patch_#]` 형식으로 짓습니다. 예를 들어, GitHub 아이디가 `johndoe`이고 첫 번째 프로젝트라면 브랜치 이름은 `johndoe/project_patch_1`이 됩니다. 아래 명령을 실행하세요:
+그런 다음, 프로젝트를 위한 새 브랜치를 생성합니다. 브랜치 이름은 `your_github_id/project_patch_#` 형식으로 짓습니다. 예를 들어, GitHub 아이디가 `johndoe`이고 첫 번째 프로젝트라면 브랜치 이름은 `johndoe/project_patch_1`이 됩니다. 아래 명령을 실행하세요:
 
 ```bash
-git checkout -b your_github_id/[project_patch_#] main
+git checkout -b your_github_id/project_patch_1 main
 ```
 
 이 명령은 `main` 브랜치로부터 새 브랜치를 생성하고, 그 브랜치로 전환합니다.
@@ -133,18 +133,18 @@ cp -r src/os2024/book/projects/template src/os2024/book/projects/your_github_id
 ```bash
 git add src/os2024/book/projects/your_github_id \
     && git commit -m "feat: initialize project directory of your_github_id" \
-    && git push --set-upstream origin your_github_id/[project_patch_#]
+    && git push --set-upstream origin your_github_id/project_patch_1
 ```
 
 이 명령은 다음과 같은 작업을 수행합니다:
 
 1. `src/os2024/book/projects/your_github_id` 폴더를 Git 스테이징 영역에 추가합니다.
 2. "feat: initialize project directory of your_github_id"라는 메시지로 커밋을 생성합니다.
-3. 커밋을 `your_github_id/[project_patch_#]` 브랜치에 푸시합니다.
+3. 커밋을 `your_github_id/project_patch_#` 브랜치에 푸시합니다.
 
 ## PR 생성
 
-GitHub에서 본인의 리포지토리로 이동하여 `your_github_id/[project_patch_#]` 브랜치를 선택합니다. 그런 다음, "Pull Request" 버튼을 클릭하여 새 PR을 생성합니다.
+GitHub에서 본인의 리포지토리로 이동하여 `your_github_id/project_patch_#` 브랜치를 선택합니다. 그런 다음, "Pull Request" 버튼을 클릭하여 새 PR을 생성합니다.
 
 PR 제목은 "feat: Initialize project directory of your_github_id"로 설정하세요.
 
@@ -157,7 +157,7 @@ PR 제목은 "feat: Initialize project directory of your_github_id"로 설정하
 ```bash
 git add . \
     && git commit -m "feat: update project progress by your_github_id" \
-    && git push origin your_github_id/[project_patch_#] \
+    && git push origin your_github_id/project_patch_1 \
     && gh pr create --title "feat: Update project progress by your_github_id" --body "This PR updates project progress by your_github_id"
 ```
 
@@ -165,7 +165,7 @@ git add . \
 
 1. 모든 변경 사항을 Git 스테이징 영역에 추가합니다.
 2. "feat: update project progress by your_github_id"라는 메시지로 커밋을 생성합니다.
-3. 커밋을 `your_github_id/[project_patch_#]` 브랜치에 푸시합니다.
+3. 커밋을 `your_github_id/project_patch_#` 브랜치에 푸시합니다.
 4. "feat: Update project progress by your_github_id"라는 제목과 "This PR updates project progress by your_github_id"라는 내용으로 새 PR을 생성합니다.
 
 ## 프로젝트 완료
@@ -175,7 +175,7 @@ git add . \
 ```bash
 git add . \
     && git commit -m "feat: complete project by your_github_id" \
-    && git push origin your_github_id/[project_patch_#] \
+    && git push origin your_github_id/project_patch_1 \
     && gh pr create --title "feat: Complete project by your_github_id" --body "This PR completes project by your_github_id"
 ```
 

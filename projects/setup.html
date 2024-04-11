@@ -522,16 +522,16 @@ document.write(`
 <p>이 가이드는 운영체제 수업을 위한 프로젝트 환경을 설정하는 방법을 자세히 설명합니다. 프로젝트를 시작하기 전에 아래 단계를 따라 환경을 설정해주세요.</p>
 <section id="id2">
 <h2>리포 복제<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>먼저, <a class="reference external" href="https://github.com/chu-aie/os-2024.git">os-2024</a> 저장소를 자신의 GitHub 계정으로 복제(Fork)합니다. 복제한 저장소의 URL은 <code class="docutils literal notranslate"><span class="pre">https://github.com/[your_github_id]/os-2024.git</span></code>와 같은 형식이 될 것입니다.</p>
+<p>먼저, <a class="reference external" href="https://github.com/chu-aie/os-2024.git">os-2024</a> 저장소를 자신의 GitHub 계정으로 복제(Fork)합니다. 복제한 저장소의 URL은 <code class="docutils literal notranslate"><span class="pre">https://github.com/your_github_id/os-2024.git</span></code>와 같은 형식이 될 것입니다.</p>
 <p>그 다음, 복제한 저장소를 로컬 컴퓨터로 클론합니다. 아래 명령을 터미널에서 실행하세요:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/workspace/projects<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/<span class="o">[</span>your_github_id<span class="o">]</span>/os-2024.git<span class="w"> </span>~/workspace/projects/os-2024<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your_github_id/os-2024.git<span class="w"> </span>~/workspace/projects/os-2024<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/workspace/projects/os-2024
 </pre></div>
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">~/workspace/projects</span></code>: <code class="docutils literal notranslate"><span class="pre">~/workspace/projects</span></code> 디렉토리를 생성합니다. 이 디렉토리는 프로젝트를 저장할 공간입니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/[your_github_id]/os-2024.git</span></code>: 복제한 저장소를 로컬로 클론합니다. <code class="docutils literal notranslate"><span class="pre">[your_github_id]</span></code> 부분은 본인의 GitHub 아이디로 대체해주세요.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/your_github_id/os-2024.git</span></code>: 복제한 저장소를 로컬로 클론합니다. <code class="docutils literal notranslate"><span class="pre">your_github_id</span></code> 부분은 본인의 GitHub 아이디로 대체해주세요.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/workspace/projects/os-2024</span></code>: 클론한 저장소의 디렉토리로 이동합니다.</p></li>
 </ul>
 </section>
@@ -594,8 +594,8 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span> <span class="pre">https://github.com/chu-aie/os-2024.git</span></code>: 원본 리포를 <code class="docutils literal notranslate"><span class="pre">upstream</span></code>이라는 이름으로 추가합니다.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">upstream</span></code>: <code class="docutils literal notranslate"><span class="pre">upstream</span></code> 리포의 최신 변경사항을 가져옵니다.</p></li>
 </ul>
-<p>그런 다음, 프로젝트를 위한 새 브랜치를 생성합니다. 브랜치 이름은 <code class="docutils literal notranslate"><span class="pre">your_github_id/[project_patch_#]</span></code> 형식으로 짓습니다. 예를 들어, GitHub 아이디가 <code class="docutils literal notranslate"><span class="pre">johndoe</span></code>이고 첫 번째 프로젝트라면 브랜치 이름은 <code class="docutils literal notranslate"><span class="pre">johndoe/project_patch_1</span></code>이 됩니다. 아래 명령을 실행하세요:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>your_github_id/<span class="o">[</span>project_patch_#<span class="o">]</span><span class="w"> </span>main
+<p>그런 다음, 프로젝트를 위한 새 브랜치를 생성합니다. 브랜치 이름은 <code class="docutils literal notranslate"><span class="pre">your_github_id/project_patch_#</span></code> 형식으로 짓습니다. 예를 들어, GitHub 아이디가 <code class="docutils literal notranslate"><span class="pre">johndoe</span></code>이고 첫 번째 프로젝트라면 브랜치 이름은 <code class="docutils literal notranslate"><span class="pre">johndoe/project_patch_1</span></code>이 됩니다. 아래 명령을 실행하세요:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>your_github_id/project_patch_1<span class="w"> </span>main
 </pre></div>
 </div>
 <p>이 명령은 <code class="docutils literal notranslate"><span class="pre">main</span></code> 브랜치로부터 새 브랜치를 생성하고, 그 브랜치로 전환합니다.</p>
@@ -634,19 +634,19 @@ document.write(`
 <p>프로젝트 폴더를 생성하고 설명을 작성했으면, 변경 사항을 커밋합니다:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>src/os2024/book/projects/your_github_id<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: initialize project directory of your_github_id&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>your_github_id/<span class="o">[</span>project_patch_#<span class="o">]</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>your_github_id/project_patch_1
 </pre></div>
 </div>
 <p>이 명령은 다음과 같은 작업을 수행합니다:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">src/os2024/book/projects/your_github_id</span></code> 폴더를 Git 스테이징 영역에 추가합니다.</p></li>
 <li><p>“feat: initialize project directory of your_github_id”라는 메시지로 커밋을 생성합니다.</p></li>
-<li><p>커밋을 <code class="docutils literal notranslate"><span class="pre">your_github_id/[project_patch_#]</span></code> 브랜치에 푸시합니다.</p></li>
+<li><p>커밋을 <code class="docutils literal notranslate"><span class="pre">your_github_id/project_patch_#</span></code> 브랜치에 푸시합니다.</p></li>
 </ol>
 </section>
 <section id="pr">
 <h2>PR 생성<a class="headerlink" href="#pr" title="Link to this heading">#</a></h2>
-<p>GitHub에서 본인의 리포지토리로 이동하여 <code class="docutils literal notranslate"><span class="pre">your_github_id/[project_patch_#]</span></code> 브랜치를 선택합니다. 그런 다음, “Pull Request” 버튼을 클릭하여 새 PR을 생성합니다.</p>
+<p>GitHub에서 본인의 리포지토리로 이동하여 <code class="docutils literal notranslate"><span class="pre">your_github_id/project_patch_#</span></code> 브랜치를 선택합니다. 그런 다음, “Pull Request” 버튼을 클릭하여 새 PR을 생성합니다.</p>
 <p>PR 제목은 “feat: Initialize project directory of your_github_id”로 설정하세요.</p>
 </section>
 <section id="id8">
@@ -655,7 +655,7 @@ document.write(`
 <p>주기적으로 다음 명령을 실행하여 변경 사항을 커밋하고, PR을 생성하세요:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: update project progress by your_github_id&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>your_github_id/<span class="o">[</span>project_patch_#<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>your_github_id/project_patch_1<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--title<span class="w"> </span><span class="s2">&quot;feat: Update project progress by your_github_id&quot;</span><span class="w"> </span>--body<span class="w"> </span><span class="s2">&quot;This PR updates project progress by your_github_id&quot;</span>
 </pre></div>
 </div>
@@ -663,7 +663,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p>모든 변경 사항을 Git 스테이징 영역에 추가합니다.</p></li>
 <li><p>“feat: update project progress by your_github_id”라는 메시지로 커밋을 생성합니다.</p></li>
-<li><p>커밋을 <code class="docutils literal notranslate"><span class="pre">your_github_id/[project_patch_#]</span></code> 브랜치에 푸시합니다.</p></li>
+<li><p>커밋을 <code class="docutils literal notranslate"><span class="pre">your_github_id/project_patch_#</span></code> 브랜치에 푸시합니다.</p></li>
 <li><p>“feat: Update project progress by your_github_id”라는 제목과 “This PR updates project progress by your_github_id”라는 내용으로 새 PR을 생성합니다.</p></li>
 </ol>
 </section>
@@ -672,7 +672,7 @@ document.write(`
 <p>프로젝트를 완료했으면, 마지막으로 다음 명령을 실행하여 변경 사항을 커밋하고, 최종 PR을 생성합니다:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: complete project by your_github_id&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>your_github_id/<span class="o">[</span>project_patch_#<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>your_github_id/project_patch_1<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--title<span class="w"> </span><span class="s2">&quot;feat: Complete project by your_github_id&quot;</span><span class="w"> </span>--body<span class="w"> </span><span class="s2">&quot;This PR completes project by your_github_id&quot;</span>
 </pre></div>
 </div>
