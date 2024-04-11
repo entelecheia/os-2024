@@ -48,7 +48,7 @@
 
 최적 적합의 배경은 사용자가 요청한 크기에 가까운 블록을 반환함으로써 최적 적합은 공간의 낭비를 줄이려고 노력합니다. 그러나 비용이 수반됩니다. 정교하지 않은 구현은 해당 빈 블록을 찾기 위해 항상 전체를 검색해야 하기 때문에 엄청난 성능 저하를 초래합니다.
 
-![image](https://github.com/chu-aie/os-2024/assets/103018072/62a5e34c-5d4e-4771-8b0e-44ed6f1fa043)
+![image](https://github.com/chu-aie/os-2024/assets/133697595/5941a046-6351-4710-8e8b-70bc538f572d)
 
 ### 최악 적합(Worst Fit)
 
@@ -56,7 +56,7 @@
 
 최적 적합의 반대 방식입니다. 가장 큰 빈 청크를 찾아 요청된 크기만큼만 반환하고 남는 부분은 빈 공간 리스트에 계속 유지됩니다. 최적 적합 방식에서 발생할 수 있는 수많은 작은 청크 대신에 커다란 빈 청크를 남기려고 시도합니다. 그러나 다시 한번 항상 빈 공간 전체를 탐색해야 하기 때문에 역시 높은 비용을 지불해야 합니다. 대부분의 연구에서 단편화가 발생하면서 오버헤드도 여전히 크다는 것을 보이고 있습니다.
 
-![image](https://github.com/chu-aie/os-2024/assets/103018072/b9b3603b-6a1e-4598-909e-2fd58a41ebfe)
+![image](https://github.com/chu-aie/os-2024/assets/133697595/14c9239a-fff7-4afa-a7d1-e17371d98cc8)
 
 ### 최초 적합(First Fit)
 
@@ -66,7 +66,7 @@
 
 주소 기반 정렬(address-based ordering)을 사용하면 리스트를 주소로 정렬하여 병합을 쉽게 하고, 단편화를 감소시킵니다.
 
-![image](https://github.com/chu-aie/os-2024/assets/103018072/3b5d71bd-5d37-4b1c-ab2e-b14f4e52db8e)
+![image](https://github.com/chu-aie/os-2024/assets/133697595/d6bbdee3-6e6a-4cfd-96d8-4585a448deeb)
 
 ### 다음 적합(Next Fit)
 
@@ -74,7 +74,7 @@
 
 항상 리스트의 처음부터 탐색하는 대신 다음 적합 알고리즘은 마지막으로 찾았던 원소를 가리키는 추가의 포인터를 유지합니다. 아이디어는 빈 공간 탐색을 리스트 전체에 더 균등하게 분산시키는 것입니다. 리스트의 첫 부분에만 단편화가 집중적으로 발생하는 것을 방지합니다. 전체 탐색을 하지 않기 때문에 최초 적합의 성능과 비슷합니다.
 
-![image](https://github.com/chu-aie/os-2024/assets/103018072/6b951012-7524-4ef5-bae4-3e2824de0e5e)
+![image](https://github.com/chu-aie/os-2024/assets/133697595/745c43e0-9b26-4de2-992a-92a8d01650a4)
 
 ## 다른 접근법[^heeseon16]
 
@@ -111,7 +111,7 @@
 
 #### 이진 버디 할당기(Binary Buddy Allocator)
 
-<img src="https://github.com/chu-aie/os-2024/assets/103018072/32dc6ed6-0f1d-4c2e-8068-7b71dbc3b5ee" width="530" height="300"/>
+<img src="https://github.com/chu-aie/os-2024/assets/103018072/a474b2ce-6d9d-479c-89e0-8376fa29b3f2" width="530" height="300"/>
 
 빈 메모리는 처음에 개념적으로 2ⁿ인 하나의 큰 공간으로 생각하면, 메모리 요청이 발생해 그 요청을 충족시키기에 충분한 공간이 발견될 때까지(그리고 더 분할하면 공간이 너무 작아져서 요청을 만족시킬 수 없을 때까지) 빈 공간을 2개로 계속 분할합니다.
 
