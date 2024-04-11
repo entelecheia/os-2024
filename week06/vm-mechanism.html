@@ -501,7 +501,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">사례</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">동적 (하드웨어 기반) 재배치</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">예제: 베이스와 바운드를 이용한 주소 변환 </a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">하드웨어 지원: 요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">하드웨어 지원 요약</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">운영체제 이슈</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
@@ -517,42 +517,47 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id2">
 <h1>주소 변환의 원리<a class="footnote-reference brackets" href="#ji-nyu" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
-<p>메모리 가상화는 가상화를 제공하는 동시에 효율성과 제어 모두를 추구한다.</p>
+<p>메모리 가상화는 가상화를 제공하는 동시에 효율성과 제어 모두를 추구합니다.</p>
 <ul class="simple">
-<li><p>효율성: 레지스터, TLB등의 하드웨어 지원을 활용해 효율을 높인다.</p></li>
-<li><p>제어: 응용 프로그램이 자기 자신의 메모리 이외에는 다른 메모리에 접근하지 못한다.</p></li>
-<li><p>유연성: 프로그래머가 원하는대로 주소공간을 사용하고 프로그래밍 하기 쉬운 시스템을 만들기를 원한다.</p></li>
+<li><p>효율성: 레지스터, TLB(Translation Lookaside Buffer) 등의 하드웨어 지원을 활용해 주소 변환의 효율을 높입니다.</p>
+<ul>
+<li><p>레지스터: CPU 내부에 있는 고속의 작은 메모리로, 자주 사용되는 데이터나 명령어를 저장하여 빠른 접근을 가능하게 합니다.</p></li>
+<li><p>TLB: 최근에 사용된 가상 주소와 물리 주소의 매핑 정보를 캐시로 저장하여, 주소 변환 속도를 향상시킵니다.</p></li>
 </ul>
-<p>주소변환(Address translation)을 통해 하드웨어는 명령어 반입, 탑재, 저장 등의 가상주소를 정보가 실제 존재하는 물리주소로 변환한다. (하드웨어 기반 주소 변환)</p>
-<p>프로그램의 모든 메모리 참조를 실제 메모리 위치로 재지정하기 위하여 하드웨어가 주소를 변환한다.
-운영체제는 메모리의 빈 공간과 사용중인 공간을 항상 알고 있어야 하고, 메모리 사용을 제어하고 관리한다.</p>
+</li>
+<li><p>제어: 운영체제는 각 프로세스의 주소 공간을 분리하여 관리함으로써, 한 프로세스가 다른 프로세스의 메모리에 무단으로 접근하는 것을 방지합니다. 이를 통해 시스템의 안정성과 보안을 높입니다.</p></li>
+<li><p>유연성: 가상 메모리 시스템은 프로그래머가 물리 메모리의 제약에 구애받지 않고 편리하게 프로그래밍할 수 있는 환경을 제공합니다. 프로세스는 자신만의 독립된 주소 공간을 가지므로, 메모리 할당과 관리가 용이해집니다.</p></li>
+</ul>
+<p>주소 변환(Address translation)은 프로그램이 사용하는 가상 주소를 실제 물리 메모리 상의 주소로 매핑하는 과정입니다. 주소 변환은 하드웨어적으로 이루어지며, 프로세서가 메모리 참조 명령어(데이터 읽기, 쓰기, 명령어 가져오기 등)를 수행할 때마다 발생합니다.</p>
+<p>운영체제는 메모리 관리자 역할을 수행하며, 물리 메모리의 할당 및 회수, 가상 주소 공간과 물리 주소 공간의 매핑 등을 담당합니다. 이를 위해 운영체제는 메모리의 사용 현황을 파악하고 있어야 하며, 프로세스 간의 메모리 보호와 공유를 적절히 제어해야 합니다.</p>
 <section id="id3">
 <h2>가정<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>주소 변환을 단순화하기 위해 다음과 같은 가정을 합니다.</p>
 <ul class="simple">
-<li><p>사용자 주소공간은 물리 메모리에 연속적으로 배치되어야 한다고 가정한다.</p></li>
-<li><p>주소공간의 크기가 너무 크지 않다고 가정한다. (물리 메모리 크기보다 작다.)</p></li>
-<li><p>각 주소 공간의 크기가 같다고 가정한다.</p></li>
+<li><p>사용자 주소 공간은 물리 메모리에 연속적으로 배치되어야 한다고 가정합니다. 이는 주소 변환 과정을 간소화하기 위한 것으로, 실제로는 가상 메모리 시스템에서 불연속적인 메모리 할당이 가능합니다.</p></li>
+<li><p>주소 공간의 크기가 물리 메모리의 크기보다 작다고 가정합니다. 이는 간단한 예제를 위한 것으로, 실제 시스템에서는 가상 주소 공간이 물리 메모리보다 클 수 있습니다.</p></li>
+<li><p>각 프로세스의 주소 공간 크기가 동일하다고 가정합니다. 이 역시 예제를 단순화하기 위한 것으로, 실제로는 프로세스마다 서로 다른 크기의 주소 공간을 가질 수 있습니다.</p></li>
 </ul>
 </section>
 <section id="id4">
 <h2>사례<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>다음은 간단한 주소 변환 예제입니다.</p>
 <ol class="arabic simple">
 <li><p>가상 주소 공간 설정</p>
 <ul class="simple">
-<li><p>프로세스마다 독립적인 가상 주소 공간이 할당됩니다. 이 예제에서는 16KB의 가상 주소 공간이 할당되었습니다.</p></li>
-<li><p>가상 주소 공간은 프로세스가 메모리에 접근할 때 사용하는 논리적인 주소 공간입니다.</p></li>
+<li><p>프로세스마다 독립적인 가상 주소 공간이 할당됩니다. 이 예제에서는 16KB의 가상 주소 공간을 가정합니다.</p></li>
+<li><p>가상 주소 공간은 프로세스가 메모리를 참조할 때 사용하는 논리적인 주소 체계입니다.</p></li>
 </ul>
 </li>
 <li><p>물리 메모리 공간 설정</p>
 <ul class="simple">
-<li><p>실제 물리 메모리는 32KB로 가정합니다.</p></li>
-<li><p>물리 메모리는 시스템의 실제 하드웨어 메모리를 의미합니다.</p></li>
+<li><p>실제 물리 메모리의 크기는 32KB로 가정합니다.</p></li>
+<li><p>물리 메모리는 시스템의 실제 하드웨어 메모리를 나타냅니다.</p></li>
 </ul>
 </li>
 </ol>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 가상 주소 공간 크기: 16KB</span>
 <span class="c1">// 물리 메모리 크기: 32KB</span>
-
 <span class="cp">#define VIRTUAL_MEM_SIZE (16 * 1024)</span>
 <span class="cp">#define PHYSICAL_MEM_SIZE (32 * 1024)</span>
 
@@ -561,18 +566,16 @@ document.write(`
 
 <span class="c1">// 가상 주소를 물리 주소로 변환하는 함수</span>
 <span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">translate_address</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">virtual_addr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 가상 주소 공간 내에 있는지 검사</span>
+<span class="w">    </span><span class="c1">// 가상 주소가 유효한 범위 내에 있는지 검사</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">virtual_addr</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">virtual_mem</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">virtual_addr</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">virtual_mem</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">VIRTUAL_MEM_SIZE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 가상 주소와 물리 주소 사이의 오프셋 계산</span>
+<span class="w">        </span><span class="c1">// 가상 주소와 물리 주소 간의 오프셋 계산</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">virtual_addr</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">virtual_mem</span><span class="p">;</span>
-
 <span class="w">        </span><span class="c1">// 오프셋을 이용하여 물리 주소 계산</span>
 <span class="w">        </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">physical_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">physical_mem</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">offset</span><span class="p">;</span>
-
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">physical_addr</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 가상 주소 공간 밖의 주소에 접근하려는 경우 예외 처리</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Invalid virtual address access!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 유효하지 않은 가상 주소 접근 시 예외 처리</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;잘못된 가상 주소 접근!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
@@ -584,60 +587,77 @@ document.write(`
 
 <span class="w">    </span><span class="c1">// 가상 주소를 물리 주소로 변환하여 접근</span>
 <span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">physical_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">translate_address</span><span class="p">(</span><span class="n">virtual_mem</span><span class="p">);</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Physical data: %c%c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">physical_addr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">physical_addr</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;물리 메모리 데이터: %c%c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">physical_addr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">physical_addr</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>translate_address 함수는 주어진 가상 주소가 가상 주소 공간 내에 있는지 검사한 후, 그렇다면 가상 주소와 물리 주소 사이의 오프셋을 계산하여 실제 물리 주소를 계산합니다.</p>
-<p>main 함수에서는 가상 주소 공간에 ‘A’와 ‘B’를 씁니다. 그리고 translate_address 함수를 호출하여 가상 주소를 물리 주소로 변환한 후, 해당 물리 주소에 저장된 데이터를 출력합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">translate_address</span></code> 함수는 가상 주소를 물리 주소로 변환하는 역할을 합니다.</p>
+<ul class="simple">
+<li><p>먼저 주어진 가상 주소가 유효한 가상 주소 공간 내에 있는지 검사합니다.</p></li>
+<li><p>유효한 주소라면, 가상 주소와 물리 주소 간의 오프셋을 계산합니다. 이 예제에서는 가상 주소 공간과 물리 메모리 공간의 시작 주소 차이가 오프셋이 됩니다.</p></li>
+<li><p>계산된 오프셋을 물리 메모리의 시작 주소에 더하여 실제 물리 주소를 얻습니다.</p></li>
+<li><p>만약 주어진 가상 주소가 유효하지 않다면, 예외 처리를 수행합니다.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">main</span></code> 함수에서는 가상 주소 공간에 ‘A’와 ‘B’를 쓰고, <code class="docutils literal notranslate"><span class="pre">translate_address</span></code> 함수를 호출하여 해당 가상 주소를 물리 주소로 변환합니다. 그리고 변환된 물리 주소를 통해 실제 데이터에 접근하여 출력합니다.</p>
+<p>이 예제는 주소 변환의 기본 개념을 보여주기 위해 간략화된 것으로, 실제 시스템에서는 보다 복잡한 메모리 관리 기법과 주소 변환 메커니즘이 사용됩니다. 하지만 이 예제를 통해 가상 주소와 물리 주소의 관계, 그리고 주소 변환의 기본 원리를 이해할 수 있습니다.</p>
 </section>
 <section id="id5">
 <h2>동적 (하드웨어 기반) 재배치<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>동적 재배치는 프로세스의 주소 공간을 실행 시간에 동적으로 물리 메모리 상의 다른 위치로 이동할 수 있게 해주는 기술이다. 이를 위해 CPU에는 베이스 레지스터와 바운드 레지스터라는 두 개의 하드웨어 레지스터가 존재한다.</p>
+<p>동적 재배치(Dynamic Relocation)는 프로세스의 주소 공간을 실행 시간에 동적으로 물리 메모리 상의 다른 위치로 이동할 수 있게 해주는 기술입니다. 이를 통해 운영체제는 메모리 관리를 보다 유연하게 할 수 있으며, 메모리 단편화 문제를 완화할 수 있습니다. 동적 재배치를 구현하기 위해 CPU에는 베이스 레지스터(Base Register)와 바운드 레지스터(Bound Register)라는 두 개의 하드웨어 레지스터가 사용됩니다.</p>
 <ol class="arabic simple">
 <li><p><strong>베이스 레지스터 (Base Register)</strong></p>
 <ul class="simple">
-<li><p>프로세스의 주소 공간이 실제 물리 메모리 상에 위치한 시작 주소를 저장한다.</p></li>
-<li><p>주소 변환 시, 프로세스가 생성한 가상 주소에 베이스 레지스터 값을 더하여 실제 물리 주소를 계산한다.</p></li>
-<li><p>이를 통해 프로세스는 가상 주소 0에서 시작하는 것처럼 보이지만, 실제로는 다른 물리 메모리 영역에 위치할 수 있다.</p></li>
+<li><p>베이스 레지스터는 프로세스의 주소 공간이 실제 물리 메모리 상에 위치한 시작 주소를 저장하는 레지스터입니다.</p></li>
+<li><p>주소 변환 과정에서 프로세스가 생성한 가상 주소에 베이스 레지스터 값을 더하여 실제 물리 주소를 계산합니다.</p></li>
+<li><p>이를 통해 프로세스는 가상 주소 0번지에서 시작하는 것처럼 인식하지만, 실제로는 물리 메모리의 다른 영역에 위치할 수 있습니다.</p></li>
+<li><p>베이스 레지스터 값을 변경함으로써 프로세스의 주소 공간을 물리 메모리 상의 다른 위치로 이동시킬 수 있습니다.</p></li>
 </ul>
 </li>
 <li><p><strong>바운드 레지스터 (Bound Register)</strong></p>
 <ul class="simple">
-<li><p>프로세스의 주소 공간 크기 또는 마지막 주소를 저장한다.</p></li>
-<li><p>하드웨어는 가상 주소가 바운드 범위 내에 있는지 확인하여 메모리 보호를 수행한다.</p></li>
-<li><p>가상 주소가 바운드를 벗어나면 하드웨어는 예외를 발생시켜 운영체제에 알린다.</p></li>
+<li><p>바운드 레지스터는 프로세스의 주소 공간 크기 또는 주소 공간의 마지막 주소를 저장하는 레지스터입니다.</p></li>
+<li><p>하드웨어는 프로세스가 생성한 가상 주소가 바운드 레지스터에 저장된 범위 내에 있는지 확인하여 메모리 보호 기능을 수행합니다.</p></li>
+<li><p>만약 가상 주소가 바운드 레지스터에 저장된 범위를 벗어나면 하드웨어는 예외(Exception)를 발생시켜 운영체제에 알립니다.</p></li>
+<li><p>이를 통해 프로세스가 자신의 주소 공간 외부의 메모리 영역에 접근하는 것을 방지하여 메모리 보호를 강화합니다.</p></li>
 </ul>
 </li>
 <li><p><strong>주소 변환 과정</strong></p>
 <ul class="simple">
-<li><p>프로세스가 생성한 가상 주소에 베이스 레지스터 값을 더하여 물리 주소를 계산한다.</p></li>
-<li><p>계산된 물리 주소가 바운드 레지스터 값의 범위 내에 있는지 확인한다.</p></li>
-<li><p>유효한 범위 내라면 메모리 접근을 허용하고, 그렇지 않다면 예외를 발생시킨다.</p></li>
+<li><p>프로세스가 생성한 가상 주소에 베이스 레지스터 값을 더하여 실제 물리 주소를 계산합니다.</p></li>
+<li><p>계산된 물리 주소가 바운드 레지스터 값의 범위 내에 있는지 확인합니다.</p></li>
+<li><p>물리 주소가 유효한 범위 내에 있다면 해당 주소의 메모리에 접근할 수 있도록 허용합니다.</p></li>
+<li><p>만약 물리 주소가 바운드 레지스터 값의 범위를 벗어난다면 하드웨어는 예외를 발생시켜 운영체제에 알립니다.</p></li>
 </ul>
 </li>
 <li><p><strong>동적 재배치 과정</strong></p>
 <ul class="simple">
-<li><p>운영체제는 필요에 따라 프로세스의 주소 공간을 다른 물리 메모리 영역으로 이동할 수 있다.</p></li>
-<li><p>이동 시, 운영체제는 프로세스 제어 블록(PCB)에 저장된 베이스와 바운드 레지스터 값을 갱신한다.</p></li>
-<li><p>프로세스가 다시 실행되면 갱신된 값이 CPU에 로드되어 새로운 물리 메모리 영역에 접근할 수 있다.</p></li>
+<li><p>운영체제는 필요에 따라 프로세스의 주소 공간을 물리 메모리 상의 다른 영역으로 이동시킬 수 있습니다.</p></li>
+<li><p>주소 공간을 이동시킬 때, 운영체제는 해당 프로세스의 베이스 레지스터 값을 변경하여 새로운 물리 메모리 영역을 가리키도록 합니다.</p></li>
+<li><p>또한 바운드 레지스터 값도 새로운 주소 공간 크기에 맞게 조정합니다.</p></li>
+<li><p>프로세스의 상태 정보를 저장하는 자료구조인 프로세스 제어 블록(PCB, Process Control Block)에 변경된 베이스와 바운드 레지스터 값을 저장합니다.</p></li>
+<li><p>프로세스가 다시 실행될 때, PCB에 저장된 베이스와 바운드 레지스터 값이 CPU의 레지스터에 로드되어 프로세스는 새로운 물리 메모리 영역에서 실행됩니다.</p></li>
 </ul>
 </li>
 <li><p><strong>메모리 관리 장치 (MMU, Memory Management Unit)</strong></p>
 <ul class="simple">
-<li><p>CPU 내부의 메모리 관리 장치가 주소 변환과 메모리 보호 기능을 담당한다.</p></li>
-<li><p>MMU는 하드웨어적으로 베이스와 바운드 레지스터를 활용하여 가상 주소를 물리 주소로 변환하고 범위 검사를 수행한다.</p></li>
+<li><p>주소 변환과 메모리 보호 기능은 CPU 내부의 하드웨어 컴포넌트인 메모리 관리 장치(MMU)에 의해 수행됩니다.</p></li>
+<li><p>MMU는 베이스 레지스터와 바운드 레지스터를 활용하여 가상 주소를 물리 주소로 변환하고, 변환된 주소가 유효한 범위 내에 있는지 검사합니다.</p></li>
+<li><p>이 과정은 하드웨어적으로 이루어지므로 소프트웨어 오버헤드 없이 빠르게 처리할 수 있습니다.</p></li>
+<li><p>MMU는 주소 변환 테이블(Address Translation Table)을 관리하여 가상 주소와 물리 주소 간의 매핑 정보를 저장합니다.</p></li>
+<li><p>주소 변환 테이블은 운영체제에 의해 설정되며, MMU는 이를 참조하여 주소 변환을 수행합니다.</p></li>
 </ul>
 </li>
 </ol>
-<p>동적 재배치 기술을 통해 운영체제는 메모리 관리를 유연하게 할 수 있으며, 메모리 단편화 문제를 완화할 수 있다. 또한, 프로세스 간 메모리 보호도 보장되어 시스템의 안전성이 향상된다.</p>
+<p>동적 재배치 기술을 사용하면 운영체제는 프로세스의 주소 공간을 물리 메모리 상의 임의의 위치로 이동시킬 수 있으므로, 메모리 관리의 유연성이 향상됩니다. 이를 통해 메모리 단편화 문제를 완화하고, 메모리 사용 효율을 높일 수 있습니다.</p>
+<p>또한 베이스 레지스터와 바운드 레지스터를 활용한 주소 변환 및 메모리 보호 기능은 프로세스 간의 메모리 침범을 방지하여 시스템의 안정성과 보안성을 강화합니다. 각 프로세스는 자신의 주소 공간 내에서만 메모리에 접근할 수 있으며, 다른 프로세스의 메모리 영역에는 접근할 수 없습니다.</p>
+<p>동적 재배치는 초기의 메모리 관리 기법 중 하나로, 현대의 가상 메모리 시스템에서는 페이징(Paging)과 세그멘테이션(Segmentation) 등의 보다 발전된 기술이 사용됩니다. 하지만 동적 재배치의 기본 개념인 베이스와 바운드 레지스터를 활용한 주소 변환 및 메모리 보호 기능은 현대의 메모리 관리 기법에서도 중요한 역할을 담당하고 있습니다.</p>
 </section>
 <section id="id7">
 <h2>예제: 베이스와 바운드를 이용한 주소 변환 <a class="footnote-reference brackets" href="#kodahee0" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>베이스와 바운드 레지스터를 활용한 주소 변환 과정을 더 자세히 이해하기 위해 간단한 예시를 살펴보겠습니다.</p>
-<p>가상 주소 공간의 크기가 4KB인 프로세스가 있다고 가정해 보죠. (현실에서는 매우 작은 크기이지만, 이해를 돕기 위한 예시입니다.) 이 프로세스는 물리 메모리의 16KB 지점에 적재되어 있습니다. 이 경우 주소 변환은 다음과 같이 이루어집니다.</p>
+<p>가상 주소 공간의 크기가 4KB인 프로세스가 있다고 가정해 보겠습니다. (현실에서는 매우 작은 크기이지만, 이해를 돕기 위한 예시입니다.) 이 프로세스는 물리 메모리의 16KB 지점에 적재되어 있습니다. 이 경우 주소 변환은 다음과 같이 이루어집니다.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>가상 주소</p></th>
@@ -669,47 +689,70 @@ document.write(`
 <li><p>물리 주소(physical address): 실제 물리 메모리 상의 주소입니다. 가상 주소를 베이스 레지스터의 값과 더함으로써 얻어집니다.</p></li>
 <li><p>폴트(fault): 가상 주소가 유효하지 않을 때(바운드를 초과하거나 음수일 때) 발생하는 예외 상황입니다. 운영체제는 폴트를 처리하여 프로세스를 안전하게 종료시키거나 다른 적절한 조치를 취합니다.</p></li>
 </ul>
-<p>이처럼 베이스와 바운드 레지스터를 사용한 주소 변환은 프로세스 별로 독립적인 주소 공간을 제공하면서, 동시에 잘못된 메모리 접근으로부터 시스템을 보호하는 간단하면서도 효과적인 메커니즘입니다.</p>
+<p>이처럼 베이스와 바운드 레지스터를 사용한 주소 변환은 프로세스별로 독립적인 주소 공간을 제공하면서, 동시에 잘못된 메모리 접근으로부터 시스템을 보호하는 간단하면서도 효과적인 메커니즘입니다.</p>
 </section>
 <section id="id8">
-<h2>하드웨어 지원: 요약<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2>하드웨어 지원 요약<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>커널, 유저 모드 구분: 운영 체제는 커널 모드에서 핵심 기능을 수행하고, 유저 모드에서는 응용 프로그램이 실행됩니다. 이는 보안과 안정성을 유지하기 위해 중요합니다.</p></li>
+<li><p>커널, 유저 모드 구분: 운영체제는 커널 모드에서 핵심 기능을 수행하고, 유저 모드에서는 응용 프로그램이 실행됩니다. 이는 보안과 안정성을 유지하기 위해 중요합니다.</p>
+<ul>
+<li><p>커널 모드(kernel mode): 운영체제의 핵심 기능이 실행되는 모드로, 모든 시스템 자원에 접근할 수 있는 권한을 가집니다. 커널 모드에서는 중요한 시스템 작업과 하드웨어 제어가 이루어집니다.</p></li>
+<li><p>유저 모드(user mode): 응용 프로그램이 실행되는 모드로, 제한된 권한을 가집니다. 유저 모드에서는 시스템 자원에 직접 접근할 수 없고, 운영체제가 제공하는 API를 통해 자원을 요청하고 사용합니다.</p></li>
+</ul>
+</li>
 <li><p>베이스, 바운드 레지스터: 각 프로세스가 사용하는 메모리 공간의 시작과 크기를 지정하는 레지스터입니다. 베이스 레지스터는 시작 위치를 가리키고, 바운드 레지스터는 공간의 크기를 제한합니다.</p></li>
-<li><p>주소 변환 능력: 하드웨어는 가상 주소를 물리 주소로 변환합니다. 이때 베이스 레지스터 값을 더하고, 바운드 레지스터를 사용하여 유효성을 확인합니다.</p></li>
+<li><p>주소 변환 능력: 하드웨어는 가상 주소를 물리 주소로 변환합니다. 이때 베이스 레지스터 값을 더하고, 바운드 레지스터를 사용하여 유효성을 확인합니다.</p>
+<ul>
+<li><p>가상 주소(virtual address): 프로세스가 사용하는 논리적인 주소로, 프로세스의 주소 공간 내에서 유효합니다. 가상 주소는 프로세스마다 독립적으로 할당되며, 0부터 시작합니다.</p></li>
+<li><p>물리 주소(physical address): 실제 물리 메모리 상의 주소로, 가상 주소를 변환한 결과입니다. 물리 주소는 시스템 전체에서 유일하며, 실제 메모리 위치를 가리킵니다.</p></li>
+</ul>
+</li>
 <li><p>잘못된 주소 검출: 하드웨어는 가상 주소가 유효한 범위 내에 있는지 확인하여 보안과 안정성을 유지합니다.</p></li>
-<li><p>오류 처리 능력: 잘못된 주소 접근이나 범위 초과와 같은 오류가 발생할 때, 하드웨어는 이를 신속하게 감지하고 적절히 처리합니다.</p></li>
+<li><p>오류 처리 능력: 잘못된 주소 접근이나 범위 초과와 같은 오류가 발생할 때, 하드웨어는 이를 신속하게 감지하고 적절히 처리합니다.</p>
+<ul>
+<li><p>예외(exception): 프로그램 실행 중 발생하는 비정상적인 상황으로, 하드웨어나 소프트웨어에 의해 감지됩니다. 예외가 발생하면 현재 실행 흐름이 중단되고 예외 처리기(exception handler)로 제어가 전달됩니다.</p></li>
+<li><p>예외 처리기(exception handler): 예외가 발생했을 때 호출되는 코드 루틴으로, 예외 상황을 처리하고 프로그램의 실행을 정상화하거나 안전하게 종료시키는 역할을 합니다.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="id9">
 <h2>운영체제 이슈<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
-<p>베이스와 바운드 방식의 가상 메모리 구현을 위해서 운영체제가 반드시 개입되어야 하는 중요한 세 개의 시점이 존재한다.</p>
+<p>베이스와 바운드 방식의 가상 메모리 구현을 위해서 운영체제가 반드시 개입되어야 하는 중요한 세 개의 시점이 존재합니다.</p>
 <ol class="arabic simple">
-<li><p><strong>프로세스 생성 시</strong></p>
+<li><p>프로세스 생성 시</p>
 <ul class="simple">
-<li><p>운영체제는 새로운 프로세스의 주소 공간을 할당할 물리 메모리 영역을 찾아야 한다.</p></li>
-<li><p>운영체제는 물리 메모리를 슬롯의 배열로 관리하며, 각 슬롯의 사용 여부를 추적한다.</p></li>
-<li><p>운영체제는 빈 슬롯을 검색하여 해당 영역을 프로세스의 주소 공간으로 할당하고, 사용 중으로 표시한다.</p></li>
+<li><p>운영체제는 새로운 프로세스의 주소 공간을 할당할 물리 메모리 영역을 찾아야 합니다.</p></li>
+<li><p>운영체제는 물리 메모리를 슬롯(slot)의 배열로 관리하며, 각 슬롯의 사용 여부를 추적합니다.</p>
+<ul>
+<li><p>슬롯(slot): 물리 메모리를 일정한 크기의 블록으로 나눈 것으로, 프로세스에 할당되는 메모리의 기본 단위입니다. 운영체제는 슬롯의 사용 여부를 비트맵이나 링크드 리스트 등의 자료구조로 관리합니다.</p></li>
 </ul>
 </li>
-<li><p><strong>프로세스 종료 시</strong></p>
-<ul class="simple">
-<li><p>운영체제는 종료된 프로세스가 사용하던 메모리 영역을 회수하여 다른 프로세스나 운영체제가 사용할 수 있게 한다.</p></li>
-<li><p>프로세스가 정상적으로 종료되거나 강제 종료될 때, 운영체제는 해당 프로세스의 메모리 영역을 빈 공간 리스트에 반환하고 관련 자료구조를 정리한다.</p></li>
+<li><p>운영체제는 빈 슬롯을 검색하여 해당 영역을 프로세스의 주소 공간으로 할당하고, 사용 중으로 표시합니다.</p></li>
 </ul>
 </li>
-<li><p><strong>문맥 교환 시</strong></p>
+<li><p>프로세스 종료 시</p>
 <ul class="simple">
-<li><p>CPU에는 한 쌍의 베이스-바운드 레지스터만 존재하므로, 실행 중인 프로세스마다 다른 값을 가져야 한다.</p></li>
-<li><p>운영체제는 프로세스 전환 시 현재 프로세스의 베이스와 바운드 레지스터 값을 저장하고, 새로운 프로세스의 값으로 설정해야 한다.</p></li>
-<li><p>이 값들은 프로세스 제어 블록(PCB)에 저장되며, 운영체제는 PCB에서 읽어와 CPU 레지스터에 로드한다.</p></li>
+<li><p>운영체제는 종료된 프로세스가 사용하던 메모리 영역을 회수하여 다른 프로세스나 운영체제가 사용할 수 있게 합니다.</p></li>
+<li><p>프로세스가 정상적으로 종료되거나 강제 종료될 때, 운영체제는 해당 프로세스의 메모리 영역을 빈 공간 리스트에 반환하고 관련 자료구조를 정리합니다.</p></li>
 </ul>
 </li>
-<li><p><strong>메모리 보호 위반 시</strong></p>
+<li><p>문맥 교환 시</p>
 <ul class="simple">
-<li><p>운영체제는 부팅 시 특권 명령어를 사용하여 예외 핸들러를 설치한다.</p></li>
-<li><p>프로세스가 할당된 주소 공간 밖의 메모리에 접근하려 할 경우, CPU는 예외를 발생시한다.</p></li>
-<li><p>운영체제는 이 예외를 처리하여 해당 프로세스를 종료하거나 적절한 조치를 취다.</p></li>
+<li><p>CPU에는 한 쌍의 베이스-바운드 레지스터만 존재하므로, 실행 중인 프로세스마다 다른 값을 가져야 합니다.</p></li>
+<li><p>운영체제는 프로세스 전환 시 현재 프로세스의 베이스와 바운드 레지스터 값을 저장하고, 새로운 프로세스의 값으로 설정해야 합니다.</p></li>
+<li><p>이 값들은 프로세스 제어 블록(PCB)에 저장되며, 운영체제는 PCB에서 읽어와 CPU 레지스터에 로드합니다.</p>
+<ul>
+<li><p>프로세스 제어 블록(Process Control Block, PCB): 프로세스의 메타데이터를 저장하는 운영체제의 자료구조로, 프로세스 상태, 레지스터 값, 메모리 할당 정보 등을 포함합니다. 운영체제는 PCB를 통해 프로세스를 관리하고 문맥 교환을 수행합니다.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>메모리 보호 위반 시</p>
+<ul class="simple">
+<li><p>운영체제는 부팅 시 특권 명령어를 사용하여 예외 핸들러를 설치합니다.</p></li>
+<li><p>프로세스가 할당된 주소 공간 밖의 메모리에 접근하려 할 경우, CPU는 예외를 발생시킵니다.</p></li>
+<li><p>운영체제는 이 예외를 처리하여 해당 프로세스를 종료하거나 적절한 조치를 취합니다.</p></li>
 </ul>
 </li>
 </ol>
@@ -717,11 +760,16 @@ document.write(`
 <section id="id10">
 <h2>요약<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>주소 변환은 프로세스에게 투명합니다. 즉, 프로세스는 자신이 사용하는 가상 주소 공간을 통해 메모리에 접근하며, 실제 물리적인 주소 변환 과정은 하드웨어와 운영 체제가 처리합니다.</p></li>
-<li><p>운영 체제는 프로세스로부터 메모리 접근을 통제할 수 있습니다. 이를 통해 운영 체제는 프로세스가 할당된 메모리 영역을 벗어나거나 다른 프로세스의 메모리를 침범하는 것을 방지합니다.</p></li>
-<li><p>또한, 주소 공간의 바운드로 접근이 보장됩니다. 즉, 각 프로세스의 주소 공간은 베이스와 바운드 레지스터에 의해 제한되어 있어 프로세스는 자신의 주소 공간을 벗어나는 메모리에 접근할 수 없습니다.</p></li>
-<li><p>이러한 메모리 관리는 하드웨어의 지원을 받아 효율성이 보장됩니다. 하드웨어는 주소 변환을 빠르게 처리하고, 베이스와 바운드 레지스터를 통해 메모리 접근을 보호합니다. 따라서 운영 체제는 메모리 관리에 필요한 작업을 효율적으로 수행할 수 있습니다.</p></li>
+<li><p>주소 변환은 프로세스에게 투명합니다. 즉, 프로세스는 자신이 사용하는 가상 주소 공간을 통해 메모리에 접근하며, 실제 물리적인 주소 변환 과정은 하드웨어와 운영체제가 처리합니다.</p>
+<ul>
+<li><p>투명성(transparency): 프로세스가 주소 변환 과정을 인식하지 못하고 가상 주소를 직접 사용하는 것처럼 동작하는 특성입니다. 이로 인해 프로그래머는 물리 메모리의 세부 사항을 고려하지 않고 프로그래밍할 수 있습니다.</p></li>
 </ul>
+</li>
+<li><p>운영체제는 프로세스로부터 메모리 접근을 통제할 수 있습니다. 이를 통해 운영체제는 프로세스가 할당된 메모리 영역을 벗어나거나 다른 프로세스의 메모리를 침범하는 것을 방지합니다.</p></li>
+<li><p>또한, 주소 공간의 바운드로 접근이 보장됩니다. 즉, 각 프로세스의 주소 공간은 베이스와 바운드 레지스터에 의해 제한되어 있어 프로세스는 자신의 주소 공간을 벗어나는 메모리에 접근할 수 없습니다.</p></li>
+<li><p>이러한 메모리 관리는 하드웨어의 지원을 받아 효율성이 보장됩니다. 하드웨어는 주소 변환을 빠르게 처리하고, 베이스와 바운드 레지스터를 통해 메모리 접근을 보호합니다. 따라서 운영체제는 메모리 관리에 필요한 작업을 효율적으로 수행할 수 있습니다.</p></li>
+</ul>
+<p>이상으로 베이스와 바운드 레지스터를 활용한 주소 변환과 메모리 보호에 대해 살펴보았습니다. 이 방식은 초기 컴퓨터 시스템에서 사용되었던 간단하고 효과적인 메모리 관리 기법으로, 현대의 가상 메모리 시스템에서는 페이징이나 세그먼테이션 등의 더 발전된 기술이 사용되고 있습니다. 하지만 베이스와 바운드 레지스터의 기본 개념은 여전히 중요하며, 이를 이해함으로써 메모리 관리와 보호의 기본 원리를 파악할 수 있습니다.</p>
 <hr class="footnotes docutils" />
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="ji-nyu" role="doc-footnote">
@@ -804,7 +852,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">사례</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">동적 (하드웨어 기반) 재배치</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">예제: 베이스와 바운드를 이용한 주소 변환 </a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">하드웨어 지원: 요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">하드웨어 지원 요약</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">운영체제 이슈</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
