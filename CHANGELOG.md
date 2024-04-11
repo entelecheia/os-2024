@@ -1,5 +1,23 @@
 <!--next-version-placeholder-->
 
+## v0.6.0 (2024-04-11)
+
+### Feature
+
+* **projects:** Add project section in table of contents; add project and setup chapters in projects index; add template section in projects index;implement project and template index files ([`3b9df71`](https://github.com/chu-aie/os-2024/commit/3b9df7116dd9cbd4f9347e255f49fb2d1792d998))
+* Add setup guide for project environment_configuration ([`f486ae4`](https://github.com/chu-aie/os-2024/commit/f486ae45a1e11f4a078996b0eff7db3efd11249b))
+* **book:** Add lab section to week06 ([`822f1cf`](https://github.com/chu-aie/os-2024/commit/822f1cf85ca156026e3e256efeb676a50f0f52a1))
+* **os2024:** Add week 07 content for virtual memory paging ([`94e50c2`](https://github.com/chu-aie/os-2024/commit/94e50c2eb81a2abb04137b55ad34b5514e493ad9))
+* **vm-mechanism:** Added address translation simulation program with base bound registers. ([`0807212`](https://github.com/chu-aie/os-2024/commit/0807212136a0820957f159407812410db17241f4))
+* **lab:** Add lab.md file and instructions for address conversion simulation ([`c58d33e`](https://github.com/chu-aie/os-2024/commit/c58d33e04968551010a0f61e953114589462cf82))
+* **vm-mechanism:** Add relocation.py module for simulating virtual address and physical memory management; create script for calculating and simulating address translation and segmentation violation checks. ([`e505941`](https://github.com/chu-aie/os-2024/commit/e50594169bf56854fb4f5189092394a61f0ee124))
+* **os2024:** Add week 06 content to table of contents ([`7e76b26`](https://github.com/chu-aie/os-2024/commit/7e76b266236c1430c72049c442a637a19a98e4f6))
+
+### Fix
+
+* **book:** Update TOC to include missing section ([`8a5e0c5`](https://github.com/chu-aie/os-2024/commit/8a5e0c51190edbe728f429c2455132588e36da12))
+* **deploy-docs:** Update GitHub Pages action version to v4 ([`101e8c8`](https://github.com/chu-aie/os-2024/commit/101e8c8f2122044babe670ba7cecacf784961214))
+
 ## v0.5.0 (2024-04-02)
 
 ### Feature
