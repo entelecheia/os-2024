@@ -249,7 +249,6 @@
 <li class="toctree-l2"><a class="reference internal" href="vm-mechanism.html">주소 변환의 원리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm-segmentation.html">세그멘테이션 </a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">빈 공간 관리</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="lab.html">Lab: 주소 변환 시뮬레이션</a></li>
 </ul>
 </li>
@@ -498,35 +497,27 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">빈 공간 관리</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가정</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">빈 공간 관리</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">가정</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">저수준 기법들</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">기본 전략</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">저수준 기법들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">기본 전략</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-fit">최적 적합(Best Fit)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-fit">최악 적합(Worst Fit)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-fit">최초 적합(First Fit)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-fit">다음 적합(Next Fit)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">다른 접근법</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">다른 접근법</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segregated-list">개별 리스트(Segregated List)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slab-allocator">슬랩 할당기(Slab Allocator)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buddy-allocation">버디 할당(Buddy Allocation)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-buddy-allocator">이진 버디 할당기(Binary Buddy Allocator)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">기타 아이디어</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">기타 아이디어</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -541,12 +532,6 @@ document.write(`
 <h1>빈 공간 관리<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id3">
 <h2>가정<a class="footnote-reference brackets" href="#parkeunseongkr" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id4">
-<h1>빈 공간 관리<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
-<section id="id5">
-<h2>가정<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <p>이 논의의 대부분은 사용자 수준 메모리 할당 라이브러리에 존재하는 메모리 할당기의 발전 역사에 초점을 맞출 것입니다.</p>
 <p><code class="docutils literal notranslate"><span class="pre">malloc()</span></code>과 <code class="docutils literal notranslate"><span class="pre">free()</span></code>에서 제공하는 것과 같은 기본 인터페이스를 가정합니다. 구체적으로 <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*malloc</span> <span class="pre">(size_t</span> <span class="pre">size)</span></code>는 응용 프로그램이 요청한 바이트 수를 나타내는 변수 <code class="docutils literal notranslate"><span class="pre">size</span></code>를 받아들입니다. 이 함수는 요청된 크기와 같거나 큰 영역을 가리키는, 타입이 없는 또는 C 언어의 용어로 <code class="docutils literal notranslate"><span class="pre">void</span></code> 포인터를 반환합니다. 대응되는 루틴 <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">free(void</span> <span class="pre">*ptr)</span></code>는 포인터를 인자로 전달받고 해당 영역을 해제합니다.</p>
 <p>인터페이스의 의미에 주의하세요. 공간을 해제할 때 사용자는 라이브러리에게 크기 정보를 전달하지 않습니다. 라이브러리는 포인터만으로 해제하고자 하는 메모리 영역의 크기를 파악해야 합니다. 크기를 알아내는 방법에 대해 나중에 논의할 것입니다.</p>
@@ -558,8 +543,8 @@ document.write(`
 </ul>
 <p>우리는 또한 클라이언트에게 할당된 메모리는 다른 위치로 재배치될 수 없다고 가정합니다. 예를 들어, 프로그램이 <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>을 호출하여 힙의 일부 영역에 대한 포인터를 받으면, 그 메모리 영역은 대응하는 <code class="docutils literal notranslate"><span class="pre">free()</span></code>를 통하여 반환될 때까지 프로그램이 소유하게 되고 라이브러리에 의해 다른 위치로 옮겨질 수 없습니다. 단편화 해결에 유용하게 사용되는 빈 공간의 압축은 이 경우에는 사용이 불가능합니다. 운영체제가 세그멘트를 구현할 때는 단편화를 해결하기 위하여 압축을 사용할 수 있습니다. 이에 대해서는 세그멘테이션에 관해 논의한 장에서 언급하였습니다.</p>
 </section>
-<section id="id7">
-<h2>저수준 기법들<a class="footnote-reference brackets" href="#ohgpwls" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h2>저수준 기법들<a class="footnote-reference brackets" href="#ohgpwls" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <p>세부 정책에 대해 자세히 설명하기 전에 먼저 대부분의 할당기에서 사용되는 일반적인 기법에 대해 논의합니다.</p>
 <p>첫 번째, 분할(splitting)과 병합(coalescing)의 개념에 대해서 알아봅니다.</p>
 <ul class="simple">
@@ -569,8 +554,8 @@ document.write(`
 <p>두 번째, 할당된 영역의 크기를 빠르고 상대적으로 쉽게 파악할 수 있는 방법을 설명합니다.</p>
 <p>마지막으로, 빈 공간과 사용 중인 공간을 추적하기 위해 빈 공간 내에 간단한 리스트를 구현하는 방법에 대해 설명합니다.</p>
 </section>
-<section id="id8">
-<h2>기본 전략<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h2>기본 전략<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p>이상적인 할당기는 속도가 빠르고 단편화를 최소화해야 합니다. 할당과 해제 요청 스트림은 무작위로, 결국 프로그래머에 의해 결정되기 때문에, 어느 특정 전략도 잘 맞지 않는 입력을 만나면 성능이 매우 좋지 않을 수 있습니다. 최선의 정책을 설명하는 것이 아니라 몇 가지 기본 정책에 대해 이야기하고 각각의 장단점을 논의합니다.</p>
 <section id="best-fit">
 <h3>최적 적합(Best Fit)<a class="headerlink" href="#best-fit" title="Link to this heading">#</a></h3>
@@ -607,8 +592,8 @@ document.write(`
 <p><img alt="image" src="https://github.com/chu-aie/os-2024/assets/103018072/6b951012-7524-4ef5-bae4-3e2824de0e5e" /></p>
 </section>
 </section>
-<section id="id10">
-<h2>다른 접근법<a class="footnote-reference brackets" href="#heeseon16" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h2>다른 접근법<a class="footnote-reference brackets" href="#heeseon16" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>이 외에도 메모리 할당을 향상시키기 위한 기술과 알고리즘이 있는데, 그 중 몇 가지를 여기서 소개하려고 합니다. 단순히 최적 적합 할당에 그치지 않고, 그 이상에 대해서 생각해 보는 것이 목적입니다.</p>
 <section id="segregated-list">
 <h3>개별 리스트(Segregated List)<a class="headerlink" href="#segregated-list" title="Link to this heading">#</a></h3>
@@ -645,14 +630,14 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="id11">
-<h3>기타 아이디어<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3>기타 아이디어<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>위에 설명한 접근 방식들의 한 가지 문제점은 확장성입니다. 빈 공간들의 개수가 늘어남에 따라 리스트 검색이 매우 느려질 수 있습니다.</p>
 <p>균형 이진 트리(balanced binary tree), 스플레이 트리(splay tree), 부분 정렬 트리(partially ordered tree)와 같은 복잡한 자료구조를 할당기에 적용하여 성능을 높일 수 있습니다. 단순함과 성능은 반비례한다는 것이 문제입니다.</p>
 </section>
 </section>
-<section id="id12">
-<h2>요약<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h2>요약<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <p>이 장에서는 가장 기본적인 형태의 메모리 할당기에 대해 논의해봤습니다. 이러한 할당기는 많은 소프트웨어 및 운영체제에서 사용되고 있습니다. 할당기를 구축할 때는 다양한 선택사항이 있으며, 워크로드를 이해하고 그에 맞게 조정하는 것이 중요합니다. 다양한 워크로드에 대해 빠르고 효율적이며 확장 가능한 할당기를 만드는 것은 현대 컴퓨터 시스템의 숙제라 할 수 있습니다.</p>
 <p>할당기를 설계할 때는 다양한 전략과 기법들을 고려해야 합니다. 최적 적합, 최악 적합, 최초 적합, 다음 적합과 같은 기본 전략들은 각각 장단점을 가지고 있습니다. 이러한 전략들을 적절히 조합하고, 개별 리스트, 슬랩 할당, 버디 할당과 같은 발전된 기법들을 활용하여 할당기의 성능과 효율성을 향상시킬 수 있습니다.</p>
 <p>또한, 할당기의 성능은 사용되는 자료구조에 크게 영향을 받습니다. 단순한 링크드 리스트부터 균형 이진 트리, 스플레이 트리, 부분 정렬 트리 등의 복잡한 자료구조까지 다양한 옵션이 있습니다. 적절한 자료구조를 선택하여 빠른 검색과 삽입, 삭제 연산을 지원하는 것이 중요합니다.</p>
@@ -665,11 +650,11 @@ document.write(`
 <p><a class="reference external" href="https://github.com/ParkEunSeongKR">박은성</a></p>
 </aside>
 <aside class="footnote brackets" id="ohgpwls" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">2</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://github.com/ohgpwls">오혜진</a></p>
 </aside>
 <aside class="footnote brackets" id="heeseon16" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">3</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">3</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://github.com/heeseon16">장희선</a></p>
 </aside>
 </aside>
@@ -740,35 +725,27 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">빈 공간 관리</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가정</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">빈 공간 관리</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">가정</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">저수준 기법들</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">기본 전략</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">저수준 기법들</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">기본 전략</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-fit">최적 적합(Best Fit)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-fit">최악 적합(Worst Fit)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-fit">최초 적합(First Fit)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-fit">다음 적합(Next Fit)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">다른 접근법</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">다른 접근법</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#segregated-list">개별 리스트(Segregated List)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slab-allocator">슬랩 할당기(Slab Allocator)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buddy-allocation">버디 할당(Buddy Allocation)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-buddy-allocator">이진 버디 할당기(Binary Buddy Allocator)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">기타 아이디어</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">기타 아이디어</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">요약</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
