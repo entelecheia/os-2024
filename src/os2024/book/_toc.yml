@@ -40,10 +40,10 @@ parts:
         sections:
           - file: week06/vm-mechanism
           - file: week06/vm-segmentation
-          - file: week06/vm-freespace
           - file: week06/lab
       - file: week07/index
         sections:
+          - file: week07/vm-freespace
           - file: week07/vm-paging
   - caption: Projects
     chapters:
