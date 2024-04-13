@@ -52,6 +52,7 @@ parts:
         sections:
           - file: projects/template/index
       - file: projects/lab-tutorial
+      - file: projects/tester
       - file: projects/setup
   - caption: References
     chapters:
