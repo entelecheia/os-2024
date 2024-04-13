@@ -1,0 +1,1156 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lab 튜토리얼 &#8212; 운영체제 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/lab-tutorial';</script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="프로젝트 테스터" href="tester.html" />
+    <link rel="prev" title="id" href="template/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content">16일(수)전까지 <a href='https://os2024.halla.ai/projects/setup.html'>프로젝트 환경설정</a>을 완료해주세요.</div>
+  </div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">운영체제 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Home
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - 아주 쉬운 세 가지 이야기</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/intro.html">운영체제 개요</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - 가상화의 세계</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-intro.html">프로세스의 개념</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-api.html">프로세스 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/shells.html">리눅스 셸 (Linux Shells)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/lab.html">Lab: Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링 1</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/cpu-scheduling.html">스케줄링: 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/lab.html">Lab: 프로세스 생성과 실행 기초</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/wsl-setup.html">WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4 - 스케줄링 2</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/lottery.html">스케줄링: 비례 배분</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/lab-sched.html">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - 메모리 가상화 1</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/vm-intro.html">주소 공간의 개념</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/vm-api.html">메모리 관리 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/lab.html">Lab: 메모리 구조 탐색하기</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6 - 메모리 가상화 2</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-mechanism.html">주소 변환의 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-segmentation.html">세그멘테이션 </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/lab.html">Lab: 주소 변환 시뮬레이션</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week07/index.html">Week 7 - 메모리 가상화 3</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week07/vm-freespace.html">빈 공간 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week07/vm-paging.html">페이징: 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week07/vm-tlbs.html">페이징: 더 빠른 변환 (TLB)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">OS 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="template/index.html">id</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 튜토리얼</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tester.html">프로젝트 테스터</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">프로젝트 환경설정</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references/ostep/index.html">OSTEP (Korean Version)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/ostep-code/index.html">ostep-code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/ostep-homework/index.html">Homeworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references/ostep-projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://kuleuven-diepenbeek.github.io/osc-course/">Operating Systems and C</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">수업계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">만든 사람들</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Links</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://halla.ai">인공지능학과</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://os2024.halla.ai">운영체제 2024</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://mlops2024.halla.ai">머신러닝시스템 2024</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://cobots2024.halla.ai">협동로봇활용 2024</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://aibasics.halla.ai">AI 세상 속으로</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chu-aie/os-2024" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/projects/lab-tutorial.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fprojects/lab-tutorial.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/projects/lab-tutorial.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 튜토리얼</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">간단한 C 프로그램</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">컴파일과 실행</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">유용한 플래그</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">라이브러리 링크</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">개별 컴파일</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#makefile">Makefile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">문서화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">디버깅</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">문서</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#info">Info 페이지</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">마치며</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab">
+<h1>Lab 튜토리얼<a class="headerlink" href="#lab" title="Link to this heading">#</a></h1>
+<p>프로그래밍에 관한 일반적인 조언 몇 가지를 드리겠습니다. 전문 프로그래머가 되려면 언어의 문법뿐만 아니라 도구, 라이브러리, 문서 활용법을 익혀야 합니다. C 언어 프로그래밍과 관련된 도구로는 gcc(컴파일러), gdb(디버거), ld(링커) 등이 있습니다. 많은 라이브러리 루틴을 사용할 수 있지만 다행히 libc(C 표준 라이브러리)에 대부분의 기능이 포함되어 있어 헤더 파일만 포함하면 됩니다. 필요한 라이브러리 루틴을 찾고 man 페이지(매뉴얼 페이지)를 읽는 법을 아는 것도 중요한 기술입니다. 이에 대해 차차 더 자세히 다루겠습니다.</p>
+<ul class="simple">
+<li><p>gcc(GNU Compiler Collection): C, C++, Objective-C, Fortran, Ada 등 다양한 언어를 지원하는 컴파일러 모음입니다. 소스 코드를 컴파일하여 실행 가능한 바이너리 파일을 생성합니다.</p></li>
+<li><p>gdb(GNU Debugger): C, C++, Fortran 등의 언어로 작성된 프로그램을 디버깅하기 위한 도구입니다. 프로그램의 실행 과정을 추적하고, 변수 값을 확인하고, 중단점을 설정하는 등의 기능을 제공합니다.</p></li>
+<li><p>ld(Linker): 컴파일된 오브젝트 파일들과 라이브러리를 링크하여 실행 가능한 바이너리 파일을 생성하는 도구입니다.</p></li>
+<li><p>libc(C Standard Library): C 프로그래밍 언어의 표준 라이브러리로, 입출력, 문자열 처리, 메모리 관리 등 다양한 기능을 제공하는 함수들의 모음입니다.</p></li>
+<li><p>man 페이지(Manual Page): 유닉스 계열 시스템에서 제공하는 온라인 매뉴얼 시스템으로, 명령어, 라이브러리 함수, 시스템 콜 등에 대한 상세한 설명과 사용법을 제공합니다.</p></li>
+</ul>
+<p>가치 있는 일이라면 대부분 그렇듯이, 전문가가 되려면 시간이 걸립니다. 도구와 환경을 배우는 데 시간을 투자하는 것은 분명 노력할 만한 가치가 있습니다.</p>
+<section id="c">
+<h2>간단한 C 프로그램<a class="headerlink" href="#c" title="Link to this heading">#</a></h2>
+<p>“hw.c”라는 파일에 간단한 C 프로그램을 작성해 보겠습니다. 자바와 달리 파일명과 내용 사이에 반드시 연관성이 있어야 하는 건 아닙니다. 따라서 적절한 이름을 사용하세요.</p>
+<p>첫 줄은 포함할 파일인 <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code>를 지정합니다. <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code>는 널리 사용되는 입출력 루틴을 “프로토타입”으로 제공하며, 우리가 관심 있는 건 <code class="docutils literal notranslate"><span class="pre">printf()</span></code> 함수입니다. <code class="docutils literal notranslate"><span class="pre">#include</span></code> 지시문을 사용하면 C 전처리기(cpp)에게 특정 파일(예: <code class="docutils literal notranslate"><span class="pre">stdio.h</span></code>)을 찾아 코드의 해당 위치에 직접 삽입하도록 지시하는 것입니다. 기본적으로 cpp는 <code class="docutils literal notranslate"><span class="pre">/usr/include/</span></code> 디렉토리에서 파일을 찾습니다.</p>
+<ul class="simple">
+<li><p>프로토타입(Prototype): 함수의 선언부로, 함수의 이름, 매개변수 타입, 반환 타입 등을 명시합니다. 함수의 실제 구현 코드는 포함하지 않습니다.</p></li>
+<li><p>C 전처리기(C Preprocessor): 소스 코드를 컴파일하기 전에 처리하는 단계로, <code class="docutils literal notranslate"><span class="pre">#include</span></code>, <code class="docutils literal notranslate"><span class="pre">#define</span></code> 등의 지시문을 처리하여 소스 코드를 변환합니다.</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* header files go up here */</span>
+<span class="cm">/* note that C comments are enclosed within a slash and</span>
+<span class="cm">   a star, and may wrap over lines */</span>
+<span class="c1">// two slashes work too (and may be preferred)</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="c1">// main returns an integer</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* printf is our output function;</span>
+<span class="cm">       by default, writes to standard out */</span>
+<span class="w">    </span><span class="cm">/* printf returns an integer, but we ignore that */</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello, world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* return 0 to indicate all went well */</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>다음은 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 함수의 시그니처를 지정합니다. 정수(<code class="docutils literal notranslate"><span class="pre">int</span></code>)를 반환하고, 두 개의 매개변수인 정수 <code class="docutils literal notranslate"><span class="pre">argc</span></code>(명령행 인자 수)와 문자열 포인터 배열 <code class="docutils literal notranslate"><span class="pre">argv</span></code>(각각 명령행의 단어를 포함하고 마지막은 NULL)를 받습니다.</p>
+<ul class="simple">
+<li><p>포인터(Pointer): 메모리 주소를 저장하는 변수입니다. 포인터를 통해 해당 메모리 주소에 저장된 값에 접근할 수 있습니다.</p></li>
+<li><p>배열(Array): 같은 타입의 데이터를 연속적인 메모리 공간에 저장하는 자료구조입니다. 배열의 각 원소는 인덱스를 통해 접근할 수 있습니다.</p></li>
+</ul>
+<p>포인터와 배열에 대해서는 아래에서 더 자세히 다루겠습니다.</p>
+<p>그런 다음 프로그램은 간단히 “hello, world” 문자열을 출력하고 마지막에 개행 문자(<code class="docutils literal notranslate"><span class="pre">\n</span></code>)을 사용해 출력 스트림을 다음 줄로 넘깁니다. 그 후 프로그램은 값 0을 반환하며 완료되는데, 이 값은 프로그램을 실행한 셸로 전달됩니다. 스크립트나 터미널의 사용자는 이 값(csh, tcsh 셸에서는 <code class="docutils literal notranslate"><span class="pre">status</span></code> 변수에 저장됨)을 확인하여 프로그램이 정상적으로 종료되었는지 오류가 발생했는지 알 수 있습니다.</p>
+<ul class="simple">
+<li><p>셸(Shell): 사용자와 운영체제 간의 인터페이스를 제공하는 프로그램으로, 사용자의 명령을 해석하고 실행합니다. 대표적인 셸로는 bash, csh, zsh 등이 있습니다.</p></li>
+</ul>
+<p>위 코드를 컴파일하려면 다음 명령을 사용합니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-o<span class="w"> </span>hw<span class="w"> </span>hw.c
+</pre></div>
+</div>
+<p>이 명령은 <code class="docutils literal notranslate"><span class="pre">hw.c</span></code> 파일을 컴파일하여 <code class="docutils literal notranslate"><span class="pre">hw</span></code>라는 이름의 실행 파일을 생성합니다. <code class="docutils literal notranslate"><span class="pre">-o</span></code> 옵션은 출력 파일의 이름을 지정합니다.</p>
+<p>컴파일된 프로그램을 실행하려면 다음 명령을 사용합니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./hw
+</pre></div>
+</div>
+<p>이 명령은 현재 디렉토리(<code class="docutils literal notranslate"><span class="pre">.</span></code>)에 있는 <code class="docutils literal notranslate"><span class="pre">hw</span></code> 파일을 실행합니다.</p>
+<p>실행 결과는 다음과 같습니다:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span><span class="p">,</span> <span class="n">world</span>
+</pre></div>
+</div>
+<p>프로그램이 정상적으로 실행되어 “hello, world”를 출력하고 종료했습니다.</p>
+</section>
+<section id="id1">
+<h2>컴파일과 실행<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>이제 프로그램을 컴파일하는 법을 배워보겠습니다. 여기서는 <code class="docutils literal notranslate"><span class="pre">gcc</span></code>를 예시로 들겠지만 일부 플랫폼에서는 다른 (기본) 컴파일러인 <code class="docutils literal notranslate"><span class="pre">cc</span></code>를 사용할 수도 있습니다.</p>
+<ul class="simple">
+<li><p>컴파일러(Compiler): 고급 언어로 작성된 소스 코드를 저급 언어(어셈블리 코드 또는 기계어)로 변환하는 프로그램입니다. C 언어의 대표적인 컴파일러로는 <code class="docutils literal notranslate"><span class="pre">gcc</span></code>와 <code class="docutils literal notranslate"><span class="pre">cc</span></code>가 있습니다.</p></li>
+</ul>
+<p>셸 프롬프트에서 다음과 같이 입력하기만 하면 됩니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>hw.c
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">gcc</span></code>는 실제 컴파일러라기보다는 “컴파일러 드라이버”라고 불리는 프로그램입니다. 따라서 여러 단계의 컴파일을 조정합니다. 보통 4~5단계로 이뤄집니다.</p>
+<ol class="arabic simple">
+<li><p>첫째, <code class="docutils literal notranslate"><span class="pre">gcc</span></code>는 C 전처리기인 <code class="docutils literal notranslate"><span class="pre">cpp</span></code>를 실행하여 <code class="docutils literal notranslate"><span class="pre">#define</span></code>, <code class="docutils literal notranslate"><span class="pre">#include</span></code> 같은 특정 지시문을 처리합니다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#define</span></code>: 매크로를 정의하는 전처리기 지시문입니다. 매크로 이름과 대체할 코드를 지정합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#include</span></code>: 다른 소스 파일을 현재 소스 파일에 포함시키는 전처리기 지시문입니다.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cpp</span></code> 프로그램은 단순한 소스 간 변환기이므로 결과물도 여전히 소스 코드(즉, C 파일)입니다.</p></li>
+<li><p>그런 다음 실제 컴파일이 시작되는데, 보통 <code class="docutils literal notranslate"><span class="pre">cc1</span></code>이라고 불리는 명령어입니다. 이것은 소스 레벨 C 코드를 호스트 기계에 특화된 저수준 어셈블리 코드로 변환합니다.</p>
+<ul class="simple">
+<li><p>어셈블리 코드(Assembly Code): 기계어와 일대일 대응되는 저급 언어로, 기계어보다는 사람이 읽기 쉬운 형태로 표현됩니다.</p></li>
+</ul>
+</li>
+<li><p>그 다음 어셈블러 <code class="docutils literal notranslate"><span class="pre">as</span></code>가 실행되어 오브젝트 코드(기계가 실제로 이해할 수 있는 비트 등)를 생성합니다.</p>
+<ul class="simple">
+<li><p>오브젝트 코드(Object Code): 컴파일러나 어셈블러에 의해 생성된, 기계어로 된 코드입니다. 아직 실행 가능한 형태는 아닙니다.</p></li>
+</ul>
+</li>
+<li><p>마지막으로 링크 편집기(또는 링커) <code class="docutils literal notranslate"><span class="pre">ld</span></code>가 모든 것을 하나의 최종 실행 파일로 묶습니다.</p>
+<ul class="simple">
+<li><p>링커(Linker): 오브젝트 파일들과 필요한 라이브러리를 연결하여 실행 가능한 파일을 생성하는 프로그램입니다.</p></li>
+</ul>
+</li>
+</ol>
+<p>다행히(!) 대부분의 경우 <code class="docutils literal notranslate"><span class="pre">gcc</span></code>가 어떻게 작동하는지 정확히 알 필요 없이 적절한 플래그와 함께 사용하면 됩니다.</p>
+<p>위 컴파일의 결과물은 기본적으로 <code class="docutils literal notranslate"><span class="pre">a.out</span></code>이라고 명명된 실행 파일입니다. 프로그램을 실행하려면 간단히 다음과 같이 입력하면 됩니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./a.out
+</pre></div>
+</div>
+<p>이 프로그램을 실행하면 OS는 필요에 따라 <code class="docutils literal notranslate"><span class="pre">argc</span></code>와 <code class="docutils literal notranslate"><span class="pre">argv</span></code>를 적절히 설정합니다.</p>
+<p>구체적으로 <code class="docutils literal notranslate"><span class="pre">argc</span></code>는 1이 되고, <code class="docutils literal notranslate"><span class="pre">argv[0]</span></code>는 문자열 <code class="docutils literal notranslate"><span class="pre">&quot;./a.out&quot;</span></code>이 되며, <code class="docutils literal notranslate"><span class="pre">argv[1]</span></code>은 배열의 끝을 나타내는 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>이 됩니다.</p>
+</section>
+<section id="id2">
+<h2>유용한 플래그<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>C 언어로 넘어가기 전에 <code class="docutils literal notranslate"><span class="pre">gcc</span></code>에 사용할 수 있는 유용한 컴파일 플래그를 몇 가지 소개하겠습니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-o<span class="w"> </span>hw<span class="w"> </span>hw.c<span class="w">  </span><span class="c1"># -o: 실행 파일명 지정</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-o</span></code> 플래그는 출력 파일의 이름을 지정합니다. 위 예시에서는 <code class="docutils literal notranslate"><span class="pre">hw</span></code>라는 이름의 실행 파일이 생성됩니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-Wall<span class="w"> </span>hw.c<span class="w">  </span><span class="c1"># -Wall: 더 나은 경고 메시지 제공</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-Wall</span></code> 플래그는 컴파일러가 더 많은 경고 메시지를 출력하도록 합니다. 이 플래그를 사용하면 잠재적인 문제를 찾아내는 데 도움이 됩니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-g<span class="w"> </span>hw.c<span class="w">  </span><span class="c1"># -g: gdb를 사용한 디버깅 활성화</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-g</span></code> 플래그는 디버깅 정보를 포함하도록 컴파일합니다. 이렇게 컴파일된 실행 파일은 <code class="docutils literal notranslate"><span class="pre">gdb</span></code> 디버거를 사용하여 디버깅할 수 있습니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-O<span class="w"> </span>hw.c<span class="w">  </span><span class="c1"># -O: 최적화 활성화</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-O</span></code> 플래그는 코드 최적화를 활성화합니다. 이 플래그를 사용하면 실행 속도가 빨라질 수 있지만, 디버깅이 어려워질 수 있습니다.</p>
+<p>물론 이 플래그들은 필요에 따라 조합해서 사용할 수 있습니다(예: <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-o</span> <span class="pre">hw</span> <span class="pre">-g</span> <span class="pre">-Wall</span> <span class="pre">hw.c</span></code>). 이 중에서 <code class="docutils literal notranslate"><span class="pre">-Wall</span></code>은 항상 사용해야 합니다. 가능한 실수에 대해 훨씬 더 많은 경고를 제공하기 때문입니다. 경고를 무시하지 마세요! 대신 고쳐서 경고가 나오지 않게 만드세요.</p>
+<ul class="simple">
+<li><p>경고(Warning): 컴파일러가 소스 코드를 분석하면서 발견한 잠재적인 문제점을 알려주는 메시지입니다. 경고가 발생해도 컴파일은 계속 진행되지만, 경고를 무시하면 런타임에 오류가 발생할 수 있습니다.</p></li>
+</ul>
+<p>이 외에도 다양한 플래그들이 있습니다. 자세한 내용은 <code class="docutils literal notranslate"><span class="pre">gcc</span></code> 매뉴얼을 참고하세요.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>gcc<span class="w">  </span><span class="c1"># gcc 매뉴얼 페이지 열기</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>라이브러리 링크<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>때로는 프로그램에서 라이브러리 루틴을 사용하고 싶을 수 있습니다. C 라이브러리에는 많은 유용한 루틴이 있고, 이들은 모든 프로그램과 자동으로 링크되기 때문에 보통은 적절한 헤더 파일(<code class="docutils literal notranslate"><span class="pre">#include</span></code>)만 찾으면 됩니다. 이를 가장 잘 하는 방법은 매뉴얼 페이지(일명 man 페이지)를 참조하는 것입니다.</p>
+<ul class="simple">
+<li><p>라이브러리(Library): 자주 사용되는 함수, 클래스, 변수 등을 모아놓은 코드 모음입니다. 라이브러리를 사용하면 코드의 재사용성을 높이고 개발 시간을 단축할 수 있습니다.</p></li>
+<li><p>루틴(Routine): 특정 작업을 수행하는 코드 블록으로, 함수 또는 메서드라고도 합니다.</p></li>
+</ul>
+<p>예를 들어 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 시스템 호출을 사용하고 싶다고 가정해보겠습니다. 셸 프롬프트에서 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">fork</span></code>를 입력하면 <code class="docutils literal notranslate"><span class="pre">fork()</span></code>가 어떻게 작동하는지에 대한 설명을 볼 수 있습니다. 맨 위에는 짧은 코드 스니펫이 있을 텐데, 이를 통해 프로그램에서 컴파일하려면 어떤 파일을 <code class="docutils literal notranslate"><span class="pre">#include</span></code>해야 하는지 알 수 있습니다. <code class="docutils literal notranslate"><span class="pre">fork()</span></code>의 경우 <code class="docutils literal notranslate"><span class="pre">unistd.h</span></code> 파일이 필요하며, 이는 다음과 같이 처리됩니다:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+</pre></div>
+</div>
+<p>그러나 일부 라이브러리 루틴은 C 라이브러리에 없으므로 조금 더 작업이 필요합니다. 예를 들어 수학 라이브러리에는 사인, 코사인, 탄젠트 등 많은 유용한 루틴이 있습니다. 코드에 <code class="docutils literal notranslate"><span class="pre">tan()</span></code> 루틴을 포함하려면 역시 먼저 man 페이지를 확인해야 합니다. Linux의 <code class="docutils literal notranslate"><span class="pre">tan</span></code> man 페이지 맨 위에 다음 두 줄이 보일 것입니다:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;math.h&gt;</span>
+<span class="o">...</span>
+<span class="n">Link</span> <span class="k">with</span> <span class="o">-</span><span class="n">lm</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>첫 번째 줄은 이미 이해할 수 있을 것입니다. 수학 라이브러리를 <code class="docutils literal notranslate"><span class="pre">#include</span></code>해야 하며, 이는 파일 시스템의 표준 위치(<code class="docutils literal notranslate"><span class="pre">/usr/include/math.h</span></code>)에서 찾을 수 있습니다. 그러나 다음 줄이 말하는 것은 프로그램을 수학 라이브러리와 “링크”하는 방법입니다. 많은 유용한 라이브러리가 있으며 대부분은 <code class="docutils literal notranslate"><span class="pre">/usr/lib</span></code>에 있습니다. 수학 라이브러리도 여기에 있습니다.</p>
+<ul class="simple">
+<li><p>링크(Link): 오브젝트 파일과 라이브러리를 연결하여 실행 가능한 파일을 생성하는 과정입니다. 링커(Linker)가 이 작업을 수행합니다.</p></li>
+</ul>
+<p>라이브러리에는 정적 링크 라이브러리(<code class="docutils literal notranslate"><span class="pre">.a</span></code>로 끝남)와 동적 링크 라이브러리(<code class="docutils literal notranslate"><span class="pre">.so</span></code>로 끝남)의 두 가지 유형이 있습니다.</p>
+<ul class="simple">
+<li><p>정적 링크 라이브러리(Static Link Library): 컴파일 시점에 라이브러리 코드가 실행 파일에 직접 포함됩니다. 실행 파일 크기가 커지지만, 라이브러리 의존성 문제를 피할 수 있습니다.</p></li>
+<li><p>동적 링크 라이브러리(Dynamic Link Library): 실행 시점에 라이브러리 코드가 로드되어 연결됩니다. 실행 파일 크기가 작고, 라이브러리 공유가 가능하지만 의존성 문제가 발생할 수 있습니다.</p></li>
+</ul>
+<p>정적 링크 라이브러리는 실행 파일에 직접 결합됩니다. 즉, 링커가 라이브러리의 저수준 코드를 실행 파일에 삽입하여 훨씬 더 큰 바이너리 오브젝트가 만들어집니다. 동적 링크는 이를 개선하여 프로그램 실행 파일에 라이브러리에 대한 참조만 포함합니다. 프로그램이 실행될 때 운영 체제 로더가 라이브러리를 동적으로 링크합니다. 이 방법은 디스크 공간을 절약하고(불필요하게 큰 실행 파일이 만들어지지 않음) 애플리케이션이 메모리에서 라이브러리 코드와 정적 데이터를 공유할 수 있게 해주므로 정적 방식보다 선호됩니다. 수학 라이브러리의 경우 정적 버전과 동적 버전이 모두 사용 가능하며, 정적 버전은 <code class="docutils literal notranslate"><span class="pre">/usr/lib/libm.a</span></code>, 동적 버전은 <code class="docutils literal notranslate"><span class="pre">/usr/lib/libm.so</span></code>라고 합니다.</p>
+<p>어쨌든 수학 라이브러리와 링크하려면 링크 편집기에 라이브러리를 지정해야 합니다. 이는 올바른 플래그와 함께 <code class="docutils literal notranslate"><span class="pre">gcc</span></code>를 호출하여 달성할 수 있습니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-o<span class="w"> </span>hw<span class="w"> </span>hw.c<span class="w"> </span>-Wall<span class="w"> </span>-lm
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-lXXX</span></code> 플래그는 링커에게 <code class="docutils literal notranslate"><span class="pre">libXXX.so</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">libXXX.a</span></code>를 찾으라고 알려줍니다(아마도 이 순서로). 어떤 이유로 동적 라이브러리보다 정적 라이브러리를 고집한다면 사용할 수 있는 다른 플래그가 있습니다. 무엇인지 알아보세요. 동적 라이브러리 사용과 관련된 약간의 성능 비용 때문에 사람들은 때때로 라이브러리의 정적 버전을 선호합니다.</p>
+<p>마지막 참고사항: 컴파일러가 일반적인 위치가 아닌 다른 경로에서 헤더를 검색하거나 지정한 라이브러리와 링크하기를 원한다면 다음과 같은 플래그를 사용할 수 있습니다.</p>
+<ul class="simple">
+<li><p>헤더 파일 검색 경로 지정: <code class="docutils literal notranslate"><span class="pre">-I/foo/bar</span></code> 플래그를 사용하여 <code class="docutils literal notranslate"><span class="pre">/foo/bar</span></code> 디렉토리에서 헤더 파일을 찾도록 합니다.</p></li>
+<li><p>라이브러리 검색 경로 지정: <code class="docutils literal notranslate"><span class="pre">-L/foo/bar</span></code> 플래그를 사용하여 <code class="docutils literal notranslate"><span class="pre">/foo/bar</span></code> 디렉토리에서 라이브러리를 찾도록 합니다.</p></li>
+</ul>
+<p>이런 식으로 지정하는 일반적인 디렉토리 중 하나는 현재 디렉토리의 UNIX 약칭인 “.”(점)입니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-I</span></code> 플래그는 컴파일 단계에서 사용되며, <code class="docutils literal notranslate"><span class="pre">-L</span></code> 플래그는 링크 단계에서 사용된다는 점에 유의하세요.</p>
+<p>예를 들어, 현재 디렉토리에 <code class="docutils literal notranslate"><span class="pre">mylib.h</span></code> 헤더 파일과 <code class="docutils literal notranslate"><span class="pre">libmylib.so</span></code> 라이브러리가 있다면 다음과 같이 컴파일하고 링크할 수 있습니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-c<span class="w"> </span>-I.<span class="w"> </span>hw.c
+gcc<span class="w"> </span>-o<span class="w"> </span>hw<span class="w"> </span>hw.o<span class="w"> </span>-L.<span class="w"> </span>-lmylib
+</pre></div>
+</div>
+<p>첫 번째 명령은 <code class="docutils literal notranslate"><span class="pre">hw.c</span></code>를 컴파일하여 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code> 오브젝트 파일을 생성합니다. 이때 <code class="docutils literal notranslate"><span class="pre">-I.</span></code> 플래그를 사용하여 현재 디렉토리에서 헤더 파일을 찾도록 지정합니다.</p>
+<p>두 번째 명령은 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>를 <code class="docutils literal notranslate"><span class="pre">libmylib.so</span></code>와 링크하여 <code class="docutils literal notranslate"><span class="pre">hw</span></code> 실행 파일을 생성합니다. 이때 <code class="docutils literal notranslate"><span class="pre">-L.</span></code> 플래그를 사용하여 현재 디렉토리에서 라이브러리를 찾도록 지정합니다.</p>
+<p>이렇게 하면 표준 경로가 아닌 위치에 있는 헤더 파일과 라이브러리를 사용할 수 있습니다.</p>
+<p>라이브러리를 효과적으로 활용하려면 라이브러리의 종류, 링크 과정, 검색 경로 지정 방법 등을 이해하는 것이 중요합니다. 이를 통해 코드의 재사용성을 높이고, 개발 시간을 단축할 수 있습니다.</p>
+</section>
+<section id="id4">
+<h2>개별 컴파일<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>프로그램이 충분히 커지면 별도의 파일로 분할하여 각각 컴파일한 다음 함께 링크하고 싶을 수 있습니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">hw.c</span></code>와 <code class="docutils literal notranslate"><span class="pre">helper.c</span></code>라는 두 개의 파일이 있고 이들을 개별적으로 컴파일한 다음 함께 링크하려 한다고 가정해 보겠습니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 경고를 위해 -Wall을, 최적화를 위해 -O를 사용하고 있습니다</span>
+prompt&gt;<span class="w"> </span>gcc<span class="w"> </span>-Wall<span class="w"> </span>-O<span class="w"> </span>-c<span class="w"> </span>hw.c
+prompt&gt;<span class="w"> </span>gcc<span class="w"> </span>-Wall<span class="w"> </span>-O<span class="w"> </span>-c<span class="w"> </span>helper.c
+prompt&gt;<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>hw<span class="w"> </span>hw.o<span class="w"> </span>helper.o<span class="w"> </span>-lm
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-c</span></code> 플래그는 컴파일러에게 오브젝트 파일만 생성하라고 알려줍니다. 이 경우 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>와 <code class="docutils literal notranslate"><span class="pre">helper.o</span></code>라는 파일이 생성됩니다. 이 파일들은 실행 파일이 아니라 각 소스 파일 내의 코드에 대한 기계어 수준 표현일 뿐입니다. 오브젝트 파일을 실행 파일로 결합하려면 이들을 “링크”해야 합니다. 이는 세 번째 줄 <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-o</span> <span class="pre">hw</span> <span class="pre">hw.o</span> <span class="pre">helper.o</span></code>로 수행됩니다. 이 경우 <code class="docutils literal notranslate"><span class="pre">gcc</span></code>는 지정된 입력 파일이 소스 파일(<code class="docutils literal notranslate"><span class="pre">.c</span></code>)이 아니라 오브젝트 파일(<code class="docutils literal notranslate"><span class="pre">.o</span></code>)임을 확인하고, 따라서 마지막 단계로 건너뛰어 링크 편집기 <code class="docutils literal notranslate"><span class="pre">ld</span></code>를 호출하여 이들을 하나의 실행 파일로 링크합니다. 이 기능 때문에 이 줄은 종종 “링크 라인”이라고 불리며, <code class="docutils literal notranslate"><span class="pre">-lm</span></code>과 같은 링크 전용 명령을 지정하는 곳이 될 것입니다. 마찬가지로 <code class="docutils literal notranslate"><span class="pre">-Wall</span></code>이나 <code class="docutils literal notranslate"><span class="pre">-O</span></code> 같은 플래그는 컴파일 단계에서만 필요하므로 링크 라인이 아니라 컴파일 라인에만 포함하면 됩니다.</p>
+<p>물론 모든 C 소스 파일을 한 줄에 <code class="docutils literal notranslate"><span class="pre">gcc</span></code>에 지정할 수도 있습니다(<code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-Wall</span> <span class="pre">-O</span> <span class="pre">-o</span> <span class="pre">hw</span> <span class="pre">hw.c</span> <span class="pre">helper.c</span></code>). 그러나 이렇게 하면 시스템이 모든 소스 코드 파일을 다시 컴파일해야 하므로 시간이 오래 걸릴 수 있습니다. 각각 개별적으로 컴파일하면 편집하는 동안 변경된 파일만 다시 컴파일하여 시간을 절약하고 생산성을 높일 수 있습니다. 이 프로세스는 <code class="docutils literal notranslate"><span class="pre">make</span></code>라는 또 다른 프로그램으로 가장 잘 관리되며, 이제 이에 대해 설명하겠습니다.</p>
+</section>
+<section id="makefile">
+<h2>Makefile<a class="headerlink" href="#makefile" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">make</span></code> 프로그램을 사용하면 빌드 프로세스의 많은 부분을 자동화할 수 있으므로 진지한 프로그램(및 프로그래머)에게 매우 중요한 도구입니다. <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>이라는 파일에 저장된 간단한 예제를 살펴보겠습니다.</p>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">hw</span><span class="o">:</span><span class="w"> </span><span class="n">hw</span>.<span class="n">o</span> <span class="n">helper</span>.<span class="n">o</span>
+<span class="w">    </span>gcc<span class="w"> </span>-o<span class="w"> </span>hw<span class="w"> </span>hw.o<span class="w"> </span>helper.o<span class="w"> </span>-lm
+
+<span class="nf">hw.o</span><span class="o">:</span><span class="w"> </span><span class="n">hw</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>-O<span class="w"> </span>-Wall<span class="w"> </span>-c<span class="w"> </span>hw.c
+
+<span class="nf">helper.o</span><span class="o">:</span><span class="w"> </span><span class="n">helper</span>.<span class="n">c</span>
+<span class="w">    </span>gcc<span class="w"> </span>-O<span class="w"> </span>-Wall<span class="w"> </span>-c<span class="w"> </span>helper.c
+
+<span class="nf">clean</span><span class="o">:</span>
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span>hw.o<span class="w"> </span>helper.o<span class="w"> </span>hw
+</pre></div>
+</div>
+<p>이제 프로그램을 빌드하려면 명령줄에서 <code class="docutils literal notranslate"><span class="pre">make</span></code>를 입력하기만 하면 됩니다. 이것은 (기본적으로) <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">makefile</span></code>을 찾아 입력으로 사용합니다(플래그로 다른 makefile을 지정할 수 있습니다. man 페이지를 읽어보세요).</p>
+<p><code class="docutils literal notranslate"><span class="pre">make</span></code>의 GNU 버전인 <code class="docutils literal notranslate"><span class="pre">gmake</span></code>는 전통적인 <code class="docutils literal notranslate"><span class="pre">make</span></code>보다 기능이 더 풍부하므로 나머지 논의에서는 이에 초점을 맞출 것입니다(<code class="docutils literal notranslate"><span class="pre">gmake</span></code>와 <code class="docutils literal notranslate"><span class="pre">make</span></code>라는 용어를 서로 바꿔 사용하겠습니다). 이 노트의 대부분은 <code class="docutils literal notranslate"><span class="pre">gmake</span></code> info 페이지를 기반으로 합니다. 이러한 페이지를 찾는 방법은 아래 문서 섹션을 참조하세요. 또한 Linux 시스템에서는 <code class="docutils literal notranslate"><span class="pre">gmake</span></code>와 <code class="docutils literal notranslate"><span class="pre">make</span></code>가 동일합니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Makefile</span></code>은 규칙을 기반으로 하며, 이는 무엇을 해야 할지 결정하는 데 사용됩니다. 규칙의 일반적인 형식은 다음과 같습니다:</p>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">target</span><span class="o">:</span><span class="w"> </span><span class="n">prerequisite</span>1 <span class="n">prerequisite</span>2 ...
+<span class="w">    </span>command1
+<span class="w">    </span>command2
+<span class="w">    </span>...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target</span></code>: 대개 명령에 의해 생성되는 파일의 이름입니다. 실행 파일이나 오브젝트 파일이 target의 예입니다. target은 예제의 <code class="docutils literal notranslate"><span class="pre">clean</span></code>처럼 수행할 동작의 이름일 수도 있습니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prerequisite</span></code>: target을 만드는 데 입력으로 사용되는 파일입니다. target은 종종 여러 파일에 의존합니다. 예를 들어 실행 파일 <code class="docutils literal notranslate"><span class="pre">hw</span></code>를 빌드하려면 먼저 두 개의 오브젝트 파일인 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>와 <code class="docutils literal notranslate"><span class="pre">helper.o</span></code>가 빌드되어야 합니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">command</span></code>: <code class="docutils literal notranslate"><span class="pre">make</span></code>가 수행하는 동작입니다. 규칙에는 각각 고유한 줄에 있는 둘 이상의 명령이 있을 수 있습니다. 중요: 모든 명령줄의 시작 부분에 반드시 하나의 탭 문자를 넣어야 합니다! 공백만 사용하면 <code class="docutils literal notranslate"><span class="pre">make</span></code>는 모호한 오류 메시지를 출력하고 종료합니다.</p></li>
+</ul>
+<p>보통 명령은 prerequisite가 있는 규칙에 있으며 prerequisite 중 하나라도 변경되면 target 파일을 생성하는 역할을 합니다. 그러나 target에 대한 명령을 지정하는 규칙에는 prerequisite가 없을 수도 있습니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">clean</span></code> target과 관련된 삭제 명령이 포함된 규칙에는 prerequisite가 없습니다.</p>
+<p>예제로 돌아가서, <code class="docutils literal notranslate"><span class="pre">make</span></code>가 실행되면 대략 다음과 같이 작동합니다:</p>
+<ol class="arabic simple">
+<li><p>먼저 target <code class="docutils literal notranslate"><span class="pre">hw</span></code>에 도달하고, 이를 빌드하려면 두 개의 prerequisite인 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>와 <code class="docutils literal notranslate"><span class="pre">helper.o</span></code>가 있어야 한다는 것을 알게 됩니다. 따라서 <code class="docutils literal notranslate"><span class="pre">hw</span></code>는 해당 두 오브젝트 파일에 의존합니다.</p></li>
+<li><p>그런 다음 <code class="docutils literal notranslate"><span class="pre">make</span></code>는 이 target들을 각각 검사합니다. <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>를 검사하면서 <code class="docutils literal notranslate"><span class="pre">hw.c</span></code>에 의존한다는 것을 알게 됩니다. 핵심은 다음과 같습니다: <code class="docutils literal notranslate"><span class="pre">hw.c</span></code>가 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>가 생성된 것보다 더 최근에 수정되었다면, <code class="docutils literal notranslate"><span class="pre">make</span></code>는 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>가 최신이 아니며 새로 생성되어야 한다는 것을 알게 됩니다. 이 경우 <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-O</span> <span class="pre">-Wall</span> <span class="pre">-c</span> <span class="pre">hw.c</span></code> 명령줄을 실행하여 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>를 생성합니다. 따라서 큰 프로그램을 컴파일하는 경우 <code class="docutils literal notranslate"><span class="pre">make</span></code>는 의존성에 기반하여 어떤 오브젝트 파일을 다시 생성해야 하는지 알고 실행 파일을 다시 생성하는 데 필요한 양의 작업만 수행합니다. 또한 <code class="docutils literal notranslate"><span class="pre">hw.o</span></code>가 전혀 존재하지 않는 경우에도 생성된다는 점에 유의하세요.</p></li>
+<li><p>계속해서 <code class="docutils literal notranslate"><span class="pre">helper.o</span></code>도 위에서 정의한 것과 동일한 기준에 따라 재생성되거나 생성될 수 있습니다.</p></li>
+<li><p>두 오브젝트 파일이 모두 생성되면 <code class="docutils literal notranslate"><span class="pre">make</span></code>는 이제 최종 실행 파일을 생성하는 명령을 실행할 준비가 되어 돌아가서 <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-o</span> <span class="pre">hw</span> <span class="pre">hw.o</span> <span class="pre">helper.o</span> <span class="pre">-lm</span></code>을 수행합니다.</p></li>
+</ol>
+<p>지금까지 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>의 <code class="docutils literal notranslate"><span class="pre">clean</span></code> target은 무시했습니다. 이를 사용하려면 명시적으로 요청해야 합니다. 다음과 같이 입력하세요:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>prompt&gt;<span class="w"> </span>make<span class="w"> </span>clean
+</pre></div>
+</div>
+<p>그러면 <code class="docutils literal notranslate"><span class="pre">clean</span></code> target 아래에 있는 명령줄의 명령이 실행됩니다. <code class="docutils literal notranslate"><span class="pre">clean</span></code> target에는 prerequisite가 없으므로 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code>을 입력하면 항상 명령이 실행됩니다. 이 경우 <code class="docutils literal notranslate"><span class="pre">clean</span></code> target은 오브젝트 파일과 실행 파일을 제거하는 데 사용되며, 전체 프로그램을 처음부터 다시 빌드하려는 경우에 매우 편리합니다.</p>
+<p>이제 “음, 이건 괜찮아 보이지만 이런 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>은 확실히 번거롭군요!”라고 생각할 수 있습니다. 맞습니다. 항상 이렇게 작성해야 한다면 말이죠. 다행히도 <code class="docutils literal notranslate"><span class="pre">make</span></code>를 훨씬 더 쉽게 사용할 수 있는 많은 단축키가 있습니다. 예를 들어 이 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>은 동일한 기능을 가지고 있지만 사용하기가 조금 더 좋습니다:</p>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="c"># 여기에 모든 소스 파일 지정</span>
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>hw.c<span class="w"> </span>helper.c
+
+<span class="c"># 여기에 target 지정(실행 파일 이름)</span>
+<span class="nv">TARG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>hw
+
+<span class="c"># 컴파일러, 컴파일 플래그, 필요한 라이브러리 지정</span>
+<span class="nv">CC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>gcc
+<span class="nv">OPTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-Wall<span class="w"> </span>-O
+<span class="nv">LIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-lm
+
+<span class="c"># 이것은 src 목록의 .c 파일을 .o로 변환</span>
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>SRCS:.c<span class="o">=</span>.o<span class="k">)</span>
+
+<span class="c"># all은 실제로 필요하지 않지만 target을 생성하는 데 사용됨</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">TARG</span><span class="k">)</span>
+
+<span class="c"># 이것은 target 실행 파일을 생성</span>
+<span class="nf">$(TARG)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>TARG<span class="k">)</span><span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LIBS<span class="k">)</span>
+
+<span class="c"># 이것은 .o 파일에 대한 일반 규칙</span>
+<span class="nf">%.o</span><span class="o">:</span><span class="w"> </span>%.<span class="n">c</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>OPTS<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>$&lt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
+
+<span class="c"># 마지막으로 clean 줄</span>
+<span class="nf">clean</span><span class="o">:</span>
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>TARG<span class="k">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">make</span></code> 문법의 세부 사항은 다루지 않겠지만, 보시다시피 이 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>은 여러분의 삶을 다소 쉽게 만들어 줄 수 있습니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 상단의 <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> 변수에 새 소스 파일을 추가하기만 하면 빌드에 쉽게 포함할 수 있습니다. 또한 <code class="docutils literal notranslate"><span class="pre">TARG</span></code> 줄을 변경하여 실행 파일의 이름을 쉽게 변경할 수 있으며, 컴파일러, 플래그 및 라이브러리 사양도 모두 쉽게 수정할 수 있습니다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$(SRCS:.c=.o)</span></code>: 이것은 <code class="docutils literal notranslate"><span class="pre">make</span></code>의 치환 참조(substitution reference)입니다. <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> 변수에 나열된 모든 <code class="docutils literal notranslate"><span class="pre">.c</span></code> 파일을 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 파일로 변환합니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">SRCS</span></code>가 <code class="docutils literal notranslate"><span class="pre">hw.c</span> <span class="pre">helper.c</span></code>이면 <code class="docutils literal notranslate"><span class="pre">$(SRCS:.c=.o)</span></code>는 <code class="docutils literal notranslate"><span class="pre">hw.o</span> <span class="pre">helper.o</span></code>로 확장됩니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$&lt;</span></code>: 현재 규칙의 첫 번째 prerequisite의 이름으로 확장됩니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">%.o:</span> <span class="pre">%.c</span></code> 규칙에서 <code class="docutils literal notranslate"><span class="pre">$&lt;</span></code>는 <code class="docutils literal notranslate"><span class="pre">.c</span></code> 파일의 이름으로 대체됩니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$&#64;</span></code>: 현재 규칙의 target의 이름으로 확장됩니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">%.o:</span> <span class="pre">%.c</span></code> 규칙에서 <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code>는 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 파일의 이름으로 대체됩니다.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">make</span></code>에 대한 마지막 한 마디: 특히 대규모 복잡한 프로그램에서는 target의 prerequisite를 파악하는 것이 항상 쉽지만은 않습니다. 놀랍지 않게도 이를 도와주는 또 다른 도구인 <code class="docutils literal notranslate"><span class="pre">makedepend</span></code>가 있습니다. 스스로 읽어보고 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>에 통합할 수 있는지 확인해 보세요.</p>
+<p>이상으로 C 프로그램의 컴파일과 빌드 과정에 대해 알아보았습니다. 개별 컴파일과 <code class="docutils literal notranslate"><span class="pre">make</span></code> 도구의 사용은 대규모 프로젝트에서 특히 중요합니다. 이를 통해 빌드 프로세스를 자동화하고 효율성을 높일 수 있습니다.</p>
+</section>
+<section id="id5">
+<h2>문서화<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>프로그래밍에서 문서화는 매우 중요한 부분입니다. 코드를 작성할 때는 항상 다른 사람(또는 미래의 자신)이 코드를 읽고 이해할 수 있도록 해야 합니다. 이를 위해 주석을 적절히 사용하고, 코드의 동작을 명확하게 설명하는 문서를 작성해야 합니다.</p>
+<p>C 언어에서는 주석을 <code class="docutils literal notranslate"><span class="pre">/*</span></code>와 <code class="docutils literal notranslate"><span class="pre">*/</span></code> 사이에 작성합니다. 예를 들면 다음과 같습니다:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* 이것은 주석입니다. */</span>
+</pre></div>
+</div>
+<p>또한 <code class="docutils literal notranslate"><span class="pre">//</span></code>를 사용하여 한 줄 주석을 작성할 수도 있습니다:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 이것도 주석입니다.</span>
+</pre></div>
+</div>
+<p>주석은 코드의 동작을 설명하거나, 특정 변수나 함수의 목적을 명시하는 데 사용됩니다. 주석을 적절히 사용하면 코드의 가독성을 크게 향상시킬 수 있습니다.</p>
+<p>문서화의 또 다른 중요한 부분은 함수와 변수의 이름을 명확하고 의미 있게 짓는 것입니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">a</span></code>보다는 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">num_elements</span></code>와 같이 변수의 목적을 명확히 드러내는 이름을 사용하는 것이 좋습니다.</p>
+<p>C 프로그램의 문서화를 위해 자주 사용되는 도구로는 <code class="docutils literal notranslate"><span class="pre">Doxygen</span></code>이 있습니다. <code class="docutils literal notranslate"><span class="pre">Doxygen</span></code>은 소스 코드에 특별한 형식의 주석을 추가하여 문서를 자동으로 생성하는 도구입니다. 예를 들면 다음과 같습니다:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * @brief 두 정수를 더하는 함수</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param a 첫 번째 정수</span>
+<span class="cm"> * @param b 두 번째 정수</span>
+<span class="cm"> * @return 두 정수의 합</span>
+<span class="cm"> */</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>위와 같이 주석을 작성하면 <code class="docutils literal notranslate"><span class="pre">Doxygen</span></code>은 이를 인식하여 함수의 설명, 매개변수, 반환값 등을 자동으로 문서화합니다.</p>
+<p>문서화는 프로그래밍의 필수 부분이므로, 코드를 작성할 때부터 문서화를 고려하는 습관을 들이는 것이 좋습니다. 이를 통해 장기적으로 코드의 유지보수성과 확장성을 크게 향상시킬 수 있습니다.</p>
+</section>
+<section id="id6">
+<h2>디버깅<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>마지막으로 좋은 빌드 환경을 만들고 올바르게 컴파일된 프로그램을 만든 후에도 프로그램에 버그가 있다는 것을 발견할 수 있습니다. 문제를 해결하는 한 가지 방법은 열심히 생각하는 것입니다. 이 방법은 때때로 성공하지만 종종 그렇지 않습니다. 문제는 정보가 부족하다는 것입니다. 프로그램 내에서 정확히 무슨 일이 일어나고 있는지 모르기 때문에 예상대로 동작하지 않는 이유를 알아낼 수 없습니다. 다행히도 도움이 있습니다: GNU 디버거인 <code class="docutils literal notranslate"><span class="pre">gdb</span></code>입니다.</p>
+<ul class="simple">
+<li><p>디버깅(Debugging): 프로그램의 버그를 찾고 수정하는 과정입니다. 디버거를 사용하여 프로그램의 실행 흐름을 추적하고, 변수의 값을 검사하며, 문제의 원인을 파악합니다.</p></li>
+<li><p>디버거(Debugger): 프로그램의 실행을 제어하고 분석할 수 있는 도구입니다. 중단점을 설정하여 특정 지점에서 프로그램을 일시 중지하고, 변수의 값을 검사하거나 수정할 수 있습니다.</p></li>
+<li><p>GDB(GNU Debugger): GNU 프로젝트에서 개발한 강력한 디버거로, C, C++, Fortran 등 다양한 언어를 지원합니다.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">buggy.c</span></code> 파일에 저장되고 <code class="docutils literal notranslate"><span class="pre">buggy</span></code>라는 실행 파일로 컴파일된 다음과 같은 버그 있는 코드를 살펴보겠습니다.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Data</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Data</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>이 예제에서 <code class="docutils literal notranslate"><span class="pre">main</span></code> 함수는 <code class="docutils literal notranslate"><span class="pre">p</span></code>가 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>일 때 <code class="docutils literal notranslate"><span class="pre">p</span></code>를 역참조하는데, 이는 세그멘테이션 오류(Segmentation Fault)로 이어집니다.</p>
+<ul class="simple">
+<li><p>세그멘테이션 오류(Segmentation Fault): 프로그램이 잘못된 메모리 영역에 접근하려고 할 때 발생하는 오류입니다. 주로 널 포인터 역참조, 배열 범위 초과 접근 등이 원인이 됩니다.</p></li>
+</ul>
+<p>물론 이 문제는 검사를 통해 쉽게 고칠 수 있어야 하지만, 더 복잡한 프로그램에서는 이런 문제를 찾는 것이 항상 쉽지는 않습니다.</p>
+<p>디버깅 세션을 준비하려면 프로그램을 다시 컴파일하고 각 컴파일 줄에 <code class="docutils literal notranslate"><span class="pre">-g</span></code> 플래그를 전달해야 합니다. 이렇게 하면 디버깅 세션 동안 유용할 추가 디버깅 정보가 실행 파일에 포함됩니다. 또한 최적화(<code class="docutils literal notranslate"><span class="pre">-O</span></code>)를 켜지 마세요. 작동할 수도 있지만 디버깅하는 동안 혼란을 야기할 수도 있습니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-g<span class="w"> </span>buggy.c<span class="w"> </span>-o<span class="w"> </span>buggy
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-g</span></code>로 다시 컴파일한 후에는 디버거를 사용할 준비가 된 것입니다. 명령 프롬프트에서 다음과 같이 <code class="docutils literal notranslate"><span class="pre">gdb</span></code>를 실행하세요:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdb<span class="w"> </span>buggy
+</pre></div>
+</div>
+<p>그러면 디버거와의 대화형 세션으로 들어갑니다. 디버거를 사용하여 잘못된 실행 중에 생성된 “코어” 파일을 검사하거나 이미 실행 중인 프로그램에 연결할 수도 있습니다. 이에 대한 자세한 내용은 문서를 읽어보세요.</p>
+<p>내부에 들어가면 다음과 같은 내용이 표시될 수 있습니다:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GNU</span> <span class="n">gdb</span> <span class="o">...</span>
+<span class="n">Copyright</span> <span class="mi">2008</span> <span class="n">Free</span> <span class="n">Software</span> <span class="n">Foundation</span><span class="p">,</span> <span class="n">Inc</span><span class="o">.</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>처음 하고 싶은 일은 계속 진행하여 프로그램을 실행하는 것일 수 있습니다. 이렇게 하려면 <code class="docutils literal notranslate"><span class="pre">gdb</span></code> 명령 프롬프트에 <code class="docutils literal notranslate"><span class="pre">run</span></code>을 입력하기만 하면 됩니다. 이 경우 다음과 같은 내용이 표시될 수 있습니다:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">run</span>
+<span class="n">Starting</span> <span class="n">program</span><span class="p">:</span> <span class="n">buggy</span>
+<span class="n">Program</span> <span class="n">received</span> <span class="n">signal</span> <span class="n">SIGSEGV</span><span class="p">,</span> <span class="n">Segmentation</span> <span class="n">fault</span><span class="o">.</span>
+<span class="mh">0x8048433</span> <span class="ow">in</span> <span class="n">main</span> <span class="p">(</span><span class="n">argc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">argv</span><span class="o">=</span><span class="mh">0xbffff844</span><span class="p">)</span> <span class="n">at</span> <span class="n">buggy</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">19</span>
+<span class="mi">19</span>      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>예제에서 볼 수 있듯이 이 경우 <code class="docutils literal notranslate"><span class="pre">gdb</span></code>는 즉시 문제가 발생한 위치를 정확히 찾아냅니다. <code class="docutils literal notranslate"><span class="pre">p</span></code>를 역참조하려고 했던 줄에서 “세그멘테이션 오류”가 발생했습니다. 이는 단순히 액세스해서는 안 되는 메모리에 액세스했다는 의미입니다. 이 시점에서 통찰력 있는 프로그래머는 코드를 검사하고 “아하! <code class="docutils literal notranslate"><span class="pre">p</span></code>가 유효한 것을 가리키고 있지 않으므로 역참조해서는 안 되는구나!”라고 말한 다음 문제를 해결할 수 있습니다.</p>
+<p>그러나 무슨 일이 일어나고 있는지 몰랐다면 일부 변수를 검사하고 싶을 수 있습니다. <code class="docutils literal notranslate"><span class="pre">gdb</span></code>를 사용하면 디버그 세션 중에 이를 대화식으로 수행할 수 있습니다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(gdb) print p
+$1 = (struct Data *) 0x0
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">print</span></code> 명령을 사용하면 <code class="docutils literal notranslate"><span class="pre">p</span></code>를 검사하여 <code class="docutils literal notranslate"><span class="pre">p</span></code>가 <code class="docutils literal notranslate"><span class="pre">Data</span></code> 구조체에 대한 포인터이고 현재 <code class="docutils literal notranslate"><span class="pre">NULL</span></code>(또는 0, 또는 여기서 “0x0”으로 표시된 16진수 0)로 설정되어 있음을 알 수 있습니다.</p>
+<p>마지막으로 프로그램 내에 중단점(Breakpoint)을 설정하여 디버거가 특정 지점에서 프로그램을 중지하도록 할 수도 있습니다. 이렇게 한 후에는 실행을 단계별로 진행하고(한 번에 한 줄씩) 무슨 일이 일어나고 있는지 보는 것이 종종 유용합니다.</p>
+<ul class="simple">
+<li><p>중단점(Breakpoint): 프로그램의 특정 지점에 설정하는 표시로, 해당 지점에 도달하면 프로그램의 실행이 일시 중지되고 제어가 디버거로 넘어갑니다.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="k">break</span> <span class="n">main</span>
+<span class="n">Breakpoint</span> <span class="mi">1</span> <span class="n">at</span> <span class="mh">0x8048426</span><span class="p">:</span> <span class="n">file</span> <span class="n">buggy</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">line</span> <span class="mf">17.</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">run</span>
+<span class="n">Starting</span> <span class="n">program</span><span class="p">:</span> <span class="o">/</span><span class="n">homes</span><span class="o">/</span><span class="n">hacker</span><span class="o">/</span><span class="n">buggy</span>
+<span class="n">Breakpoint</span> <span class="mi">1</span><span class="p">,</span> <span class="n">main</span> <span class="p">(</span><span class="n">argc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">argv</span><span class="o">=</span><span class="mh">0xbffff844</span><span class="p">)</span> <span class="n">at</span> <span class="n">buggy</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">17</span>
+<span class="mi">17</span>      <span class="n">struct</span> <span class="n">Data</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="nb">next</span>
+<span class="mi">19</span>      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">);</span>
+<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="nb">next</span>
+<span class="n">Program</span> <span class="n">received</span> <span class="n">signal</span> <span class="n">SIGSEGV</span><span class="p">,</span> <span class="n">Segmentation</span> <span class="n">fault</span><span class="o">.</span>
+<span class="mh">0x8048433</span> <span class="ow">in</span> <span class="n">main</span> <span class="p">(</span><span class="n">argc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">argv</span><span class="o">=</span><span class="mh">0xbffff844</span><span class="p">)</span> <span class="n">at</span> <span class="n">buggy</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">19</span>
+<span class="mi">19</span>      <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>위의 예에서 중단점은 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 함수에 설정됩니다. 따라서 프로그램을 실행하면 디버거는 <code class="docutils literal notranslate"><span class="pre">main</span></code>에서 거의 즉시 실행을 중지합니다. 예제의 해당 시점에서 <code class="docutils literal notranslate"><span class="pre">next</span></code> 명령이 실행되어 다음 소스 코드 줄을 실행합니다. <code class="docutils literal notranslate"><span class="pre">next</span></code>와 <code class="docutils literal notranslate"><span class="pre">step</span></code>은 프로그램을 진행하는 유용한 방법입니다. 자세한 내용은 문서를 읽어보세요.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">next</span></code>: 현재 함수의 다음 줄로 이동합니다. 함수 호출이 있는 경우 해당 함수를 실행하고 돌아옵니다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code>: 현재 줄에서 함수 호출이 있는 경우 해당 함수 내부로 들어갑니다. 함수 호출이 없으면 <code class="docutils literal notranslate"><span class="pre">next</span></code>와 동일하게 동작합니다.</p></li>
+</ul>
+<p>이 설명만으로는 <code class="docutils literal notranslate"><span class="pre">gdb</span></code>를 제대로 다루기에 충분하지 않습니다. <code class="docutils literal notranslate"><span class="pre">gdb</span></code>는 여기에서 제한된 공간에서 설명할 수 있는 것보다 훨씬 더 많은 기능을 갖춘 강력하고 유연한 디버깅 도구입니다. 여가 시간에 <code class="docutils literal notranslate"><span class="pre">gdb</span></code>에 대해 더 읽어보고 전문가가 되세요.</p>
+<p>디버깅은 프로그래밍에서 매우 중요한 부분입니다. 버그를 신속하게 발견하고 수정하는 능력은 모든 프로그래머에게 필수적인 기술입니다. <code class="docutils literal notranslate"><span class="pre">gdb</span></code>와 같은 디버거를 효과적으로 사용하면 문제의 원인을 빠르게 파악하고 해결할 수 있습니다.</p>
+<p>디버깅 팁을 몇 가지 더 살펴보겠습니다:</p>
+<ol class="arabic simple">
+<li><p>가정을 검증하세요. 코드의 동작에 대한 가정이 실제로 맞는지 확인하세요. 디버거를 사용하여 변수의 값을 출력하고 예상한 대로인지 확인하세요.</p></li>
+<li><p>단계별로 실행하세요. 한 번에 많은 코드를 실행하는 대신 한 줄씩 실행하면서 프로그램의 상태 변화를 주의 깊게 관찰하세요.</p></li>
+<li><p>중단점을 전략적으로 설정하세요. 문제가 발생한 것으로 의심되는 지점이나 변수의 값이 변경되는 지점에 중단점을 설정하세요.</p></li>
+<li><p>백트레이싱을 활용하세요. 오류가 발생했을 때 함수 호출 스택을 살펴보면 문제의 원인을 추적하는 데 도움이 됩니다.</p></li>
+<li><p>코어 덤프를 분석하세요. 프로그램이 크래시되면 코어 덤프 파일이 생성됩니다. 이 파일을 디버거로 로드하여 크래시 시점의 프로그램 상태를 분석할 수 있습니다.</p></li>
+</ol>
+<p>디버깅은 연습과 경험이 필요한 기술입니다. 다양한 유형의 버그를 만나고 해결해 나가면서 디버깅 능력을 향상시킬 수 있습니다. 효과적인 디버깅을 위해서는 인내심과 체계적인 접근이 필요합니다.</p>
+<p>코드의 가독성과 모듈화도 디버깅에 큰 영향을 미칩니다. 잘 구조화되고 주석이 잘 달린 코드는 디버깅이 훨씬 쉽습니다. 따라서 코드를 작성할 때부터 가독성과 유지보수성을 고려해야 합니다.</p>
+<p>디버깅은 프로그래밍의 필수 불가결한 부분입니다. 숙련된 프로그래머는 디버깅 기술에도 능숙합니다. <code class="docutils literal notranslate"><span class="pre">gdb</span></code>와 같은 강력한 도구를 활용하고 체계적으로 접근한다면 어떤 버그도 해결할 수 없는 문제는 없을 것입니다. 끊임없는 연습과 학습을 통해 디버깅 전문가가 되시기 바랍니다.</p>
+</section>
+<section id="id7">
+<h2>문서<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>이 모든 것에 대해 훨씬 더 많은 것을 배우려면 두 가지를 해야 합니다. 첫째는 이러한 도구를 직접 사용해보는 것이고, 둘째는 관련 문서를 더 많이 읽어보는 것입니다. <code class="docutils literal notranslate"><span class="pre">gcc</span></code>, <code class="docutils literal notranslate"><span class="pre">gmake</span></code>, <code class="docutils literal notranslate"><span class="pre">gdb</span></code>에 대해 더 알아보는 한 가지 방법은 매뉴얼 페이지(man page)를 읽는 것입니다. 명령 프롬프트에서 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">gcc</span></code>, <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">gmake</span></code>, <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">gdb</span></code>를 입력해보세요. 또한 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">-k</span></code>를 사용하여 매뉴얼 페이지에서 키워드를 검색할 수 있지만, 항상 잘 작동하지는 않습니다. 이 경우에는 구글링이 더 나은 접근 방식일 것입니다.</p>
+<p>매뉴얼 페이지에 관한 까다로운 점 하나를 알아두세요. 같은 이름의 항목이 둘 이상 있는 경우 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">&lt;항목&gt;</span></code>을 입력해도 원하는 내용이 나오지 않을 수 있습니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">kill()</span></code> 시스템 호출의 매뉴얼 페이지를 찾고 있는데 프롬프트에 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">kill</span></code>만 입력하면 <code class="docutils literal notranslate"><span class="pre">kill</span></code>이라는 명령줄 프로그램이 있기 때문에 잘못된 매뉴얼 페이지를 얻게 됩니다.</p>
+<p>매뉴얼 페이지는 섹션으로 나뉘어 있으며, 기본적으로 <code class="docutils literal notranslate"><span class="pre">man</span></code>은 찾은 가장 낮은 섹션의 매뉴얼 페이지를 반환하는데, 이 경우에는 섹션 1입니다. 페이지 상단을 보면 어떤 매뉴얼 페이지를 얻었는지 알 수 있습니다. <code class="docutils literal notranslate"><span class="pre">kill(2)</span></code>가 보이면 시스템 호출이 있는 섹션 2의 올바른 매뉴얼 페이지에 있다는 것을 알 수 있습니다. <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">man</span></code>을 입력하여 매뉴얼 페이지의 각 섹션에 어떤 내용이 저장되어 있는지 자세히 알아보세요. 또한 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">-a</span> <span class="pre">kill</span></code>을 사용하여 “kill”이라는 이름의 모든 매뉴얼 페이지를 순환할 수 있습니다.</p>
+<ul class="simple">
+<li><p>섹션(Section): 매뉴얼 페이지는 다음과 같은 섹션으로 나뉩니다:</p>
+<ul>
+<li><p>섹션 1: 일반 명령</p></li>
+<li><p>섹션 2: 시스템 호출</p></li>
+<li><p>섹션 3: 라이브러리 함수</p></li>
+<li><p>섹션 4: 특수 파일</p></li>
+<li><p>섹션 5: 파일 형식 및 규약</p></li>
+<li><p>섹션 6: 게임</p></li>
+<li><p>섹션 7: 기타</p></li>
+<li><p>섹션 8: 시스템 관리 명령</p></li>
+</ul>
+</li>
+</ul>
+<p>매뉴얼 페이지는 여러 가지를 찾는 데 유용합니다. 특히 라이브러리 호출에 전달할 인수나 라이브러리 호출을 사용하기 위해 포함해야 하는 헤더 파일을 조회하는 경우가 많습니다. 이 모든 것은 매뉴얼 페이지에서 확인할 수 있어야 합니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 시스템 호출을 조회하면 다음과 같은 내용이 표시됩니다:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SYNOPSIS</span>
+<span class="c1">#include &lt;sys/types.h&gt;</span>
+<span class="c1">#include &lt;sys/stat.h&gt;</span>
+<span class="c1">#include &lt;fcntl.h&gt;</span>
+
+<span class="nb">int</span> <span class="nb">open</span><span class="p">(</span><span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="nb">int</span> <span class="n">oflag</span><span class="p">,</span> <span class="o">/*</span> <span class="n">mode_t</span> <span class="n">mode</span> <span class="o">*/...</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>여기서는 <code class="docutils literal notranslate"><span class="pre">open</span></code> 호출을 사용하려면 <code class="docutils literal notranslate"><span class="pre">sys/types.h</span></code>, <code class="docutils literal notranslate"><span class="pre">sys/stat.h</span></code>, <code class="docutils literal notranslate"><span class="pre">fcntl.h</span></code> 헤더를 포함해야 한다고 알려줍니다. 또한 <code class="docutils literal notranslate"><span class="pre">open</span></code>에 전달할 매개변수에 대해서도 알려줍니다. 즉, <code class="docutils literal notranslate"><span class="pre">path</span></code>라는 문자열, 정수 플래그 <code class="docutils literal notranslate"><span class="pre">oflag</span></code>, 파일 모드를 지정하기 위한 선택적 인수입니다. 호출을 사용하는 데 필요한 라이브러리가 있다면 여기서도 알려줄 것입니다.</p>
+<p>매뉴얼 페이지를 효과적으로 사용하려면 약간의 노력이 필요합니다. 종종 여러 개의 표준 섹션으로 나뉩니다. 본문에서는 매개변수를 다르게 전달하여 함수가 다르게 동작하도록 할 수 있는 방법을 설명합니다.</p>
+<p>특히 유용한 섹션 중 하나는 매뉴얼 페이지의 RETURN VALUES 부분인데, 이는 함수가 성공 또는 실패 시 무엇을 반환하는지 알려줍니다. 다시 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 매뉴얼 페이지에서 발췌하면:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RETURN</span> <span class="n">VALUES</span>
+<span class="n">Upon</span> <span class="n">successful</span> <span class="n">completion</span><span class="p">,</span> <span class="n">the</span> <span class="nb">open</span><span class="p">()</span> <span class="n">function</span> <span class="n">opens</span> <span class="n">the</span> <span class="n">file</span> <span class="ow">and</span> <span class="k">return</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">negative</span> <span class="n">integer</span> <span class="n">representing</span> <span class="n">the</span> <span class="n">lowest</span> <span class="n">numbered</span> <span class="n">unused</span> <span class="n">file</span> <span class="n">descriptor</span><span class="o">.</span> <span class="n">Otherwise</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">is</span> <span class="n">returned</span><span class="p">,</span> <span class="n">errno</span> <span class="ow">is</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">indicate</span> <span class="n">the</span> <span class="n">error</span><span class="p">,</span> <span class="ow">and</span> <span class="n">no</span> <span class="n">files</span> <span class="n">are</span> <span class="n">created</span> <span class="ow">or</span> <span class="n">modified</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">open</span></code>이 반환하는 값을 확인하여 <code class="docutils literal notranslate"><span class="pre">open</span></code>이 성공했는지 여부를 알 수 있습니다. 성공하지 못한 경우 <code class="docutils literal notranslate"><span class="pre">open</span></code>(및 많은 표준 라이브러리 루틴)은 전역 변수 <code class="docutils literal notranslate"><span class="pre">errno</span></code>를 설정하여 오류에 대해 알려줍니다. 자세한 내용은 매뉴얼 페이지의 ERRORS 섹션을 참조하세요.</p>
+<p>또 다른 작업으로는 매뉴얼 페이지 자체에 지정되지 않은 구조체의 정의를 찾는 것이 있습니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">gettimeofday()</span></code>의 매뉴얼 페이지에는 다음과 같은 개요가 있습니다:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SYNOPSIS</span>
+<span class="c1">#include &lt;sys/time.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">gettimeofday</span><span class="p">(</span><span class="n">struct</span> <span class="n">timeval</span> <span class="o">*</span><span class="n">restrict</span> <span class="n">tp</span><span class="p">,</span>
+                 <span class="n">void</span> <span class="o">*</span><span class="n">restrict</span> <span class="n">tzp</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>이 페이지에서는 시간이 <code class="docutils literal notranslate"><span class="pre">timeval</span></code> 유형의 구조체에 저장된다는 것을 알 수 있지만, 매뉴얼 페이지에는 해당 구조체에 어떤 필드가 있는지 알려주지 않을 수 있습니다!(이 경우에는 알려주지만 항상 그렇게 운이 좋지는 않을 수 있습니다) 따라서 그것을 찾아야 할 수도 있습니다.</p>
+<p>모든 헤더 파일은 <code class="docutils literal notranslate"><span class="pre">/usr/include</span></code> 디렉토리 아래에 있으므로 <code class="docutils literal notranslate"><span class="pre">grep</span></code>과 같은 도구를 사용하여 찾을 수 있습니다. 예를 들어 다음과 같이 입력할 수 있습니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span><span class="s1">&#39;struct timeval&#39;</span><span class="w"> </span>/usr/include/sys/*.h
+</pre></div>
+</div>
+<p>이렇게 하면 <code class="docutils literal notranslate"><span class="pre">/usr/include/sys</span></code>에서 <code class="docutils literal notranslate"><span class="pre">.h</span></code>로 끝나는 모든 파일에서 <code class="docutils literal notranslate"><span class="pre">timeval</span></code> 구조체의 정의를 찾을 수 있습니다. 안타깝게도 이것이 항상 작동하는 것은 아닙니다. 해당 헤더 파일이 다른 곳에 있는 다른 파일을 포함할 수 있기 때문입니다.</p>
+<p>이를 수행하는 더 나은 방법은 여러분이 사용할 수 있는 도구인 컴파일러를 활용하는 것입니다. <code class="docutils literal notranslate"><span class="pre">time.h</span></code> 헤더를 포함하는 프로그램을 작성하되 <code class="docutils literal notranslate"><span class="pre">main.c</span></code>라고 합시다. 그런 다음 컴파일하는 대신 컴파일러를 사용하여 전처리기를 호출합니다. 전처리기는 <code class="docutils literal notranslate"><span class="pre">#define</span></code> 명령 및 <code class="docutils literal notranslate"><span class="pre">#include</span></code> 명령과 같은 파일의 모든 지시문을 처리합니다. 이렇게 하려면 <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-E</span> <span class="pre">main.c</span></code>를 입력하세요. 그 결과는 <code class="docutils literal notranslate"><span class="pre">timeval</span></code> 구조체의 정의를 포함하여 필요한 모든 구조체와 프로토타입이 포함된 C 파일입니다.</p>
+<ul class="simple">
+<li><p>전처리기(Preprocessor): C 컴파일러의 첫 번째 단계로, <code class="docutils literal notranslate"><span class="pre">#include</span></code>와 같은 지시문을 처리하고 매크로를 확장합니다. 전처리기는 소스 코드를 변환하여 컴파일러에 전달합니다.</p></li>
+</ul>
+<p>이러한 것들을 찾아내는 아마도 가장 좋은 방법은 구글링일 것입니다. 모르는 것은 항상 구글링해야 합니다. 단순히 찾아보는 것만으로도 얼마나 많은 것을 배울 수 있는지 놀라울 것입니다!</p>
+<section id="info">
+<h3>Info 페이지<a class="headerlink" href="#info" title="Link to this heading">#</a></h3>
+<p>많은 GNU 도구에 대한 훨씬 더 자세한 문서를 제공하는 info 페이지도 문서 검색에 매우 유용합니다. <code class="docutils literal notranslate"><span class="pre">info</span></code> 프로그램을 실행하거나 해커가 선호하는 편집기인 Emacs를 통해 <code class="docutils literal notranslate"><span class="pre">Meta-x</span> <span class="pre">info</span></code>를 실행하여 info 페이지에 액세스할 수 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">gcc</span></code>와 같은 프로그램에는 수백 개의 플래그가 있으며 그 중 일부는 알아두면 놀라울 정도로 유용합니다. <code class="docutils literal notranslate"><span class="pre">gmake</span></code>에는 빌드 환경을 개선할 수 있는 훨씬 더 많은 기능이 있습니다. 마지막으로 <code class="docutils literal notranslate"><span class="pre">gdb</span></code>는 매우 정교한 디버거입니다. 매뉴얼 페이지와 info 페이지를 읽고, 이전에 시도해보지 않았던 기능을 사용해 보고, 프로그래밍 도구의 파워 유저가 되세요.</p>
+</section>
+</section>
+<section id="id8">
+<h2>마치며<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>좋은 코드를 작성하려면 단순히 언어 문법을 아는 것 이상의 노력이 필요하지만, 이러한 기본기를 익히는 데 시간을 투자하는 것은 가치 있는 일입니다. C 프로그래밍은 시스템 프로그래밍, 임베디드 시스템, 운영체제 개발 등 다양한 분야에서 핵심적인 역할을 합니다. C 언어를 마스터하는 것은 컴퓨터 과학과 소프트웨어 엔지니어링의 기초를 다지는 데 큰 도움이 됩니다.</p>
+<p>C 언어의 강점 중 하나는 저수준 하드웨어 제어와 높은 성능을 제공한다는 점입니다. C로 작성된 코드는 메모리와 시스템 자원에 직접 접근할 수 있어 효율적이고 최적화된 프로그램을 만들 수 있습니다. 이러한 특성 때문에 C는 운영체제, 디바이스 드라이버, 임베디드 소프트웨어 등의 개발에 널리 사용됩니다.</p>
+<p>또한 C는 다양한 프로그래밍 패러다임을 지원합니다. 절차적 프로그래밍, 구조적 프로그래밍, 모듈화 프로그래밍 등의 기법을 활용하여 체계적이고 유지보수가 용이한 코드를 작성할 수 있습니다. 또한 포인터와 메모리 할당을 직접 다룰 수 있어 유연하고 강력한 프로그래밍이 가능합니다.</p>
+<p>C 언어를 학습하는 과정에서는 다음과 같은 주제들을 깊이 있게 다루는 것이 좋습니다:</p>
+<ul class="simple">
+<li><p>변수, 데이터 타입, 연산자</p></li>
+<li><p>제어 구조 (if, switch, for, while 등)</p></li>
+<li><p>함수와 모듈화 프로그래밍</p></li>
+<li><p>배열, 포인터, 문자열</p></li>
+<li><p>구조체와 공용체</p></li>
+<li><p>동적 메모리 할당 (malloc, free 등)</p></li>
+<li><p>파일 입출력</p></li>
+<li><p>전처리기와 매크로</p></li>
+<li><p>라이브러리 함수와 헤더 파일</p></li>
+</ul>
+<p>이러한 주제들을 체계적으로 공부하고 많은 연습을 통해 C 언어에 대한 이해도를 높일 수 있습니다. 코딩 표준과 best practice를 따르는 습관을 들이는 것도 중요합니다.</p>
+<p>C 언어로 프로그래밍할 때는 메모리 관리에 각별한 주의를 기울여야 합니다. 메모리 누수, 버퍼 오버플로우, 널 포인터 역참조 등의 문제를 피하기 위해 항상 주의해야 합니다. 디버거와 메모리 검사 도구를 활용하여 이러한 문제를 파악하고 해결하는 것이 좋습니다.</p>
+<p>C 언어의 표준 라이브러리는 다양한 기능을 제공합니다. 문자열 처리, 메모리 관리, 파일 입출력, 수학 함수 등 유용한 함수들이 포함되어 있습니다. 표준 라이브러리를 잘 활용하면 효율적이고 안정적인 프로그램을 작성할 수 있습니다.</p>
+<p>마지막으로 C 언어 커뮤니티와 오픈 소스 프로젝트에 참여하는 것도 좋은 방법입니다. 다른 개발자들과 소통하고 협업하면서 실제 프로젝트 경험을 쌓을 수 있습니다. 오픈 소스 프로젝트에 기여하는 것은 코드 리뷰와 피드백을 받을 수 있는 좋은 기회이기도 합니다.</p>
+<p>C 언어는 배우기 쉽지 않은 언어이지만, 한 번 익히면 프로그래밍의 기본기를 탄탄히 다질 수 있습니다. 끊임없는 학습과 연습을 통해 숙련된 C 프로그래머로 성장해 나가시기 바랍니다. C 언어는 여러분의 프로그래밍 역량을 한 단계 높여줄 것입니다.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "chu-aie/os-2024",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="template/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">id</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tester.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">프로젝트 테스터</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">간단한 C 프로그램</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">컴파일과 실행</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">유용한 플래그</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">라이브러리 링크</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">개별 컴파일</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#makefile">Makefile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">문서화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">디버깅</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">문서</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#info">Info 페이지</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">마치며</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href='https://entelecheia.me/'>Young Joon Lee</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <script
+  data-embed-id="8f8d1c1a-0e3e-428a-a8a6-26acd215e1fe"
+  data-base-api-url="https://chat.entelecheia.app/api/embed"
+  data-brand-image-url="https://assets.entelecheia.ai/favicon.png"
+  data-chat-icon="magic"
+  data-sponsor-text="OS 2024"
+  data-sponsor-link="https://chat.entelecheia.app/workspace/os2024"
+  src="https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js">
+</script>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

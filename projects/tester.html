@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>페이징: 더 빠른 변환 (TLB) &#8212; 운영체제 2024</title>
+    <title>프로젝트 테스터 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week07/vm-tlbs';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/tester';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="OS 프로젝트" href="../projects/index.html" />
-    <link rel="prev" title="페이징: 개요" href="vm-paging.html" />
+    <link rel="next" title="프로젝트 환경설정" href="setup.html" />
+    <link rel="prev" title="Lab 튜토리얼" href="lab-tutorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -210,7 +210,7 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - 아주 쉬운 세 가지 이야기</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week01/intro.html">운영체제 개요</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
@@ -251,22 +251,22 @@
 <li class="toctree-l2"><a class="reference internal" href="../week06/lab.html">Lab: 주소 변환 시뮬레이션</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 7 - 메모리 가상화 3</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="vm-freespace.html">빈 공간 관리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vm-paging.html">페이징: 개요</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">페이징: 더 빠른 변환 (TLB)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week07/index.html">Week 7 - 메모리 가상화 3</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week07/vm-freespace.html">빈 공간 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week07/vm-paging.html">페이징: 개요</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week07/vm-tlbs.html">페이징: 더 빠른 변환 (TLB)</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">OS 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../projects/template/index.html">id</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">OS 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="template/index.html">id</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../projects/lab-tutorial.html">Lab 튜토리얼</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../projects/tester.html">프로젝트 테스터</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../projects/setup.html">프로젝트 환경설정</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-tutorial.html">Lab 튜토리얼</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">프로젝트 테스터</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">프로젝트 환경설정</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
@@ -359,7 +359,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week07/vm-tlbs.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/projects/tester.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -376,7 +376,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek07/vm-tlbs.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fprojects/tester.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -406,7 +406,7 @@
       
       
       
-      <li><a href="../_sources/week07/vm-tlbs.md" target="_blank"
+      <li><a href="../_sources/projects/tester.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -490,7 +490,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>페이징: 더 빠른 변환 (TLB)</h1>
+    <h1>프로젝트 테스터</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -500,13 +500,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">TLB의 기본 알고리즘</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">예제: 배열 접근</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">TLB 미스는 누가 처리할까</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">TLB의 구성: 무엇이 있나?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">TLB의 문제: 문맥 교환</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">이슈: 교체 정책</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">사용법</a></li>
 </ul>
             </nav>
         </div>
@@ -518,28 +512,67 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tlb">
-<h1>페이징: 더 빠른 변환 (TLB)<a class="headerlink" href="#tlb" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>TLB의 기본 알고리즘<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>프로젝트 테스터<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>여러분이 작성한 코드가 제대로 동작하는지 확인하기 위한 테스트들이 있습니다. 궁극적으로 모든 프로젝트에는 일련의 테스트가 제공될 것입니다. 현재 사용 가능한 테스팅 프레임워크는 <a class="reference external" href="https://github.com/chu-aie/os-2024/tree/main/src/ostep-projects/tester">여기</a>에서 찾을 수 있습니다. 각 프로젝트 디렉토리에 있는 특정 테스팅 스크립트를 사용하여 여러분의 코드를 대상으로 테스트를 실행할 수 있습니다.</p>
+<p>예를 들어, 초기 유틸리티 프로젝트에서 여러분이 작성한 비교적 간단한 <code class="docutils literal notranslate"><span class="pre">wcat</span></code> 프로그램은 <code class="docutils literal notranslate"><span class="pre">test-wcat.sh</span></code> 스크립트를 실행하여 테스트할 수 있습니다. 이는 다음과 같은 명령으로 수행할 수 있습니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/chu-aie/os-2024
+<span class="nb">cd</span><span class="w"> </span>src/ostep-projects/initial-utilities/wcat
+emacs<span class="w"> </span>-nw<span class="w"> </span>wcat.c
+gcc<span class="w"> </span>-o<span class="w"> </span>wcat<span class="w"> </span>wcat.c<span class="w"> </span>-Wall
+./test-wcat.sh
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="mi">1</span><span class="p">:</span> <span class="n">passed</span>
+<span class="n">test</span> <span class="mi">2</span><span class="p">:</span> <span class="n">passed</span>
+<span class="n">test</span> <span class="mi">3</span><span class="p">:</span> <span class="n">passed</span>
+<span class="n">test</span> <span class="mi">4</span><span class="p">:</span> <span class="n">passed</span>
+<span class="n">test</span> <span class="mi">5</span><span class="p">:</span> <span class="n">passed</span>
+<span class="n">test</span> <span class="mi">6</span><span class="p">:</span> <span class="n">passed</span>
+<span class="n">test</span> <span class="mi">7</span><span class="p">:</span> <span class="n">passed</span>
+</pre></div>
+</div>
+<p>물론 이 시퀀스는 (a) 여러분이 <code class="docutils literal notranslate"><span class="pre">emacs</span></code>를 사용하고 (그래야 합니다!), (b) 코드가 한 번에 작성되며 (인상적입니다!), (c) 완벽하게 동작한다는 것을 전제로 합니다 (잘 하셨습니다!). 간단한 과제의 경우에도 컴파일/실행/디버그 사이클이 몇 번의 반복이 필요할 수 있습니다.</p>
 <section id="id2">
-<h2>예제: 배열 접근<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-</section>
-<section id="id3">
-<h2>TLB 미스는 누가 처리할까<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-</section>
-<section id="id4">
-<h2>TLB의 구성: 무엇이 있나?<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-</section>
-<section id="id5">
-<h2>TLB의 문제: 문맥 교환<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-</section>
-<section id="id6">
-<h2>이슈: 교체 정책<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-</section>
-<section id="id7">
-<h2>요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2>사용법<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">run-tests.sh</span></code> 스크립트는 다양한 테스터에 의해 호출되어 테스팅 작업을 수행합니다. 각 테스트는 실제로 매우 간단합니다: 프로그램 명세에 따라 표준 출력과 표준 오류를 비교하는 것입니다.</p>
+<ul class="simple">
+<li><p>표준 출력(standard output): 프로그램이 정상적으로 출력하는 텍스트 데이터로, 일반적으로 콘솔 화면에 표시됩니다.</p></li>
+<li><p>표준 오류(standard error): 프로그램이 오류 메시지를 출력하기 위해 사용하는 별도의 출력 채널로, 일반적으로 콘솔 화면에 표시됩니다.</p></li>
+</ul>
+<p>주어진 프로그램 명세 디렉토리에는 <code class="docutils literal notranslate"><span class="pre">tests/</span></code> 디렉토리가 있는데, 여기에는 각 테스트 <code class="docutils literal notranslate"><span class="pre">n</span></code>에 대해 예상되는 반환 코드, 표준 출력, 표준 오류가 <code class="docutils literal notranslate"><span class="pre">n.rc</span></code>, <code class="docutils literal notranslate"><span class="pre">n.out</span></code>, <code class="docutils literal notranslate"><span class="pre">n.err</span></code> 파일에 각각 저장되어 있습니다. 테스팅 프레임워크는 <code class="docutils literal notranslate"><span class="pre">1</span></code>부터 시작하여 더 이상 테스트를 찾을 수 없거나 실패가 발생할 때까지 테스트 번호를 계속 증가시킵니다. 따라서 새로운 테스트를 추가하는 것은 쉽습니다. 관련 파일을 사용 가능한 가장 낮은 번호의 테스트 디렉토리에 추가하기만 하면 됩니다.</p>
+<p>테스트 번호 <code class="docutils literal notranslate"><span class="pre">n</span></code>을 설명하는 데 필요한 파일은 다음과 같습니다:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n.rc</span></code>: 프로그램이 반환해야 하는 반환 코드 (보통 0 또는 1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n.out</span></code>: 테스트에서 기대되는 표준 출력</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n.err</span></code>: 테스트에서 기대되는 표준 오류</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n.run</span></code>: 테스트를 실행하는 방법 (필요한 인수 등)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n.desc</span></code>: 테스트에 대한 짧은 텍스트 설명</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n.pre</span></code> (선택 사항): 테스트 전에 실행할 코드, 무언가를 설정하기 위함</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n.post</span></code> (선택 사항): 테스트 후에 실행할 코드, 무언가를 정리하기 위함</p></li>
+</ul>
+<p>또한 테스팅이 시작될 때 한 번 실행되는 <code class="docutils literal notranslate"><span class="pre">pre</span></code>라는 단일 파일이 있습니다. 이는 종종 코드 베이스를 보다 복잡하게 빌드하는 데 사용됩니다. 반복적인 시간 낭비 활동을 방지하려면 아래에 설명된 대로 <code class="docutils literal notranslate"><span class="pre">-s</span></code> 플래그를 사용하여 이를 억제하세요.</p>
+<p>대부분의 경우 래퍼 스크립트가 <code class="docutils literal notranslate"><span class="pre">run-tests.sh</span></code>를 호출하여 필요한 작업을 수행하는 데 사용됩니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">run-tests.sh</span></code>의 옵션은 다음과 같습니다:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-h</span></code> (도움말 메시지)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> (verbose: 각 테스트가 수행하는 작업을 출력)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">n</span></code> (테스트 <code class="docutils literal notranslate"><span class="pre">n</span></code>만 실행)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> (테스트가 실패한 후에도 계속 진행)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code> (<code class="docutils literal notranslate"><span class="pre">tests/</span></code> 디렉토리가 아닌 이 디렉토리에서 테스트 실행)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> (<code class="docutils literal notranslate"><span class="pre">pre</span></code> 파일에 있는 일회성 명령 세트 실행 억제)</p></li>
+<li><p>래퍼 스크립트(wrapper script): 다른 프로그램이나 스크립트를 호출하는 스크립트로, 호출되는 프로그램의 입력과 출력을 조작하거나 추가적인 처리를 수행합니다.</p></li>
+</ul>
+<p>여기서 설명한 테스팅 프레임워크는 여러분의 코드를 체계적으로 테스트하고 검증하는 데 도움이 될 것입니다. 각 테스트는 입력, 예상 출력, 예상 반환 코드 등을 명확하게 정의하므로 프로그램이 명세대로 동작하는지 쉽게 확인할 수 있습니다.</p>
+<p>테스트를 추가하거나 수정하는 것도 간단합니다. <code class="docutils literal notranslate"><span class="pre">tests/</span></code> 디렉토리에 적절한 파일을 추가하거나 변경하기만 하면 됩니다. 이를 통해 프로그램의 다양한 동작을 검증하고 edge case를 처리할 수 있습니다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">run-tests.sh</span></code> 스크립트는 테스팅 프로세스를 자동화하고 사용자 정의할 수 있는 다양한 옵션을 제공합니다. verbose 모드로 실행하여 각 테스트의 진행 상황을 확인하거나, 특정 테스트만 실행하거나, 테스트 실패 후에도 계속 진행하도록 설정할 수 있습니다.</p>
+<p>또한 <code class="docutils literal notranslate"><span class="pre">pre</span></code>와 <code class="docutils literal notranslate"><span class="pre">post</span></code> 파일을 사용하여 테스트 전후에 필요한 설정 및 정리 작업을 수행할 수 있습니다. 이는 테스트 환경을 일관되게 유지하고 테스트 간 간섭을 최소화하는 데 도움이 됩니다.</p>
+<p>프로젝트를 진행하면서 제공된 테스트를 활용하고 필요에 따라 새로운 테스트를 추가하세요. 체계적인 테스트는 코드의 정확성과 안정성을 보장하고 디버깅 시간을 단축하는 데 큰 도움이 될 것입니다.</p>
+<p>테스트 주도 개발(Test-Driven Development, TDD)은 테스트를 먼저 작성하고 그에 맞춰 코드를 개발하는 방법론입니다. 이 접근법을 따르면 명세에 집중하게 되고, 모듈화와 유지보수성이 향상됩니다. 제공된 테스팅 프레임워크를 활용하여 TDD를 연습해 보는 것도 좋은 경험이 될 것입니다.</p>
+<p>코드를 작성할 때는 가독성과 효율성을 함께 고려해야 합니다. 적절한 변수명과 함수명을 사용하고, 주석을 충실히 달며, 코드를 논리적인 블록으로 구성하세요. 또한 불필요한 복잡성을 피하고 간결하고 이해하기 쉬운 코드를 작성하도록 노력하세요.</p>
+<p>디버깅은 프로그래밍의 필수 불가결한 부분입니다. 테스트가 실패할 경우 gdb와 같은 디버거를 사용하여 문제의 원인을 찾아내세요. 코드를 단계별로 실행하고 변수의 값을 확인하며 로직의 흐름을 추적하세요. 디버깅 기술을 연마하면 문제 해결 능력이 크게 향상될 것입니다.</p>
+<p>마지막으로 동료들과 협업하고 코드 리뷰를 활용하세요. 다른 사람의 시각에서 코드를 바라보면 개선점과 버그를 발견하기 쉽습니다. 서로의 코드를 리뷰하고 건설적인 피드백을 제공하세요. 협업을 통해 더 나은 코드와 문제 해결 방법을 배울 수 있습니다.</p>
+<p>이 프로젝트 테스터를 활용하여 체계적이고 효과적으로 코드를 테스트하고 개선해 나가시기 바랍니다. 좋은 테스트와 꾸준한 연습을 통해 여러분의 프로그래밍 실력은 한층 더 성장할 것입니다. 행운을 빕니다!</p>
 </section>
 </section>
 
@@ -556,7 +589,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week07"
+            path: "./projects"
         },
         predefinedOutput: true
     }
@@ -574,20 +607,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="vm-paging.html"
+       href="lab-tutorial.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">페이징: 개요</p>
+        <p class="prev-next-title">Lab 튜토리얼</p>
       </div>
     </a>
     <a class="right-next"
-       href="../projects/index.html"
+       href="setup.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">OS 프로젝트</p>
+        <p class="prev-next-title">프로젝트 환경설정</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -607,13 +640,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">TLB의 기본 알고리즘</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">예제: 배열 접근</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">TLB 미스는 누가 처리할까</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">TLB의 구성: 무엇이 있나?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">TLB의 문제: 문맥 교환</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">이슈: 교체 정책</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">사용법</a></li>
 </ul>
   </nav></div>
 
