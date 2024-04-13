@@ -45,6 +45,7 @@ parts:
         sections:
           - file: week07/vm-freespace
           - file: week07/vm-paging
+          - file: week07/vm-tlbs
   - caption: Projects
     chapters:
       - file: projects/index
