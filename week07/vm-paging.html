@@ -632,7 +632,7 @@ document.write(`
 </pre></div>
 </div>
 <p>메모리 액세스 예시를 보기위해 위 코드를 디스어셈블하여 어떤 메모리 접근이 존재하는지 보겠습니다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1024 movl $0x0,(%edi,%eax,4) // edi + 4 * eax 에 0을 대입. 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1024 movl $0x0,(%edi,%eax,4) // edi + 4 * eax 에 0을 대입.
 1028 incl %eax               // edi : 배열 시작 주소, eax : 인덱스
 1032 cmpl $0x03e8,%eax       // 1000보다 작은지 비교
 1036 jne 0x1024              // 두 값이 같지 않다면 다시 1024로 분기
