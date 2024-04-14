@@ -1,1 +1,1 @@
-./wgrep very tests/6.in
+./hgrep very tests/6.in

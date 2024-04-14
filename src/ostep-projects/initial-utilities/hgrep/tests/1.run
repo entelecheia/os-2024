@@ -1,1 +1,1 @@
-./wgrep this tests/1.in
+./hgrep this tests/1.in
