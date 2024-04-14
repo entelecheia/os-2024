@@ -19,11 +19,13 @@ parts:
           - file: week02/shells
           - file: week02/lab
           - file: week02/tip
+          - file: week02/hw-wk02
       - file: week03/index
         sections:
           - file: week03/cpu-scheduling
           - file: week03/lab
           - file: week03/wsl-setup
+          - file: week03/hw-wk03
       - file: week04/index
         sections:
           - file: week04/mlfq
