@@ -1,4 +1,4 @@
-# 과제: 프로세스
+# Homework: 프로세스
 
 | [추상화: 프로세스](http://www.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf) | [process-run.py 실행](https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/cpu-intro) |
 
