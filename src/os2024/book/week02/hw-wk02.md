@@ -2,7 +2,7 @@
 
 | [추상화: 프로세스](http://www.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf) | [process-run.py 실행](https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/cpu-intro) |
 
-## 설명
+## 소개
 
 이 프로그램 `process-run.py`를 통해 프로그램이 실행되고 CPU를 사용하거나(예: 명령어 추가 수행) I/O를 수행할 때(예: 디스크에 요청을 보내고 완료될 때까지 기다림) 프로세스 상태가 어떻게 변하는지 볼 수 있습니다. 자세한 내용은 README를 참조하세요.
 
@@ -24,7 +24,7 @@
 
 8. 이제 무작위로 생성된 프로세스로 실행해 봅시다: `-s 1 -l 3:50,3:50` 또는 `-s 2 -l 3:50,3:50` 또는 `-s 3 -l 3:50,3:50`. 추적 결과가 어떻게 될지 예측해 보세요. `-I IO_RUN_IMMEDIATE` 플래그와 `-I IO_RUN_LATER` 플래그를 사용할 때 어떤 일이 일어나나요? `-S SWITCH_ON_IO`와 `-S SWITCH_ON_END`를 사용할 때 어떤 일이 일어나나요?
 
-## 키워드 설명
+## 용어 설명
 
 - **프로세스(Process)**: 실행 중인 프로그램의 인스턴스입니다. 프로세스는 자체 메모리 공간을 가지며 CPU 시간을 할당받습니다.
 
