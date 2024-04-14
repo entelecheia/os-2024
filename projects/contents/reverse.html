@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>kv 프로젝트: 간단한 키-값 저장소 &#8212; 운영체제 2024</title>
+    <title>reverse 프로젝트 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/contents/kv';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/contents/reverse';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Lab 튜토리얼" href="../lab-tutorial.html" />
-    <link rel="prev" title="reverse 프로젝트" href="reverse.html" />
+    <link rel="next" title="kv 프로젝트: 간단한 키-값 저장소" href="kv.html" />
+    <link rel="prev" title="유닉스 유틸리티 프로젝트" href="utilities.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -266,11 +266,11 @@
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">프로젝트 과제 목록</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="utilities.html">유닉스 유틸리티 프로젝트</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reverse.html"><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트</a></li>
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로젝트: 간단한 키-값 저장소</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv.html"><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로젝트: 간단한 키-값 저장소</a></li>
 
 
 </ul>
@@ -370,7 +370,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/projects/contents/kv.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/projects/contents/reverse.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -387,7 +387,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fprojects/contents/kv.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fprojects/contents/reverse.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,7 +417,7 @@
       
       
       
-      <li><a href="../../_sources/projects/contents/kv.md" target="_blank"
+      <li><a href="../../_sources/projects/contents/reverse.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -501,7 +501,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>kv 프로젝트: 간단한 키-값 저장소</h1>
+    <h1>reverse 프로젝트</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -511,19 +511,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로젝트: 간단한 키-값 저장소</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">세부사항</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">지속성</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가정 및 오류</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">가정 및 오류</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">유용한 루틴</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">팁</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">용어 설명</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">유용한 루틴</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">팁</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">코드 예제</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">결론</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">키 용어 설명</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">코드 예제</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">결론</a></li>
 </ul>
 
             </nav>
@@ -536,180 +535,156 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="kv">
-<h1><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로젝트: 간단한 키-값 저장소<a class="headerlink" href="#kv" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="reverse">
+<h1><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트<a class="headerlink" href="#reverse" title="Link to this heading">#</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>시작하기 전에:</strong> <a class="reference external" href="https://os2024.halla.ai/projects/lab-tutorial.html">실습 튜토리얼</a>을 읽어보세요. C 프로그래밍 환경에서 코딩할 때 유용한 팁들이 있습니다.</p>
 </div>
-<p>이 프로젝트는 운영체제 수업을 위한 간단하지 않은 준비 과제입니다. 또한 여러분이 앞으로 몇 달 동안 매우 익숙해질 C 프로그래머의 사고방식에 빠져들게 하는 역할도 합니다. 행운을 빕니다!</p>
-<p>여러분은 <code class="docutils literal notranslate"><span class="pre">kv</span></code>라는 간단한 프로그램을 작성할 것입니다. 이것은 간단한 영구 키-값 저장소(key-value store)입니다. 페이스북의 <a class="reference external" href="http://rocksdb.org/">RocksDB</a>나 구글의 <a class="reference external" href="https://github.com/google/leveldb">LevelDB</a>와 같은 키-값 저장 시스템은 다양한 목적으로 산업계에서 널리 사용되고 있습니다. 여기서는 간단한(혹은 복잡한, 누가 알겠어요?) 것을 직접 작성하고 C와 시스템 프로그래밍의 기초를 되새겨 볼 것입니다.</p>
-<p>이 프로그램은 몇 가지 옵션을 가질 것입니다. 첫 번째는 데이터베이스에 일부 (키, 값) 쌍을 삽입하는 것입니다. 이것은 다음과 같이 수행됩니다:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./kv
-./kv<span class="w"> </span>p,10,remzi
-./kv<span class="w"> </span>p,20,andrea<span class="w"> </span>p,40,someotherperson
+<p>이 프로젝트는 전체 프로젝트가 어떻게 진행될지에 대해 익숙해지기 위한 간단한 준비 과제입니다. 또한 앞으로 몇 달 동안 매우 익숙해질 C 프로그래머의 사고방식에 빠져들게 하는 역할도 합니다. 행운을 빕니다!</p>
+<p>여러분은 <code class="docutils literal notranslate"><span class="pre">reverse</span></code>라는 간단한 프로그램을 작성할 것입니다. 이 프로그램은 다음 중 한 가지 방법으로 실행되어야 합니다:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./reverse
+./reverse<span class="w"> </span>input.txt
+./reverse<span class="w"> </span>input.txt<span class="w"> </span>output.txt
 </pre></div>
 </div>
-<p>위의 줄은 사용자가 키-값 프로그램 <code class="docutils literal notranslate"><span class="pre">kv</span></code>의 이름을 입력했다는 것을 의미합니다(<code class="docutils literal notranslate"><span class="pre">./</span></code>는 현재 작업 디렉토리(점이라고 하며 <code class="docutils literal notranslate"><span class="pre">.</span></code>로 참조됨)를 나타내고 슬래시(<code class="docutils literal notranslate"><span class="pre">/</span></code>)는 구분자입니다. 따라서 이 디렉토리에서 <code class="docutils literal notranslate"><span class="pre">kv</span></code>라는 프로그램을 찾으세요). 그리고 명령줄 인수를 전혀 주지 않았거나, 하나의 명령줄 인수(<code class="docutils literal notranslate"><span class="pre">p,10,remzi</span></code>)를 주었거나, 두 개의 명령줄 인수(<code class="docutils literal notranslate"><span class="pre">p,20,andrea</span> <span class="pre">p,40,someotherperson</span></code>)를 주었습니다.</p>
-<p>첫 번째 호출은 인수가 없으므로 아무 일도 하지 않습니다. 별로 흥미롭지 않죠?</p>
-<p>두 번째는 좀 더 흥미롭습니다. 적어도 명령줄 키-값 저장소만큼은요! 이것은 키-값 시스템에게 데이터베이스에 키-값 쌍을 <code class="docutils literal notranslate"><span class="pre">넣으라</span></code>고 알려줍니다(<code class="docutils literal notranslate"><span class="pre">p</span></code>가 이를 나타냅니다). 구체적으로 키는 <code class="docutils literal notranslate"><span class="pre">10</span></code>과 같고 값은 이 경우 <code class="docutils literal notranslate"><span class="pre">remzi</span></code>와 같습니다.</p>
-<p>보시다시피, 우리의 간단한 키-값 저장소는 키가 정수이고 값은 임의의 문자열(단순화를 위해 쉼표를 포함할 수 없음)이라고 가정합니다.</p>
-<p>세 번째 예제는 명령줄 인터페이스가 하나의 명령줄 호출에서 여러 개의 put 명령(또는 실제로 어떤 명령의 조합)을 지정할 수 있어야 한다는 것을 보여줍니다. 이 경우에는 키 <code class="docutils literal notranslate"><span class="pre">20</span></code>과 <code class="docutils literal notranslate"><span class="pre">40</span></code>을 값 <code class="docutils literal notranslate"><span class="pre">andrea</span></code>와 <code class="docutils literal notranslate"><span class="pre">someotherperson</span></code>으로 삽입합니다.</p>
-<p>지금까지는 좋습니다. 하지만 모든 좋은 데이터베이스가 그래야 하는 것처럼 값을 가져올 수 있을까요? 대답은 예입니다! 하지만 어떻게요? 대답은 다음과 같이 호출되는 <code class="docutils literal notranslate"><span class="pre">get</span></code> 명령입니다:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./kv<span class="w"> </span>g,10
+<p>위의 줄은 사용자가 역순 프로그램 <code class="docutils literal notranslate"><span class="pre">reverse</span></code>의 이름을 입력했다는 것을 의미합니다(<code class="docutils literal notranslate"><span class="pre">./</span></code>는 현재 작업 디렉토리(점이라고 하며 <code class="docutils literal notranslate"><span class="pre">.</span></code>로 참조됨)를 나타내고 슬래시(<code class="docutils literal notranslate"><span class="pre">/</span></code>)는 구분자입니다. 따라서 이 디렉토리에서 <code class="docutils literal notranslate"><span class="pre">reverse</span></code>라는 프로그램을 찾으세요). 그리고 명령줄 인수를 전혀 주지 않았거나, 하나의 명령줄 인수(입력 파일 <code class="docutils literal notranslate"><span class="pre">input.txt</span></code>), 또는 두 개의 명령줄 인수(입력 파일과 출력 파일 <code class="docutils literal notranslate"><span class="pre">output.txt</span></code>)를 주었습니다.</p>
+<p>입력 파일은 다음과 같을 수 있습니다:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span>
+<span class="n">this</span>
+<span class="ow">is</span>
+<span class="n">a</span> <span class="n">file</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="p">,</span><span class="n">remzi</span>
+<p>역순 프로그램의 목표는 지정된 입력 파일에서 데이터를 읽어 역순으로 만드는 것입니다. 따라서 입력 스트림의 역순으로 줄을 출력해야 합니다. 따라서 앞서 언급한 예제의 경우 출력은 다음과 같아야 합니다:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="n">file</span>
+<span class="ow">is</span>
+<span class="n">this</span>
+<span class="n">hello</span>
 </pre></div>
 </div>
-<p>여기서 우리가 키 <code class="docutils literal notranslate"><span class="pre">10</span></code>을 <code class="docutils literal notranslate"><span class="pre">get</span></code>할 때, 프로그램은 키 값을 출력하고 그 뒤에 쉼표, 그 뒤에 값(이 경우 <code class="docutils literal notranslate"><span class="pre">remzi</span></code>)을 출력하는 것을 볼 수 있습니다. 우리는 이 출력을 단순히 <code class="docutils literal notranslate"><span class="pre">printf</span></code>를 호출하고 <strong>표준 출력</strong>으로 결과를 출력하는 것으로 수행합니다.</p>
-<p>여러분의 KV 저장소가 지원해야 하는 명령의 전체 목록은 다음과 같습니다:</p>
-<ul class="simple">
-<li><p><em>put</em>: 형식은 <code class="docutils literal notranslate"><span class="pre">p,key,value</span></code>이며, 여기서 <code class="docutils literal notranslate"><span class="pre">key</span></code>는 정수이고 <code class="docutils literal notranslate"><span class="pre">value</span></code>는 임의의 문자열(쉼표가 없음)입니다.</p></li>
-<li><p><em>get</em>: 형식은 <code class="docutils literal notranslate"><span class="pre">g,key</span></code>이며, 여기서 <code class="docutils literal notranslate"><span class="pre">key</span></code>는 정수입니다. 키가 있으면 시스템은 키를 출력하고, 그 뒤에 쉼표, 그 뒤에 값, 그 뒤에 줄 바꿈(<code class="docutils literal notranslate"><span class="pre">\n</span></code>)을 출력해야 합니다. 키가 없으면 <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">not</span> <span class="pre">found</span></code>의 형식으로 한 줄에 오류 메시지를 출력합니다. 여기서 <code class="docutils literal notranslate"><span class="pre">K</span></code>는 키의 실제 값, 즉 어떤 정수입니다.</p></li>
-<li><p><em>delete</em>: 형식은 <code class="docutils literal notranslate"><span class="pre">d,key</span></code>이며, 이는 관련 키-값 쌍을 삭제하고(아무것도 출력하지 않음) 그렇게 하지 못하면(키의 실제 값 <code class="docutils literal notranslate"><span class="pre">K</span></code>, 즉 어떤 정수로 <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">not</span> <span class="pre">found</span></code>를 출력함) 실패합니다.</p></li>
-<li><p><em>clear</em>: 형식은 <code class="docutils literal notranslate"><span class="pre">c</span></code>입니다. 이 명령은 단순히 데이터베이스에서 모든 키-값 쌍을 제거합니다.</p></li>
-<li><p><em>all</em>: 형식은 <code class="docutils literal notranslate"><span class="pre">a</span></code>입니다. 이 명령은 데이터베이스의 모든 키-값 쌍을 임의의 순서로 출력하며, 한 줄에 하나의 키-값 쌍이 있고 각 키와 값은 쉼표로 구분됩니다.</p></li>
-</ul>
+<p>파일을 실행하는 다양한 방법(위에서 언급한 것처럼)은 이 간단한 새로운 유닉스 유틸리티를 사용하는 약간 다른 방법에 해당합니다. 예를 들어, 두 개의 명령줄 인수로 실행할 때 프로그램은 사용자가 제공한 입력 파일에서 읽어 들이고 사용자가 제공한 출력 파일에 해당 파일의 역순 버전을 작성해야 합니다.</p>
+<p>하나의 명령줄 인수로만 실행되면 사용자는 입력 파일을 제공하지만 파일은 화면에 출력되어야 합니다. 유닉스 기반 시스템에서는 화면에 출력하는 것이 <strong>표준 출력</strong> 또는 줄여서 <code class="docutils literal notranslate"><span class="pre">stdout</span></code>이라고 하는 특수 파일에 쓰는 것과 같습니다.</p>
+<p>마지막으로 인수 없이 실행되면 역순 프로그램은 사용자가 입력하는 <strong>표준 입력</strong>(<code class="docutils literal notranslate"><span class="pre">stdin</span></code>)에서 읽어 들이고 표준 출력(즉, 화면)에 씁니다.</p>
+<p>쉽게 들리죠? 그래야 합니다. 하지만 몇 가지 세부사항이 있습니다…</p>
 <section id="id1">
 <h2>세부사항<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>다음은 프로젝트 완료에 도움이 될 수 있는 몇 가지 세부사항입니다.</p>
 <section id="id2">
-<h3>지속성<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>이 프로젝트에서 여러분이 알아내야 할 한 가지는 키와 값을 어떻게 “지속”시켜서 <code class="docutils literal notranslate"><span class="pre">kv</span></code> 명령의 이후 호출에서 검색할 수 있도록 하는가 하는 점입니다. 지속성은 우리가 나중에 강의에서 다루는 내용이지만, 여기서의 아이디어는 간단합니다: <code class="docutils literal notranslate"><span class="pre">kv</span></code>는 키와 값을 파일(또는 여러 파일)에 기록해야 하고, 그러면 다음에 실행될 때 요청을 수행하기 위해 다시 읽어들일 수 있어야 한다는 것입니다.</p>
-<p>예를 들어, 다음과 같이 실행한다고 가정해 봅시다:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./kv<span class="w"> </span>p,1,first
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로그램은 이제 키 <code class="docutils literal notranslate"><span class="pre">1</span></code>과 값 <code class="docutils literal notranslate"><span class="pre">first</span></code>를 데이터베이스에 저장해야 합니다. 따라서 나중에 <code class="docutils literal notranslate"><span class="pre">kv</span></code>를 실행하고 <code class="docutils literal notranslate"><span class="pre">1</span></code> 키를 가져오려고 하면 값이 반환됩니다:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./kv<span class="w"> </span>g,1
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">,</span><span class="n">first</span>
-</pre></div>
-</div>
-<p>이러한 기능을 구현하는 방법은 매우 많습니다. 여기서는 매우 간단한 것을 제안합니다. 모든 정보를 일반 텍스트 형식으로 저장하는 단일 파일(예: <code class="docutils literal notranslate"><span class="pre">database.txt</span></code>라고 함)을 사용하는 것입니다.</p>
-<p>예를 들어, 데이터베이스에 몇 개의 키와 값이 있는 경우, 일반 텍스트 파일에 한 줄에 하나의 항목씩 정보를 저장할 수 있습니다. 그러면 파일의 내용은 다음과 같을 수 있습니다:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>database.txt
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">,</span><span class="n">first</span>
-<span class="mi">2</span><span class="p">,</span><span class="n">second</span>
-</pre></div>
-</div>
-<p>그렇다면 <code class="docutils literal notranslate"><span class="pre">kv</span></code>는 이 파일을 어떻게 사용해야 할까요? 한 가지 간단한 접근 방식은 시작 시 파일 전체를 연결 리스트나 해시 테이블과 같은 일종의 데이터 구조로 메모리에 읽어들이는 것입니다. 그런 다음 put, get, delete 또는 기타 명령을 처리할 때 <code class="docutils literal notranslate"><span class="pre">kv</span></code>가 하는 일은 메모리 내 데이터 구조를 업데이트하는 것뿐입니다. 그런 다음 종료하기 전에 프로그램은 파일을 다시 기록하여 향후 사용을 위해 모든 키/값 쌍을 저장해야 합니다.</p>
-<p>물론 성능을 향상시키고 매우 큰 데이터베이스에 효율적으로 액세스할 수 있도록 하며 충돌을 허용하기 위해 더 정교한 기술을 사용할 수 있습니다. 이 프로젝트에서는 이러한 것들이 필요하지 않습니다.</p>
+<h3>가정 및 오류<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>입력이 출력과 동일함:</strong> 입력 파일과 출력 파일이 동일한 파일인 경우 “Input and output file must differ”라는 오류 메시지를 출력하고 반환 코드 1로 종료해야 합니다.</p></li>
+<li><p><strong>문자열 길이:</strong> 한 줄이 얼마나 길어야 하는지에 대해 아무것도 가정해서는 안 됩니다. 따라서 매우 긴 입력 줄을 읽어야 할 수도 있습니다…</p></li>
+<li><p><strong>파일 길이:</strong> 파일의 길이에 대해서도 아무것도 가정해서는 안 됩니다. 즉, 파일이 <strong>매우</strong> 길 수 있습니다.</p></li>
+<li><p><strong>잘못된 파일:</strong> 사용자가 입력 파일이나 출력 파일을 지정했는데 어떤 이유로 해당 파일(예: <code class="docutils literal notranslate"><span class="pre">input.txt</span></code>)을 열려고 시도했지만 실패한 경우 다음과 같은 정확한 오류 메시지를 출력해야 합니다: <code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">cannot</span> <span class="pre">open</span> <span class="pre">file</span> <span class="pre">'input.txt'</span></code> 그런 다음 반환 코드 1로 종료합니다(즉, <code class="docutils literal notranslate"><span class="pre">exit(1);</span></code>을 호출합니다).</p></li>
+<li><p><strong>Malloc 실패:</strong> <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>을 호출하여 일부 메모리를 할당하는데 malloc이 실패하면 <code class="docutils literal notranslate"><span class="pre">malloc</span> <span class="pre">failed</span></code>라는 오류 메시지를 출력하고 반환 코드 1로 종료해야 합니다.</p></li>
+<li><p><strong>프로그램에 전달된 인수가 너무 많음:</strong> 사용자가 <code class="docutils literal notranslate"><span class="pre">reverse</span></code>를 너무 많은 인수로 실행하면 <code class="docutils literal notranslate"><span class="pre">usage:</span> <span class="pre">reverse</span> <span class="pre">&lt;input&gt;</span> <span class="pre">&lt;output&gt;</span></code>를 출력하고 반환 코드 1로 종료합니다.</p></li>
+<li><p><strong>오류 메시지를 출력하는 방법:</strong> 모든 오류에서 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code>를 사용하여 오류를 화면에 출력하고 오류 메시지를 <code class="docutils literal notranslate"><span class="pre">stdout</span></code>(표준 출력)이 아닌 <code class="docutils literal notranslate"><span class="pre">stderr</span></code>(표준 오류)로 보내야 합니다. 이는 C 코드에서 다음과 같이 수행됩니다: <code class="docutils literal notranslate"><span class="pre">fprintf(stderr,</span> <span class="pre">&quot;whatever</span> <span class="pre">the</span> <span class="pre">error</span> <span class="pre">message</span> <span class="pre">is\n&quot;);</span></code></p></li>
+</ul>
+</section>
 </section>
 <section id="id3">
-<h3>가정 및 오류<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>잘못된 명령:</strong> 명령줄이 <code class="docutils literal notranslate"><span class="pre">p</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">d</span></code>가 아닌 잘못된 명령을 지정하는 경우, 경고 <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">command</span></code>를 한 줄에 출력하고 명령줄의 나머지 부분을 계속 처리합니다. 중요한 점은 <em>종료하지 않는다</em>는 것입니다.</p></li>
-<li><p><strong>예기치 않은 오류:</strong> malloc() 실패 또는 파일 열기 실패와 같은 예기치 않은 오류 조건에서는 유용한 오류 메시지를 출력하고 종료합니다. 이것은 테스트되지 않겠지만 개발 중에 유용할 수 있습니다.</p></li>
-</ul>
-</section>
-</section>
-<section id="id4">
-<h2>유용한 루틴<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>입력 파일을 읽어들이기 위해 <code class="docutils literal notranslate"><span class="pre">fopen()</span></code>, <code class="docutils literal notranslate"><span class="pre">getline()</span></code>, <code class="docutils literal notranslate"><span class="pre">fclose()</span></code> 루틴을 사용하면 작업이 쉬워질 것입니다.</p>
-<p>출력(화면 또는 파일)을 위해서는 <code class="docutils literal notranslate"><span class="pre">printf()</span></code>를 사용하세요. 파일에서 읽거나 쓰기 위해서는 <code class="docutils literal notranslate"><span class="pre">fread()</span></code>, <code class="docutils literal notranslate"><span class="pre">fwrite()</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code>, 심지어 <code class="docutils literal notranslate"><span class="pre">getline()</span></code>을 사용할 수 있습니다.</p>
-<p><code class="docutils literal notranslate"><span class="pre">malloc()</span></code> 루틴은 메모리 할당에 유용합니다.</p>
-<p><code class="docutils literal notranslate"><span class="pre">strsep()</span></code> 루틴은 파싱에 유용합니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">p,10,remzi</span></code>와 같은 문자열을 받으면 <code class="docutils literal notranslate"><span class="pre">strsep()</span></code>을 사용하여 서로 다른 부분으로 분리할 수 있습니다.</p>
-<p>또한 문자열을 정수로 변환하는 데 <code class="docutils literal notranslate"><span class="pre">atoi()</span></code>도 유용합니다.</p>
+<h2>유용한 루틴<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>종료하려면 <code class="docutils literal notranslate"><span class="pre">exit(1)</span></code>을 호출하세요. <code class="docutils literal notranslate"><span class="pre">exit()</span></code>에 전달하는 숫자(이 경우 1)는 프로그램이 오류를 반환했는지(즉, 0이 아닌 값을 반환했는지) 또는 깨끗하게 종료되었는지(즉, 0을 반환했는지) 확인하기 위해 사용자가 사용할 수 있습니다.</p>
+<p>입력 파일을 읽어들이기 위해 다음 루틴을 사용하면 작업이 쉬워질 것입니다: <code class="docutils literal notranslate"><span class="pre">fopen()</span></code>, <code class="docutils literal notranslate"><span class="pre">getline()</span></code>, <code class="docutils literal notranslate"><span class="pre">fclose()</span></code>.</p>
+<p>출력(화면 또는 파일)을 위해서는 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code>를 사용하세요. <code class="docutils literal notranslate"><span class="pre">stdout</span></code>을 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code>에 전달하면 표준 출력에 쉽게 쓸 수 있습니다. 또한 <code class="docutils literal notranslate"><span class="pre">fopen</span></code>에서 반환된 <code class="docutils literal notranslate"><span class="pre">FILE</span> <span class="pre">*</span></code>을 전달하면 파일에 쉽게 쓸 수 있습니다(예: <code class="docutils literal notranslate"><span class="pre">fp=fopen(...);</span> <span class="pre">fprintf(fp,</span> <span class="pre">...);</span></code>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">malloc()</span></code> 루틴은 메모리 할당에 유용합니다. 리스트에 요소를 추가하는 데 사용할 수 있겠네요?</p>
 <p>이러한 함수들의 사용법을 모른다면 맨 페이지를 이용하세요. 예를 들어 명령줄에서 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">malloc</span></code>을 입력하면 malloc에 대한 많은 정보를 얻을 수 있습니다.</p>
 </section>
-<section id="id5">
-<h2>팁<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>다음은 몇 가지 팁입니다:</p>
+<section id="id4">
+<h2>팁<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><strong>작게 시작하고 점진적으로 작동하게 만드세요.</strong> 예를 들어 먼저 입력 파일을 한 번에 한 줄씩 읽어 들이고 읽은 내용을 출력하는 프로그램을 만드세요. 그런 다음 천천히 기능을 추가하고 진행하면서 테스트하세요.</p>
+<p>예를 들어 우리가 이 코드를 작성한 방법은 먼저 <code class="docutils literal notranslate"><span class="pre">fopen()</span></code>, <code class="docutils literal notranslate"><span class="pre">getline()</span></code>, <code class="docutils literal notranslate"><span class="pre">fclose()</span></code>를 사용하여 입력 파일을 읽고 출력하는 코드를 작성하는 것이었습니다. 그런 다음 각 입력 줄을 연결 리스트에 저장하는 코드를 작성하고 제대로 작동하는지 확인했습니다. 그런 다음 리스트를 역순으로 출력했습니다. 그런 다음 오류 사례를 처리하는지 확인했습니다. 등등…</p>
+<p><strong>테스팅이 중요합니다.</strong> 우리가 알고 있던 훌륭한 프로그래머는 작성하는 코드 한 줄마다 5~10줄의 테스트 코드를 작성해야 한다고 말했습니다. 코드가 작동하는지 확인하기 위해 테스트하는 것이 중요합니다. 코드가 처리해야 한다고 생각하는 모든 경우를 처리하는지 확인하는 테스트를 작성하세요. 가능한 한 포괄적으로 하세요. 물론 우리가 여러분의 프로젝트를 채점할 때도 그럴 것입니다. 따라서 우리가 발견하기 전에 먼저 버그를 찾는 것이 좋습니다.</p>
+<p><strong>이전 버전을 보관하세요.</strong> 버그를 도입하고 쉽게 되돌릴 수 없을 수 있으므로 프로그램의 이전 버전 사본을 보관하세요. 이렇게 하는 간단한 방법은 개발 중 다양한 시점에서 파일의 사본을 명시적으로 만들어 사본을 보관하는 것입니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">reverse.c</span></code>의 간단한 버전(예: 파일을 읽기만 하는)이 작동한다고 가정해 봅시다. <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">reverse.c</span> <span class="pre">reverse.v1.c</span></code>를 입력하여 <code class="docutils literal notranslate"><span class="pre">reverse.v1.c</span></code> 파일에 사본을 만드세요. 보다 정교한 개발자는 git(github을 통해서 할 수도 있음)과 같은 버전 제어 시스템을 사용합니다. 이러한 도구는 배울 만한 가치가 충분히 있으므로 배우세요!</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id5">
+<h1>키 용어 설명<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><strong>작게 시작하고 점진적으로 작동하게 만드세요.</strong> 예를 들어 먼저 하나의 명령에 대해 명령줄을 성공적으로 파싱하는 프로그램을 만드세요. 그런 다음 루프를 추가하고 하나의 명령줄에서 여러 명령을 파싱하세요. 그런 다음 메모리 내 데이터 구조에 요소를 추가하는 기능을 추가하되 지속성은 걱정하지 마세요. 그런 다음 지속성을 추가하세요. 또는 그런 식으로요.</p></li>
-<li><p><strong>테스팅이 중요합니다.</strong> 우리가 알고 있던 훌륭한 프로그래머는 작성하는 코드 한 줄마다 5~10줄의 테스트 코드를 작성해야 한다고 말했습니다. 코드가 작동하는지 확인하기 위해 테스트하는 것이 중요합니다. 코드가 처리해야 한다고 생각하는 모든 경우를 처리하는지 확인하는 테스트를 작성하세요. 가능한 한 포괄적으로 하세요. 물론 우리가 여러분의 프로젝트를 채점할 때도 그럴 것입니다. 따라서 우리가 발견하기 전에 먼저 버그를 찾는 것이 좋습니다.</p></li>
-<li><p><strong>이전 버전을 보관하세요.</strong> 버그를 도입하고 쉽게 되돌릴 수 없을 수 있으므로 프로그램의 이전 버전 사본을 보관하세요. 이렇게 하는 간단한 방법은 개발 중 다양한 시점에서 파일의 사본을 명시적으로 만들어 사본을 보관하는 것입니다. 예를 들어 <code class="docutils literal notranslate"><span class="pre">kv.c</span></code>의 간단한 버전(예: 파일을 읽기만 하는)이 작동한다고 가정해 봅시다. <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">kv.c</span> <span class="pre">kv.v1.c</span></code>를 입력하여 <code class="docutils literal notranslate"><span class="pre">kv.v1.c</span></code> 파일에 사본을 만드세요. 보다 정교한 개발자는 git과 같은 버전 제어 시스템을 사용합니다. 이러한 도구는 배울 만한 가치가 충분히 있으므로 배우세요!</p></li>
+<li><p><strong>표준 입력(Standard Input)</strong>: 프로그램이 데이터를 읽어들이는 기본 입력 스트림입니다. 일반적으로 키보드에서 사용자가 입력하는 데이터를 나타냅니다. <code class="docutils literal notranslate"><span class="pre">stdin</span></code>으로 참조됩니다.</p></li>
+<li><p><strong>표준 출력(Standard Output)</strong>: 프로그램이 데이터를 출력하는 기본 출력 스트림입니다. 일반적으로 터미널 화면에 출력되는 데이터를 나타냅니다. <code class="docutils literal notranslate"><span class="pre">stdout</span></code>으로 참조됩니다.</p></li>
+<li><p><strong>표준 오류(Standard Error)</strong>: 오류 메시지를 출력하기 위한 별도의 출력 스트림입니다. 이를 통해 일반 출력과 오류 메시지를 구분할 수 있습니다. <code class="docutils literal notranslate"><span class="pre">stderr</span></code>로 참조됩니다.</p></li>
+<li><p><strong>리디렉션(Redirection)</strong>: 프로그램의 입력 또는 출력을 파일이나 다른 프로그램으로 재지정하는 것입니다. <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>는 입력 리디렉션에 사용되고 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>는 출력 리디렉션에 사용됩니다.</p></li>
+<li><p><strong>연결 리스트(Linked List)</strong>: 각 요소가 다음 요소에 대한 참조를 포함하는 선형 데이터 구조입니다. 동적 메모리 할당을 사용하여 구현되며 크기가 유연합니다.</p></li>
+<li><p><strong>역순(Reverse)</strong>: 항목의 순서를 거꾸로 바꾸는 것입니다. 문자열이나 리스트와 같은 시퀀스에 적용할 수 있습니다.</p></li>
 </ul>
 </section>
-<section id="id6">
-<h2>용어 설명<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>키-값 저장소(Key-Value Store)</strong>: 키-값 쌍의 콜렉션을 관리하는 데이터 저장소 유형입니다. 각 키는 값과 연결되며 키를 사용하여 값을 검색할 수 있습니다. 키-값 저장소의 예로는 Redis, Memcached, etcd 등이 있습니다.</p></li>
-<li><p><strong>영구 저장(Persistence)</strong>: 프로그램 실행 간에 데이터가 유지되도록 하는 것입니다. 데이터를 디스크에 저장하면 프로그램이 종료되거나 시스템이 충돌하더라도 나중에 데이터를 검색할 수 있습니다.</p></li>
-<li><p><strong>표준 입력(Standard Input)과 표준 출력(Standard Output)</strong>: 프로그램의 기본 입력 및 출력 스트림입니다. 일반적으로 표준 입력은 키보드이고 표준 출력은 터미널 화면입니다. 그러나 파일 또는 다른 프로그램으로 리디렉션할 수 있습니다.</p></li>
-<li><p><strong>명령줄 인수(Command-Line Arguments)</strong>: 프로그램이 실행될 때 프로그램에 전달되는 값입니다. 이를 통해 사용자는 프로그램의 동작을 사용자 정의할 수 있습니다. C에서 main 함수의 argc(인수 개수)와 argv(인수 벡터) 매개변수를 통해 액세스할 수 있습니다.</p></li>
-<li><p><strong>파일 디스크립터(File Descriptor)</strong>: 프로세스가 열려 있는 파일을 참조하는 데 사용하는 정수 값입니다. 파일 디스크립터 0, 1, 2는 각각 표준 입력, 표준 출력, 표준 오류에 대해 예약되어 있습니다.</p></li>
-<li><p><strong>구문 분석(Parsing)</strong>: 구조화된 형식으로 데이터를 분석하고 처리하는 과정입니다. 문자열 조작 함수를 사용하여 명령줄 인수나 입력 파일의 내용과 같은 텍스트 입력을 구문 분석할 수 있습니다.</p></li>
-</ul>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id7">
-<h1>코드 예제<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
-<p>다음은 이 프로젝트에 도움이 될 수 있는 몇 가지 코드 예제입니다.</p>
-<p>파일에서 한 줄씩 읽는 방법:</p>
+<section class="tex2jax_ignore mathjax_ignore" id="id6">
+<h1>코드 예제<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+<p>입력 파일을 읽고 각 줄을 연결 리스트에 저장하는 방법의 예입니다:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
 
 <span class="cp">#define MAX_LINE_LENGTH 1024</span>
 
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Node</span><span class="p">;</span>
+
+<span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">append</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">line</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">newNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Node</span><span class="p">));</span>
+<span class="w">    </span><span class="n">newNode</span><span class="o">-&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+<span class="w">    </span><span class="n">newNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newNode</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newNode</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;database.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;input.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="s">&quot;파일을 열 수 없습니다&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;error: cannot open file &#39;input.txt&#39;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">line</span><span class="p">[</span><span class="n">MAX_LINE_LENGTH</span><span class="p">];</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">line</span><span class="p">),</span><span class="w"> </span><span class="n">file</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 여기서 한 줄씩 line 변수로 읽어들입니다</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">);</span>
+<span class="w">        </span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 여기서 연결 리스트를 처리할 수 있습니습니다</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>문자열을 파싱하는 방법:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">input</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;p,10,remzi&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">value</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtok</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtok</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strtok</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Command: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">command</span><span class="p">);</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Key: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Value: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>명령줄 인수를 처리하는 방법:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;사용법: %s &lt;인수&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<p>이 코드는 <code class="docutils literal notranslate"><span class="pre">fopen()</span></code>을 사용하여 “input.txt” 파일을 열고, <code class="docutils literal notranslate"><span class="pre">fgets()</span></code>를 사용하여 파일에서 한 줄씩 읽어들입니다. 각 줄은 <code class="docutils literal notranslate"><span class="pre">append()</span></code> 함수를 사용하여 연결 리스트에 추가됩니다. 연결 리스트의 노드는 <code class="docutils literal notranslate"><span class="pre">Node</span></code> 구조체로 표현되며, 각 노드는 줄의 데이터와 다음 노드에 대한 포인터를 포함합니다.</p>
+<p>연결 리스트를 역순으로 출력하는 방법의 예입니다:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">printReverse</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">argc</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;인수 %d: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">printReverse</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
 <span class="p">}</span>
+
+<span class="c1">// main 함수 내에서 호출</span>
+<span class="n">printReverse</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>이러한 코드 조각을 프로젝트의 시작점으로 사용하고 필요에 따라 수정 및 확장할 수 있습니다.</p>
+<p>이 <code class="docutils literal notranslate"><span class="pre">printReverse()</span></code> 함수는 재귀를 사용하여 연결 리스트를 역순으로 순회합니다. 먼저 리스트의 끝까지 재귀 호출을 진행한 다음, 되돌아오면서 각 노드의 데이터를 출력합니다. 이렇게 하면 리스트가 역순으로 출력됩니다.</p>
+<p>물론 이것은 간단한 예일 뿐이며, 실제 프로그램에서는 오류 처리, 메모리 해제, 명령줄 인수 처리 등 더 많은 작업이 필요할 것입니다. 하지만 이 예제는 문제를 해결하기 위한 기본적인 접근 방식을 보여줍니다.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id8">
-<h1>결론<a class="headerlink" href="#id8" title="Link to this heading">#</a></h1>
-<p>이 프로젝트는 C 프로그래밍 언어와 시스템 프로그래밍 개념을 연습할 수 있는 훌륭한 기회입니다. 영구 키-값 저장소를 구현함으로써 파일 I/O, 메모리 관리, 데이터 구조 및 오류 처리와 같은 중요한 주제를 탐색할 수 있습니다.</p>
-<p>프로젝트를 진행할 때는 증분 방식을 사용하고, 코드를 철저히 테스트하고, 진행 상황을 자주 저장하는 것을 잊지 마세요. 어려움에 부딪히면 맨 페이지, 온라인 리소스 및 동료들을 활용하세요.</p>
-<p>무엇보다 프로그래밍을 즐기세요! 시스템 프로그래밍은 도전적일 수 있지만 보람 있는 분야이며, 이 프로젝트는 여러분이 그 분야에서 첫 걸음을 내딛는 데 도움이 될 것입니다. 행운을 빕니다!</p>
+<section class="tex2jax_ignore mathjax_ignore" id="id7">
+<h1>결론<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트는 C 프로그래밍과 시스템 프로그래밍의 기본 개념을 연습할 수 있는 좋은 기회입니다. 파일 I/O, 메모리 할당, 데이터 구조, 오류 처리 등을 다룹니다. 또한 문제를 작은 부분으로 나누고 점진적으로 해결하는 법을 배울 수 있습니다.</p>
+<p>프로젝트에 도전할 때는 먼저 문제를 완전히 이해하는 것이 중요합니다. 입력이 어떻게 주어지고 출력이 어떻게 되어야 하는지 정확히 알아야 합니다. 그런 다음 문제를 더 작은 하위 문제로 나누고 한 번에 하나씩 해결하세요. 각 단계를 철저히 테스트하여 예상대로 작동하는지 확인하세요.</p>
+<p>어려움에 부딪히면 친구들과 협력하고, 온라인 리소스를 활용하고, 필요하다면 도움을 요청하세요. 그러나 무엇보다 포기하지 마세요. 때로는 해결책을 찾는 데 시간이 걸릴 수 있지만, 끝까지 밀어붙이면 더 나은 프로그래머가 될 수 있습니다.</p>
+<p>C는 매우 강력하지만 까다로운 언어라는 점을 기억하세요. 메모리 관리와 포인터 같은 저수준 개념을 다루려면 세심한 주의가 필요합니다. 그러나 이러한 개념을 마스터하면 시스템이 어떻게 작동하는지에 대한 깊은 이해를 얻을 수 있습니다.</p>
+<p>마지막으로 프로그래밍을 즐기세요! 때로는 도전적이고 좌절스러울 수 있지만, 자신의 코드가 작동하는 것을 보는 것만큼 보람 있는 일도 없습니다. 이 프로젝트가 여러분의 프로그래밍 여정에 있어 값진 한 걸음이 되기를 바랍니다.</p>
+<p>행운을 빕니다!</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -743,20 +718,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="reverse.html"
+       href="utilities.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트</p>
+        <p class="prev-next-title">유닉스 유틸리티 프로젝트</p>
       </div>
     </a>
     <a class="right-next"
-       href="../lab-tutorial.html"
+       href="kv.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab 튜토리얼</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로젝트: 간단한 키-값 저장소</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -776,19 +751,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로젝트: 간단한 키-값 저장소</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">세부사항</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">지속성</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">가정 및 오류</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">가정 및 오류</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">유용한 루틴</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">팁</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">용어 설명</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">유용한 루틴</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">팁</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">코드 예제</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">결론</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">키 용어 설명</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">코드 예제</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">결론</a></li>
 </ul>
 
   </nav></div>
