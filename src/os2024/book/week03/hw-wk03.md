@@ -1,4 +1,4 @@
-# Homwork: 스케줄링
+# Homework: 스케줄링
 
 | [스케줄링 기초](http://www.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf) | [scheduler.py 실행](https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/cpu-sched) |
 
