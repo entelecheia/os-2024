@@ -54,6 +54,7 @@ parts:
       - file: projects/contents/index
         sections:
           - file: projects/contents/utilities
+          - file: projects/contents/kv
       - file: projects/lab-tutorial
       - file: projects/tester
       - file: projects/setup
