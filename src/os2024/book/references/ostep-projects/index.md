@@ -4,14 +4,14 @@ This repository holds a number of projects that can be used in an operating syst
 
 Also (increasingly) available are some tests to see if your code works; eventually every project will have a set of tests available. The testing framework that is currently available is found [here](https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/tester). A specific testing script, found in each project directory, can be used to run the tests against your code.
 
-For example, in the initial utilities project, the relatively simple `wcat` program that you create can be tested by running the `test-wcat.sh` script. This could be accomplished by the following commands:
+For example, in the initial utilities project, the relatively simple `hcat` program that you create can be tested by running the `test-hcat.sh` script. This could be accomplished by the following commands:
 
 ```shell
 prompt> git clone https://github.com/remzi-arpacidusseau/ostep-projects
-prompt> cd ostep-projects/initial-utilities/wcat
-prompt> emacs -nw wcat.c
-prompt> gcc -o wcat wcat.c -Wall
-prompt> ./test-wcat.sh
+prompt> cd ostep-projects/initial-utilities/hcat
+prompt> emacs -nw hcat.c
+prompt> gcc -o hcat hcat.c -Wall
+prompt> ./test-hcat.sh
 test 1: passed
 test 2: passed
 test 3: passed
