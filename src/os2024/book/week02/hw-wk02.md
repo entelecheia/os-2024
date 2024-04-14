@@ -2,6 +2,10 @@
 
 | [추상화: 프로세스](http://www.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf) | [process-run.py 실행](https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/cpu-intro) |
 
+```{note}
+본 과제는 프로젝트를 위해 생성한 본인의 개별 폴더에 제출하기 바랍니다.
+```
+
 ## 소개
 
 이 프로그램 `process-run.py`를 통해 프로그램이 실행되고 CPU를 사용하거나(예: 명령어 추가 수행) I/O를 수행할 때(예: 디스크에 요청을 보내고 완료될 때까지 기다림) 프로세스 상태가 어떻게 변하는지 볼 수 있습니다. 자세한 내용은 README를 참조하세요.

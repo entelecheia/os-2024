@@ -2,6 +2,10 @@
 
 | [스케줄링 기초](http://www.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf) | [scheduler.py 실행](https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/cpu-sched) |
 
+```{note}
+본 과제는 프로젝트를 위해 생성한 본인의 개별 폴더에 제출하기 바랍니다.
+```
+
 ## 소개
 
 `scheduler.py` 프로그램을 통해 다양한 스케줄러가 응답 시간, 반환 시간, 총 대기 시간 등의 스케줄링 메트릭 하에서 어떻게 수행되는지 확인할 수 있습니다. 자세한 내용은 README를 참조하세요.
