@@ -540,12 +540,12 @@ document.write(`
 <h1>Projects<a class="headerlink" href="#projects" title="Link to this heading">#</a></h1>
 <p>This repository holds a number of projects that can be used in an operating systems class aimed at upper-level undergraduates and (in some cases) beginning graduate students. They are based on years of teaching such a course at the University of Wisconsin-Madison.</p>
 <p>Also (increasingly) available are some tests to see if your code works; eventually every project will have a set of tests available. The testing framework that is currently available is found <a class="reference external" href="https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/tester">here</a>. A specific testing script, found in each project directory, can be used to run the tests against your code.</p>
-<p>For example, in the initial utilities project, the relatively simple <code class="docutils literal notranslate"><span class="pre">wcat</span></code> program that you create can be tested by running the <code class="docutils literal notranslate"><span class="pre">test-wcat.sh</span></code> script. This could be accomplished by the following commands:</p>
+<p>For example, in the initial utilities project, the relatively simple <code class="docutils literal notranslate"><span class="pre">hcat</span></code> program that you create can be tested by running the <code class="docutils literal notranslate"><span class="pre">test-hcat.sh</span></code> script. This could be accomplished by the following commands:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>prompt&gt;<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/remzi-arpacidusseau/ostep-projects
-prompt&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ostep-projects/initial-utilities/wcat
-prompt&gt;<span class="w"> </span>emacs<span class="w"> </span>-nw<span class="w"> </span>wcat.c
-prompt&gt;<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>wcat<span class="w"> </span>wcat.c<span class="w"> </span>-Wall
-prompt&gt;<span class="w"> </span>./test-wcat.sh
+prompt&gt;<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ostep-projects/initial-utilities/hcat
+prompt&gt;<span class="w"> </span>emacs<span class="w"> </span>-nw<span class="w"> </span>hcat.c
+prompt&gt;<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>hcat<span class="w"> </span>hcat.c<span class="w"> </span>-Wall
+prompt&gt;<span class="w"> </span>./test-hcat.sh
 <span class="nb">test</span><span class="w"> </span><span class="m">1</span>:<span class="w"> </span>passed
 <span class="nb">test</span><span class="w"> </span><span class="m">2</span>:<span class="w"> </span>passed
 <span class="nb">test</span><span class="w"> </span><span class="m">3</span>:<span class="w"> </span>passed

@@ -2,14 +2,14 @@
 
 여러분이 작성한 코드가 제대로 동작하는지 확인하기 위한 테스트들이 있습니다. 궁극적으로 모든 프로젝트에는 일련의 테스트가 제공될 것입니다. 현재 사용 가능한 테스팅 프레임워크는 [여기](https://github.com/chu-aie/os-2024/tree/main/src/ostep-projects/tester)에서 찾을 수 있습니다. 각 프로젝트 디렉토리에 있는 특정 테스팅 스크립트를 사용하여 여러분의 코드를 대상으로 테스트를 실행할 수 있습니다.
 
-예를 들어, 초기 유틸리티 프로젝트에서 여러분이 작성한 비교적 간단한 `wcat` 프로그램은 `test-wcat.sh` 스크립트를 실행하여 테스트할 수 있습니다. 이는 다음과 같은 명령으로 수행할 수 있습니다:
+예를 들어, 초기 유틸리티 프로젝트에서 여러분이 작성한 비교적 간단한 `hcat` 프로그램은 `test-hcat.sh` 스크립트를 실행하여 테스트할 수 있습니다. 이는 다음과 같은 명령으로 수행할 수 있습니다:
 
 ```bash
 git clone https://github.com/chu-aie/os-2024
-cd src/ostep-projects/initial-utilities/wcat
-emacs -nw wcat.c
-gcc -o wcat wcat.c -Wall
-./test-wcat.sh
+cd src/ostep-projects/initial-utilities/hcat
+emacs -nw hcat.c
+gcc -o hcat hcat.c -Wall
+./test-hcat.sh
 ```
 
 ```
