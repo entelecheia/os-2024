@@ -42,7 +42,7 @@ gcc -o hcat hcat.c -Wall -Werror
 
 이렇게 하면 `hcat`이라는 실행 가능한 바이너리가 만들어지고, 위에서처럼 실행할 수 있습니다.
 
-이 프로그램의 소스 코드(우리는 **hcat.c**에 있다고 가정합니다)를 구현하기 위해서는 C 표준 라이브러리(흔히 **libc**라고 불립니다)의 몇 가지 라이브러리 루틴을 사용하는 방법을 배워야 합니다. 모든 C 코드는 자동으로 유용한 함수들로 가득 찬 C 라이브러리와 링크됩니다. C 라이브러리에 대해 [여기](https://en.wikipedia.org/wiki/C_standard_library)와 [여기](https://www-s.acm.illinois.edu/webmonkeys/book/c_guide/)<sup>[1](#myfootnote1)</sup>에서 더 알아보세요.
+이 프로그램의 소스 코드(우리는 **hcat.c**에 있다고 가정합니다)를 구현하기 위해서는 C 표준 라이브러리(흔히 **libc**라고 불립니다)의 몇 가지 라이브러리 루틴을 사용하는 방법을 배워야 합니다. 모든 C 코드는 자동으로 유용한 함수들로 가득 찬 C 라이브러리와 링크됩니다. C 라이브러리에 대해 [여기](https://en.wikipedia.org/wiki/C_standard_library)와 [여기](https://www-s.acm.illinois.edu/webmonkeys/book/c_guide/)에서 더 알아보세요.
 
 이 프로젝트에서는 파일 입출력을 위해 다음과 같은 루틴을 사용하는 것이 좋습니다: `fopen()`, `fgets()`, **fclose()**. 이렇게 새로운 함수를 사용할 때마다 가장 먼저 해야 할 일은 그것에 대해 읽어보는 것입니다. 그렇지 않으면 어떻게 제대로 사용하는지 배울 수 있겠습니까?
 
