@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 6 - 메모리 가상화 2 &#8212; 운영체제 2024</title>
+    <title>과제: 프로세스 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week06/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week02/hw-wk02';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="주소 변환의 원리" href="vm-mechanism.html" />
-    <link rel="prev" title="Tip: Linux 기본 명령어" href="../week05/tip-linux-cmd.html" />
+    <link rel="next" title="Week 3 - 스케줄링 1" href="../week03/index.html" />
+    <link rel="prev" title="Tip: 리눅스 프로세스 관리 명령어" href="tip.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -216,14 +216,14 @@
 <li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week02/index.html">Week 2 - 가상화의 세계</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-intro.html">프로세스의 개념</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-api.html">프로세스 API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/shells.html">리눅스 셸 (Linux Shells)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/lab.html">Lab: Shell</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week02/hw-wk02.html">과제: 프로세스</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 2 - 가상화의 세계</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpu-intro.html">프로세스의 개념</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu-api.html">프로세스 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu-mechanisms.html">제한적 직접 실행 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shells.html">리눅스 셸 (Linux Shells)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab.html">Lab: Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">과제: 프로세스</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week03/index.html">Week 3 - 스케줄링 1</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -247,10 +247,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../week05/tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 6 - 메모리 가상화 2</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="vm-mechanism.html">주소 변환의 원리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vm-segmentation.html">세그멘테이션 </a></li>
-<li class="toctree-l2"><a class="reference internal" href="lab.html">Lab: 주소 변환 시뮬레이션</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week06/index.html">Week 6 - 메모리 가상화 2</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-mechanism.html">주소 변환의 원리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/vm-segmentation.html">세그멘테이션 </a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/lab.html">Lab: 주소 변환 시뮬레이션</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week07/index.html">Week 7 - 메모리 가상화 3</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -367,7 +367,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week06/index.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week02/hw-wk02.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -384,7 +384,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek06/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek02/hw-wk02.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -414,7 +414,7 @@
       
       
       
-      <li><a href="../_sources/week06/index.md" target="_blank"
+      <li><a href="../_sources/week02/hw-wk02.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -485,7 +485,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -496,11 +498,23 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 6 - 메모리 가상화 2</h1>
+    <h1>과제: 프로세스</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소개</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">질문</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">용어 설명</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">코드 예제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">결론</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -510,15 +524,62 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-6-2">
-<h1>Week 6 - 메모리 가상화 2<a class="headerlink" href="#week-6-2" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="vm-mechanism.html">주소 변환의 원리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vm-segmentation.html">세그멘테이션 </a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab.html">Lab: 주소 변환 시뮬레이션</a></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>과제: 프로세스<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>| <a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf">추상화: 프로세스</a> | <a class="reference external" href="https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/cpu-intro">process-run.py 실행</a> |</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>본 과제는 프로젝트를 위해 생성한 본인의 개별 폴더에 제출하기 바랍니다.</p>
 </div>
+<section id="id2">
+<h2>소개<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>이 프로그램 <code class="docutils literal notranslate"><span class="pre">process-run.py</span></code>를 통해 프로그램이 실행되고 CPU를 사용하거나(예: 명령어 추가 수행) I/O를 수행할 때(예: 디스크에 요청을 보내고 완료될 때까지 기다림) 프로세스 상태가 어떻게 변하는지 볼 수 있습니다. 자세한 내용은 README를 참조하세요.</p>
+</section>
+<section id="id3">
+<h2>질문<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>다음 플래그와 함께 <code class="docutils literal notranslate"><span class="pre">process-run.py</span></code>를 실행하세요: <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">5:100,5:100</span></code>. CPU 활용률(예: CPU가 사용 중인 시간의 백분율)은 어떻게 되어야 할까요? 왜 그렇게 알 수 있나요? <code class="docutils literal notranslate"><span class="pre">-c</span></code>와 <code class="docutils literal notranslate"><span class="pre">-p</span></code> 플래그를 사용해 여러분의 생각이 맞는지 확인해 보세요.</p></li>
+<li><p>이제 다음 플래그로 실행해 보세요: <code class="docutils literal notranslate"><span class="pre">./process-run.py</span> <span class="pre">-l</span> <span class="pre">4:100,1:0</span></code>. 이 플래그는 4개의 명령어(모두 CPU 사용)를 가진 하나의 프로세스와 I/O를 실행하고 완료될 때까지 기다리는 하나의 프로세스를 지정합니다. 두 프로세스를 모두 완료하는 데 얼마나 걸리나요? <code class="docutils literal notranslate"><span class="pre">-c</span></code>와 <code class="docutils literal notranslate"><span class="pre">-p</span></code>를 사용해 여러분의 생각이 맞는지 확인해 보세요.</p></li>
+<li><p>프로세스의 순서를 바꿔 보세요: <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">1:0,4:100</span></code>. 이제 어떻게 되나요? 순서를 바꾸는 것이 중요한가요? 왜 그런가요? (항상 그렇듯이 <code class="docutils literal notranslate"><span class="pre">-c</span></code>와 <code class="docutils literal notranslate"><span class="pre">-p</span></code>를 사용해 여러분의 생각이 맞는지 확인해 보세요)</p></li>
+<li><p>이제 다른 플래그들을 살펴보겠습니다. 중요한 플래그 중 하나는 <code class="docutils literal notranslate"><span class="pre">-S</span></code>인데, 이는 프로세스가 I/O를 실행할 때 시스템이 어떻게 반응하는지 결정합니다. 플래그를 <code class="docutils literal notranslate"><span class="pre">SWITCH_ON_END</span></code>로 설정하면 한 프로세스가 I/O를 수행하는 동안 시스템은 다른 프로세스로 전환하지 않고 해당 프로세스가 완전히 끝날 때까지 기다립니다. 다음 두 프로세스를 실행할 때 어떤 일이 일어나나요(<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">1:0,4:100</span> <span class="pre">-c</span> <span class="pre">-S</span> <span class="pre">SWITCH_ON_END</span></code>), 하나는 I/O를 수행하고 다른 하나는 CPU 작업을 수행합니다?</p></li>
+<li><p>이제 같은 프로세스를 실행하되, 한 프로세스가 I/O를 기다리는(<code class="docutils literal notranslate"><span class="pre">WAITING</span></code>) 동안 다른 프로세스로 전환되도록 switching 동작을 설정해 봅시다(<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">1:0,4:100</span> <span class="pre">-c</span> <span class="pre">-S</span> <span class="pre">SWITCH_ON_IO</span></code>). 이제 어떤 일이 일어나나요? <code class="docutils literal notranslate"><span class="pre">-c</span></code>와 <code class="docutils literal notranslate"><span class="pre">-p</span></code>를 사용해 여러분의 생각이 맞는지 확인해 보세요.</p></li>
+<li><p>또 다른 중요한 동작은 I/O가 완료될 때 수행할 작업입니다. <code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">IO_RUN_LATER</span></code>를 사용하면 I/O가 완료될 때 그것을 실행한 프로세스가 반드시 즉시 실행되는 것은 아닙니다. 오히려 그 시점에 실행 중이던 프로세스가 계속 실행됩니다. 이러한 프로세스 조합을 실행하면 어떤 일이 일어나나요? (<code class="docutils literal notranslate"><span class="pre">./process-run.py</span> <span class="pre">-l</span> <span class="pre">3:0,5:100,5:100,5:100</span> <span class="pre">-S</span> <span class="pre">SWITCH_ON_IO</span> <span class="pre">-I</span> <span class="pre">IO_RUN_LATER</span> <span class="pre">-c</span> <span class="pre">-p</span></code>) 시스템 자원이 효율적으로 활용되고 있나요?</p></li>
+<li><p>이제 같은 프로세스를 실행하되, <code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">IO_RUN_IMMEDIATE</span></code>를 설정해 I/O를 실행한 프로세스를 즉시 실행하도록 해 봅시다. 이 동작은 어떻게 다른가요? 방금 I/O를 완료한 프로세스를 다시 실행하는 것이 왜 좋은 생각일 수 있을까요?</p></li>
+<li><p>이제 무작위로 생성된 프로세스로 실행해 봅시다: <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">1</span> <span class="pre">-l</span> <span class="pre">3:50,3:50</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">2</span> <span class="pre">-l</span> <span class="pre">3:50,3:50</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">3</span> <span class="pre">-l</span> <span class="pre">3:50,3:50</span></code>. 추적 결과가 어떻게 될지 예측해 보세요. <code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">IO_RUN_IMMEDIATE</span></code> 플래그와 <code class="docutils literal notranslate"><span class="pre">-I</span> <span class="pre">IO_RUN_LATER</span></code> 플래그를 사용할 때 어떤 일이 일어나나요? <code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">SWITCH_ON_IO</span></code>와 <code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">SWITCH_ON_END</span></code>를 사용할 때 어떤 일이 일어나나요?</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>용어 설명<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>프로세스(Process)</strong>: 실행 중인 프로그램의 인스턴스입니다. 프로세스는 자체 메모리 공간을 가지며 CPU 시간을 할당받습니다.</p></li>
+<li><p><strong>CPU 활용률(CPU Utilization)</strong>: CPU가 작업을 수행하는 데 사용되는 시간의 비율입니다. 높은 CPU 활용률은 CPU가 효율적으로 사용되고 있음을 의미합니다.</p></li>
+<li><p><strong>I/O</strong>: Input/Output의 약자로, 프로세스가 디스크, 네트워크 등의 외부 장치와 통신하는 것을 말합니다. I/O 작업은 일반적으로 CPU 작업보다 훨씬 더 많은 시간이 걸립니다.</p></li>
+<li><p><strong>문맥 교환(Context Switch)</strong>: 한 프로세스에서 다른 프로세스로 CPU 제어를 전환하는 프로세스입니다. 문맥 교환에는 현재 프로세스의 상태를 저장하고 새 프로세스의 상태를 로드하는 작업이 포함됩니다.</p></li>
+<li><p><strong>스케줄링(Scheduling)</strong>: 어떤 프로세스가 CPU 시간을 받을지 결정하는 프로세스입니다. 운영 체제의 스케줄러는 공정성과 효율성의 균형을 유지하려고 합니다.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>코드 예제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">process-run.py</span></code> 프로그램을 실행하는 방법의 예입니다:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 두 개의 프로세스를 실행하고 CPU 활용률과 각 프로세스의 통계를 출력합니다</span>
+./process-run.py<span class="w"> </span>-l<span class="w"> </span><span class="m">5</span>:100,5:100<span class="w"> </span>-c<span class="w"> </span>-p
+
+<span class="c1"># I/O 완료 시 프로세스 전환 동작을 설정하고 결과를 출력합니다</span>
+./process-run.py<span class="w"> </span>-l<span class="w"> </span><span class="m">3</span>:0,5:100,5:100,5:100<span class="w"> </span>-S<span class="w"> </span>SWITCH_ON_IO<span class="w"> </span>-I<span class="w"> </span>IO_RUN_LATER<span class="w"> </span>-c<span class="w"> </span>-p
+
+<span class="c1"># 무작위 프로세스를 생성하고 실행합니다</span>
+./process-run.py<span class="w"> </span>-s<span class="w"> </span><span class="m">1</span><span class="w"> </span>-l<span class="w"> </span><span class="m">3</span>:50,3:50<span class="w"> </span>-c<span class="w"> </span>-p
+</pre></div>
+</div>
+<p>이러한 예제는 <code class="docutils literal notranslate"><span class="pre">process-run.py</span></code> 프로그램의 다양한 옵션과 플래그를 보여줍니다. <code class="docutils literal notranslate"><span class="pre">-l</span></code> 플래그는 프로세스 목록을 지정하고, <code class="docutils literal notranslate"><span class="pre">-c</span></code>와 <code class="docutils literal notranslate"><span class="pre">-p</span></code>는 각각 CPU 활용률과 프로세스 통계를 출력합니다. <code class="docutils literal notranslate"><span class="pre">-S</span></code>와 <code class="docutils literal notranslate"><span class="pre">-I</span></code> 플래그는 I/O와 관련된 스케줄링 동작을 제어합니다.</p>
+</section>
+<section id="id6">
+<h2>결론<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>이 과제는 프로세스, I/O, 스케줄링과 같은 운영 체제의 핵심 개념을 탐구할 수 있는 기회를 제공합니다. <code class="docutils literal notranslate"><span class="pre">process-run.py</span></code> 프로그램을 사용하면 다양한 시나리오를 시뮬레이션하고 결과를 관찰할 수 있습니다.</p>
+<p>프로세스가 CPU 작업과 I/O 작업을 수행할 때 프로세스 상태가 어떻게 변하는지, 스케줄링 정책이 시스템 성능에 어떤 영향을 미치는지 이해하는 것이 중요합니다. 문맥 교환에는 오버헤드가 수반되므로 너무 자주 발생하면 성능이 저하될 수 있습니다. 그러나 I/O를 기다리는 동안 다른 프로세스를 실행하면 CPU를 더 효율적으로 활용할 수 있습니다.</p>
+<p>다양한 플래그와 옵션을 사용하여 실험함으로써 이러한 개념을 직접 경험할 수 있습니다. 결과를 예측해 보고 <code class="docutils literal notranslate"><span class="pre">-c</span></code>와 <code class="docutils literal notranslate"><span class="pre">-p</span></code> 출력을 사용하여 검증해 보세요. 직관과 일치하지 않는 것이 있다면 그 이유를 파악해 보세요.</p>
+<p>운영 체제가 어떻게 프로세스를 관리하고 컴퓨터 자원을 할당하는지 이해하는 것은 효율적이고 안정적인 소프트웨어를 설계하는 데 있어 필수적입니다. 이 과제는 그 방향으로 나아가는 작지만 중요한 첫걸음입니다. 계속해서 탐구하고 배우세요!</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -534,7 +595,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week06"
+            path: "./week02"
         },
         predefinedOutput: true
     }
@@ -552,20 +613,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../week05/tip-linux-cmd.html"
+       href="tip.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tip: Linux 기본 명령어</p>
+        <p class="prev-next-title">Tip: 리눅스 프로세스 관리 명령어</p>
       </div>
     </a>
     <a class="right-next"
-       href="vm-mechanism.html"
+       href="../week03/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">주소 변환의 원리</p>
+        <p class="prev-next-title">Week 3 - 스케줄링 1</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -576,7 +637,24 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소개</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">질문</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">용어 설명</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">코드 예제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">결론</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
