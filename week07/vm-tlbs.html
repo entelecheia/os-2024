@@ -528,26 +528,109 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tlb">
 <h1>페이징: 더 빠른 변환 (TLB)<a class="headerlink" href="#tlb" title="Link to this heading">#</a></h1>
+<p><strong>TLB는 최근 사용된 가상-물리 주소 쌍을 캐시하는 작은 고속 메모리이다.</strong><br />
+페이징 시스템은 가상 메모리 주소를 물리 메모리 주소로 변환하는 과정에서 TLB (Translation Lookaside Buffer)를 사용하여 성능을 향상시킨다.</p>
+<p>TLB 미스 처리 과정은 다음과 같습니다.</p>
+<ol class="arabic simple">
+<li><p>TLB 미스 감지: CPU가 가상 주소를 물리 주소로 변환하려고 할 때 TLB에서 해당 엔트리를 찾지 못하면 TLB 미스가 발생합니다.</p></li>
+<li><p>페이지 테이블 워크(Page Table Walk): TLB에 필요한 변환 정보가 없으므로 CPU는 메모리에 있는 페이지 테이블을 참조하여 가상 주소를 물리 주소로 변환해야 합니다. 이 과정을 페이지 테이블 워크라고 합니다.</p></li>
+<li><p>페이지 테이블 엔트리 검색: 페이지 테이블 워크 중에 CPU는 계층적인 페이지 테이블을 따라가며 요청된 가상 주소에 해당하는 페이지 테이블 엔트리를 찾습니다.</p></li>
+<li><p>페이지 폴트 처리: 페이지 테이블 엔트리가 유효하지 않거나 페이지가 메모리에 없는 경우, CPU는 페이지 폴트를 발생시킵니다. 운영 체제는 이 페이지 폴트를 처리하여 필요한 데이터를 디스크에서 메모리로 가져옵니다.</p></li>
+<li><p>TLB 업데이트: 필요한 변환 정보를 찾은 후, CPU는 TLB에 이 정보를 캐싱하여 다음에 같은 가상 주소에 접근할 때 TLB 미스가 발생하지 않도록 합니다.</p></li>
+<li><p>명령어 재시작: CPU는 원래 명령어를 재시작하여 이제 TLB에 있는 변환 정보를 사용하여 가상 주소를 물리 주소로 변환합니다.</p></li>
+</ol>
 <section id="id1">
 <h2>TLB의 기본 알고리즘<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>TLB 검색 과정
+가상 주소가 제공되면, 해당 주소의 가상 페이지 번호(VPN)를 추출하고, TLB에서 이 VPN에 해당하는 엔트리를 병렬적으로 검색한다. 일치하는 엔트리가 있는 경우, 그 엔트리에 포함된 물리 페이지 번호(PPN)로 물리 주소를 계산한다.</p></li>
+<li><p>TLB 히트
+유효한 엔트리가 존재하면, 즉시 물리 주소를 생성하고 메모리에 액세스한다. 이 과정을 TLB 히트라고 한다.</p></li>
+<li><p>TLB 미스
+일치하는 엔트리가 없을 경우, TLB 미스가 발생하며, 페이지 테이블을 참조하여 가상 주소를 물리 주소로 변환한다. 변환된 주소는 TLB에 추가되어 다음 접근 시 빠르게 찾을 수 있도록 한다.</p></li>
+</ol>
 </section>
 <section id="id2">
 <h2>예제: 배열 접근<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+    <span class="n">array</span><span class="p">[</span><span class="mi">50</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>  <span class="o">//</span> <span class="n">배열의</span> <span class="n">특정</span> <span class="n">위치에</span> <span class="n">데이터</span> <span class="n">쓰기</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>이 코드에서 array[50]에 값을 할당하려면 다음과 같은 과정이 필요합니다.</p>
+<ol class="arabic simple">
+<li><p>가상 주소 0x1400 (50 * 4) 생성</p></li>
+<li><p>TLB 검색: 0x1400에 대한 엔트리가 존재하는지 확인</p>
+<ul class="simple">
+<li><p>TLB 히트: 엔트리가 존재하면 엔트리에 포함된 물리 페이지 번호를 사용하여 물리 주소를 생성하고 메모리에 액세스</p></li>
+<li><p>TLB 미스: 엔트리가 존재하지 않으면 페이지 테이블 워크를 통해 변환 정보를 검색</p></li>
+</ul>
+</li>
+<li><p>페이지 테이블 워크: 페이지 테이블에서 가상 페이지 번호 0x3C에 대한 엔트리를 찾아 물리 페이지 번호를 얻음</p></li>
+<li><p>TLB에 엔트리 추가: 0x1400 (VPN)과 0x0A00 (PPN)으로 구성된 엔트리를 TLB에 추가</p></li>
+<li><p>물리 주소 생성: 물리 페이지 번호 0x0A00과 오프셋 0x00을 사용하여 물리 주소 0xA000 생성</p></li>
+<li><p>메모리 액세스: 0xA000 주소에 값 10 저장</p></li>
+</ol>
 </section>
 <section id="id3">
 <h2>TLB 미스는 누가 처리할까<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>TLB 미스가 발생하면 운영 체제의 페이지 폴트 핸들러가 실행되어 페이지 테이블을 참조하여 필요한 가상-물리 주소 변환 정보를 찾는다. 이 정보는 TLB에 로드되고, 이후 메모리 액세스는 TLB 히트로 처리된다.</p>
 </section>
 <section id="id4">
 <h2>TLB의 구성: 무엇이 있나?<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>TLB는 일반적으로 다음과 같은 항목으로 구성됩니다.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>항목</p></th>
+<th class="head"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>가상 페이지 번호(VPN)</p></td>
+<td><p>가상 주소에서 추출된 페이지 번호입니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>물리 페이지 프레임 번호(PPFN)</p></td>
+<td><p>물리 메모리에서 해당 페이지를 저장하는 프레임 번호입니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>액세스 권한</p></td>
+<td><p>해당 페이지에 대한 액세스 권한(읽기, 쓰기, 실행)을 나타냅니다.</p></td>
+</tr>
+<tr class="row-odd"><td><p>유효 비트</p></td>
+<td><p>해당 엔트리가 유효한지 여부를 나타냅니다.</p></td>
+</tr>
+<tr class="row-even"><td><p>ASID (Address Space Identifier)</p></td>
+<td><p>프로세스 간 TLB 엔트리 충돌을 방지합니다.</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="id5">
 <h2>TLB의 문제: 문맥 교환<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>다른 프로세스는 다른 가상 주소 공간을 사용하기 때문에 문맥 교환이 발생하면 현재 프로세스의 TLB 엔트리가 유효하지 않게 될 수 있습니다.</p>
+<p>이 문제를 해결하기 위해 다음과 같은 방법을 사용할 수 있습니다.</p>
+<ul class="simple">
+<li><p>TLB를 비우기: 문맥 교환이 발생할 때마다 TLB를 비웁니다.</p></li>
+<li><p>ASID(Address Space Identifier) 사용: TLB 엔트리에 ASID를 추가하여 프로세스별 TLB 엔트리를 구분합니다.</p></li>
+</ul>
 </section>
 <section id="id6">
 <h2>이슈: 교체 정책<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>TLB Miss가 발생하면 TLB에 새 엔트리를 추가해야 합니다. 하지만 TLB는 제한된 크기의 캐시이기 때문에 어떤 엔트리를 교체해야 할지 결정하는 정책이 필요합니다.<br />
+TLB의 교체 정책은 제한된 공간과 성능 요구 사항을 충족하기 위해 매우 중요합니다. 각 정책은 특정 시나리오에서의 성능 최적화를 목표로 합니다.</p>
+<p>일반적인 교체 정책으로는 다음과 같은 것들이 있습니다.</p>
+<ul class="simple">
+<li><p>LRU (Least Recently Used): 최근에 사용되지 않은 항목을 먼저 교체합니다.</p></li>
+<li><p>FIFO (First In, First Out): 먼저 추가된 항목을 먼저 교체합니다.</p></li>
+<li><p>Random Replacement: 무작위 선택을 통한 교체</p></li>
+</ul>
 </section>
 <section id="id7">
 <h2>요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>TLB(Translation Lookaside Buffer)는 가상 주소를 물리 주소로 변환하는 과정에서 최근에 사용된 변환 정보를 캐싱하여 변환 속도를 높이는 작은 고속 메모리입니다.</p>
+<p>TLB 미스 발생 시 페이지 테이블을 참조하여 변환 정보를 찾고, 이를 TLB에 캐싱합니다. TLB는 가상 페이지 번호, 물리 페이지 번호, 액세스 권한, 유효성 비트 등으로 구성됩니다.</p>
+<p>문맥 교환 시에는 프로세스 간 주소 공간 충돌을 피하기 위해 TLB를 비우거나 ASID를 사용합니다. 제한된 TLB 크기로 인해 새 엔트리 추가 시 적절한 교체 정책(LRU, FIFO 등)이 필요합니다.</p>
+<p>TLB는 페이징 시스템의 주요 성능 향상 기술로, 메모리 액세스 시간을 크게 단축시킵니다.</p>
 </section>
 </section>
 
