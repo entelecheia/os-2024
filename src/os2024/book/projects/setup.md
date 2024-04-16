@@ -104,9 +104,9 @@ git checkout -b your_github_id/project_patch_1 main
 브랜치를 최근의 main 브랜치로 업데이트하려면 다음 명령을 실행하세요:
 
 ```bash
-git checkout main
-git pull upstream main
-git rebase main your_github_id/project_patch_1
+git checkout main \
+    && git pull upstream main \
+    && git rebase main your_github_id/project_patch_1
 ```
 
 ## 프로젝트 폴더 생성
