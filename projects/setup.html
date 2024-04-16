@@ -617,6 +617,12 @@ document.write(`
 <div><p>git checkout -b your_github_id/week06 main</p>
 </div></blockquote>
 </div>
+<p>브랜치를 최근의 main 브랜치로 업데이트하려면 다음 명령을 실행하세요:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>rebase<span class="w"> </span>main<span class="w"> </span>your_github_id/project_patch_1
+</pre></div>
+</div>
 </section>
 <section id="id6">
 <h2>프로젝트 폴더 생성<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>

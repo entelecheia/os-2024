@@ -101,6 +101,14 @@ git checkout -b your_github_id/project_patch_1 main
 > git checkout -b your_github_id/week06 main
 ```
 
+브랜치를 최근의 main 브랜치로 업데이트하려면 다음 명령을 실행하세요:
+
+```bash
+git checkout main \
+    && git pull upstream main \
+    && git rebase main your_github_id/project_patch_1
+```
+
 ## 프로젝트 폴더 생성
 
 이제 프로젝트를 위한 폴더를 생성합니다. 템플릿 폴더를 복사하여 프로젝트 폴더를 생성하세요:
