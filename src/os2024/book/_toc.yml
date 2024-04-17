@@ -19,11 +19,13 @@ parts:
           - file: week02/shells
           - file: week02/lab
           - file: week02/tip
+          - file: week02/hw-wk02
       - file: week03/index
         sections:
           - file: week03/cpu-scheduling
           - file: week03/lab
           - file: week03/wsl-setup
+          - file: week03/hw-wk03
       - file: week04/index
         sections:
           - file: week04/mlfq
@@ -40,16 +42,24 @@ parts:
         sections:
           - file: week06/vm-mechanism
           - file: week06/vm-segmentation
-          - file: week06/vm-freespace
           - file: week06/lab
       - file: week07/index
         sections:
+          - file: week07/vm-freespace
           - file: week07/vm-paging
+          - file: week07/vm-tlbs
   - caption: Projects
     chapters:
       - file: projects/index
         sections:
           - file: projects/template/index
+      - file: projects/contents/index
+        sections:
+          - file: projects/contents/utilities
+          - file: projects/contents/reverse
+          - file: projects/contents/kv
+      - file: projects/lab-tutorial
+      - file: projects/tester
       - file: projects/setup
   - caption: References
     chapters:
