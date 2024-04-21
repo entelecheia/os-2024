@@ -3,7 +3,7 @@
 | [스케줄링 기초](http://www.cs.wisc.edu/~remzi/OSTEP/cpu-sched.pdf) | [scheduler.py 실행](https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/cpu-sched) |
 
 ```{note}
-본 과제는 프로젝트를 위해 생성한 본인의 개별 폴더에 제출하기 바랍니다.
+본 과제는 프로젝트를 위해 생성한 본인의 개별 폴더에 제출하기 바랍니다. 제출기한은 5/1(수)입니다.
 ```
 
 ## 소개
