@@ -10,6 +10,9 @@
 
 - [Homework: 프로세스](../week02/hw-wk02.md)
 - [Homework: 스케줄링](../week03/hw-wk03.md)
+- [Homework: 비례 배분](../week04/hw-wk04.md)
+- [Homework: 주소 변환의 원리](../week06/hw-wk06.md)
+- [Homework: 빈 공간 관리](../week07/hw-wk07.md)
 
 ## 기말 프로젝트
 
