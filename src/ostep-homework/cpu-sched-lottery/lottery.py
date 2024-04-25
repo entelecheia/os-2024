@@ -1,8 +1,9 @@
 #! /usr/bin/env python
 
 from __future__ import print_function
-from optparse import OptionParser
+
 import random
+from optparse import OptionParser
 
 
 # to make Python2 and Python3 act the same -- how dumb
@@ -93,7 +94,6 @@ print("")
 print("Here is the job list, with the run time of each job: ")
 
 import operator
-
 
 tickTotal = 0
 runTotal = 0

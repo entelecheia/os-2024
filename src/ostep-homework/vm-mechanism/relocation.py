@@ -1,10 +1,11 @@
 #! /usr/bin/env python
 
 from __future__ import print_function
+
+import math
+import random
 import sys
 from optparse import OptionParser
-import random
-import math
 
 
 # to make Python2 and Python3 act the same -- how dumb
