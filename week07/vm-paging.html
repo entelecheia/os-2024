@@ -238,6 +238,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../week04/lottery.html">스케줄링: 비례 배분</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week04/lab-sched.html">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week04/lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/hw-wk04.html">Homework: 비례 배분</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - 메모리 가상화 1</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -251,6 +252,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../week06/vm-mechanism.html">주소 변환의 원리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week06/vm-segmentation.html">세그멘테이션 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week06/lab.html">Lab: 주소 변환 시뮬레이션</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/hw-wk06.html">Homework: 주소 변환의 원리</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 7 - 메모리 가상화 3</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -258,6 +260,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">페이징: 개요</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="vm-tlbs.html">페이징: 더 빠른 변환 (TLB)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hw-wk07.html">Homework: 빈 공간 관리</a></li>
 </ul>
 </li>
 </ul>
@@ -552,13 +555,13 @@ document.write(`
 <p>운영체제는 주소 공간의 각 가상 페이지에 대한 물리 메모리 위치를 기록하기 위해 프로세스마다 페이지 테이블(Page Table)이라는 자료구조를 유지합니다. 페이지 테이블의 주요 역할은 가상 주소 공간의 각 페이지에 대한 주소 변환 정보, 즉 각 페이지가 저장된 물리 페이지 프레임의 위치를 저장하는 것입니다.</p>
 <p>위의 예시에서는 가상 페이지(VP) 0은 물리 페이지 프레임(PF) 3에, VP 1은 PF 7에, VP 2는 PF 5에, VP 3은 PF 2에 매핑되어 있습니다. 페이지 테이블은 프로세스마다 존재한다는 점을 기억해야 합니다. 다른 프로세스를 실행한다면, 그 프로세스를 위한 별도의 페이지 테이블이 필요할 것입니다.</p>
 <p>이제 주소 변환 과정을 살펴보겠습니다. 64바이트의 작은 주소 공간을 가진 프로세스가 메모리 접근을 수행한다고 가정해 보겠습니다.</p>
-<div class="highlight-assembly notranslate"><div class="highlight"><pre><span></span>movl &lt;virtual address&gt;, %eax
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="o">&lt;</span><span class="n">virtual</span> <span class="n">address</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
 </pre></div>
 </div>
 <p>이 명령어는 가상 주소의 데이터를 eax 레지스터에 로드합니다. 프로세스가 생성한 가상 주소를 변환하기 위해, 먼저 가상 주소를 가상 페이지 번호(VPN)와 페이지 내의 오프셋(Offset)이라는 두 개의 구성 요소로 분할합니다.</p>
 <p>이 예에서는 64바이트 주소 공간이므로, 가상 주소는 6비트가 필요합니다. 페이지 크기는 16바이트이므로, 4개의 페이지를 선택할 수 있어야 합니다. 상위 2비트(VPN)가 페이지를 선택하는 역할을 하고, 나머지 비트(Offset)는 페이지 내에서 원하는 바이트의 위치를 나타냅니다.</p>
 <p>실제 예시를 보겠습니다.</p>
-<div class="highlight-assembly notranslate"><div class="highlight"><pre><span></span>movl 21, %eax
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="mi">21</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
 </pre></div>
 </div>
 <p>21을 이진수로 변환하면 010101이므로, VPN은 1, Offset은 5입니다. 앞서 예시에서 VPN 1은 PF 7과 매핑되었으므로, 주소 변환 과정은 다음과 같습니다.</p>
@@ -589,7 +592,7 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="id6">
 <h1>페이징: 너무 느림<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
 <p>페이징을 사용할 때 페이지 테이블의 크기가 메모리 상에서 매우 크게 증가할 가능성이 있습니다. 이로 인해 처리 속도가 저하될 수 있는데, 이를 간단한 명령어 예시를 통해 살펴보겠습니다.</p>
-<div class="highlight-assembly notranslate"><div class="highlight"><pre><span></span>movl 21, %eax
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">movl</span> <span class="mi">21</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
 </pre></div>
 </div>
 <p>이 명령어는 21번 메모리 주소에서 데이터를 가져와 eax 레지스터에 저장합니다. 여기서는 명령어 자체의 반입은 고려하지 않고, 데이터 21에 대한 참조만 살펴보겠습니다.</p>
@@ -619,7 +622,7 @@ document.write(`
 </pre></div>
 </div>
 <p>이 코드가 실제로 어떤 메모리 접근을 수행하는지 알아보기 위해 어셈블리어로 디스어셈블해 보겠습니다.</p>
-<div class="highlight-assembly notranslate"><div class="highlight"><pre><span></span>1024 movl $0x0,(%edi,%eax,4)  ; edi + 4 * eax 주소에 0을 저장
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1024 movl $0x0,(%edi,%eax,4)  ; edi + 4 * eax 주소에 0을 저장
 1028 incl %eax               ; eax 레지스터 값을 1 증가 (eax는 배열 인덱스)
 1032 cmpl $0x03e8,%eax       ; eax와 1000을 비교
 1036 jne 0x1024              ; eax != 1000이면 1024로 점프

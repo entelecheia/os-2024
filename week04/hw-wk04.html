@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lab: Lottery 스케줄링 알고리즘 구현 &#8212; 운영체제 2024</title>
+    <title>Homework: 비례 배분 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week04/lab-lottery';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week04/hw-wk04';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework: 비례 배분" href="hw-wk04.html" />
-    <link rel="prev" title="Lab: 스케줄링 알고리즘 시뮬레이터" href="lab-sched.html" />
+    <link rel="next" title="Week 5 - 메모리 가상화 1" href="../week05/index.html" />
+    <link rel="prev" title="Lab: Lottery 스케줄링 알고리즘 구현" href="lab-lottery.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -237,8 +237,8 @@
 <li class="toctree-l2"><a class="reference internal" href="mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lottery.html">스케줄링: 비례 배분</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lab-sched.html">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hw-wk04.html">Homework: 비례 배분</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Homework: 비례 배분</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week05/index.html">Week 5 - 메모리 가상화 1</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -371,7 +371,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week04/lab-lottery.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week04/hw-wk04.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -388,7 +388,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek04/lab-lottery.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek04/hw-wk04.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -418,7 +418,7 @@
       
       
       
-      <li><a href="../_sources/week04/lab-lottery.md" target="_blank"
+      <li><a href="../_sources/week04/hw-wk04.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -502,7 +502,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab: Lottery 스케줄링 알고리즘 구현</h1>
+    <h1>Homework: 비례 배분</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -512,14 +512,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">실습 목표</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">실습 내용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lottery-c-lottery">lottery.c - Lottery 스케줄링 알고리즘 구현</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#makefile">Makefile - 빌드 및 실행 자동화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">주요 용어 설명</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">실습</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">lottery.c - Lottery 스케줄링 알고리즘 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">과제 (시뮬레이션)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">질문</a></li>
 </ul>
 </li>
 </ul>
@@ -533,170 +531,130 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-lottery">
-<h1>Lab: Lottery 스케줄링 알고리즘 구현<a class="headerlink" href="#lab-lottery" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="homework">
+<h1>Homework: 비례 배분<a class="headerlink" href="#homework" title="Link to this heading">#</a></h1>
+<p>| <a class="reference external" href="http://www.cs.wisc.edu/~remzi/OSTEP/cpu-sched-lottery.pdf">비례 배분</a> | <a class="reference external" href="https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/cpu-sched-lottery">lottery.py 실행</a> |</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>본 과제는 프로젝트를 위해 생성한 본인의 개별 폴더에 제출하기 바랍니다. 제출기한은 5/8(수)입니다.</p>
+</div>
 <section id="id1">
-<h2>실습 목표<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>이 실습은 다음과 같은 목표를 달성하기 위해 설계되었습니다.</p>
-<ol class="arabic simple">
-<li><p>Lottery 스케줄링 알고리즘의 기본 개념을 이해합니다.</p></li>
-<li><p>연결 리스트를 사용하여 작업 큐를 구현하는 방법을 배웁니다.</p></li>
-<li><p>랜덤 번호 생성을 통해 작업을 선택하는 방법을 익힙니다.</p></li>
-<li><p>Makefile을 사용하여 프로그램 빌드 및 실행을 자동화하는 방법을 알아봅니다.</p></li>
-</ol>
-</section>
+<h2>개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>이 프로그램인 <code class="docutils literal notranslate"><span class="pre">lottery.py</span></code>는 복권 스케줄러(Lottery Scheduler)가 어떻게 동작하는지 보여줍니다. 항상 그렇듯이, 프로그램을 실행하는 데는 두 단계가 있습니다. 먼저 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 플래그 없이 실행하면 정답을 공개하지 않고 어떤 문제를 해결해야 하는지 보여줍니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./lottery.py<span class="w"> </span>-j<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>...
+Here<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>job<span class="w"> </span>list,<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>run<span class="w"> </span><span class="nb">time</span><span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span>job:
+<span class="w">  </span>Job<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="nv">tickets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="o">)</span>
+<span class="w">  </span>Job<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="nv">tickets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="o">)</span>
+
+Here<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span><span class="nb">set</span><span class="w"> </span>of<span class="w"> </span>random<span class="w"> </span>numbers<span class="w"> </span>you<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span><span class="o">(</span>at<span class="w"> </span>most<span class="o">)</span>:
+Random<span class="w"> </span><span class="m">511275</span>
+Random<span class="w"> </span><span class="m">404934</span>
+Random<span class="w"> </span><span class="m">783799</span>
+Random<span class="w"> </span><span class="m">303313</span>
+Random<span class="w"> </span><span class="m">476597</span>
+Random<span class="w"> </span><span class="m">583382</span>
+Random<span class="w"> </span><span class="m">908113</span>
+Random<span class="w"> </span><span class="m">504687</span>
+Random<span class="w"> </span><span class="m">281838</span>
+Random<span class="w"> </span><span class="m">755804</span>
+Random<span class="w"> </span><span class="m">618369</span>
+Random<span class="w"> </span><span class="m">250506</span>
+</pre></div>
+</div>
+<p>이런 식으로 시뮬레이터를 실행하면, 먼저 일부 무작위 작업(여기서는 길이 8과 4)을 각각 일정 수의 티켓(여기서는 각각 75와 25)과 함께 할당합니다. 또한 시뮬레이터는 복권 스케줄러가 무엇을 할지 결정하는 데 필요한 난수 목록을 제공합니다. 난수는 0부터 큰 숫자 사이에서 선택되므로, 복권 당첨자를 계산하기 위해 모듈로 연산자를 사용해야 합니다(즉, 당첨자는 이 난수를 시스템의 총 티켓 수로 나눈 나머지와 같아야 함).</p>
+<p><code class="docutils literal notranslate"><span class="pre">-c</span></code> 플래그와 함께 실행하면 정확히 계산해야 하는 내용이 표시됩니다:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./lottery.py<span class="w"> </span>-j<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span><span class="m">0</span><span class="w"> </span>-c
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>...
+**<span class="w"> </span>Solutions<span class="w"> </span>**
+Random<span class="w"> </span><span class="m">511275</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span><span class="w">  </span>job:0<span class="w"> </span>timeleft:8<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span>*<span class="w"> </span>job:1<span class="w"> </span>timeleft:4<span class="w"> </span>tix:25<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">404934</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">34</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span>*<span class="w"> </span>job:0<span class="w"> </span>timeleft:8<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w">  </span>job:1<span class="w"> </span>timeleft:3<span class="w"> </span>tix:25<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">783799</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">99</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span><span class="w">  </span>job:0<span class="w"> </span>timeleft:7<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span>*<span class="w"> </span>job:1<span class="w"> </span>timeleft:3<span class="w"> </span>tix:25<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">303313</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span>*<span class="w"> </span>job:0<span class="w"> </span>timeleft:7<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w">  </span>job:1<span class="w"> </span>timeleft:2<span class="w"> </span>tix:25<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">476597</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">97</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span><span class="w">  </span>job:0<span class="w"> </span>timeleft:6<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span>*<span class="w"> </span>job:1<span class="w"> </span>timeleft:2<span class="w"> </span>tix:25<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">583382</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">82</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span><span class="w">  </span>job:0<span class="w"> </span>timeleft:6<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span>*<span class="w"> </span>job:1<span class="w"> </span>timeleft:1<span class="w"> </span>tix:25<span class="w"> </span><span class="o">)</span>
+--&gt;<span class="w"> </span>JOB<span class="w"> </span><span class="m">1</span><span class="w"> </span>DONE<span class="w"> </span>at<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="m">6</span>
+Random<span class="w"> </span><span class="m">908113</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">75</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span>*<span class="w"> </span>job:0<span class="w"> </span>timeleft:6<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w">  </span>job:1<span class="w"> </span>timeleft:0<span class="w"> </span>tix:---<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">504687</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">75</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span>*<span class="w"> </span>job:0<span class="w"> </span>timeleft:5<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w">  </span>job:1<span class="w"> </span>timeleft:0<span class="w"> </span>tix:---<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">281838</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">63</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">75</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span>*<span class="w"> </span>job:0<span class="w"> </span>timeleft:4<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w">  </span>job:1<span class="w"> </span>timeleft:0<span class="w"> </span>tix:---<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">755804</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">75</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span>*<span class="w"> </span>job:0<span class="w"> </span>timeleft:3<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w">  </span>job:1<span class="w"> </span>timeleft:0<span class="w"> </span>tix:---<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">618369</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">69</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">75</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span>*<span class="w"> </span>job:0<span class="w"> </span>timeleft:2<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w">  </span>job:1<span class="w"> </span>timeleft:0<span class="w"> </span>tix:---<span class="w"> </span><span class="o">)</span>
+Random<span class="w"> </span><span class="m">250506</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">75</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">0</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span>*<span class="w"> </span>job:0<span class="w"> </span>timeleft:1<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="w">  </span>job:1<span class="w"> </span>timeleft:0<span class="w"> </span>tix:---<span class="w"> </span><span class="o">)</span>
+--&gt;<span class="w"> </span>JOB<span class="w"> </span><span class="m">0</span><span class="w"> </span>DONE<span class="w"> </span>at<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="m">12</span>
+</pre></div>
+</div>
+<p>이 추적에서 볼 수 있듯이, 여러분이 해야 할 일은 난수를 사용하여 어떤 티켓이 당첨되었는지 파악하는 것입니다. 그런 다음 당첨 티켓을 바탕으로 어떤 작업을 실행해야 하는지 알아내세요. 모든 작업의 실행이 완료될 때까지 이 작업을 반복하세요. 이것은 매우 간단합니다 – 여러분은 복권 스케줄러가 하는 일을 직접 에뮬레이션하는 것입니다!</p>
+<p>이를 명확히 하기 위해 위의 예에서 내린 첫 번째 결정을 살펴보겠습니다. 이 시점에서 우리는 두 개의 작업(런타임이 8이고 티켓이 75개인 작업 0과 런타임이 4이고 티켓이 25개인 작업 1)을 가지고 있습니다. 주어진 첫 번째 난수는 511275입니다. 시스템에 총 100개의 티켓이 있으므로 511275 % 100은 75이며, 따라서 75가 우리의 당첨 티켓입니다.</p>
+<p>티켓 75가 당첨되면 당첨 티켓을 찾을 때까지 작업 목록을 검색하기만 하면 됩니다. 작업 0에 대한 첫 번째 항목에는 75개의 티켓(0부터 74까지)이 있으므로 당첨되지 않습니다. 다음 항목은 작업 1에 대한 것이므로 우리는 승자를 찾았고, 따라서 작업 1을 양자 길이(이 예에서는 1) 동안 실행합니다. 이 모든 내용은 다음과 같이 출력됩니다:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Random<span class="w"> </span><span class="m">511275</span><span class="w"> </span>-&gt;<span class="w"> </span>Winning<span class="w"> </span>ticket<span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="o">(</span>of<span class="w"> </span><span class="m">100</span><span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>Run<span class="w"> </span><span class="m">1</span>
+<span class="w">  </span>Jobs:<span class="w">  </span><span class="o">(</span><span class="w">  </span>job:0<span class="w"> </span>timeleft:8<span class="w"> </span>tix:75<span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="o">(</span>*<span class="w"> </span>job:1<span class="w"> </span>timeleft:4<span class="w"> </span>tix:25<span class="w"> </span><span class="o">)</span>
+</pre></div>
+</div>
+<p>보시다시피, 첫 번째 줄은 무슨 일이 일어났는지 요약하고, 두 번째 줄은 전체 작업 대기열을 보여주며, 어떤 작업이 선택되었는지 *로 표시합니다.</p>
+<p>시뮬레이터에는 대부분 자명한 몇 가지 다른 옵션이 있습니다. 특히 <code class="docutils literal notranslate"><span class="pre">-l/--jlist</span></code> 플래그를 사용하여 무작위로 생성된 작업 목록 대신 작업과 티켓 값의 정확한 집합을 지정할 수 있습니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./lottery.py<span class="w"> </span>-h
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>lottery.py<span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+
+Options:
+<span class="w">  </span>-h,<span class="w"> </span>--help
+<span class="w">      </span>show<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
+<span class="w">  </span>-s<span class="w"> </span>SEED,<span class="w"> </span>--seed<span class="o">=</span>SEED
+<span class="w">      </span>the<span class="w"> </span>random<span class="w"> </span>seed
+<span class="w">  </span>-j<span class="w"> </span>JOBS,<span class="w"> </span>--jobs<span class="o">=</span>JOBS
+<span class="w">      </span>number<span class="w"> </span>of<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>system
+<span class="w">  </span>-l<span class="w"> </span>JLIST,<span class="w"> </span>--jlist<span class="o">=</span>JLIST
+<span class="w">      </span>instead<span class="w"> </span>of<span class="w"> </span>random<span class="w"> </span>jobs,<span class="w"> </span>provide<span class="w"> </span>a<span class="w"> </span>comma-separated<span class="w"> </span>list
+<span class="w">      </span>of<span class="w"> </span>run<span class="w"> </span><span class="nb">times</span><span class="w"> </span>and<span class="w"> </span>ticket<span class="w"> </span>values<span class="w"> </span><span class="o">(</span>e.g.,<span class="w"> </span><span class="m">10</span>:100,20:100
+<span class="w">      </span>would<span class="w"> </span>have<span class="w"> </span>two<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>with<span class="w"> </span>run-times<span class="w"> </span>of<span class="w"> </span><span class="m">10</span><span class="w"> </span>and<span class="w"> </span><span class="m">20</span>,<span class="w"> </span>each
+<span class="w">      </span>with<span class="w"> </span><span class="m">100</span><span class="w"> </span>tickets<span class="o">)</span>
+<span class="w">  </span>-m<span class="w"> </span>MAXLEN,<span class="w"> </span>--maxlen<span class="o">=</span>MAXLEN
+<span class="w">      </span>max<span class="w"> </span>length<span class="w"> </span>of<span class="w"> </span>job
+<span class="w">  </span>-T<span class="w"> </span>MAXTICKET,<span class="w"> </span>--maxtick<span class="o">=</span>MAXTICKET
+<span class="w">      </span>maximum<span class="w"> </span>ticket<span class="w"> </span>value,<span class="w"> </span><span class="k">if</span><span class="w"> </span>randomly<span class="w"> </span>assigned
+<span class="w">  </span>-q<span class="w"> </span>QUANTUM,<span class="w"> </span>--quantum<span class="o">=</span>QUANTUM
+<span class="w">      </span>length<span class="w"> </span>of<span class="w"> </span><span class="nb">time</span><span class="w"> </span>slice
+<span class="w">  </span>-c,<span class="w"> </span>--compute
+<span class="w">      </span>compute<span class="w"> </span>answers<span class="w"> </span><span class="k">for</span><span class="w"> </span>me
+</pre></div>
+</div>
 <section id="id2">
-<h2>실습 내용<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>이 실습에서는 lottery.c 파일과 Makefile을 사용하여 Lottery 스케줄링 알고리즘을 구현하고 실행해봅니다.</p>
-<section id="lottery-c-lottery">
-<h3>lottery.c - Lottery 스케줄링 알고리즘 구현<a class="headerlink" href="#lottery-c-lottery" title="Link to this heading">#</a></h3>
+<h3>주요 용어 설명<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>연결 리스트를 사용하여 작업 큐를 구현합니다.</p></li>
-<li><p>각 작업에는 티켓 수가 할당되며, 전체 티켓 수는 <code class="docutils literal notranslate"><span class="pre">gtickets</span></code> 변수에 저장됩니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">insert</span></code> 함수를 사용하여 새로운 작업을 큐에 추가하고 티켓 수를 할당합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">print_list</span></code> 함수를 사용하여 현재 작업 큐의 상태를 출력합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code> 함수에서는 명령행 인자로 시드와 루프 횟수를 받아와 Lottery 스케줄링을 수행합니다.</p>
-<ul>
-<li><p>랜덤 번호를 생성하여 당첨된 티켓을 선택합니다.</p></li>
-<li><p>선택된 티켓에 해당하는 작업을 찾아 스케줄링합니다.</p></li>
-<li><p>지정된 루프 횟수만큼 스케줄링을 반복합니다.</p></li>
+<li><p>복권 스케줄링(Lottery Scheduling): 각 프로세스에 티켓을 할당하고, 무작위로 티켓을 뽑아 다음에 실행할 프로세스를 선택하는 스케줄링 알고리즘입니다. 티켓이 많은 프로세스일수록 선택될 확률이 높아집니다.</p></li>
+<li><p>티켓(Ticket): 복권 스케줄링에서 각 프로세스에 할당된 수치로, 프로세스의 상대적 중요도 또는 자원 할당 비율을 나타냅니다. 티켓이 많을수록 CPU 시간을 더 많이 할당받습니다.</p></li>
+<li><p>양자(Quantum): 시분할 시스템에서 각 프로세스에 할당된 연속적인 CPU 시간의 단위입니다. 프로세스는 양자 시간 동안 실행되고, 양자가 끝나면 선점됩니다.</p></li>
+<li><p>난수 시드(Random Seed): 난수 생성기를 초기화하는 데 사용되는 값입니다. 동일한 시드를 사용하면 동일한 난수 시퀀스가 생성됩니다.</p></li>
+<li><p>모듈로 연산(Modulo Operation): 두 수의 나눗셈 후 나머지를 구하는 연산입니다. 예를 들어, <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">%</span> <span class="pre">3</span></code>의 결과는 1입니다.</p></li>
 </ul>
-</li>
-</ul>
-</section>
-<section id="makefile">
-<h3>Makefile - 빌드 및 실행 자동화<a class="headerlink" href="#makefile" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> 명령어를 사용하여 <code class="docutils literal notranslate"><span class="pre">lottery</span></code> 프로그램을 빌드합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">run</span></code> 명령어를 사용하여 빌드된 <code class="docutils literal notranslate"><span class="pre">lottery</span></code> 프로그램을 실행합니다.</p>
-<ul>
-<li><p>시드 값과 루프 횟수를 인자로 전달합니다.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> 명령어를 사용하여 빌드된 <code class="docutils literal notranslate"><span class="pre">lottery</span></code> 프로그램을 삭제합니다.</p></li>
-</ul>
-<p>실습을 통해 Lottery 스케줄링 알고리즘의 동작 원리를 이해하고, 연결 리스트를 사용한 작업 큐 구현 방법을 익힐 수 있습니다. 또한, Makefile을 활용하여 프로그램 빌드 및 실행 과정을 자동화하는 방법도 배울 수 있습니다.</p>
 </section>
 </section>
 <section id="id3">
-<h2>실습<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>lottery.c 파일을 열어 코드를 이해하고, 주석을 통해 각 부분의 동작을 파악합니다.</p></li>
-<li><p>Makefile을 열어 빌드 및 실행 규칙을 확인합니다.</p></li>
-<li><p>터미널에서 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> 명령어를 입력하여 <code class="docutils literal notranslate"><span class="pre">lottery</span></code> 프로그램을 빌드합니다.</p></li>
-<li><p>터미널에서 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">run</span></code> 명령어를 입력하여 <code class="docutils literal notranslate"><span class="pre">lottery</span></code> 프로그램을 실행합니다.</p></li>
-<li><p>실행 결과를 통해 Lottery 스케줄링 알고리즘의 동작을 확인합니다.</p></li>
-<li><p>필요한 경우 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> 명령어를 사용하여 빌드된 프로그램을 삭제합니다.</p></li>
-</ol>
-<p>이 실습을 통해 Lottery 스케줄링 알고리즘의 구현과 동작 원리를 이해하고, 연결 리스트와 Makefile의 활용 방법을 익힐 수 있을 것입니다.</p>
-<p>모든 코드는 <a class="reference external" href="https://github.com/chu-aie/os-2024/blob/main/src/ostep/cpu-sched-lottery">수업 리포</a>에서 확인할 수 있습니다.</p>
+<h2>과제 (시뮬레이션)<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <section id="id4">
-<h3>lottery.c - Lottery 스케줄링 알고리즘 구현<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;assert.h&gt;</span>
-
-<span class="c1">// 전역 티켓 카운트</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">gtickets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">node_t</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">tickets</span><span class="p">;</span>
-<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node_t</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">node_t</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">tickets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 새로운 노드를 생성하고 메모리 할당</span>
-<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node_t</span><span class="w"> </span><span class="o">*</span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">node_t</span><span class="p">));</span>
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">tmp</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 새로운 노드의 티켓 수를 설정하고 리스트의 헤드에 삽입</span>
-<span class="w">    </span><span class="n">tmp</span><span class="o">-&gt;</span><span class="n">tickets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tickets</span><span class="p">;</span>
-<span class="w">    </span><span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
-<span class="w">    </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// 전역 티켓 카운트 업데이트</span>
-<span class="w">    </span><span class="n">gtickets</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">tickets</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">print_list</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node_t</span><span class="w"> </span><span class="o">*</span><span class="n">curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;List: &quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 리스트를 순회하며 각 노드의 티켓 수를 출력</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">curr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[%d] &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">curr</span><span class="o">-&gt;</span><span class="n">tickets</span><span class="p">);</span>
-<span class="w">        </span><span class="n">curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;usage: lottery &lt;seed&gt; &lt;loops&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 명령행 인자에서 시드와 루프 횟수를 가져옴</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">loops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-
-<span class="w">    </span><span class="c1">// 랜덤 시드 설정</span>
-<span class="w">    </span><span class="n">srandom</span><span class="p">(</span><span class="n">seed</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 리스트에 작업들을 추가하고 각 작업에 티켓 수를 할당</span>
-<span class="w">    </span><span class="n">insert</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
-<span class="w">    </span><span class="n">insert</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="w">    </span><span class="n">insert</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 리스트 출력</span>
-<span class="w">    </span><span class="n">print_list</span><span class="p">();</span>
-
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">loops</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">        </span><span class="c1">// 전체 티켓 수 범위 내에서 랜덤한 당첨 번호 선택</span>
-<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">winner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">random</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">gtickets</span><span class="p">;</span>
-<span class="w">        </span><span class="k">struct</span><span class="w"> </span><span class="nc">node_t</span><span class="w"> </span><span class="o">*</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
-
-<span class="w">        </span><span class="c1">// 티켓 수의 합이 당첨 번호보다 클 때까지 리스트를 순회</span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">tickets</span><span class="p">;</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">winner</span><span class="p">)</span>
-<span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="c1">// 당첨자 찾음</span>
-<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="c1">// 당첨자 출력 및 스케줄링</span>
-<span class="w">        </span><span class="n">print_list</span><span class="p">();</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;winner: %d %d</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">winner</span><span class="p">,</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">tickets</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>이 코드는 lottery 스케줄링 알고리즘을 구현한 예제입니다. lottery 스케줄링은 각 작업에 티켓 수를 할당하고, 랜덤으로 당첨 번호를 선택하여 해당 번호에 해당하는 작업을 실행하는 방식으로 동작합니다.</p>
-<p>코드의 주요 동작은 다음과 같습니다:</p>
+<h3>질문<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">gtickets</span></code> 변수는 전체 티켓 수를 추적하기 위한 전역 변수입니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">node_t</span></code> 구조체는 각 작업을 나타내며, 티켓 수와 다음 노드에 대한 포인터를 가집니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">insert</span></code> 함수는 새로운 작업을 리스트에 삽입하고 전체 티켓 수를 업데이트합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">print_list</span></code> 함수는 리스트의 모든 작업과 해당 티켓 수를 출력합니다.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code> 함수에서는 명령행 인자로 시드와 루프 횟수를 받아옵니다.</p></li>
-<li><p>랜덤 시드를 설정하고, 리스트에 작업들을 추가합니다.</p></li>
-<li><p>지정된 루프 횟수만큼 반복하면서 다음을 수행합니다:</p>
-<ul class="simple">
-<li><p>전체 티켓 수 범위 내에서 랜덤한 당첨 번호를 선택합니다.</p></li>
-<li><p>리스트를 순회하면서 티켓 수의 합이 당첨 번호보다 클 때까지 탐색합니다.</p></li>
-<li><p>당첨된 작업을 출력하고 스케줄링합니다.</p></li>
-</ul>
-</li>
-<li><p>프로그램을 종료합니다.</p></li>
+<li><p>3개의 작업과 난수 시드 1, 2, 3으로 시뮬레이션한 솔루션을 계산하세요.</p></li>
+<li><p>이제 두 개의 특정 작업으로 실행해 보세요: 각각 길이는 10이지만 하나(작업 0)는 티켓이 1장이고 다른 하나(작업 1)는 100장입니다(예: <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">10:1,10:100</span></code>). 티켓의 수가 이렇게 불균형할 때 어떤 일이 일어날까요? 작업 1이 완료되기 전에 작업 0이 실행될 수 있을까요? 얼마나 자주 그럴까요? 일반적으로 이러한 티켓 불균형이 복권 스케줄링의 동작에 어떤 영향을 미칠까요?</p></li>
+<li><p>길이가 100이고 티켓 할당이 100으로 동일한 두 개의 작업(<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">100:100,100:100</span></code>)으로 실행할 때 스케줄러는 얼마나 불공정할까요? 몇 가지 다른 난수 시드로 실행하여 (확률적) 답을 결정하세요; 한 작업이 다른 작업보다 얼마나 일찍 끝나는지에 따라 불공정성이 결정됩니다.</p></li>
 </ol>
-<p>이 코드는 lottery 스케줄링의 기본 개념을 보여주는 예제로, 실제 시스템에서는 더 복잡한 구현이 필요할 수 있습니다. 하지만 이 예제를 통해 lottery 스케줄링의 기본 아이디어를 이해할 수 있습니다.</p>
 </section>
 </section>
 </section>
@@ -732,20 +690,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="lab-sched.html"
+       href="lab-lottery.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lab: 스케줄링 알고리즘 시뮬레이터</p>
+        <p class="prev-next-title">Lab: Lottery 스케줄링 알고리즘 구현</p>
       </div>
     </a>
     <a class="right-next"
-       href="hw-wk04.html"
+       href="../week05/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Homework: 비례 배분</p>
+        <p class="prev-next-title">Week 5 - 메모리 가상화 1</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -765,14 +723,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">실습 목표</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">실습 내용</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lottery-c-lottery">lottery.c - Lottery 스케줄링 알고리즘 구현</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#makefile">Makefile - 빌드 및 실행 자동화</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">주요 용어 설명</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">실습</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">lottery.c - Lottery 스케줄링 알고리즘 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">과제 (시뮬레이션)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">질문</a></li>
 </ul>
 </li>
 </ul>
