@@ -89,11 +89,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week07/vm-tlbs';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week09/vm-tlbs';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework: 빈 공간 관리" href="hw-wk07.html" />
+    <link rel="next" title="물리 메모리 크기의 극복 : 메커니즘" href="vm-swap.html" />
     <link rel="prev" title="페이징: 개요" href="vm-paging.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -255,22 +255,25 @@
 <li class="toctree-l2"><a class="reference internal" href="../week06/hw-wk06.html">Homework: 주소 변환의 원리</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 7 - 메모리 가상화 3</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="vm-freespace.html">빈 공간 관리</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week07/index.html">Week 7 - 메모리 가상화 3</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week07/vm-freespace.html">빈 공간 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week07/hw-wk07.html">Homework: 빈 공간 관리</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 9 - 메모리 가상화 4</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="vm-paging.html">페이징: 개요</a></li>
-
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">페이징: 더 빠른 변환 (TLB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hw-wk07.html">Homework: 빈 공간 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-swap.html">물리 메모리 크기의 극복 : 메커니즘</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">OS 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">OS 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../projects/template/index.html">id</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/contents/index.html">프로젝트 과제 목록</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/contents/index.html">프로젝트 과제 목록</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../projects/contents/utilities.html">유닉스 유틸리티 프로젝트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../projects/contents/reverse.html"><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../projects/contents/kv.html"><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로젝트: 간단한 키-값 저장소</a></li>
@@ -371,7 +374,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week07/vm-tlbs.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week09/vm-tlbs.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -388,7 +391,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek07/vm-tlbs.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek09/vm-tlbs.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -418,7 +421,7 @@
       
       
       
-      <li><a href="../_sources/week07/vm-tlbs.md" target="_blank"
+      <li><a href="../_sources/week09/vm-tlbs.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -681,7 +684,7 @@ ASID (Address Space Identifier): 프로세스 간 TLB 엔트리 충돌을 방지
         },
         kernelOptions: {
             name: "python3",
-            path: "./week07"
+            path: "./week09"
         },
         predefinedOutput: true
     }
@@ -708,11 +711,11 @@ ASID (Address Space Identifier): 프로세스 간 TLB 엔트리 충돌을 방지
       </div>
     </a>
     <a class="right-next"
-       href="hw-wk07.html"
+       href="vm-swap.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Homework: 빈 공간 관리</p>
+        <p class="prev-next-title">물리 메모리 크기의 극복 : 메커니즘</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
