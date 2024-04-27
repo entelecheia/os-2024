@@ -48,9 +48,12 @@ parts:
       - file: week07/index
         sections:
           - file: week07/vm-freespace
-          - file: week07/vm-paging
-          - file: week07/vm-tlbs
           - file: week07/hw-wk07
+      - file: week09/index
+        sections:
+          - file: week09/vm-paging
+          - file: week09/vm-tlbs
+          - file: week09/vm-swap
   - caption: Projects
     chapters:
       - file: projects/index
