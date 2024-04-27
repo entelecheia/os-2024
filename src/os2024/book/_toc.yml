@@ -53,7 +53,7 @@ parts:
         sections:
           - file: week09/vm-paging
           - file: week09/vm-tlbs
-          - file: week09vm-swap
+          - file: week09/vm-swap
   - caption: Projects
     chapters:
       - file: projects/index
