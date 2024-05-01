@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>프로젝트 제목 &#8212; 운영체제 2024</title>
+    <title>프로젝트: Key-Value Store 구현 &#8212; 운영체제 2024</title>
   
   
   
@@ -505,7 +505,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>프로젝트 제목</h1>
+    <h1>프로젝트: Key-Value Store 구현</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -515,7 +515,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소제목 추가</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">프로젝트 목적</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">주요 기능</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-value">1. key-value 쌍 삽입</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2. 키 값 검색</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3. key-value 쌍 삭제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4. 데이터베이스 지우기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5. 모든 key-value 쌍 출력</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">사용 기술</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o">1. 파일 I/O</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2. 메모리 관리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3. 오류 처리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4. 테스트 케이스</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -527,12 +543,207 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>프로젝트 제목<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>프로젝트 설명을 여기에 작성합니다. 프로젝트의 목적, 주요 기능, 사용 기술 등을 설명합니다.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="key-value-store">
+<h1>프로젝트: Key-Value Store 구현<a class="headerlink" href="#key-value-store" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>202221014 이규범</p></li>
+</ul>
+<section id="id1">
+<h2>개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>C 프로그래밍 언어를 사용하여 간단한 Key-Value Store 프로그램을 직접 구현한다.<br />
+이 프로그램은 데이터베이스에 Key-Value 쌍을 삽입하고, Key-Value 을 검색하고, Key-Value 쌍을 삭제하고, 데이터베이스의 모든 key-value 쌍을 출력한다.</p>
+</section>
 <section id="id2">
-<h2>소제목 추가<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>내용 작성 입니다.</p>
+<h2>프로젝트 목적<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>파일 I/O, 메모리 관리, 데이터 구조 및 오류 처리를 적용한다.</p></li>
+<li><p>간단한 Key-Value Store 프로그램을 설계하고 구현한다.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>주요 기능<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>기존의 key-Value Store의 명령어는 ‘kv’ 이지만 ‘Cheju Key-Value Store’를 줄여 ‘cv’라고 명명한다.</p>
+</div>
+<section id="key-value">
+<h3>1. key-value 쌍 삽입<a class="headerlink" href="#key-value" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>명령어:</strong> <code class="docutils literal notranslate"><span class="pre">cv</span> <span class="pre">p,key,value</span></code></p></li>
+<li><p><strong>설명:</strong> 키 <code class="docutils literal notranslate"><span class="pre">key</span></code>에 값 <code class="docutils literal notranslate"><span class="pre">value</span></code>를 삽입한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>는 음이 아닌 정수여야 한다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>는 쉼표(,)를 포함하지 않는 임의의 문자열이어야 한다.</p></li>
+</ul>
+</li>
+<li><p><strong>입력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="n">p</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">Seoul</span>
+<span class="n">cv</span> <span class="n">p</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="n">Busan</span>
+<span class="n">cv</span> <span class="n">p</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="n">Incheon</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>출력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">입력</span> <span class="n">명령</span> <span class="n">실행</span> <span class="n">후</span> <span class="n">출력</span> <span class="n">없음</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h3>2. 키 값 검색<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>명령어:</strong> <code class="docutils literal notranslate"><span class="pre">cv</span> <span class="pre">g,key</span></code></p></li>
+<li><p><strong>설명:</strong> 키 <code class="docutils literal notranslate"><span class="pre">key</span></code>에 대한 값을 검색한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>는 음이 아닌 정수여야 한다.</p></li>
+</ul>
+</li>
+<li><p><strong>입력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="n">g</span><span class="p">,</span><span class="mi">10</span>
+<span class="n">cv</span> <span class="n">g</span><span class="p">,</span><span class="mi">20</span>
+<span class="n">cv</span> <span class="n">g</span><span class="p">,</span><span class="mi">30</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>출력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="p">,</span><span class="n">Seoul</span>
+<span class="mi">20</span><span class="p">,</span><span class="n">Busan</span>
+<span class="mi">30</span><span class="p">,</span><span class="n">Incheon</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3>3. key-value 쌍 삭제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>명령어:</strong> <code class="docutils literal notranslate"><span class="pre">cv</span> <span class="pre">d,key</span></code></p></li>
+<li><p><strong>설명:</strong> 키 <code class="docutils literal notranslate"><span class="pre">key</span></code>에 대한 key-value 쌍을 삭제한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>는 음이 아닌 정수여야 한다.</p></li>
+</ul>
+</li>
+<li><p><strong>입력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="n">d</span><span class="p">,</span><span class="mi">20</span>
+<span class="n">cv</span> <span class="n">g</span><span class="p">,</span><span class="mi">20</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>출력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="ow">not</span> <span class="n">found</span> <span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h3>4. 데이터베이스 지우기<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>명령어:</strong> <code class="docutils literal notranslate"><span class="pre">cv</span> <span class="pre">c</span></code></p></li>
+<li><p><strong>설명:</strong> 데이터베이스에 저장된 모든 key-value 쌍을 삭제한다.</p></li>
+<li><p><strong>입력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="n">c</span>
+<span class="n">cv</span> <span class="n">a</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>출력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">database</span> <span class="ow">is</span> <span class="n">empty</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h3>5. 모든 key-value 쌍 출력<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>명령어:</strong> <code class="docutils literal notranslate"><span class="pre">cv</span> <span class="pre">a</span></code></p></li>
+<li><p><strong>설명:</strong> 데이터베이스에 저장된 모든 key-value 쌍을 출력한다.</p></li>
+<li><p><strong>입력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="n">p</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">Gwangju</span>
+<span class="n">cv</span> <span class="n">a</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>출력 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="p">,</span><span class="n">Seoul</span>
+<span class="mi">30</span><span class="p">,</span><span class="n">Incheon</span>
+<span class="mi">40</span><span class="p">,</span><span class="n">Gwangju</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="highlight-{참고 notranslate"><div class="highlight"><pre><span></span>-예외 처리-
+잘못된 명령어: 명령어 형식이 올바르지 않거나 존재하지 않는 명령어를 사용하면 적절한 오류 메시지를 출력한다.
+예기치 않은 오류: 파일 I/O 오류, 메모리 할당 오류 등 예기치 않은 오류가 발생하면 적절한 오류 메시지를 출력하고 프로그램을 종료한다.
+
+* key-value 쌍은 `database.txt`라는 파일에 텍스트 형식으로 저장한다.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h2>사용 기술<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>주요 기능들을 구현하기 위해 사용될 기술 및 구현 방법에 대한 자세한 내용을 설명한다.</p>
+<section id="i-o">
+<h3>1. 파일 I/O<a class="headerlink" href="#i-o" title="Link to this heading">#</a></h3>
+<p>key-value 쌍은 <code class="docutils literal notranslate"><span class="pre">database.txt</span></code>라는 파일에 텍스트 형식으로 저장된다. 따라서 파일 I/O 기술을 사용하여 데이터베이스에 액세스하고 데이터를 저장해야 한다.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fopen()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">fclose()</span></code> 함수:</strong> 파일을 열고 닫는 데 사용된다.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fgets()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code> 함수:</strong> 파일에 문자열을 읽고 쓰는 데 사용된다.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fscanf()</span></code> 및 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code> 함수:</strong> 파일에서 형식화된 데이터를 읽고 쓰는 데 사용된다.</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>2. 메모리 관리<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>key-value 쌍을 메모리에 저장하기 위해 적절한 데이터 구조를 사용해야 한다. 일반적으로 다음과 같은 데이터 구조를 사용할 수 있다.</p>
+<ul class="simple">
+<li><p><strong>배열:</strong> 단순하고 사용하기 쉬운 데이터 구조이지만, key-value 쌍의 개수가 많아질수록 비효율적일 수 있다.</p></li>
+<li><p><strong>연결 리스트:</strong> key-value 쌍을 삽입하고 삭제하는 작업에 효율적이지만, 검색 작업에는 비교적 느릴 수 있다.</p></li>
+<li><p><strong>해시 테이블:</strong> 검색 작업에 매우 효율적이지만, 메모리 할당 및 관리가 더 복잡할 수 있다.</p></li>
+</ul>
+<p>프로그램의 규모와 성능 요구 사항에 따라 적절한 데이터 구조를 선택해야 한다.</p>
+</section>
+<section id="id10">
+<h3>3. 오류 처리<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>예상치 못한 오류가 발생할 경우 적절한 오류 메시지를 출력하고 프로그램의 동작에 영향을 미치지 않도록 해야 한다.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">errno.h</span></code> 헤더 파일:</strong> 시스템 오류 코드를 정의한다.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">perror()</span></code> 함수:</strong> 시스템 오류 메시지를 출력한다.</p></li>
+<li><p><strong>사용자 정의 오류 메시지:</strong> 프로그램 내에서 발생하는 오류에 대한 메시지를 정의한다.</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>4. 테스트 케이스<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>프로그램의 기능을 철저히 검증하기 위해 테스트 케이스를 작성해야 한다. 테스트 케이스는 다음과 같은 내용을 포함해야 한다.</p>
+<ul class="simple">
+<li><p><strong>입력 데이터:</strong> 다양한 유형의 입력 데이터를 포함해야 한다.</p></li>
+<li><p><strong>예상 출력:</strong> 각 입력 데이터에 대한 예상 출력을 정의해야 한다.</p></li>
+<li><p><strong>실제 출력:</strong> 프로그램을 실행하여 실제 출력을 확인해야 한다.</p></li>
+</ul>
+<p>테스트 케이스는 수동으로 실행하거나 자동화 도구를 사용하여 사용한다.</p>
+<ul>
+<li><p><strong>예시</strong>: 사용자가 key-value 쌍을 삽입하고, 전체 데이터베이스를 조회한 후, 특정 키에 대한 값 삭제 후 재조회.</p></li>
+<li><p><strong>입력</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="n">p</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="n">Daejeon</span>
+<span class="n">cv</span> <span class="n">a</span>
+<span class="n">cv</span> <span class="n">d</span><span class="p">,</span><span class="mi">50</span>
+<span class="n">cv</span> <span class="n">g</span><span class="p">,</span><span class="mi">50</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>예상 출력</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="p">,</span><span class="n">Seoul</span>
+<span class="mi">30</span><span class="p">,</span><span class="n">Incheon</span>
+<span class="mi">40</span><span class="p">,</span><span class="n">Gwangju</span>
+<span class="mi">50</span><span class="p">,</span><span class="n">Daejeon</span>
+<span class="n">K</span> <span class="ow">not</span> <span class="n">found</span> <span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -582,7 +793,23 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">소제목 추가</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">프로젝트 목적</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">주요 기능</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-value">1. key-value 쌍 삽입</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2. 키 값 검색</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3. key-value 쌍 삭제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4. 데이터베이스 지우기</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5. 모든 key-value 쌍 출력</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">사용 기술</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-o">1. 파일 I/O</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2. 메모리 관리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3. 오류 처리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4. 테스트 케이스</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
