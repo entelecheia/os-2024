@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>물리 메모리 크기의 극복 : 메커니즘 &#8212; 운영체제 2024</title>
+    <title>물리 메모리 크기의 극복: 메커니즘 &#8212; 운영체제 2024</title>
   
   
   
@@ -263,7 +263,8 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 9 - 메모리 가상화 4</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="vm-paging.html">페이징: 개요</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm-tlbs.html">페이징: 더 빠른 변환 (TLB)</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">물리 메모리 크기의 극복 : 메커니즘</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">물리 메모리 크기의 극복: 메커니즘</a></li>
+
 </ul>
 </li>
 </ul>
@@ -505,7 +506,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>물리 메모리 크기의 극복 : 메커니즘</h1>
+    <h1>물리 메모리 크기의 극복: 메커니즘</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -515,14 +516,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">물리 메모리 크기의 극복: 메커니즘</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">스왑 공간</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-bit">Present Bit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">페이지 폴트</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">메모리에 빈 공간이 없으면?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">페이지 폴트의 처리</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">교체는 실제 언제 일어나는가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">(그림)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">페이지 폴트의 처리</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">교체는 실제 언제 일어나는가?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">추가 설명</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -534,27 +543,77 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>물리 메모리 크기의 극복 : 메커니즘<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>물리 메모리 크기의 극복: 메커니즘<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>스왑 공간<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><strong>개념</strong>: 물리 메모리가 부족하면 사용하지 않는 페이지를 하드 디스크의 특정 영역(스왑 공간)에 백업하고, 필요하면 다시 메모리로 불러오는 기술</p>
+<p><strong>장점</strong></p>
+<ul class="simple">
+<li><p>물리 메모리보다 훨씬 저렴한 하드 디스크 공간을 활용하여 가상 메모리 공간을 확장 가능</p></li>
+</ul>
+<p><img alt="image" src="https://github.com/chu-aie/os-2024/assets/133697595/798ba7ee-3772-4b69-b7da-04dd624c5d39" /></p>
+<p>스왑 공간 사용 방식 - 가상 메모리 공간이 부족하면 사용하지 않는 페이지를 스왑 공간으로 백업하고, 필요하면 다시 메모리로 불러온다.</p>
+<p><strong>단점</strong></p>
+<ul class="simple">
+<li><p>하드 디스크는 메모리보다 훨씬 느려 페이지 폴트 발생 시 성능 저하</p></li>
+</ul>
 </section>
 <section id="present-bit">
 <h2>Present Bit<a class="headerlink" href="#present-bit" title="Link to this heading">#</a></h2>
+<p><strong>개념</strong>: 페이지 테이블에 존재하는 각 엔트리에 설정되는 플래그 비트</p>
+<p><strong>기능</strong>: 해당 페이지가 현재 물리 메모리에 존재하는지 여부를 나타냄</p>
+<p><strong>활용</strong></p>
+<ul class="simple">
+<li><p>Present bit가 1이면 페이지가 메모리에 존재하므로 바로 접근 가능</p></li>
+<li><p>Present bit가 0이면 페이지가 스왑 공간에 존재하므로 페이지 폴트 발생</p></li>
+</ul>
 </section>
 <section id="id3">
 <h2>페이지 폴트<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p><strong>개념</strong>: 프로세스가 메모리에 존재하지 않는 페이지에 접근하려는 경우 발생하는 예외 상황</p>
+<p><strong>처리 과정</strong></p>
+<ol class="arabic simple">
+<li><p>운영체제는 해당 페이지를 스왑 공간에서 메모리로 로드</p></li>
+<li><p>페이지 테이블을 업데이트하여 Present bit를 1로 설정</p></li>
+<li><p>프로세스가 다시 해당 페이지에 접근하도록 허용</p></li>
+</ol>
+<p><strong>영향</strong>: 페이지 폴트는 메모리 접근 지연을 야기하여 성능 저하를 초래한다.</p>
 </section>
 <section id="id4">
 <h2>메모리에 빈 공간이 없으면?<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><strong>LRU (Least Recently Used) 알고리즘</strong>: 최근에 사용되지 않은 페이지를 스왑 공간으로 교체하는 알고리즘</p>
 </section>
-<section id="id5">
-<h2>페이지 폴트의 처리<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="id5">
+<h1>(그림)<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+<p>LRU 알고리즘 동작 방식 - 가장 오랫동안 사용되지 않은 페이지를 스왑 공간으로 교체한다.</p>
+<p><strong>다른 알고리즘</strong>: FIFO, Modified Page Count 등 다양한 알고리즘 존재</p>
 <section id="id6">
-<h2>교체는 실제 언제 일어나는가<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h2>페이지 폴트의 처리<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p><strong>시간 소요</strong>: 페이지 폴트는 메모리 접근 지연을 야기하여 성능 저하를 초래</p>
+<p><strong>최소화 방안</strong></p>
+<ul class="simple">
+<li><p>페이지 크기 조절: 작은 페이지 크기는 페이지 폴트 빈도 증가, 큰 페이지 크기는 페이지 폴트 처리 지연 증가</p></li>
+<li><p>효율적인 페이지 교체 알고리즘 사용: LRU, Modified Page Count 등 다양한 알고리즘 활용</p></li>
+</ul>
 </section>
 <section id="id7">
-<h2>요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2>교체는 실제 언제 일어나는가?<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p><strong>실제 메모리 할당 시점</strong>: 새로운 페이지를 메모리에 로드할 때 발생 가능성이 높음</p>
+<p><strong>페이지 폴트 발생 시</strong>: Present bit가 0인 페이지를 메모리로 로드할 때 발생</p>
+</section>
+<section id="id8">
+<h2>요약<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>메모리 가상화는 스왑 공간, Present bit, 페이지 폴트 등의 기술을 사용하여 물리 메모리 크기의 제약을 극복하는 기술입니다. 하지만 페이지 폴트 발생 시 성능 저하가 발생할 수 있으므로 효율적인 알고리즘 사용이 중요합니다.</p>
+</section>
+<section id="id9">
+<h2>추가 설명<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>메모리 가상화는 가상 주소 공간과 물리 주소 공간을 매핑하는 페이지 테이블을 사용합니다.</p></li>
+<li><p>페이지 테이블은 메모리 관리 장치(MMU)에 의해 관리됩니다.</p></li>
+<li><p>MMU는 가상 주소를 물리 주소로 변환하여 실제 메모리에 접근하도록 합니다.</p></li>
+<li><p>메모리 가상화는 다중 프로그래밍, 다중 사용자 환경, 운영 체제에서 중요한 역할을 합니다.</p></li>
+</ul>
 </section>
 </section>
 
@@ -622,14 +681,22 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">물리 메모리 크기의 극복: 메커니즘</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">스왑 공간</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-bit">Present Bit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">페이지 폴트</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">메모리에 빈 공간이 없으면?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">페이지 폴트의 처리</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">교체는 실제 언제 일어나는가</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">요약</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">(그림)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">페이지 폴트의 처리</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">교체는 실제 언제 일어나는가?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">추가 설명</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
