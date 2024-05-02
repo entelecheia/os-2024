@@ -89,7 +89,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/202121006/Homework Process';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/202121006/Homework:Scheduling';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -375,7 +375,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/projects/202121006/Homework Process.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/projects/202121006/Homework:Scheduling.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -392,7 +392,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fprojects/202121006/Homework Process.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fprojects/202121006/Homework:Scheduling.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -422,7 +422,7 @@
       
       
       
-      <li><a href="../../_sources/projects/202121006/Homework Process.md" target="_blank"
+      <li><a href="../../_sources/projects/202121006/Homework:Scheduling.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -528,7 +528,36 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>sdadsdasdasdsdadsfdxcdffav</p>
+  <p>질문 1. SJF와 FIFO 스케줄러로 길이가 200인 세 개의 작업을 실행할 때의 응답 시간과 반환 시간을 계산하세요.</p>
+<p>해설
+-FIFO 스케줄러 : 응답 시간은 첫 번째 작업이 도착한 시간부터 시작하여 각 작업이 도착한 순서대로 증가하고, 반환 시간은 해당 작업이 시스템에 진입한 후 종료되기까지 걸린 시간으로 계산됩니다.
+-SJF 스케줄러 : 응답 시간은 모든 작업의 실행 시간을 알고 있어야 하며, 작업의 도착 순서는 고려되지 않습니다. 반환 시간은 첫 번째 작업, 두 번째 작업과 세 번째 작업도 각각 실행이 시작된 시간부터 종료될 때까지의 시간으로 반환시간을 계산합니다.</p>
+<p>질문 2. 이제 작업의 길이를 다르게 하여 동일한 작업을 수행해 보세요: 100, 200, 300.</p>
+<p>해설
+FIFO 스케줄러: 응답 시간
+첫 번째 작업: 0
+두 번째 작업: 100
+세 번째 작업: 300
+SJF 스케줄러: 응답 시간
+첫 번째 작업: 0
+두 번째 작업: 100
+세 번째 작업: 300</p>
+<p>FIFO 스케줄러: 반환 시간
+첫 번째 작업(길이 100): 100
+두 번째 작업(길이 200): 300
+세 번째 작업(길이 300): 600
+SJF 스케줄러: 반환 시간
+첫 번째 작업(길이 100): 100
+두 번째 작업(길이 200): 200
+세 번째 작업(길이 300): 500</p>
+<p>질문 3. 이제 RR 스케줄러와 시간 할당량(time-slice)을 1로 하여 동일한 작업을 수행해 보세요.</p>
+<p>해설
+각 작업의 응답 시간은 작업이 처음 CPU를 할당받는 시점에서부터 측정됩니다.
+시간 할당량이 1로 설정된 경우, 각 작업은 1 단위의 시간마다 CPU를 할당받으며, 작업이 CPU를 모두 소비하지 않는 경우에도 다음 작업으로 CPU가 넘어갑니다.</p>
+<p>질문 4. 어떤 유형의 워크로드에 대해 SJF가 FIFO와 동일한 반환 시간을 제공하나요?</p>
+<p>해설 : 다양한 실행 시간과 도착 시간을 가진 작업이 있기 때문에 SJF와 FIFO는 일반적으로 다른 반환 시간을 제공합니다.</p>
+<p>질문 5. 어떤 유형의 워크로드와 시간 할당량에 대해 SJF가 RR과 동일한 응답 시간을 제공하나요?</p>
+<p>해설 : 모든 작업의 실행 시간이 동일하거나 시간 할당량과 동일한 경우가 드뭅니다. 대부분의 상황에서는 SJF와 RR은 다른 응답 시간을 가질 것입니다.</p>
 
     <script type="text/x-thebe-config">
     {
