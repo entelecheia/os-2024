@@ -32,6 +32,7 @@ parts:
           - file: week04/lottery
           - file: week04/lab-sched
           - file: week04/lab-lottery
+          - file: week04/hw-wk04
       - file: week05/index
         sections:
           - file: week05/vm-intro
@@ -43,11 +44,16 @@ parts:
           - file: week06/vm-mechanism
           - file: week06/vm-segmentation
           - file: week06/lab
+          - file: week06/hw-wk06
       - file: week07/index
         sections:
           - file: week07/vm-freespace
-          - file: week07/vm-paging
-          - file: week07/vm-tlbs
+          - file: week07/hw-wk07
+      - file: week09/index
+        sections:
+          - file: week09/vm-paging
+          - file: week09/vm-tlbs
+          - file: week09/vm-swap
   - caption: Projects
     chapters:
       - file: projects/index
