@@ -54,6 +54,10 @@ parts:
           - file: week09/vm-paging
           - file: week09/vm-tlbs
           - file: week09/vm-swap
+      - file: week10/index
+        sections:
+          - file: week10/threads-intro
+          - file: week10/threads-api
   - caption: Projects
     chapters:
       - file: projects/index
