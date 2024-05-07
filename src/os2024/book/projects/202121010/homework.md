@@ -1,112 +1,105 @@
 # Homework
+
 **202121010 양필성**
 
 ## week 1
 
 1. 다음 플래그와 함께 `process-run.py`를 실행하세요: `-l 5:100,5:100`. CPU 활용률(예: CPU가 사용 중인 시간의 백분율)은 어떻게 되어야 할까요? 왜 그렇게 알 수 있나요? `-c`와 `-p` 플래그를 사용해 여러분의 생각이 맞는지 확인해 보세요.
 
-    - Answer: pid:0 process가 5개의 명령어를 처리할 동안 pid:1 process는 Ready 상태를 가진다. pid:0 process의 상태가 Done을 가지면 pid:1 process의 상태가 Run으로 바뀌며 CPU 사용을 한다. pid:1 process 또한 5개의 명령어를 처리해야한다. 따라서 CPU 활용률은 process 각각 50%씩 사용한다.
-
+   - Answer: pid:0 process가 5개의 명령어를 처리할 동안 pid:1 process는 Ready 상태를 가진다. pid:0 process의 상태가 Done을 가지면 pid:1 process의 상태가 Run으로 바뀌며 CPU 사용을 한다. pid:1 process 또한 5개의 명령어를 처리해야한다. 따라서 CPU 활용률은 process 각각 50%씩 사용한다.
 
 2. 이제 다음 플래그로 실행해 보세요: `./process-run.py -l 4:100,1:0`. 이 플래그는 4개의 명령어(모두 CPU 사용)를 가진 하나의 프로세스와 I/O를 실행하고 완료될 때까지 기다리는 하나의 프로세스를 지정합니다. 두 프로세스를 모두 완료하는 데 얼마나 걸리나요? `-c`와 `-p`를 사용해 여러분의 생각이 맞는지 확인해 보세요.
 
-    - Answer: 11
-
+   - Answer: 11
 
 3. 프로세스의 순서를 바꿔 보세요: `-l 1:0,4:100`. 이제 어떻게 되나요? 순서를 바꾸는 것이 중요한가요? 왜 그런가요? (항상 그렇듯이 `-c`와 `-p`를 사용해 여러분의 생각이 맞는지 확인해 보세요)
 
-    - Answer: 두 프로세스를 모두 완료하는 시간이 줄었다. PID:0 process가 io를 기다려 CPU를 사용하지 않는 BLOCKED 상태로 바뀐다. PID:1 process가 PID:0 process BLOCKED 상태일 때 CPU를 사용할 수 있어 총 반환시간이 짧아진다.
+   - Answer: 두 프로세스를 모두 완료하는 시간이 줄었다. PID:0 process가 io를 기다려 CPU를 사용하지 않는 BLOCKED 상태로 바뀐다. PID:1 process가 PID:0 process BLOCKED 상태일 때 CPU를 사용할 수 있어 총 반환시간이 짧아진다.
 
 4. 이제 다른 플래그들을 살펴보겠습니다. 중요한 플래그 중 하나는 `-S`인데, 이는 프로세스가 I/O를 실행할 때 시스템이 어떻게 반응하는지 결정합니다. 플래그를 `SWITCH_ON_END`로 설정하면 한 프로세스가 I/O를 수행하는 동안 시스템은 다른 프로세스로 전환하지 않고 해당 프로세스가 완전히 끝날 때까지 기다립니다. 다음 두 프로세스를 실행할 때 어떤 일이 일어나나요(`-l 1:0,4:100 -c -S SWITCH_ON_END`), 하나는 I/O를 수행하고 다른 하나는 CPU 작업을 수행합니다?
 
-    - Answer: PID:0 process가 io를 기다려 CPU를 사용하지 않는 BLOCKED 상태로 바뀜에도 PID:1 process가 CPU를 사용하지 않는다. 이로인해 총 반환시간이 늘어났다.
-
+   - Answer: PID:0 process가 io를 기다려 CPU를 사용하지 않는 BLOCKED 상태로 바뀜에도 PID:1 process가 CPU를 사용하지 않는다. 이로인해 총 반환시간이 늘어났다.
 
 5. 이제 같은 프로세스를 실행하되, 한 프로세스가 I/O를 기다리는(`WAITING`) 동안 다른 프로세스로 전환되도록 switching 동작을 설정해 봅시다(`-l 1:0,4:100 -c -S SWITCH_ON_IO`). 이제 어떤 일이 일어나나요? `-c`와 `-p`를 사용해 여러분의 생각이 맞는지 확인해 보세요.
 
-    - Answer: PID:0 process가 io를 기다려 CPU를 사용하지 않는 BLOCKED 상태로 바뀌어 PID:1 process가 CPU를 사용한다. 이로인해 총 반환시간이 줄어들었다.
+   - Answer: PID:0 process가 io를 기다려 CPU를 사용하지 않는 BLOCKED 상태로 바뀌어 PID:1 process가 CPU를 사용한다. 이로인해 총 반환시간이 줄어들었다.
 
 6. 또 다른 중요한 동작은 I/O가 완료될 때 수행할 작업입니다. `-I IO_RUN_LATER`를 사용하면 I/O가 완료될 때 그것을 실행한 프로세스가 반드시 즉시 실행되는 것은 아닙니다. 오히려 그 시점에 실행 중이던 프로세스가 계속 실행됩니다. 이러한 프로세스 조합을 실행하면 어떤 일이 일어나나요? (`./process-run.py -l 3:0,5:100,5:100,5:100 -S SWITCH_ON_IO -I IO_RUN_LATER -c -p`) 시스템 자원이 효율적으로 활용되고 있나요?
 
-    - Answer: PID:0 process가 첫번째 io 명령어를 처리하는 동안 CPU를 사용하지 않아 PID:1 process가 CPU를 사용한다. 하지만 PID:0 process가 io 명령어를 다 처리해도 READY 상태로 바뀐다. PID:2, PID:3 process가 모두 실행되고 나서 PID:0 process의 첫번째 io 명령어가 끝나고 나머지 두번의 io 명령어를 연달아 실행한다. 하지만 두번째, 세번째 io 명령어를 처리하는 동안 CPU는 사용하지 않는다. 따라서 효율적이지 않다.
+   - Answer: PID:0 process가 첫번째 io 명령어를 처리하는 동안 CPU를 사용하지 않아 PID:1 process가 CPU를 사용한다. 하지만 PID:0 process가 io 명령어를 다 처리해도 READY 상태로 바뀐다. PID:2, PID:3 process가 모두 실행되고 나서 PID:0 process의 첫번째 io 명령어가 끝나고 나머지 두번의 io 명령어를 연달아 실행한다. 하지만 두번째, 세번째 io 명령어를 처리하는 동안 CPU는 사용하지 않는다. 따라서 효율적이지 않다.
 
 7. 이제 같은 프로세스를 실행하되, `-I IO_RUN_IMMEDIATE`를 설정해 I/O를 실행한 프로세스를 즉시 실행하도록 해 봅시다. 이 동작은 어떻게 다른가요? 방금 I/O를 완료한 프로세스를 다시 실행하는 것이 왜 좋은 생각일 수 있을까요?
 
-    - Answer: PID:0 process가 첫번째 io 명령어를 처리하는 동안 3개의 프로세스를 처리하지 않는다, PID:0 process가 READY 상태로 바뀌지 않고 각 io 명령어마다 다른 프로세스들이 CPU를 사용함으로써 효율적으로 바뀌었다.
-
+   - Answer: PID:0 process가 첫번째 io 명령어를 처리하는 동안 3개의 프로세스를 처리하지 않는다, PID:0 process가 READY 상태로 바뀌지 않고 각 io 명령어마다 다른 프로세스들이 CPU를 사용함으로써 효율적으로 바뀌었다.
 
 8. 이제 무작위로 생성된 프로세스로 실행해 봅시다: `-s 1 -l 3:50,3:50` 또는 `-s 2 -l 3:50,3:50` 또는 `-s 3 -l 3:50,3:50`. 추적 결과가 어떻게 될지 예측해 보세요. `-I IO_RUN_IMMEDIATE` 플래그와 `-I IO_RUN_LATER` 플래그를 사용할 때 어떤 일이 일어나나요? `-S SWITCH_ON_IO`와 `-S SWITCH_ON_END`를 사용할 때 어떤 일이 일어나나요?
 
-    - Answer: 
-        1. `-I IO_RUN_IMMEDIATE` 플래그와 `-I IO_RUN_LATER` 플래그 효율성은 `IO_RUN_IMMEDIATE` 플래그가 더 효율성이 좋았다. 프로세스가 io 명령어 처리를 끝내고 READY 상태를 최대한 짧게 가지며 프러세스를 끝내고 그 다음 io 명령어를 시작하며 다른 프로세스가 CPU를 사용할 수 있게 했다.
-        2. `-S SWITCH_ON_IO` 플래그와 `-S SWITCH_ON_END` 플래그 효율성은 `SWITCH_ON_IO` 플래그가 더 효율성이 좋았다. 프로세스가 CPU를 사용하지 않는 BLOCKED 상태에 다른 프로세스가 CPU를 사용할 수 있기 떄문이다. 
-
-
+   - Answer:
+     1. `-I IO_RUN_IMMEDIATE` 플래그와 `-I IO_RUN_LATER` 플래그 효율성은 `IO_RUN_IMMEDIATE` 플래그가 더 효율성이 좋았다. 프로세스가 io 명령어 처리를 끝내고 READY 상태를 최대한 짧게 가지며 프러세스를 끝내고 그 다음 io 명령어를 시작하며 다른 프로세스가 CPU를 사용할 수 있게 했다.
+     2. `-S SWITCH_ON_IO` 플래그와 `-S SWITCH_ON_END` 플래그 효율성은 `SWITCH_ON_IO` 플래그가 더 효율성이 좋았다. 프로세스가 CPU를 사용하지 않는 BLOCKED 상태에 다른 프로세스가 CPU를 사용할 수 있기 떄문이다.
 
 ## week 2
 
 1. SJF와 FIFO 스케줄러로 길이가 200인 세 개의 작업을 실행할 때의 응답 시간과 반환 시간을 계산하세요.
 
-    - Answer
-        1. SJF
-            |Job number|Response Time|Turnaround Time|
-            |:------:|:---:|:---:|
-            |Job 0|0|200|
-            |Job 1|200|400|
-            |Job 2|400|600|
-        2. FIFO
-            |Job number|Response Time|Turnaround Time|
-            |:------:|:---:|:---:|
-            |Job 0|0|200|
-            |Job 1|200|400|
-            |Job 2|400|600|
+   - Answer
+     1. SJF
+        |Job number|Response Time|Turnaround Time|
+        |:------:|:---:|:---:|
+        |Job 0|0|200|
+        |Job 1|200|400|
+        |Job 2|400|600|
+     2. FIFO
+        |Job number|Response Time|Turnaround Time|
+        |:------:|:---:|:---:|
+        |Job 0|0|200|
+        |Job 1|200|400|
+        |Job 2|400|600|
 
 2. 이제 작업의 길이를 다르게 하여 동일한 작업을 수행해 보세요: 100, 200, 300.
 
-    - Answer
-        1. SJF
-            |Job number|Response Time|Turnaround Time|
-            |:------:|:---:|:---:|
-            |Job 0|0|100|
-            |Job 1|100|300|
-            |Job 2|300|600|
-        2. FIFO
-            |Job number|Response Time|Turnaround Time|
-            |:------:|:---:|:---:|
-            |Job 0|0|100|
-            |Job 1|100|300|
-            |Job 2|300|600|
+   - Answer
+     1. SJF
+        |Job number|Response Time|Turnaround Time|
+        |:------:|:---:|:---:|
+        |Job 0|0|100|
+        |Job 1|100|300|
+        |Job 2|300|600|
+     2. FIFO
+        |Job number|Response Time|Turnaround Time|
+        |:------:|:---:|:---:|
+        |Job 0|0|100|
+        |Job 1|100|300|
+        |Job 2|300|600|
 
 3. 이제 RR 스케줄러와 시간 할당량(time-slice)을 1로 하여 동일한 작업을 수행해 보세요.
 
-    - Answer
-        - RR -> same len
-            |Job number|Response Time|Turnaround Time|
-            |:------:|:---:|:---:|
-            |Job 0|0|598|
-            |Job 1|1|599|
-            |Job 2|2|600|
-        - RR -> different len
-            |Job number|Response Time|Turnaround Time|
-            |:------:|:---:|:---:|
-            |Job 0|0|298|
-            |Job 1|1|499|
-            |Job 2|2|600|
+   - Answer
+     - RR -> same len
+       |Job number|Response Time|Turnaround Time|
+       |:------:|:---:|:---:|
+       |Job 0|0|598|
+       |Job 1|1|599|
+       |Job 2|2|600|
+     - RR -> different len
+       |Job number|Response Time|Turnaround Time|
+       |:------:|:---:|:---:|
+       |Job 0|0|298|
+       |Job 1|1|499|
+       |Job 2|2|600|
 
 4. 어떤 유형의 워크로드에 대해 SJF가 FIFO와 동일한 반환 시간을 제공하나요?
 
-    - Answer: 짧은 순서로 도착하거나 동일한 길이의 작업이면 SJF와 FIFO는 동일한 반환 시간을 갖는다.
-
+   - Answer: 짧은 순서로 도착하거나 동일한 길이의 작업이면 SJF와 FIFO는 동일한 반환 시간을 갖는다.
 
 5. 어떤 유형의 워크로드와 시간 할당량에 대해 SJF가 RR과 동일한 응답 시간을 제공하나요?
 
-    - Answer: 작업의 길이가 시간 할당량보다 짧거나 같을 때이다. 이 경우, SJF나 RR이나 모든 작업이 최초의 시간 할당량에서 한 번에 처리되므로 응답 시간이 동일하다.
+   - Answer: 작업의 길이가 시간 할당량보다 짧거나 같을 때이다. 이 경우, SJF나 RR이나 모든 작업이 최초의 시간 할당량에서 한 번에 처리되므로 응답 시간이 동일하다.
 
 6. 작업 길이가 증가함에 따라 SJF에서 응답 시간은 어떻게 되나요? 시뮬레이터를 사용하여 이 추세를 보여줄 수 있나요?
 
-    - Answer: 작업의 길이가 증가함에 따라 응답시간은 일반적으로 증가한다. 작업 길이가 긴 작업이 뒤로 밀리기 때문에, 짧은 작업이 우선적으로 처리되고, 그 다음 긴 작업이 대기 시간을 더 가지게 된다.
-
+   - Answer: 작업의 길이가 증가함에 따라 응답시간은 일반적으로 증가한다. 작업 길이가 긴 작업이 뒤로 밀리기 때문에, 짧은 작업이 우선적으로 처리되고, 그 다음 긴 작업이 대기 시간을 더 가지게 된다.
 
 7. 시간 할당량이 증가함에 따라 RR에서 응답 시간은 어떻게 되나요? N개의 작업이 주어졌을 때 최악의 응답 시간을 제공하는 수식을 작성할 수 있나요?
 
-    - Answer: 시간 할당량이 증가함에 따라 응답 시간은 일반적으로 증가한다. 최악의 응답 시간 = (N-1)*(시간 할당량).
+   - Answer: 시간 할당량이 증가함에 따라 응답 시간은 일반적으로 증가한다. 최악의 응답 시간 = (N-1)\*(시간 할당량).
