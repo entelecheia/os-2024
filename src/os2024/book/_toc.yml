@@ -70,6 +70,11 @@ parts:
             sections:
               - file: projects/202121006/homework
           - file: projects/202221014/index
+            sections:
+              - file: projects/202121006/hw-wk02
+              - file: projects/202121006/hw-wk03
+              - file: projects/202121006/hw-wk04
+              - file: projects/202121006/hw-wk05
           - file: projects/202321007/index
           - file: projects/202321010/index
           - file: projects/202321017/index
