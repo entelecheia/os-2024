@@ -169,7 +169,7 @@ Virtual Address Trace
 
 ## 4. 위와 동일한 문제 중 일부를 실행해 보세요. 단, 더 큰 주소 공간(-a)과 물리 메모리(-p)를 사용하세요.
 
-```{bash}
+```bash
 ./relocation.py -a 64k -p 128k -s 1 -n 10 -c
 ```
 
