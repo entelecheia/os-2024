@@ -278,6 +278,8 @@
 <li class="toctree-l2 has-children"><a class="reference internal" href="../202121006/index.html">reverse 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../202121006/hw-wk02.html">Week 2 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../202121006/hw-wk03.html">Week 3 Homework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../202121006/hw-wk04.html">Week 4 Homework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../202121006/hw-wk06.html">Week 6 Homework</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../202121010/index.html">Key-Value store project by ypilseong</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -675,6 +677,34 @@ document.write(`
 <h2>6. SJF 스케줄링에서 응답 시간의 변화<a class="headerlink" href="#sjf" title="Link to this heading">#</a></h2>
 <p>SJF 스케줄링에서는 항상 가장 짧은 작업이 먼저 실행됩니다. 이는 각 작업의 응답 시간이 그 작업 이전에 모든 더 짧은 작업들이 완료될 때까지의 시간이 됩니다. 따라서, 작업의 길이가 증가할수록, 그리고 작업의 순서가 뒤로 갈수록 응답 시간도 증가합니다.</p>
 <p>예를 들어, 작업의 길이가 [5, 10, 20] 인 경우, 첫 번째 작업(길이 5)의 응답 시간은 0이고, 두 번째 작업(길이 10)의 응답 시간은 5(첫 번째 작업의 길이), 세 번째 작업(길이 20)의 응답 시간은 15(첫 번째와 두 번째 작업의 길이 합)가 됩니다.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 시뮬레이션</span>
+python<span class="w"> </span>scheduler.py<span class="w"> </span>-s<span class="w"> </span><span class="m">123</span><span class="w"> </span>-l<span class="w"> </span><span class="m">5</span>,10,20<span class="w"> </span>-p<span class="w"> </span>SJF<span class="w"> </span>-c
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ARG<span class="w"> </span>policy<span class="w"> </span>SJF
+ARG<span class="w"> </span>jlist<span class="w"> </span><span class="m">5</span>,10,20
+
+Here<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>job<span class="w"> </span>list,<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>run<span class="w"> </span><span class="nb">time</span><span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span>job:
+<span class="w">  </span>Job<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>.0<span class="w"> </span><span class="o">)</span>
+<span class="w">  </span>Job<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>.0<span class="w"> </span><span class="o">)</span>
+<span class="w">  </span>Job<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>.0<span class="w"> </span><span class="o">)</span>
+
+
+**<span class="w"> </span>Solutions<span class="w"> </span>**
+
+Execution<span class="w"> </span>trace:
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="nb">time</span><span class="w">   </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Run<span class="w"> </span>job<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">5</span>.00<span class="w"> </span>secs<span class="w"> </span><span class="o">(</span><span class="w"> </span>DONE<span class="w"> </span>at<span class="w"> </span><span class="m">5</span>.00<span class="w"> </span><span class="o">)</span>
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="nb">time</span><span class="w">   </span><span class="m">5</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Run<span class="w"> </span>job<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">10</span>.00<span class="w"> </span>secs<span class="w"> </span><span class="o">(</span><span class="w"> </span>DONE<span class="w"> </span>at<span class="w"> </span><span class="m">15</span>.00<span class="w"> </span><span class="o">)</span>
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="m">15</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Run<span class="w"> </span>job<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m">20</span>.00<span class="w"> </span>secs<span class="w"> </span><span class="o">(</span><span class="w"> </span>DONE<span class="w"> </span>at<span class="w"> </span><span class="m">35</span>.00<span class="w"> </span><span class="o">)</span>
+
+Final<span class="w"> </span>statistics:
+<span class="w">  </span>Job<span class="w">   </span><span class="m">0</span><span class="w"> </span>--<span class="w"> </span>Response:<span class="w"> </span><span class="m">0</span>.00<span class="w">  </span>Turnaround<span class="w"> </span><span class="m">5</span>.00<span class="w">  </span>Wait<span class="w"> </span><span class="m">0</span>.00
+<span class="w">  </span>Job<span class="w">   </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>Response:<span class="w"> </span><span class="m">5</span>.00<span class="w">  </span>Turnaround<span class="w"> </span><span class="m">15</span>.00<span class="w">  </span>Wait<span class="w"> </span><span class="m">5</span>.00
+<span class="w">  </span>Job<span class="w">   </span><span class="m">2</span><span class="w"> </span>--<span class="w"> </span>Response:<span class="w"> </span><span class="m">15</span>.00<span class="w">  </span>Turnaround<span class="w"> </span><span class="m">35</span>.00<span class="w">  </span>Wait<span class="w"> </span><span class="m">15</span>.00
+
+<span class="w">  </span>Average<span class="w"> </span>--<span class="w"> </span>Response:<span class="w"> </span><span class="m">6</span>.67<span class="w">  </span>Turnaround<span class="w"> </span><span class="m">18</span>.33<span class="w">  </span>Wait<span class="w"> </span><span class="m">6</span>.67
+</pre></div>
+</div>
 </section>
 <section id="time-slice">
 <h2>7. 시간 할당량(time-slice)의 증가가 응답 시간에 미치는 영향과 최악의 경우<a class="headerlink" href="#time-slice" title="Link to this heading">#</a></h2>
