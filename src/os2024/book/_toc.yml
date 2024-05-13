@@ -58,6 +58,11 @@ parts:
         sections:
           - file: week10/threads-intro
           - file: week10/threads-api
+      - file: week11/index
+        sections:
+          - file: week11/threads-locks
+          - file: week11/threads-locks-usage
+          - file: week11/threads-cv
   - caption: Projects
     chapters:
       - file: projects/index
