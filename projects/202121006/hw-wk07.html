@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>병합이 활성화된 경우 &#8212; 운영체제 2024</title>
+    <title>Week 7 Homework &#8212; 운영체제 2024</title>
   
   
   
@@ -93,6 +93,8 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Key-Value store project by ypilseong" href="../202121010/index.html" />
+    <link rel="prev" title="Week 6 Homework" href="hw-wk06.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -159,8 +161,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -279,13 +279,14 @@
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">OS 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="index.html">reverse 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">OS 프로젝트</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">reverse 프로젝트</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="hw-wk02.html">Week 2 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hw-wk03.html">Week 3 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hw-wk04.html">Week 4 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hw-wk06.html">Week 6 Homework</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Week 7 Homework</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../202121010/index.html">Key-Value store project by ypilseong</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -542,7 +543,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>병합이 활성화된 경우</h1>
+    <h1>Week 7 Homework</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -552,62 +553,83 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">병합이 활성화된 경우</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">병합이 비활성화된 경우</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">시뮬레이션 예제</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">결론</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">병합 없이 실행</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">결과 (병합 없이):</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-10-h-0-p-best-s-0">질문 1-1 먼저 <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">10</span> <span class="pre">-H</span> <span class="pre">0</span> <span class="pre">-p</span> <span class="pre">BEST</span> <span class="pre">-s</span> <span class="pre">0</span></code> 플래그로 실행하여 몇 개의 무작위 할당과 해제를 생성하세요.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alloc-free">질문 1.2 alloc()/free()가 무엇을 반환할지 예측할 수 있나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">질문 1.3 각 요청 후에 프리 리스트의 상태를 추측할 수 있나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">질문 1.4 시간이 지남에 따라 프리 리스트에서 무엇을 알 수 있나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-fit-p-worst">질문 2.1 프리 리스트를 검색할 때 최악 적합(Worst-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">WORST</span></code>)을 사용하면 결과가 어떻게 달라지나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">질문 2.2 무엇이 바뀌나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-fit-p-first">질문 3.1 최선 적합(First-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">FIRST</span></code>)은 어떤가요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">질문 3.2 최선 적합을 사용하면 무엇이 빨라지나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-addrsort-l-sizesort-l-sizesort">질문 4. 위의 질문들에서, 리스트를 어떤 순서로 유지하느냐에 따라 일부 정책의 자유 블록 탐색 시간이 달라질 수 있습니다. 다양한 프리 리스트 순서(<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">ADDRSORT,-l</span> <span class="pre">SIZESORT+,-l</span> <span class="pre">SIZESORT-</span></code>)를 사용하여 정책과 리스트 순서가 어떻게 상호작용하는지 확인하세요.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coalescing-n-1000">질문 5.1 프리 리스트의 병합(Coalescing)은 매우 중요할 수 있습니다. 무작위 할당 수를 늘려보세요(예: -n 1000).</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">질문 5.2 시간이 지남에 따라 큰 할당 요청에는 어떤 일이 일어나나요?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">병합이 활성화된 경우</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">병합이 비활성화된 경우</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">시뮬레이션 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">결론</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">병합과 함께 실행</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">결과 (병합과 함께):</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">질문 5.3 병합 없이(즉, -C 플래그 없이) 그리고 병합과 함께 실행해 보세요. 결과에 어떤 차이가 있나요?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">병합 없이 실행</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">결과 (병합 없이):</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">차이점 분석</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">결론</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">프리 리스트 크기의 변화</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">병합이 없는 경우:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">병합이 있는 경우:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">병합과 함께 실행</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">결과 (병합과 함께):</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">리스트 순서의 중요성</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">순서별 비교:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">차이점 분석</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">결론</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">프리 리스트 크기의 변화</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">병합이 없는 경우:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">병합이 있는 경우:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">결론</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">할당 비율이 50 이상일 때</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">결과:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">리스트 순서의 중요성</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">순서별 비교:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">할당 비율이 100에 가까워지면</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">결과:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">결론</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">할당 비율이 0에 가까워지면</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">결과:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-50-100-0">질문 6. 할당된 블록의 비율을 나타내는 <code class="docutils literal notranslate"><span class="pre">-P</span></code>를 50 이상으로 변경하면 어떻게 되나요? 이 비율이 100에 가까워지면 할당은 어떻게 되나요? 0에 가까워지면요?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">할당 비율이 50 이상일 때</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">결과:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">결론</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">고도로 단편화된 프리 공간을 생성하는 방법</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">시뮬레이션 설정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">할당 비율이 100에 가까워지면</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">결과:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">단편화된 프리 리스트 생성</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">예상 결과</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">프리 리스트 구성 변화 확인</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-fit">BEST-FIT 정책과 크기 내림차순 정렬</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-fit">WORST-FIT 정책과 크기 내림차순 정렬</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-fit">FIRST-FIT 정책과 크기 내림차순 정렬</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">할당 비율이 0에 가까워지면</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">결과:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">병합을 사용한 시나리오</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">BEST-FIT 정책, 크기 내림차순 정렬, 병합 사용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">결론</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">결론</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a">질문 7. 고도로 단편화된 프리 공간을 생성하려면 어떤 종류의 특정 요청을 만들 수 있나요? -A 플래그를 사용하여 단편화된 프리 리스트를 생성하고, 다양한 정책과 옵션이 프리 리스트의 구성을 어떻게 변경하는지 확인하세요.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">고도로 단편화된 프리 공간을 생성하는 방법</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">시뮬레이션 설정</a></li>
 </ul>
-
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">단편화된 프리 리스트 생성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">예상 결과</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">프리 리스트 구성 변화 확인</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#best-fit">BEST-FIT 정책과 크기 내림차순 정렬</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-fit">WORST-FIT 정책과 크기 내림차순 정렬</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-fit">FIRST-FIT 정책과 크기 내림차순 정렬</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">병합을 사용한 시나리오</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">BEST-FIT 정책, 크기 내림차순 정렬, 병합 사용</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">결론</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
@@ -618,7 +640,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>질문 1-1 먼저 <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">10</span> <span class="pre">-H</span> <span class="pre">0</span> <span class="pre">-p</span> <span class="pre">BEST</span> <span class="pre">-s</span> <span class="pre">0</span></code> 플래그로 실행하여 몇 개의 무작위 할당과 해제를 생성하세요.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-7-homework">
+<h1>Week 7 Homework<a class="headerlink" href="#week-7-homework" title="Link to this heading">#</a></h1>
+<section id="n-10-h-0-p-best-s-0">
+<h2>질문 1-1 먼저 <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">10</span> <span class="pre">-H</span> <span class="pre">0</span> <span class="pre">-p</span> <span class="pre">BEST</span> <span class="pre">-s</span> <span class="pre">0</span></code> 플래그로 실행하여 몇 개의 무작위 할당과 해제를 생성하세요.<a class="headerlink" href="#n-10-h-0-p-best-s-0" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">n</span> <span class="mi">10</span> <span class="o">-</span><span class="n">H</span> <span class="mi">0</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">s</span> <span class="mi">0</span>
 </pre></div>
 </div>
@@ -656,16 +681,22 @@ document.write(`
 <span class="n">Free</span> <span class="n">List</span> <span class="p">[</span> <span class="n">Size</span> <span class="mi">1</span> <span class="p">]:</span>  <span class="p">[</span> <span class="n">addr</span><span class="p">:</span><span class="mi">28</span> <span class="n">sz</span><span class="p">:</span><span class="mi">76</span> <span class="p">]</span>
 </pre></div>
 </div>
-<p>질문 1.2 alloc()/free()가 무엇을 반환할지 예측할 수 있나요?</p>
+</section>
+<section id="alloc-free">
+<h2>질문 1.2 alloc()/free()가 무엇을 반환할지 예측할 수 있나요?<a class="headerlink" href="#alloc-free" title="Link to this heading">#</a></h2>
 <p>alloc() 및 free() 함수는 메모리 할당 및 해제를 수행하고, 이에 대한 반환 값은 다음과 같습니다:</p>
 <ul class="simple">
 <li><p>alloc(): 할당된 메모리 블록의 시작 주소를 반환합니다. 이 주소는 할당된 메모리 블록의 첫 번째 바이트를 가리킵니다. 따라서 이 주소를 사용하여 할당된 메모리 블록에 접근할 수 있습니다. 예를 들어, alloc(4)가 호출되었다면, 반환되는 주소는 할당된 4바이트 블록의 시작 주소일 것입니다.</p></li>
 <li><p>free(): 일반적으로 free() 함수는 반환 값을 갖지 않습니다. 할당된 메모리 블록을 성공적으로 해제한 경우에는 일반적으로 반환 값을 가질 필요가 없습니다. 하지만 어떤 구현에서는 성공적인 해제를 나타내기 위해 반환 값으로 0이나 다른 값을 반환할 수도 있습니다. 실패한 경우에는 반환 값을 통해 이를 나타낼 수 있습니다. 예를 들어, 메모리 블록이 이미 해제되었거나 잘못된 주소가 전달된 경우 등입니다.</p></li>
 </ul>
 <p>따라서 alloc() 함수는 할당된 메모리 블록의 시작 주소를 반환하고, free() 함수는 일반적으로 반환 값을 가지지 않지만, 실패한 경우에는 반환 값을 통해 이를 나타낼 수 있습니다.</p>
-<p>질문 1.3 각 요청 후에 프리 리스트의 상태를 추측할 수 있나요?</p>
+</section>
+<section id="id1">
+<h2>질문 1.3 각 요청 후에 프리 리스트의 상태를 추측할 수 있나요?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>각 요청 후에 프리 리스트의 상태를 추측할 수 있습니다. 프리 리스트는 할당되지 않은 메모리 블록의 목록이며, 요청된 크기와 일치하는 블록이 있는 경우에 해당 블록이 할당됩니다. 요청된 크기보다 큰 블록이 있는 경우에는 해당 블록이 분할되어 사용됩니다.</p>
-<p>질문 1.4 시간이 지남에 따라 프리 리스트에서 무엇을 알 수 있나요?</p>
+</section>
+<section id="id2">
+<h2>질문 1.4 시간이 지남에 따라 프리 리스트에서 무엇을 알 수 있나요?<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>시간이 지남에 따라 프리 리스트에서 다음과 같은 정보를 알 수 있습니다</p>
 <ol class="arabic simple">
 <li><p>할당 및 해제 작업의 빈도: 프리 리스트에 있는 블록의 수와 크기는 할당 및 해제 작업의 빈도와 패턴을 반영할 수 있습니다.</p></li>
@@ -674,7 +705,9 @@ document.write(`
 <li><p>할당 및 해제 작업의 패턴: 시간이 지남에 따라 할당 및 해제 작업의 패턴이 변할 수 있습니다.</p></li>
 </ol>
 <p>따라서 시간이 지남에 따라 프리 리스트에서 여러 정보를 추적하고 분석하여 시스템의 동적 메모리 사용량 및 성능을 모니터링할 수 있습니다.</p>
-<p>질문 2.1 프리 리스트를 검색할 때 최악 적합(Worst-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">WORST</span></code>)을 사용하면 결과가 어떻게 달라지나요?</p>
+</section>
+<section id="worst-fit-p-worst">
+<h2>질문 2.1 프리 리스트를 검색할 때 최악 적합(Worst-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">WORST</span></code>)을 사용하면 결과가 어떻게 달라지나요?<a class="headerlink" href="#worst-fit-p-worst" title="Link to this heading">#</a></h2>
 <p>최악 적합(Worst-fit) 정책을 사용하면 프리 리스트를 검색하는 방식이 변경됩니다. 최악 적합 정책은 가능한 블록 중에서 가장 큰 크기의 블록을 선택하여 할당하는 방식입니다. 이 방식을 사용하면 프리 리스트에서 가장 큰 블록을 먼저 찾아 할당할 수 있습니다.</p>
 <p>결과적으로 최악 적합 정책을 사용하면 프리 리스트의 상태가 다음과 같이 달라질 수 있습니다:</p>
 <ol class="arabic simple">
@@ -683,7 +716,9 @@ document.write(`
 <li><p>프리 리스트의 구조가 변할 수 있습니다. 최악 적합 정책을 사용하면 프리 리스트의 블록 순서가 변경될 수 있으며, 더 큰 블록이 앞쪽에 위치할 가능성이 높습니다.</p></li>
 </ol>
 <p>따라서 최악 적합 정책을 사용하면 메모리 할당 및 해제의 결과가 변경되고, 메모리 단편화가 증가할 수 있습니다. 이를 고려하여 시스템의 메모리 관리 정책을 선택해야 합니다.</p>
-<p>질문 2.2 무엇이 바뀌나요?</p>
+</section>
+<section id="id3">
+<h2>질문 2.2 무엇이 바뀌나요?<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>할당된 블록의 크기</strong>: 최악 적합 정책은 가능한 가장 큰 블록을 선택하여 할당합니다. 따라서 할당된 블록의 크기는 더 크게 할당될 가능성이 높습니다.</p></li>
 <li><p><strong>프리 리스트의 상태</strong>: 최악 적합 정책을 사용하면 프리 리스트의 블록 순서가 변경될 수 있습니다. 가장 큰 블록을 찾아 할당하기 때문에 더 큰 블록이 앞쪽에 위치할 가능성이 높습니다.</p></li>
@@ -691,7 +726,9 @@ document.write(`
 <li><p><strong>할당 시간</strong>: 최악 적합 정책은 더 큰 블록을 찾아야 하므로 할당 작업에 더 많은 시간이 소요될 수 있습니다.</p></li>
 </ol>
 <p>이러한 변경 사항을 고려하여 최적의 메모리 할당 정책을 선택해야 합니다.</p>
-<p>질문 3.1 최선 적합(First-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">FIRST</span></code>)은 어떤가요?</p>
+</section>
+<section id="first-fit-p-first">
+<h2>질문 3.1 최선 적합(First-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">FIRST</span></code>)은 어떤가요?<a class="headerlink" href="#first-fit-p-first" title="Link to this heading">#</a></h2>
 <p>최선 적합(First-fit) 정책은 가능한 블록 중에서 가장 먼저 발견된 충분한 크기의 첫 번째 블록을 선택하여 할당하는 방식입니다. 이 정책은 프리 리스트를 처음부터 순회하면서 충분한 크기의 첫 번째 블록을 선택하기 때문에 “첫 번째로 찾은 것이 최선”이라는 의미입니다.</p>
 <p>최선 적합 정책을 사용할 때, 다음과 같은 특징이 있습니다:</p>
 <ol class="arabic simple">
@@ -701,7 +738,9 @@ document.write(`
 <li><p><strong>메모리 단편화</strong>: 최선 적합 정책은 가장 먼저 발견된 충분한 크기의 블록을 선택하므로 메모리 단편화가 감소할 수 있습니다. 하지만 이 정책은 항상 최적의 블록을 선택하지는 않으므로 메모리 단편화가 완전히 제거되지는 않습니다.</p></li>
 </ol>
 <p>따라서 최선 적합 정책은 간단하고 직관적이며, 메모리 할당을 빠르게 수행할 수 있지만, 메모리 단편화 문제를 완전히 해결하지는 못할 수 있습니다.</p>
-<p>질문 3.2 최선 적합을 사용하면 무엇이 빨라지나요?</p>
+</section>
+<section id="id4">
+<h2>질문 3.2 최선 적합을 사용하면 무엇이 빨라지나요?<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p>최선 적합(First-fit) 정책을 사용하면 다음과 같은 측면에서 속도가 향상될 수 있습니다:</p>
 <ol class="arabic simple">
 <li><p><strong>할당 시간</strong>: 최선 적합 정책은 프리 리스트를 처음부터 순회하여 충분한 크기의 첫 번째 블록을 선택합니다. 따라서 할당 작업에 필요한 시간이 상대적으로 빨라집니다. 이는 프리 리스트를 처음부터 순회하므로 최적의 블록을 빨리 찾을 수 있기 때문입니다.</p></li>
@@ -710,7 +749,9 @@ document.write(`
 <li><p><strong>프리 리스트 관리 간소화</strong>: 최선 적합 정책은 프리 리스트를 순회하여 가장 적절한 블록을 선택합니다. 이로 인해 할당 작업이 간단해지고 메모리 할당자가 더욱 효율적으로 메모리를 관리할 수 있습니다.</p></li>
 </ol>
 <p>따라서 최선 적합 정책을 사용하면 할당 시간이 감소하고 메모리 사용량 및 메모리 단편화가 줄어들어 시스템의 성능이 향상될 수 있습니다.</p>
-<p>질문 4. 위의 질문들에서, 리스트를 어떤 순서로 유지하느냐에 따라 일부 정책의 자유 블록 탐색 시간이 달라질 수 있습니다. 다양한 프리 리스트 순서(<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">ADDRSORT,-l</span> <span class="pre">SIZESORT+,-l</span> <span class="pre">SIZESORT-</span></code>)를 사용하여 정책과 리스트 순서가 어떻게 상호작용하는지 확인하세요.</p>
+</section>
+<section id="l-addrsort-l-sizesort-l-sizesort">
+<h2>질문 4. 위의 질문들에서, 리스트를 어떤 순서로 유지하느냐에 따라 일부 정책의 자유 블록 탐색 시간이 달라질 수 있습니다. 다양한 프리 리스트 순서(<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">ADDRSORT,-l</span> <span class="pre">SIZESORT+,-l</span> <span class="pre">SIZESORT-</span></code>)를 사용하여 정책과 리스트 순서가 어떻게 상호작용하는지 확인하세요.<a class="headerlink" href="#l-addrsort-l-sizesort-l-sizesort" title="Link to this heading">#</a></h2>
 <p>프리 리스트 순서와 메모리 할당 정책 사이의 관계를 확인하기 위해 각각의 조합에 대해 시뮬레이션을 실행해보겠습니다.</p>
 <p>첫 번째로, 정책에 따라 메모리를 할당하는 동안 프리 리스트를 주소순으로 유지하도록 <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">ADDRSORT</span></code>를 사용해보겠습니다.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">100</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span> <span class="o">-</span><span class="n">l</span> <span class="n">ADDRSORT</span>
@@ -782,7 +823,9 @@ document.write(`
 </pre></div>
 </div>
 <p>이 결과에서는 프리 리스트가 크기 내림차순으로 유지되었으며, 각 할당 및 해제 작업에 따른 프리 리스트의 변화가 보입니다. 프리 리스트가 크기 내림차순으로 유지되므로 할당 및 해제 작업에 따른 프리 리스트의 순서 변화는 크기 내림차순으로 발생합니다.</p>
-<p>질문 5.1 프리 리스트의 병합(Coalescing)은 매우 중요할 수 있습니다. 무작위 할당 수를 늘려보세요(예: -n 1000).</p>
+</section>
+<section id="coalescing-n-1000">
+<h2>질문 5.1 프리 리스트의 병합(Coalescing)은 매우 중요할 수 있습니다. 무작위 할당 수를 늘려보세요(예: -n 1000).<a class="headerlink" href="#coalescing-n-1000" title="Link to this heading">#</a></h2>
 <p>다음은 무작위 할당 수를 1000으로 늘려 시뮬레이션을 실행해 본 예입니다. 프리 리스트를 크기 내림차순으로 유지하고 병합을 활성화한 경우를 예로 들어보겠습니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">C</span>
 </pre></div>
@@ -823,14 +866,16 @@ Free List [ Size 1 ]:  [ addr:1000 sz:1000 ]
 <li><p><strong>병합된 프리 리스트</strong>: 할당된 블록들이 해제되면서 인접한 프리 블록들이 병합되어 프리 리스트의 블록들이 점차 커졌습니다.</p></li>
 <li><p><strong>최종 프리 리스트</strong>: 마지막 할당 및 해제 후, 프리 리스트는 하나의 큰 블록으로 병합되었습니다.</p></li>
 </ol>
-<p>질문 5.2 시간이 지남에 따라 큰 할당 요청에는 어떤 일이 일어나나요?</p>
+</section>
+<section id="id5">
+<h2>질문 5.2 시간이 지남에 따라 큰 할당 요청에는 어떤 일이 일어나나요?<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <p>시간이 지남에 따라 큰 할당 요청에 대한 처리 방식은 크게 달라질 수 있습니다. 특히 프리 리스트의 상태, 메모리 단편화의 정도, 병합(Coalescing)의 여부 등이 영향을 미칩니다.</p>
-<section id="id1">
-<h1>병합이 활성화된 경우<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id6">
+<h3>병합이 활성화된 경우<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>프리 리스트에서 병합이 활성화되어 있는 경우, 메모리 단편화가 줄어들어 큰 블록을 할당할 수 있는 가능성이 높아집니다. 즉, 인접한 프리 블록들이 해제될 때 병합되어 더 큰 블록을 형성하게 되므로, 큰 할당 요청이 들어왔을 때 이러한 병합된 큰 블록에서 메모리를 할당할 수 있습니다.</p>
 </section>
-<section id="id2">
-<h1>병합이 비활성화된 경우<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<section id="id7">
+<h3>병합이 비활성화된 경우<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <p>병합이 비활성화된 경우, 메모리 단편화가 증가할 가능성이 큽니다. 이 경우, 큰 할당 요청이 들어왔을 때 연속된 충분한 크기의 프리 블록을 찾지 못해 할당 실패가 발생할 수 있습니다. 다음은 병합이 비활성화된 경우의 시나리오입니다:</p>
 <ol class="arabic simple">
 <li><p><strong>할당과 해제가 반복되면서 작은 단편화 블록이 많이 생깁니다.</strong></p></li>
@@ -838,8 +883,8 @@ Free List [ Size 1 ]:  [ addr:1000 sz:1000 ]
 <li><p><strong>이로 인해 큰 할당 요청이 실패할 가능성이 높아집니다.</strong></p></li>
 </ol>
 </section>
-<section id="id3">
-<h1>시뮬레이션 예제<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<section id="id8">
+<h3>시뮬레이션 예제<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p>다음은 병합이 비활성화된 상태에서 무작위 할당 수를 1000으로 늘려 시뮬레이션을 실행해 본 예입니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">coalesce</span>
 </pre></div>
@@ -877,24 +922,26 @@ Alloc(50) returned -1 (searched 501 elements)
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h1>결론<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<section id="id9">
+<h3>결론<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>병합 활성화</strong>: 큰 할당 요청이 성공할 가능성이 높음. 메모리 단편화가 줄어듦.</p></li>
 <li><p><strong>병합 비활성화</strong>: 큰 할당 요청이 실패할 가능성이 높음. 메모리 단편화가 증가함.</p></li>
 </ul>
 <p>병합의 활성화 여부는 큰 할당 요청의 성공률과 메모리 단편화에 큰 영향을 미치므로, 메모리 관리 정책을 설계할 때 이를 고려하는 것이 중요합니다.</p>
-<p>질문 5.3 병합 없이(즉, -C 플래그 없이) 그리고 병합과 함께 실행해 보세요. 결과에 어떤 차이가 있나요?</p>
-<p>병합(Coalescing)이 없는 경우와 있는 경우에 메모리 할당 및 해제가 어떻게 다른지 시뮬레이션을 통해 확인해 보겠습니다. 여기서는 동일한 조건 하에서 무작위 할당 수를 1000으로 늘려 시뮬레이션을 실행합니다.</p>
 </section>
-<section id="id5">
-<h1>병합 없이 실행<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+</section>
+<section id="c">
+<h2>질문 5.3 병합 없이(즉, -C 플래그 없이) 그리고 병합과 함께 실행해 보세요. 결과에 어떤 차이가 있나요?<a class="headerlink" href="#c" title="Link to this heading">#</a></h2>
+<p>병합(Coalescing)이 없는 경우와 있는 경우에 메모리 할당 및 해제가 어떻게 다른지 시뮬레이션을 통해 확인해 보겠습니다. 여기서는 동일한 조건 하에서 무작위 할당 수를 1000으로 늘려 시뮬레이션을 실행합니다.</p>
+<section id="id10">
+<h3>병합 없이 실행<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <p>먼저 병합 없이 시뮬레이션을 실행합니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">coalesce</span>
 </pre></div>
 </div>
-<section id="id6">
-<h2>결과 (병합 없이):<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h4>결과 (병합 없이):<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
 <div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>ptr[0] = Alloc(3)  returned 1004 (searched 1 elements)
 Free List [ Size 1 ]:  [ addr:1008 sz:992 ]
 
@@ -928,14 +975,14 @@ Alloc(50) returned -1 (searched 501 elements)
 </div>
 </section>
 </section>
-<section id="id7">
-<h1>병합과 함께 실행<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<section id="id12">
+<h3>병합과 함께 실행<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <p>다음으로 병합을 활성화하여 시뮬레이션을 실행합니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">C</span>
 </pre></div>
 </div>
-<section id="id8">
-<h2>결과 (병합과 함께):<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h4>결과 (병합과 함께):<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
 <div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>ptr[0] = Alloc(3)  returned 1004 (searched 1 elements)
 Free List [ Size 1 ]:  [ addr:1008 sz:992 ]
 
@@ -969,8 +1016,8 @@ Alloc(50) returned 1000 (searched 1 elements)
 </div>
 </section>
 </section>
-<section id="id9">
-<h1>차이점 분석<a class="headerlink" href="#id9" title="Link to this heading">#</a></h1>
+<section id="id14">
+<h3>차이점 분석<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>프리 리스트 상태</strong>:</p>
 <ul class="simple">
@@ -992,8 +1039,8 @@ Alloc(50) returned 1000 (searched 1 elements)
 </li>
 </ol>
 </section>
-<section id="id10">
-<h1>결론<a class="headerlink" href="#id10" title="Link to this heading">#</a></h1>
+<section id="id15">
+<h3>결론<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>병합 없음</strong>: 메모리 단편화 증가, 큰 할당 요청 실패 가능성 높음, 검색 시간 증가.</p></li>
 <li><p><strong>병합 있음</strong>: 메모리 단편화 감소, 큰 할당 요청 성공 가능성 높음, 검색 시간 감소.</p></li>
@@ -1002,28 +1049,28 @@ Alloc(50) returned 1000 (searched 1 elements)
 <p>질문 5.4 각 경우에 시간에 따른 프리 리스트의 크기는 어떻게 되나요? 이 경우 리스트의 순서가 중요한가요?</p>
 <p>프리 리스트의 크기는 메모리 단편화와 직접적으로 관련이 있으며, 병합이 활성화된 경우와 비활성화된 경우 시간에 따라 다르게 변합니다. 또한, 프리 리스트의 순서도 메모리 할당 정책에 따라 프리 리스트의 검색 효율성에 영향을 미칠 수 있습니다.</p>
 </section>
-<section id="id11">
-<h1>프리 리스트 크기의 변화<a class="headerlink" href="#id11" title="Link to this heading">#</a></h1>
-<section id="id12">
-<h2>병합이 없는 경우:<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<section id="id16">
+<h3>프리 리스트 크기의 변화<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id17">
+<h4>병합이 없는 경우:<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>프리 리스트는 시간이 지남에 따라 점점 더 많은 작은 블록들로 나뉘어 크기가 증가합니다.</p></li>
 <li><p>큰 블록이 할당된 후 해제되더라도, 블록들이 병합되지 않기 때문에 많은 작은 블록이 프리 리스트에 남습니다.</p></li>
 </ul>
 </section>
-<section id="id13">
-<h2>병합이 있는 경우:<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<section id="id18">
+<h4>병합이 있는 경우:<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>프리 리스트는 병합을 통해 큰 블록을 유지하므로, 리스트의 크기는 상대적으로 작습니다.</p></li>
 <li><p>해제된 블록들이 인접한 블록과 병합되기 때문에 프리 리스트의 크기는 일정하게 유지됩니다.</p></li>
 </ul>
 </section>
 </section>
-<section id="id14">
-<h1>리스트 순서의 중요성<a class="headerlink" href="#id14" title="Link to this heading">#</a></h1>
+<section id="id19">
+<h3>리스트 순서의 중요성<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
 <p>프리 리스트의 순서는 메모리 할당 정책에 따라 중요하게 작용합니다. 예를 들어, 최적 적합(Best-fit) 정책에서는 작은 블록들을 먼저 검사하는 것이 유리합니다. 따라서 프리 리스트를 크기 오름차순으로 정렬하면 검색 시간이 단축될 수 있습니다.</p>
-<section id="id15">
-<h2>순서별 비교:<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<section id="id20">
+<h4>순서별 비교:<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>주소순 정렬 (ADDRSORT)</strong>:</p>
 <ul>
@@ -1046,24 +1093,26 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ul>
 </section>
 </section>
-<section id="id16">
-<h1>결론<a class="headerlink" href="#id16" title="Link to this heading">#</a></h1>
+<section id="id21">
+<h3>결론<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>병합 여부</strong>: 병합이 활성화된 경우 프리 리스트의 크기가 작고 일정하게 유지되며, 병합이 비활성화된 경우 프리 리스트의 크기가 증가합니다.</p></li>
 <li><p><strong>리스트 순서</strong>: 프리 리스트의 정렬 순서는 메모리 할당 정책에 따라 검색 효율성에 영향을 미칩니다. 최적 적합 정책에는 크기 오름차순 정렬이 유리하며, 최악 적합 정책에는 크기 내림차순 정렬이 유리합니다.</p></li>
 </ul>
-<p>질문 6. 할당된 블록의 비율을 나타내는 <code class="docutils literal notranslate"><span class="pre">-P</span></code>를 50 이상으로 변경하면 어떻게 되나요? 이 비율이 100에 가까워지면 할당은 어떻게 되나요? 0에 가까워지면요?</p>
-<p><code class="docutils literal notranslate"><span class="pre">-P</span></code> 옵션은 할당 연산의 비율을 설정하는데 사용됩니다. 이 비율을 변경하면 프로그램이 수행하는 할당 및 해제 연산의 빈도가 달라지게 됩니다. 이를 통해 할당된 블록의 비율이 어떻게 달라지는지, 그리고 프리 리스트의 상태가 어떻게 변하는지를 관찰할 수 있습니다.</p>
 </section>
-<section id="id17">
-<h1>할당 비율이 50 이상일 때<a class="headerlink" href="#id17" title="Link to this heading">#</a></h1>
+</section>
+<section id="p-50-100-0">
+<h2>질문 6. 할당된 블록의 비율을 나타내는 <code class="docutils literal notranslate"><span class="pre">-P</span></code>를 50 이상으로 변경하면 어떻게 되나요? 이 비율이 100에 가까워지면 할당은 어떻게 되나요? 0에 가까워지면요?<a class="headerlink" href="#p-50-100-0" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">-P</span></code> 옵션은 할당 연산의 비율을 설정하는데 사용됩니다. 이 비율을 변경하면 프로그램이 수행하는 할당 및 해제 연산의 빈도가 달라지게 됩니다. 이를 통해 할당된 블록의 비율이 어떻게 달라지는지, 그리고 프리 리스트의 상태가 어떻게 변하는지를 관찰할 수 있습니다.</p>
+<section id="id22">
+<h3>할당 비율이 50 이상일 때<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <p>할당 연산의 비율이 50 이상인 경우, 할당 연산이 해제 연산보다 더 많이 발생합니다. 이로 인해 메모리의 할당 블록이 늘어나고, 프리 리스트의 크기가 줄어듭니다.</p>
 <p>예를 들어, 할당 비율을 70%로 설정한 경우:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">P</span> <span class="mi">70</span>
 </pre></div>
 </div>
-<section id="id18">
-<h2>결과:<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<section id="id23">
+<h4>결과:<a class="headerlink" href="#id23" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>할당 블록 증가</strong>: 할당 연산이 더 빈번하게 일어나므로, 사용 중인 메모리 블록이 많아집니다.</p></li>
 <li><p><strong>프리 리스트 감소</strong>: 해제 연산이 상대적으로 적어지므로, 프리 리스트에 있는 블록의 수와 크기가 줄어듭니다.</p></li>
@@ -1071,15 +1120,15 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ul>
 </section>
 </section>
-<section id="id19">
-<h1>할당 비율이 100에 가까워지면<a class="headerlink" href="#id19" title="Link to this heading">#</a></h1>
+<section id="id24">
+<h3>할당 비율이 100에 가까워지면<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
 <p>할당 비율이 100에 가까워지면, 거의 모든 연산이 할당 연산이 됩니다. 해제 연산이 거의 없으므로, 프리 리스트는 빠르게 줄어듭니다.</p>
 <p>예를 들어, 할당 비율을 90%로 설정한 경우:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">P</span> <span class="mi">90</span>
 </pre></div>
 </div>
-<section id="id20">
-<h2>결과:<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
+<section id="id25">
+<h4>결과:<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>프리 리스트 소멸</strong>: 프리 리스트에 남아 있는 블록이 거의 없게 됩니다.</p></li>
 <li><p><strong>할당 실패 가능성 증가</strong>: 해제 연산이 거의 없어 메모리가 빨리 소진되고, 새로운 할당 요청이 실패할 가능성이 높아집니다.</p></li>
@@ -1087,15 +1136,15 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ul>
 </section>
 </section>
-<section id="id21">
-<h1>할당 비율이 0에 가까워지면<a class="headerlink" href="#id21" title="Link to this heading">#</a></h1>
+<section id="id26">
+<h3>할당 비율이 0에 가까워지면<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
 <p>할당 비율이 0에 가까워지면, 거의 모든 연산이 해제 연산이 됩니다. 이미 할당된 블록이 계속 해제되어 프리 리스트가 커집니다.</p>
 <p>예를 들어, 할당 비율을 10%로 설정한 경우:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">P</span> <span class="mi">10</span>
 </pre></div>
 </div>
-<section id="id22">
-<h2>결과:<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<section id="id27">
+<h4>결과:<a class="headerlink" href="#id27" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>프리 리스트 증가</strong>: 대부분의 할당 블록이 해제되어 프리 리스트에 추가됩니다.</p></li>
 <li><p><strong>메모리 이용 효율 저하</strong>: 해제 연산이 많아 메모리가 충분히 남아 있지만, 메모리 활용률이 낮습니다.</p></li>
@@ -1103,22 +1152,24 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ul>
 </section>
 </section>
-<section id="id23">
-<h1>결론<a class="headerlink" href="#id23" title="Link to this heading">#</a></h1>
+<section id="id28">
+<h3>결론<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>할당 비율이 50 이상</strong>: 할당 블록이 증가하고 프리 리스트가 줄어듭니다. 할당 비율이 높을수록 메모리 단편화 및 할당 실패 가능성이 증가합니다.</p></li>
 <li><p><strong>할당 비율이 100에 가까움</strong>: 거의 모든 연산이 할당 연산이므로 메모리가 빠르게 고갈됩니다. 할당 실패 가능성이 매우 높습니다.</p></li>
 <li><p><strong>할당 비율이 0에 가까움</strong>: 대부분의 연산이 해제 연산이므로 프리 리스트가 커지고 메모리 단편화가 감소합니다. 큰 블록 할당이 쉬워집니다.</p></li>
 </ul>
 <p>이러한 시나리오들은 메모리 관리 전략을 설계할 때 중요한 고려 사항이 됩니다. 할당과 해제의 균형을 맞추는 것이 메모리 효율성과 성능을 유지하는 데 중요합니다.</p>
-<p>질문 7. 고도로 단편화된 프리 공간을 생성하려면 어떤 종류의 특정 요청을 만들 수 있나요? -A 플래그를 사용하여 단편화된 프리 리스트를 생성하고, 다양한 정책과 옵션이 프리 리스트의 구성을 어떻게 변경하는지 확인하세요.</p>
-<p>고도로 단편화된 프리 공간을 생성하기 위해서는 메모리를 반복적으로 할당하고 해제하여 많은 작은 프리 블록이 생성되도록 할 수 있습니다. 이는 프리 리스트에 여러 크고 작은 블록이 섞이도록 하여 단편화를 유도합니다.</p>
 </section>
-<section id="id24">
-<h1>고도로 단편화된 프리 공간을 생성하는 방법<a class="headerlink" href="#id24" title="Link to this heading">#</a></h1>
+</section>
+<section id="a">
+<h2>질문 7. 고도로 단편화된 프리 공간을 생성하려면 어떤 종류의 특정 요청을 만들 수 있나요? -A 플래그를 사용하여 단편화된 프리 리스트를 생성하고, 다양한 정책과 옵션이 프리 리스트의 구성을 어떻게 변경하는지 확인하세요.<a class="headerlink" href="#a" title="Link to this heading">#</a></h2>
+<p>고도로 단편화된 프리 공간을 생성하기 위해서는 메모리를 반복적으로 할당하고 해제하여 많은 작은 프리 블록이 생성되도록 할 수 있습니다. 이는 프리 리스트에 여러 크고 작은 블록이 섞이도록 하여 단편화를 유도합니다.</p>
+<section id="id29">
+<h3>고도로 단편화된 프리 공간을 생성하는 방법<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
 <p>다음은 <code class="docutils literal notranslate"><span class="pre">-A</span></code> 플래그를 사용하여 특정 연산 시퀀스를 통해 고도로 단편화된 프리 리스트를 생성하는 예입니다. 그런 다음, 다양한 정책과 옵션이 프리 리스트의 구성을 어떻게 변경하는지 확인합니다.</p>
-<section id="id25">
-<h2>시뮬레이션 설정<a class="headerlink" href="#id25" title="Link to this heading">#</a></h2>
+<section id="id30">
+<h4>시뮬레이션 설정<a class="headerlink" href="#id30" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p>힙 크기: 1000</p></li>
 <li><p>시작 주소: 1000</p></li>
@@ -1130,15 +1181,15 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ol>
 </section>
 </section>
-<section id="id26">
-<h1>단편화된 프리 리스트 생성<a class="headerlink" href="#id26" title="Link to this heading">#</a></h1>
+<section id="id31">
+<h3>단편화된 프리 리스트 생성<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
 <p>다음은 고도로 단편화된 프리 리스트를 생성하는 연산 시퀀스 예입니다. 작은 크기의 메모리를 할당하고 해제하여 단편화를 유도합니다:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">A</span> <span class="o">+</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">25</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span>
 </pre></div>
 </div>
 </section>
-<section id="id27">
-<h1>예상 결과<a class="headerlink" href="#id27" title="Link to this heading">#</a></h1>
+<section id="id32">
+<h3>예상 결과<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
 <p>이 명령어는 아래와 같은 방식으로 메모리를 할당 및 해제하여 단편화를 유도합니다:</p>
 <ol class="arabic simple">
 <li><p>50바이트 할당</p></li>
@@ -1158,11 +1209,11 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ol>
 <p>이 과정에서 많은 작은 프리 블록이 생성되어 프리 리스트가 고도로 단편화됩니다.</p>
 </section>
-<section id="id28">
-<h1>프리 리스트 구성 변화 확인<a class="headerlink" href="#id28" title="Link to this heading">#</a></h1>
+<section id="id33">
+<h3>프리 리스트 구성 변화 확인<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
 <p>다음으로 다양한 정책과 옵션이 프리 리스트의 구성을 어떻게 변경하는지 확인합니다.</p>
 <section id="best-fit">
-<h2>BEST-FIT 정책과 크기 내림차순 정렬<a class="headerlink" href="#best-fit" title="Link to this heading">#</a></h2>
+<h4>BEST-FIT 정책과 크기 내림차순 정렬<a class="headerlink" href="#best-fit" title="Link to this heading">#</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">A</span> <span class="o">+</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">25</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span>
 </pre></div>
 </div>
@@ -1174,7 +1225,7 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ul>
 </section>
 <section id="worst-fit">
-<h2>WORST-FIT 정책과 크기 내림차순 정렬<a class="headerlink" href="#worst-fit" title="Link to this heading">#</a></h2>
+<h4>WORST-FIT 정책과 크기 내림차순 정렬<a class="headerlink" href="#worst-fit" title="Link to this heading">#</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">WORST</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">A</span> <span class="o">+</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">25</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span>
 </pre></div>
 </div>
@@ -1186,7 +1237,7 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ul>
 </section>
 <section id="first-fit">
-<h2>FIRST-FIT 정책과 크기 내림차순 정렬<a class="headerlink" href="#first-fit" title="Link to this heading">#</a></h2>
+<h4>FIRST-FIT 정책과 크기 내림차순 정렬<a class="headerlink" href="#first-fit" title="Link to this heading">#</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">FIRST</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">A</span> <span class="o">+</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">25</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span>
 </pre></div>
 </div>
@@ -1198,10 +1249,10 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ul>
 </section>
 </section>
-<section id="id29">
-<h1>병합을 사용한 시나리오<a class="headerlink" href="#id29" title="Link to this heading">#</a></h1>
-<section id="id30">
-<h2>BEST-FIT 정책, 크기 내림차순 정렬, 병합 사용<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
+<section id="id34">
+<h3>병합을 사용한 시나리오<a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
+<section id="id35">
+<h4>BEST-FIT 정책, 크기 내림차순 정렬, 병합 사용<a class="headerlink" href="#id35" title="Link to this heading">#</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">malloc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">S</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">b</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">H</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span> <span class="mi">4</span> <span class="o">-</span><span class="n">p</span> <span class="n">BEST</span> <span class="o">-</span><span class="n">l</span> <span class="n">SIZESORT</span><span class="o">-</span> <span class="o">-</span><span class="n">C</span> <span class="o">-</span><span class="n">A</span> <span class="o">+</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">40</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">25</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span>
 </pre></div>
 </div>
@@ -1213,14 +1264,16 @@ Alloc(50) returned 1000 (searched 1 elements)
 </ul>
 </section>
 </section>
-<section id="id31">
-<h1>결론<a class="headerlink" href="#id31" title="Link to this heading">#</a></h1>
+<section id="id36">
+<h3>결론<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>특정 요청 시퀀스를 통해 고도로 단편화된 프리 리스트를 생성할 수 있습니다.</p></li>
 <li><p>다양한 메모리 할당 정책(BEST-FIT, WORST-FIT, FIRST-FIT)과 프리 리스트 정렬 순서가 단편화와 프리 리스트 구성에 큰 영향을 미칩니다.</p></li>
 <li><p>병합을 사용하면 단편화를 줄이고 프리 리스트를 더 효율적으로 관리할 수 있습니다.</p></li>
 </ul>
 <p>이를 통해 메모리 관리 전략의 중요성과 각 정책이 메모리 할당 및 해제에 미치는 영향을 잘 이해할 수 있습니다.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1253,6 +1306,24 @@ Alloc(50) returned 1000 (searched 1 elements)
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="hw-wk06.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 6 Homework</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../202121010/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Key-Value store project by ypilseong</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1269,62 +1340,83 @@ Alloc(50) returned 1000 (searched 1 elements)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">병합이 활성화된 경우</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">병합이 비활성화된 경우</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">시뮬레이션 예제</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">결론</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">병합 없이 실행</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">결과 (병합 없이):</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-10-h-0-p-best-s-0">질문 1-1 먼저 <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">10</span> <span class="pre">-H</span> <span class="pre">0</span> <span class="pre">-p</span> <span class="pre">BEST</span> <span class="pre">-s</span> <span class="pre">0</span></code> 플래그로 실행하여 몇 개의 무작위 할당과 해제를 생성하세요.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alloc-free">질문 1.2 alloc()/free()가 무엇을 반환할지 예측할 수 있나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">질문 1.3 각 요청 후에 프리 리스트의 상태를 추측할 수 있나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">질문 1.4 시간이 지남에 따라 프리 리스트에서 무엇을 알 수 있나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-fit-p-worst">질문 2.1 프리 리스트를 검색할 때 최악 적합(Worst-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">WORST</span></code>)을 사용하면 결과가 어떻게 달라지나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">질문 2.2 무엇이 바뀌나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-fit-p-first">질문 3.1 최선 적합(First-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">FIRST</span></code>)은 어떤가요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">질문 3.2 최선 적합을 사용하면 무엇이 빨라지나요?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-addrsort-l-sizesort-l-sizesort">질문 4. 위의 질문들에서, 리스트를 어떤 순서로 유지하느냐에 따라 일부 정책의 자유 블록 탐색 시간이 달라질 수 있습니다. 다양한 프리 리스트 순서(<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">ADDRSORT,-l</span> <span class="pre">SIZESORT+,-l</span> <span class="pre">SIZESORT-</span></code>)를 사용하여 정책과 리스트 순서가 어떻게 상호작용하는지 확인하세요.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coalescing-n-1000">질문 5.1 프리 리스트의 병합(Coalescing)은 매우 중요할 수 있습니다. 무작위 할당 수를 늘려보세요(예: -n 1000).</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">질문 5.2 시간이 지남에 따라 큰 할당 요청에는 어떤 일이 일어나나요?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">병합이 활성화된 경우</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">병합이 비활성화된 경우</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">시뮬레이션 예제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">결론</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">병합과 함께 실행</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">결과 (병합과 함께):</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">질문 5.3 병합 없이(즉, -C 플래그 없이) 그리고 병합과 함께 실행해 보세요. 결과에 어떤 차이가 있나요?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">병합 없이 실행</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">결과 (병합 없이):</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">차이점 분석</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">결론</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">프리 리스트 크기의 변화</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">병합이 없는 경우:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">병합이 있는 경우:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">병합과 함께 실행</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">결과 (병합과 함께):</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">리스트 순서의 중요성</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">순서별 비교:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">차이점 분석</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">결론</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">프리 리스트 크기의 변화</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">병합이 없는 경우:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">병합이 있는 경우:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">결론</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">할당 비율이 50 이상일 때</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">결과:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">리스트 순서의 중요성</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">순서별 비교:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">할당 비율이 100에 가까워지면</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">결과:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">결론</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">할당 비율이 0에 가까워지면</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">결과:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#p-50-100-0">질문 6. 할당된 블록의 비율을 나타내는 <code class="docutils literal notranslate"><span class="pre">-P</span></code>를 50 이상으로 변경하면 어떻게 되나요? 이 비율이 100에 가까워지면 할당은 어떻게 되나요? 0에 가까워지면요?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">할당 비율이 50 이상일 때</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">결과:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">결론</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">고도로 단편화된 프리 공간을 생성하는 방법</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">시뮬레이션 설정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">할당 비율이 100에 가까워지면</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">결과:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">단편화된 프리 리스트 생성</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">예상 결과</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">프리 리스트 구성 변화 확인</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-fit">BEST-FIT 정책과 크기 내림차순 정렬</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-fit">WORST-FIT 정책과 크기 내림차순 정렬</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-fit">FIRST-FIT 정책과 크기 내림차순 정렬</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">할당 비율이 0에 가까워지면</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">결과:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">병합을 사용한 시나리오</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">BEST-FIT 정책, 크기 내림차순 정렬, 병합 사용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">결론</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">결론</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a">질문 7. 고도로 단편화된 프리 공간을 생성하려면 어떤 종류의 특정 요청을 만들 수 있나요? -A 플래그를 사용하여 단편화된 프리 리스트를 생성하고, 다양한 정책과 옵션이 프리 리스트의 구성을 어떻게 변경하는지 확인하세요.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">고도로 단편화된 프리 공간을 생성하는 방법</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">시뮬레이션 설정</a></li>
 </ul>
-
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">단편화된 프리 리스트 생성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">예상 결과</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">프리 리스트 구성 변화 확인</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#best-fit">BEST-FIT 정책과 크기 내림차순 정렬</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-fit">WORST-FIT 정책과 크기 내림차순 정렬</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-fit">FIRST-FIT 정책과 크기 내림차순 정렬</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">병합을 사용한 시나리오</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">BEST-FIT 정책, 크기 내림차순 정렬, 병합 사용</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">결론</a></li>
+</ul>
+</li>
+</ul>
   </nav></div>
 
 </div></div>
