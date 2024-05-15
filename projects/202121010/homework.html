@@ -272,7 +272,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../week11/index.html">Week 11 - 병행성 2</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../week11/threads-locks.html">락</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week11/threads-locks.html">락 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week11/threads-locks-usage.html">락 기반의 병행 자료 구조</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week11/threads-cv.html">컨디션 변수</a></li>
 </ul>
@@ -556,6 +556,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2">week 2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4">week 4</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-6">week 6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-7">week 7</a></li>
 </ul>
             </nav>
         </div>
@@ -1384,6 +1385,105 @@ VA<span class="w">  </span><span class="m">9</span>:<span class="w"> </span>0x00
 </li>
 </ol>
 </section>
+<section id="week-7">
+<h2>week 7<a class="headerlink" href="#week-7" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>먼저 <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">10</span> <span class="pre">-H</span> <span class="pre">0</span> <span class="pre">-p</span> <span class="pre">BEST</span> <span class="pre">-s</span> <span class="pre">0</span></code> 플래그로 실행하여 몇 개의 무작위 할당과 해제를 생성하세요. alloc()/free()가 무엇을 반환할지 예측할 수 있나요? 각 요청 후에 프리 리스트의 상태를 추측할 수 있나요? 시간이 지남에 따라 프리 리스트에서 무엇을 알 수 있나요?</p>
+<ul>
+<li><p>Answer</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ptr<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Alloc<span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span>returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">1000</span><span class="w"> </span>
+List?<span class="w"> </span>-&gt;<span class="w"> </span>size<span class="w"> </span><span class="m">1</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span>addr:1003<span class="w"> </span>sz:97<span class="o">]</span>
+
+Free<span class="o">(</span>ptr<span class="o">[</span><span class="m">0</span><span class="o">])</span>
+returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">0</span>
+List?<span class="w"> </span>size<span class="w"> </span><span class="m">2</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span>addr:1000<span class="w"> </span>sz:3<span class="o">]</span>,<span class="o">[</span>addr:1003<span class="w"> </span>sz:97<span class="o">]</span>
+
+ptr<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Alloc<span class="o">(</span><span class="m">5</span><span class="o">)</span><span class="w"> </span>returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">1003</span><span class="w"> </span>
+List?<span class="w"> </span>size<span class="w"> </span><span class="m">2</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span>addr:1000<span class="w"> </span>sz:3<span class="o">]</span>,<span class="o">[</span>addr:1008<span class="w"> </span>sz:92<span class="o">]</span>
+
+Free<span class="o">(</span>ptr<span class="o">[</span><span class="m">1</span><span class="o">])</span>
+returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">0</span>
+List?<span class="w"> </span>size<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="o">[</span>addr:1000<span class="w"> </span>sz:3<span class="o">]</span>,<span class="o">[</span>addr:1003<span class="w"> </span>sz:5<span class="o">]</span>,<span class="o">[</span>addr:1008<span class="w"> </span>sz:92<span class="o">]</span>
+
+ptr<span class="o">[</span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Alloc<span class="o">(</span><span class="m">8</span><span class="o">)</span><span class="w"> </span>returned<span class="w"> </span>?<span class="w"> </span><span class="m">1008</span>
+List?<span class="w"> </span>size<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="o">[</span>addr:1000<span class="w"> </span>sz:3<span class="o">]</span>,<span class="o">[</span>addr:1003<span class="w"> </span>sz:5<span class="o">]</span>,<span class="o">[</span>addr:1016<span class="w"> </span>sz:84<span class="o">]</span>
+
+Free<span class="o">(</span>ptr<span class="o">[</span><span class="m">2</span><span class="o">])</span>
+returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">0</span>
+List?<span class="w"> </span>size<span class="w"> </span><span class="m">4</span>:<span class="w"> </span><span class="o">[</span>addr:100<span class="w"> </span>sz:3<span class="o">]</span>,<span class="o">[</span>addr:1003<span class="w"> </span>sz:5<span class="o">]</span>,<span class="o">[</span>addr:1008<span class="w"> </span>sz:8<span class="o">]</span>,<span class="o">[</span>addr:1016<span class="w"> </span>sz:84<span class="o">]</span>
+
+ptr<span class="o">[</span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Alloc<span class="o">(</span><span class="m">8</span><span class="o">)</span><span class="w"> </span>returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">1008</span>
+List?<span class="w"> </span>size<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="o">[</span>addr:1000<span class="w"> </span>sz:3<span class="o">]</span>,<span class="o">[</span>addr:1003<span class="w"> </span>sz:5<span class="o">]</span>,<span class="o">[</span>addr:1016<span class="w"> </span>sz:84<span class="o">]</span>
+
+Free<span class="o">(</span>ptr<span class="o">[</span><span class="m">3</span><span class="o">])</span>
+returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">0</span>
+List?<span class="w">  </span>size<span class="w"> </span><span class="m">4</span>:<span class="w"> </span><span class="o">[</span>addr:100<span class="w"> </span>sz:3<span class="o">]</span>,<span class="o">[</span>addr:1003<span class="w"> </span>sz:5<span class="o">]</span>,<span class="o">[</span>addr:1008<span class="w"> </span>sz:8<span class="o">]</span>,<span class="o">[</span>addr:1016<span class="w"> </span>sz:84<span class="o">]</span>
+
+ptr<span class="o">[</span><span class="m">4</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Alloc<span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">1000</span>
+List?<span class="w"> </span>size<span class="w"> </span><span class="m">4</span>:<span class="w"> </span><span class="o">[</span>addr:1002<span class="w"> </span>sz:1<span class="o">]</span>,<span class="o">[</span>addr:1003<span class="w"> </span>sz:5<span class="o">]</span>,<span class="o">[</span>addr:1008<span class="w"> </span>sz:8<span class="o">]</span>,<span class="o">[</span>addr:1016<span class="w"> </span>sz:84<span class="o">]</span>
+
+
+ptr<span class="o">[</span><span class="m">5</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Alloc<span class="o">(</span><span class="m">7</span><span class="o">)</span><span class="w"> </span>returned<span class="w"> </span>?<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">1008</span>
+List?<span class="w"> </span>size<span class="w"> </span><span class="m">4</span>:<span class="w"> </span><span class="o">[</span>addr:1002<span class="w"> </span>sz:1<span class="o">]</span>,<span class="o">[</span>addr:1003<span class="w"> </span>sz:5<span class="o">]</span>,<span class="o">[</span>addr:1015<span class="w"> </span>sz:1<span class="o">]</span>,<span class="o">[</span>addr:1016<span class="w"> </span>sz:84<span class="o">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>3바이트 크기의 블록, 헤더값 0이므로 <code class="docutils literal notranslate"><span class="pre">1000번</span></code> 주소에 할당
+-&gt; size는 <code class="docutils literal notranslate"><span class="pre">1000~1002번</span></code>까지 블록이 있으므로 free list는 나머지 <code class="docutils literal notranslate"><span class="pre">1003부터</span> <span class="pre">97개</span></code>만큼 남음</p></li>
+<li><p>3바이트 크기의 블록을 반환 -&gt; <code class="docutils literal notranslate"><span class="pre">1000~1002번</span></code>에 있던 블록이 사라져 모두 비었지만 다시 초기상태로 돌아가지 못하기 때문에 free list는 두개</p></li>
+<li><p>5바이트 크기의 블록은 <code class="docutils literal notranslate"><span class="pre">1000~1002번</span></code> 블록에는 못 들어가기 때문에 바로 다음 곳인 <code class="docutils literal notranslate"><span class="pre">1003번</span></code>으로 할당
+-&gt; 사이즈는 1000~1002번 블록과 할당된 블록을 뺸 나머지</p></li>
+<li><p>5바이트 크기의 블록을 반환 -&gt; <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">1000~1002번,</span> <span class="pre">1003~1007번(5바이트</span> <span class="pre">블록</span> <span class="pre">할당됐던</span> <span class="pre">곳),</span> <span class="pre">두개의</span> <span class="pre">블록을</span> <span class="pre">뺸</span> <span class="pre">나머지</span></code></p></li>
+<li><p>8바이트 크기의 블록은 앞서 진행한 블록들보다 크기가 크므로 새로운 곳에 할당</p></li>
+<li><p>free list가 3개였지만 8바이트 블록이 새로운 곳으로 할당 받았다 반환했기 때문에 4개</p></li>
+<li><p>8바이트 크기의 블록이 앞서 진행한 블록과 크기가 같으므로 같은 주소에 할당</p></li>
+<li><p>바이트 크기가 같으므로 반환 후 free list도 동일</p></li>
+<li><p>2바이트 크기의 블록은 처음 진행한 3바이트 블록보다 작아 <code class="docutils literal notranslate"><span class="pre">1000~1002번</span></code> free list 요소에 들어갈 수 있음</p></li>
+<li><p>7바이트 크기의 블록 또한 8바이트 크기보다 작아 <code class="docutils literal notranslate"><span class="pre">1008~1014번</span></code> free list 요소에 들어갈 수 있음</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>프리 리스트를 검색할 때 최악 적합(Worst-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">WORST</span></code>)을 사용하면 결과가 어떻게 달라지나요? 무엇이 바뀌나요?</p>
+<ul class="simple">
+<li><p>Answer : free list 요소에 할당할 수 있음에도 가장 큰 곳으로 할당을 받아 free list에 정해진 길이의 요소들이 늘어난다.</p></li>
+</ul>
+</li>
+<li><p>최선 적합(First-fit) 정책(<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">FIRST</span></code>)은 어떤가요? 최선 적합을 사용하면 무엇이 빨라지나요?</p>
+<ul class="simple">
+<li><p>Answer : 최선 적합은 <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">BEST</span></code> 와 다르게 적합한 블록을 찾은 후 가장 작은 블록을 찾는 것이 아니라 요청보다 큰 첫번 째 블록을 찾아 바로 할당을 한다. 이로써 빈 공간 리스트를 계속 탐색할 이유가 없어 속도가 빠르다.</p></li>
+</ul>
+</li>
+<li><p>위의 질문들에서, 리스트를 어떤 순서로 유지하느냐에 따라 일부 정책의 자유 블록 탐색 시간이 달라질 수 있습니다. 다양한 프리 리스트 순서(<code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">ADDRSORT,-l</span> <span class="pre">SIZESORT+,-l</span> <span class="pre">SIZESORT-</span></code>)를 사용하여 정책과 리스트 순서가 어떻게 상호작용하는지 확인하세요.</p>
+<ul class="simple">
+<li><p>Answer : 최선 적합(First-fit) 정책을 사용했을 때 free list의 순서가 속도가 제일 빠른 것은 <code class="docutils literal notranslate"><span class="pre">SIZESORT-</span></code>이다. 적합한 블록중 가장 첫번째를 찾는다. 따라서 항상 가장 큰 값을 가진 블록이 첫번 째에 있는 순서이기 때문에 빠르고 다음으로는 <code class="docutils literal notranslate"><span class="pre">ADDSORT</span></code>가 빠르며, 가장 느린 순서는 <code class="docutils literal notranslate"><span class="pre">SIZESORT+</span></code>가 가장 느리다.</p></li>
+</ul>
+</li>
+<li><p>프리 리스트의 병합(Coalescing)은 매우 중요할 수 있습니다. 무작위 할당 수를 늘려보세요(예: -n 1000). 시간이 지남에 따라 큰 할당 요청에는 어떤 일이 일어나나요? 병합 없이(즉, -C 플래그 없이) 그리고 병합과 함께 실행해 보세요. 결과에 어떤 차이가 있나요? 각 경우에 시간에 따른 프리 리스트의 크기는 어떻게 되나요? 이 경우 리스트의 순서가 중요한가요?</p>
+<ul class="simple">
+<li><p>Answer : 병합을 하지 않으면 free list에 블록이 여러개로 늘어나며 값은 고정되어 있고 크기는 1,2 등의 작은 크기로 이뤄져있다. 이로 인해 공간에 대한 손해로 이어진다. 큰 값이 들어오면 많은 리스트를 봐야하기 때문에 속도 또한 늦어진다. 하지만 병합을 진행하면 free list 블록들이 병합을 하며 하나의 요소를 만들어 속도와 효율성이 증가한다.</p></li>
+</ul>
+</li>
+<li><p>할당된 블록의 비율을 나타내는 <code class="docutils literal notranslate"><span class="pre">-P</span></code>를 50 이상으로 변경하면 어떻게 되나요? 이 비율이 100에 가까워지면 할당은 어떻게 되나요? 0에 가까워지면요?</p>
+<ul class="simple">
+<li><p>Answer : <code class="docutils literal notranslate"><span class="pre">-P</span></code>가 높으면 그만큼 할당된 블록이 많아지며 메모리 주소 공간에 대한 여유가 사라진다. 이로 인해 할당을 받지 못하는 경우도 생긴다. 반대로 <code class="docutils literal notranslate"><span class="pre">-P</span></code>가 낮으면 할당된 블록의 비율이 낮아져 주소공간의 대한 여유가 많이 생긴다.</p></li>
+</ul>
+</li>
+<li><p>고도로 단편화된 프리 공간을 생성하려면 어떤 종류의 특정 요청을 만들 수 있나요? -A 플래그를 사용하여 단편화된 프리 리스트를 생성하고, 다양한 정책과 옵션이 프리 리스트의 구성을 어떻게 변경하는지 확인하세요.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BEST</span></code> : 먼저 할당될 블록의 크기와 같거나 큰 블록을 찾는다. 그 후, 후보자 그룹에서 가장 장은 크기에 블록에 할당하기 때문에 효율성이 좋다. 하지만 free list 요소를 전부 확인해야하지 때문에 속도는 오래 걸린다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WORST</span></code> : 최악 적합은 최적 적합의 반대 방식이다. 가장 큰 빈 블록윽 찾아 요청된 크기 만큼만 반환하고 남는 부분은 빈 공간 리스트에 계속 유지한다. 최악 적합의 목적은 최적 적합방식에서 발생될 수 있는 작은 청크들을 방지하는 것이다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FIRST</span></code> : 최선 적합은 속도가 빠르다는 것이 장점이다. 원하는 블록을 찾기 위해 모든 블록을 볼 필요가 없다. 따라서 free list 순서를 <code class="docutils literal notranslate"><span class="pre">SIZESORT-</span></code>로 진행하면 속도가 빠르다.</p></li>
+</ol>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-C</span></code> : 병합은 free list에 블록 개수를 줄여주며 주소 공간의 효율성을 증가시킨다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-A</span></code> : OPSLIST는 사용자가 직접 할당과 해제를 통해 유연성과 테스트의 용이성이 생긴다. 따라서 단편화가를 통해 일관성 또한 생긴다. 하지만 오류의 가능성이 존재한다.</p></li>
+</ul>
+</li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1454,6 +1554,7 @@ VA<span class="w">  </span><span class="m">9</span>:<span class="w"> </span>0x00
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2">week 2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4">week 4</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-6">week 6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-7">week 7</a></li>
 </ul>
   </nav></div>
 
