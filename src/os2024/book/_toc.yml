@@ -62,7 +62,9 @@ parts:
         sections:
           - file: week11/threads-locks
           - file: week11/threads-locks-usage
-          - file: week11/threads-cv
+      - file: week12/index
+        sections:
+          - file: week12/threads-cv
   - caption: Projects
     chapters:
       - file: projects/index
