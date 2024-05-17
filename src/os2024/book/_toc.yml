@@ -65,6 +65,7 @@ parts:
       - file: week12/index
         sections:
           - file: week12/threads-cv
+          - file: week12/threads-sema
   - caption: Projects
     chapters:
       - file: projects/index
