@@ -8,6 +8,7 @@ parts:
     chapters:
       - file: week01/index
         sections:
+          - file: week01/dialogue
           - file: week01/intro
           - url: https://learn.microsoft.com/ko-kr/windows/wsl/install
             title: WSL 설치방법
