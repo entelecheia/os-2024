@@ -45,7 +45,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
@@ -69,7 +69,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -563,11 +563,18 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">세마포어: 정의</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">이진 세마포어 (락)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">컨디션 변수로서의 세마포어</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">생산자/소비자 (유한 버퍼) 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">생산자/소비자 (유한 버퍼) 문제</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">상호 배제 추가</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">제대로 된 해법</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reader-writer">Reader-Writer 락</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">식사하는 철학자</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">세마포어 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">식사하는 철학자</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">해답: 의존성 제거</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">세마포어 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">요약</a></li>
 </ul>
             </nav>
         </div>
@@ -581,29 +588,409 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>세마포어<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>다양한 범주의 병행성 문제 해결을 위해서는 락과 조건 변수 둘 다 필요합니다.</p>
+<div class="highlight-notice notranslate"><div class="highlight"><pre><span></span>핵심 질문 : 세마포어를 어떻게 사용하는가 락과 컨디션 변수 대신에 세마포어를 사용하는 방법은 무엇인가? 세마포어의 정의는 무엇인가? 이진 세마포어는 무엇인가? 락과 컨디션 변수를 사용하여 세마포어를 만드는 것이 가능한가? 그 반대로 세마포어를 사용하여 락과 조건 변수를 만드는 것이 가능한가?
+</pre></div>
+</div>
 <section id="id2">
 <h2>세마포어: 정의<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>세마포어는 정수 값을 갖는 객체로서 두 개의 루틴으로 조작할 수 있습니다. POSIX 표준에서 이 두 개의 루틴은 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>, <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>이다. 세마포어는 초깃값에 의해 동작이 결정되기 때문에 사용 전에 초기화를 해야 합니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;semaphore.h&gt;</span>
+sem_t<span class="w"> </span>s<span class="p">;</span>
+sem_init<span class="o">(</span><span class="p">&amp;</span>s,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>세마포어 <code class="docutils literal notranslate"><span class="pre">s</span></code>를 선언 후 3번째 인자로 1을 전달하여 세마포어의 값을 1로 초기화합니다. <code class="docutils literal notranslate"><span class="pre">sem_init()</span></code>의 두 번째 인자는 모든 예제에서 0입니다. 이 값은 같은 프로세스 내의 쓰레드 간에 세마포어를 공유한다는 뜻입니다. 다른 값을 사용하는 예시 (다른 프로세스간 동기화 제공) 는 docs를 읽어보자.</p>
+<p>초기화된 후에는 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>, <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>라는 함수를 호출하여 세마포어를 다룰 수 있습니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>int<span class="w"> </span>sem_wait<span class="o">(</span>sem_t<span class="w"> </span>*s<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>decrement<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span>semaphore<span class="w"> </span>s<span class="w"> </span>by<span class="w"> </span>one<span class="p">;</span>
+<span class="w">	</span><span class="nb">wait</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span>semaphore<span class="w"> </span>s<span class="w"> </span>is<span class="w"> </span>negative<span class="p">;</span>
+<span class="o">}</span>
+
+int<span class="w"> </span>sem_post<span class="o">(</span>sem_t<span class="w"> </span>*s<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>increment<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span>semaphore<span class="w"> </span>s<span class="w"> </span>by<span class="w"> </span>one<span class="p">;</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span>there<span class="w"> </span>are<span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>threads<span class="w"> </span>waiting,<span class="w"> </span>wake<span class="w"> </span>one<span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code> 함수는 즉시 리턴하거나 (세마포어의 값이 1 이상이면), 아니면 해당 세마포어 값이 1 이상이 될 때까지 호출자를 대기시킵니다. 다수의 쓰레드들이 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>을 호출할 수 있기 때문에, 대기큐에는 다수의 쓰레드가 존재할 수 있습니다. 대기하는 법에는 회전과 재우기 두 가지가 있다는 것을 기억하자.
+<code class="docutils literal notranslate"><span class="pre">sem_post()</span></code> 함수는 대기하지 않습니다. 세마포어 값을 증가시키고 대기 중인 쓰레드 중 하나를 깨웁니다.
+세마포어가 음수라면 그 값은 현재 대기 중인 쓰레드의 개수와 같습니다.
+이 두 개의 함수는 atomic하게 실행된다고 가정합니다.</p>
 </section>
 <section id="id3">
 <h2>이진 세마포어 (락)<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>우리가 처음으로 세마포어를 적용할 곳은 ‘락’입니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sem_t<span class="w"> </span>m<span class="p">;</span>
+sem_init<span class="o">(</span><span class="p">&amp;</span>m,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>X<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>X로<span class="w"> </span>세마포어<span class="w"> </span>초기화하기.
+sem_wait<span class="o">(</span><span class="p">&amp;</span>m<span class="o">)</span><span class="p">;</span>
+//<span class="w"> </span>임계<span class="w"> </span>영역
+sem_post<span class="o">(</span><span class="p">&amp;</span>m<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">X</span></code>는 어떤 값이 되어야 할까? 조금만 생각해봐도 1이 되어야 한다는 사실을 알 수 있습니다.</p>
+<p>쓰레드가 2개라고 가정해보자. 첫 번째 쓰레드가 세마포어 값을 1 감소시켜 0으로 만듭니다. 세마포어의 값이 음수가 아니므로 리턴하고 진행합니다. 첫 번째 쓰레드가 임계 영역에 있을 때 두 번째 쓰레드가 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>을 호출하여 임계 영역 진임을 시도한다면 어떻게 될까?</p>
+<p>이 경우 두 번째 쓰레드가 세마포어 값을 -1로 감소시키고, 대기에 들어갑니다. 첫 번째 쓰레드가 다시 실행되면 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>를 호출하고 세마포어 값을 0으로 증가시키고, 잠자던 두 번째 쓰레드를 깨웁니다.락은 두 개의 상태 (사용 가능, 사용 중) 만 존재하므로 <em>이진 세마포어 (binary semaphore)</em> 라고도 불립니다.</p>
 </section>
 <section id="id4">
 <h2>컨디션 변수로서의 세마포어<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>어떤 조건이 참이 되기를 기다리기 위해 현재 쓰레드를 멈출 때에도 세마포어는 유용하게 사용됩니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sem_t<span class="w"> </span>s<span class="p">;</span>
+
+void<span class="w"> </span>*child<span class="o">(</span>void<span class="w"> </span>*arg<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>printf<span class="o">(</span>“child<span class="se">\n</span><span class="w"> </span>”<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>sem_post<span class="o">(</span><span class="p">&amp;</span>s<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>시그널<span class="w"> </span>전달:<span class="w"> </span>동작<span class="w"> </span>끝
+<span class="w">	</span><span class="k">return</span><span class="w"> </span>NULL<span class="p">;</span>
+<span class="o">}</span>
+
+int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>*argv<span class="o">[])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>s,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>X<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>X의<span class="w"> </span>값은<span class="w"> </span>무엇이<span class="w"> </span>되어야<span class="w"> </span>할까?
+<span class="w">	</span>printf<span class="o">(</span>“parent:<span class="w"> </span>begin<span class="se">\n</span><span class="w"> </span>”<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>pthread_t<span class="w"> </span>c<span class="p">;</span>
+<span class="w">	</span>Pthread_create<span class="o">(</span>c,<span class="w"> </span>NULL,<span class="w"> </span>child,<span class="w"> </span>NULL<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>s<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>자식을<span class="w"> </span>여기서<span class="w"> </span>대기
+<span class="w">	</span>printf<span class="o">(</span>“parent:<span class="w"> </span>end<span class="se">\n</span><span class="w"> </span>”<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>다음과 같은 실행 결과를 얻고자 합니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>parent:<span class="w"> </span>begin
+child
+parent:<span class="w"> </span>end
+</pre></div>
+</div>
+<p>세마포어를 이용하여 어떻게 이 효과를 만들 수 있을까? 답은 의외로 간단합니다. 코드에서 볼 수 있듯이, 부모 프로세스는 자식 프로세스 생성 후 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>를 호출하여 자식의 종료를 대기합니다. 자식은 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>를 호출하여 종료되었음을 알립니다.</p>
+<p>중요한 질문이 있습니다. 세마포어 값을 무엇으로 초기화할까?</p>
+<p>정답은 0입니다.</p>
+<p>다음과 같은 두 가지 경우를 통해 그 이유를 알아보자.</p>
+<ol class="arabic simple">
+<li><p>자식 프로세스 생성 후, 아직 자식 프로세스가 실행을 시작하지 않은 경우입니다 (준비 큐에만 들어 있고 실행 중이 아니다). 이 경우 자식이 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>를 호출하기 전에 부모가 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>를 호출할 것입니다. 부모 프로세스는 자식이 실행될 때까지 대기해야 합니다. 이를 위해서는 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 호출 전에 세마포어 값이 0보다 같거나 작아야 합니다. 때문에 0이 초기값이 되어야 합니다. 부모가 실행되면 세마포어 값을 감소시키고 (-1로) 대기합니다. 자식이 실행되었을 때 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>를 호출하여 세마포어의 값을 0으로 증가시킨 후 부모를 깨훕니다. 그러면 부모는 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>에서 리턴을 하여 프로그램을 종료시킵니다.</p></li>
+<li><p>부모 프로세스가 <code class="docutils literal notranslate"><span class="pre">sem_wait</span></code>()를 호출하기 전에 자식 프로세스의 실행이 종료된 경우입니다. 이 경우, 자식이 먼저 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>를 호출하여 세마포어의 값을 0에서 1로 증가시킵니다. 부모가 실행할 수 있는 상황이 되면 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code> 를 호출합니다. 세마포어 값이 1인 것을 발견할 것입니다. 부모는 세마포어 값을 0으로 감소시키고 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>에서 대기 없이 리턴합니다. 이 방법 역시 의도한 결과를 만들어냅니다.</p></li>
+</ol>
 </section>
 <section id="id5">
 <h2>생산자/소비자 (유한 버퍼) 문제<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>이 문제를 해결하기 위해 <code class="docutils literal notranslate"><span class="pre">empty</span></code>와 <code class="docutils literal notranslate"><span class="pre">full</span></code>이라는 두 개의 세마포어를 사용합니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>int<span class="w"> </span>buffer<span class="o">[</span>MAX<span class="o">]</span><span class="p">;</span>
+int<span class="w"> </span><span class="nv">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+int<span class="w"> </span><span class="nv">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+
+void<span class="w"> </span>put<span class="o">(</span>int<span class="w"> </span>value<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>buffer<span class="o">[</span>fill<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>value<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>f1
+<span class="w">	</span><span class="nv">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>fill<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>%<span class="w"> </span>MAX<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>f2
+<span class="o">}</span>
+
+int<span class="w"> </span>get<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>int<span class="w"> </span><span class="nv">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>buffer<span class="o">[</span>use<span class="o">]</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>g1
+<span class="w">	</span><span class="nv">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>use<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>%<span class="w"> </span>MAX<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>g2
+<span class="w">	</span><span class="k">return</span><span class="w"> </span>tmp<span class="p">;</span>
+<span class="o">}</span>
+sem_t<span class="w"> </span>empty<span class="p">;</span>
+sem_t<span class="w"> </span>full<span class="p">;</span>
+
+void<span class="w"> </span>*producer<span class="o">(</span>void<span class="w"> </span>*arg<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>int<span class="w"> </span>i<span class="p">;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>loops<span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>empty<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>P1
+<span class="w">		</span>put<span class="o">(</span>i<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>P2
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>full<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>P3
+<span class="w">	</span><span class="o">}</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>*consumer<span class="o">(</span>void<span class="w"> </span>*arg<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>int<span class="w"> </span>i,<span class="w"> </span><span class="nv">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="w">	</span><span class="k">while</span><span class="w"> </span><span class="o">(</span>tmp<span class="w"> </span>!<span class="o">=</span><span class="w"> </span>−1<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>full<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>C1
+<span class="w">		</span><span class="nv">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>get<span class="o">()</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>C2
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>empty<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>C3
+<span class="w">		</span>printf<span class="o">(</span>“%d<span class="se">\n</span><span class="w"> </span>”,<span class="w"> </span>tmp<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span><span class="o">}</span>
+<span class="o">}</span>
+
+int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>*argv<span class="o">[])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>//<span class="w"> </span>.<span class="w"> </span>.<span class="w"> </span>.
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>empty,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>MAX<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>empty는<span class="w"> </span>MAX
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>full,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>full은<span class="w"> </span><span class="m">0</span>
+<span class="w">	</span>//<span class="w"> </span>.<span class="w"> </span>.<span class="w"> </span>.
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>생산자와 소비자 쓰레드가 각 하나씩 있고 CPU도 하나인 상황에 대해 살펴보자. 소비자가 먼저 실행했다고 가정하면 소비자 쓰레드가 그림에서 <code class="docutils literal notranslate"><span class="pre">C1</span></code> 라인에 먼저 도달하여 <code class="docutils literal notranslate"><span class="pre">sem_wait(&amp;full)</span></code>을 호출합니다. 변수<code class="docutils literal notranslate"><span class="pre">full</span></code>의 값은 0으로 초기화되었기 때문에 해당 명령으로 인해 <code class="docutils literal notranslate"><span class="pre">full</span></code>의 값은 -1로 감소되고, 소비자는 대기합니다. 다른 쓰레드가 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>를 호출해서 <code class="docutils literal notranslate"><span class="pre">full</span></code> 변수가 증가하기를 기다려야 합니다.</p>
+<p>그런 이후에 생산자 쓰레드가 실행하여 P1 라인에서 <code class="docutils literal notranslate"><span class="pre">sem_wait(&amp;empty)</span></code> 루틴을 호출합니다. <code class="docutils literal notranslate"><span class="pre">empty</span></code> 변수가 <code class="docutils literal notranslate"><span class="pre">MAX</span></code> (이 경우에는 1)로 설정되었기 때문에 소비자와 다르게 생산자는 다음 문장을 계속 실행합니다. <code class="docutils literal notranslate"><span class="pre">empty</span></code> 변수는 감소하여 0이 되고 생산자가 데이터 값을 버퍼의 첫 번째 공간에 넣습니다 (P2 라인). 그런 후에 생산자는 P3 라인의 <code class="docutils literal notranslate"><span class="pre">sem_post(&amp;full)</span></code>를 호출하여 <code class="docutils literal notranslate"><span class="pre">full</span></code> 세마포어의 값을 -1에서 0으로 변경하고 소비자 쓰레드를 깨웁니다 (대기 상태에서 준비 상태로 바뀝니다).</p>
+<p>만약 <code class="docutils literal notranslate"><span class="pre">MAX</span></code> 값이 1보다 크고 생산자와 소비자 쓰레드들이 여러 개 있다면? 경쟁 조건이 발생할 것입니다. <code class="docutils literal notranslate"><span class="pre">put()</span></code>, <code class="docutils literal notranslate"><span class="pre">get()</span></code>에서 경쟁 조건이 발생합니다.</p>
+<p>두 개의 생산자 Pa와 Pb가 있는데, 두 쓰레드가 <code class="docutils literal notranslate"><span class="pre">put()</span></code> 을 거의 동시에 호출하였다고 해 보자. Pa가 먼저 실행되어서 버퍼에 첫 공간에 값을 넣기 시작합니다 (f1 라인에서 <code class="docutils literal notranslate"><span class="pre">fill</span> <span class="pre">=</span> <span class="pre">0</span></code>이다). Pa 쓰레드가 <code class="docutils literal notranslate"><span class="pre">fill</span></code> 카운터 변수를 1로 변경하기 전에 인터럽트가 걸렸습니다. 생산자 Pb가 실행되고 f1 라인에서 마찬가지로 버퍼의 첫 번째 공간에 데이터를 삽입합니다. Pa가 기록한 이전의 값은 새로운 값으로 대체됩니다.</p>
+<section id="id6">
+<h3>상호 배제 추가<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>버퍼를 채우고 버퍼에 대한 인덱스를 증가하는 동작은 임계 영역이기 때문에 신중하게 처리해야 합니다. 지금까지 배운 이진 세마포어와 몇 개의 락을 추가하여 해결해보자.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sem_t<span class="w"> </span>empty<span class="p">;</span>
+sem_t<span class="w"> </span>full<span class="p">;</span>
+sem_t<span class="w"> </span>mutex<span class="p">;</span>
+
+void<span class="w"> </span>*producer<span class="o">(</span>void<span class="w"> </span>*arg<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>int<span class="w"> </span>i<span class="p">;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>loops<span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>mutex<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>P0
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>empty<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>P1
+<span class="w">		</span>put<span class="o">(</span>i<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>P2
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>full<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>P3
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>mutex<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>P4
+<span class="w">	</span><span class="o">}</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>*consumer<span class="o">(</span>void<span class="w"> </span>*arg<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>int<span class="w"> </span>i,<span class="w"> </span><span class="nv">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="w">	</span><span class="k">while</span><span class="w"> </span><span class="o">(</span>tmp<span class="w"> </span>!<span class="o">=</span><span class="w"> </span>−1<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>mutex<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>C0
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>full<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>C1
+<span class="w">		</span><span class="nv">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>get<span class="o">()</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>C2
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>empty<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>C3
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>mutex<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>C4
+<span class="w">		</span>printf<span class="o">(</span>“%d<span class="se">\n</span><span class="w"> </span>”,<span class="w"> </span>tmp<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span><span class="o">}</span>
+<span class="o">}</span>
+
+int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>*argv<span class="o">[])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>//<span class="w"> </span>.<span class="w"> </span>.<span class="w"> </span>.
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>empty,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>MAX<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>empty는<span class="w"> </span>MAX
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>full,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>full은<span class="w"> </span><span class="m">0</span>
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>mutex,0<span class="w"> </span>,1<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>lock은<span class="w"> </span>1로<span class="w"> </span>초기화
+<span class="w">	</span>//<span class="w"> </span>.<span class="w"> </span>.<span class="w"> </span>.
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>이렇게 하면 교착 상태가 발생합니다.</p>
+<p>생산자와 소비자 쓰레드가 각 하나씩 있다고 하자. 소비자가 먼저 실행이 되었습니다. <code class="docutils literal notranslate"><span class="pre">mutex</span></code>(c0 라인)를 획득하고 <code class="docutils literal notranslate"><span class="pre">full</span></code> 변수에 대하여 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>(c1 라인)를 호출합니다. 아직 데이터가 없기 때문에 소비자는 대기해야 하고 CPU를 양보해야 합니다.</p>
+<p>여기서 중요한 것은 소비자가 아직도 락을 획득하고 있다는 것입니다. 생산자가 실행됩니다. 실행이 가능하면 데이터를 생성하고 소비자 쓰레드를 깨울 것입니다. 불행하게도 이 쓰레드는 먼저 <code class="docutils literal notranslate"><span class="pre">mutex</span></code> 세마포어에 대해서 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>를 실행합니다(p0 라인). 이미 락은 소비자가 획득한 상태이기 때문에 생산자 역시 대기에 들어갑니다.</p>
+<p>순환 고리가 생겼습니다. 소비자는 <code class="docutils literal notranslate"><span class="pre">mutex</span></code>를 갖고 있으면서 다른 <code class="docutils literal notranslate"><span class="pre">full</span></code> 시그널을 발생시키기를 대기하고 있습니다. <code class="docutils literal notranslate"><span class="pre">full</span></code> 시그널을 발생시켜야 하는 생산자는 <code class="docutils literal notranslate"><span class="pre">mutex</span></code>에서 대기중입니다. 생산자와 소비자가 서로를 기다립니다. 전형적인 교착 상태입니다.</p>
+</section>
+<section id="id7">
+<h3>제대로 된 해법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>이렇게 락의 범위를 줄여야 합니다. 뮤텍스가 임계 영역만 감싸도록 바꿔보자.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sem_t<span class="w"> </span>empty<span class="p">;</span>
+sem_t<span class="w"> </span>full<span class="p">;</span>
+sem_t<span class="w"> </span>mutex<span class="p">;</span>
+
+void<span class="w"> </span>*producer<span class="o">(</span>void<span class="w"> </span>*arg<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>int<span class="w"> </span>i<span class="p">;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>loops<span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>empty<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>p1
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>mutex<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>p1.5<span class="w"> </span>
+<span class="w">		</span>put<span class="o">(</span>i<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>p2
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>mutex<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>p2.5
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>full<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>p3
+<span class="w">	</span><span class="o">}</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>*consumer<span class="o">(</span>void<span class="w"> </span>*arg<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>int<span class="w"> </span>i<span class="p">;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="w"> </span>loops<span class="p">;</span><span class="w"> </span>i++<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>full<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>c1
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>mutex<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>c1.5
+<span class="w">		</span>int<span class="w"> </span><span class="nv">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>get<span class="o">()</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>c2
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>mutex<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>c2.5
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>empty<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>c3
+<span class="w">		</span>printf<span class="o">(</span>“%d<span class="se">\n</span><span class="w"> </span>”,<span class="w"> </span>tmp<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span><span class="o">}</span>
+<span class="o">}</span>
+
+int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>*argv<span class="o">[])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>//<span class="w"> </span>.<span class="w"> </span>.<span class="w"> </span>.
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>empty,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>MAX<span class="o">)</span><span class="p">;</span><span class="w"> </span>
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>full,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="p">;</span><span class="w"> </span>
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>mutex,<span class="w"> </span><span class="m">0</span>,1<span class="o">)</span><span class="p">;</span><span class="w"> </span>
+<span class="w">	</span>//<span class="w"> </span>.<span class="w"> </span>.<span class="w"> </span>.
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>멀티 쓰레드 프로그램에서 사용 가능한 유한 버퍼를 만들었습니다.</p>
+</section>
 </section>
 <section id="reader-writer">
 <h2>Reader-Writer 락<a class="headerlink" href="#reader-writer" title="Link to this heading">#</a></h2>
-</section>
-<section id="id6">
-<h2>식사하는 철학자<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-</section>
-<section id="id7">
-<h2>세마포어 구현<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>삽입 연산은 리스트의 상태를 변경하고 (전통적인 임계 영역 보호 방식으로 해결 가능합니다), 검색은 자료 구조를 단순히 읽기만 합니다. 삽입 연산이 없다는 보장만 된다면 다수의 검색 작업을 동시에 수행할 수 있습니다. 이와 같은 경우를 위해 만들어진 락이 <em>reader-writer</em> 락이다</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>typedef<span class="w"> </span>struct<span class="w"> </span>_rwlock_t<span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>sem_t<span class="w"> </span>lock<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>이진<span class="w"> </span>세마포어<span class="w"> </span><span class="o">(</span>기본<span class="w"> </span>락<span class="o">)</span>
+<span class="w">	</span>sem_t<span class="w"> </span>writelock<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>하나의<span class="w"> </span>쓰기<span class="w"> </span>또는<span class="w"> </span>다수의<span class="w"> </span>읽기<span class="w"> </span>락을<span class="w"> </span>위한<span class="w"> </span>락
+<span class="w">	</span>int<span class="w"> </span>readers<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>임계<span class="w"> </span>영역<span class="w"> </span>내에<span class="w"> </span>읽기를<span class="w"> </span>수행중인<span class="w"> </span>reader의<span class="w"> </span>수
+<span class="o">}</span><span class="w"> </span>rwlock_t<span class="p">;</span>
+
+void<span class="w"> </span>rwlock_init<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>rw−&gt;readers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>rw−&gt;lock,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>sem_init<span class="o">(</span><span class="p">&amp;</span>rw−&gt;writelock,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>rwlock_acquire_readlock<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw−&gt;lock<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>readers를<span class="w"> </span>변경하기<span class="w"> </span>위해<span class="w"> </span>이진<span class="w"> </span>세마포어<span class="w"> </span>사용
+<span class="w">	</span>rw−&gt;readers++<span class="p">;</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="o">(</span>rw−&gt;readers<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="o">)</span>
+<span class="w">		</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw−&gt;writelock<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>읽기용<span class="w"> </span>락이<span class="w"> </span>writelock<span class="w"> </span>획득
+<span class="w">	</span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>rwlock_release_readlock<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>rw−&gt;readers−−<span class="p">;</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="o">(</span>rw−&gt;readers<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span>
+<span class="w">		</span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw−&gt;writelock<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>마지막으로<span class="w"> </span>읽기용<span class="w"> </span>락이<span class="w"> </span>writelock<span class="w"> </span>해제
+<span class="w">	</span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>rwlock_acquire_writelock<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw−&gt;writelock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>rwlock_release_writelock<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw−&gt;writelock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>이 코드는 간단합니다. 자료 구조를 “갱신”하려면 새로운 동기화 연산 쌍을 사용합니다. 락을 획득하기 위해서는 <code class="docutils literal notranslate"><span class="pre">rwlock_acquire_writelock()</span></code>을 사용하고 해제하기 위해서 <code class="docutils literal notranslate"><span class="pre">rwlock_release_writelock()</span></code>을 사용합니다. 내부적으로는 <code class="docutils literal notranslate"><span class="pre">writelock</span></code> 세마포어를 사용하여 하나의 쓰기 쓰레드만이 락을 획득할 수 있도록 하여, 임계 영역 진임 후에 자료 구조를 갱신합니다.</p>
+<p>읽기 락을 획득시 읽기 쓰레드(reader)가 먼저 락을 획득하고 읽기 중인 쓰레드의 수를 표현하는 <code class="docutils literal notranslate"><span class="pre">reader</span></code> 변수를 증가시킵니다. 첫 번째 읽기 쓰레드가 읽기 락을 획득할 때 중요한 과정이 있습니다. 읽기 락을 획득시 <code class="docutils literal notranslate"><span class="pre">writelock</span></code> 세마포어에 대해 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code>을 호출하여 쓰기 락을 함께 획득합니다. 획득한 쓰기 락은 읽기 락을 해제할 때 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>로 다시 해제합니다.</p>
+<p>이 과정을 통해서 읽기 락을 획득하고 난 후, 다른 읽기 쓰레드들이 읽기 락을 획득할 수 있도록 합니다. 다만, 쓰기 락을 획득하려는 쓰기 쓰레드 (writer)들은 모든 읽기 쓰레드가 끝날 때까지 대기하여야 합니다. 임계 영역을 빠져나오는 마지막 읽기 쓰레드가 “<code class="docutils literal notranslate"><span class="pre">writelock</span></code>”에 대한 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code>를 호출하여 대기 중인 쓰기 쓰레드가 락을 획득할 수 있도록 합니다.</p>
+<p>이 방식은 몇가지 단점이 존재합니다.</p>
+<p>쓰기 쓰레드에게 불리한 방식입니다. 쓰기 쓰레드에게 기아 현상이 발생할 수 있습니다. 쓰기 우선 정책 등을 사용해서 기아 현상을 줄일 수 있습니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>typedef<span class="w"> </span>struct<span class="w"> </span>_rwlock_t<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>sem_t<span class="w"> </span>lock<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>기본<span class="w"> </span>락
+<span class="w">    </span>sem_t<span class="w"> </span>writelock<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>쓰기<span class="w"> </span>또는<span class="w"> </span>읽기<span class="w"> </span>락
+<span class="w">    </span>sem_t<span class="w"> </span>writer_sem<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>쓰기<span class="w"> </span>작업을<span class="w"> </span>위한<span class="w"> </span>세마포어
+<span class="w">    </span>int<span class="w"> </span>readers<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>읽기<span class="w"> </span>작업<span class="w"> </span>수
+<span class="w">    </span>int<span class="w"> </span>waiting_writers<span class="p">;</span><span class="w"> </span>//<span class="w"> </span>대기<span class="w"> </span>중인<span class="w"> </span>쓰기<span class="w"> </span>작업<span class="w"> </span>수
+<span class="o">}</span><span class="w"> </span>rwlock_t<span class="p">;</span>
+
+void<span class="w"> </span>rwlock_init<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>rw-&gt;readers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="w">    </span>rw-&gt;waiting_writers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="w">    </span>sem_init<span class="o">(</span><span class="p">&amp;</span>rw-&gt;lock,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>sem_init<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writelock,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>sem_init<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writer_sem,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>rwlock_acquire_readlock<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writer_sem<span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>쓰기<span class="w"> </span>작업이<span class="w"> </span>대기<span class="w"> </span>중일<span class="w"> </span>경우<span class="w"> </span>차단
+<span class="w">    </span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw-&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>rw-&gt;readers++<span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span>rw-&gt;readers<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writelock<span class="o">)</span><span class="p">;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw-&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writer_sem<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>rwlock_release_readlock<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw-&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>rw-&gt;readers--<span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">(</span>rw-&gt;readers<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writelock<span class="o">)</span><span class="p">;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw-&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>rwlock_acquire_writelock<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writer_sem<span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>rw-&gt;waiting_writers++<span class="p">;</span>
+<span class="w">    </span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writer_sem<span class="o">)</span><span class="p">;</span>
+
+<span class="w">    </span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writelock<span class="o">)</span><span class="p">;</span>
+
+<span class="w">    </span>sem_wait<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writer_sem<span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>rw-&gt;waiting_writers--<span class="p">;</span>
+<span class="w">    </span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writer_sem<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>rwlock_release_writelock<span class="o">(</span>rwlock_t<span class="w"> </span>*rw<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>sem_post<span class="o">(</span><span class="p">&amp;</span>rw-&gt;writelock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>이렇게 구현하면, 쓰기 작업이 대기 중일 때 새로운 읽기 작업이 락을 획득하지 못하게 됩니다. 이는 <code class="docutils literal notranslate"><span class="pre">writer_sem</span></code> 세마포어를 통해 관리됩니다. 이렇게 하면 쓰기 작업이 대기 중일 때 읽기 작업이 쌓이는 것을 방지할 수 있으므로 쓰기 작업의 기아 현상을 줄일 수 있습니다.</p>
 </section>
 <section id="id8">
-<h2>요약<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2>식사하는 철학자<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p><img alt="semaphores" src="../_images/OSTEP_31_Semaphores.jpeg" /></p>
+<p>다섯 명의 “철학자”가 식탁 주위를 둘러앉았습니다. 총 다섯 개의 포크가 철학자와 철학자 사이에 하나씩 놓여 있습니다. 철학자는 식사하는 때가 있고 생각하는 때가 있습니다. 생각 중일 때는 포크가 필요 없습니다. 자신의 왼쪽과 오른쪽에 있는 포크를 들어야 식사를 할 수 있습니다. 이 포크를 잡기 위한 경쟁과 그에 따른 동기화 문제가 병행 프로그래밍에서 다루려는 식사하는 철학자 문제입니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>think<span class="o">()</span><span class="p">;</span>
+<span class="w">	</span>getforks<span class="o">()</span><span class="p">;</span>
+<span class="w">	</span>eat<span class="o">()</span><span class="p">;</span>
+<span class="w">	</span>putforks<span class="o">()</span><span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>주요 쟁점은 <code class="docutils literal notranslate"><span class="pre">getfork()</span></code>와 <code class="docutils literal notranslate"><span class="pre">putfork()</span></code>의 루틴을 작성하되 교착 상태의 발생을 방지해야 하고, 어떤 철학자도 못 먹어서 굶주리면 안되며 병행성이 높아야 합니다. 이 문제를 해결해보자.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>int<span class="w"> </span>left<span class="o">(</span>int<span class="w"> </span>p<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span>p<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+int<span class="w"> </span>right<span class="o">(</span>int<span class="w"> </span>p<span class="o">)</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">(</span>p<span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>%<span class="w"> </span><span class="m">5</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+</pre></div>
+</div>
+<p>이 문제를 해결하기 위해서 세마포어가 필요합니다. 각 포크마다 한 개씩 총 다섯 개가 있고 <code class="docutils literal notranslate"><span class="pre">sem_t</span> <span class="pre">fork[5]</span></code>로 정의합니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>void<span class="w"> </span>getforks<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>sem_wait<span class="o">(</span>forks<span class="o">[</span>left<span class="o">(</span>p<span class="o">)])</span><span class="p">;</span>
+<span class="w">	</span>sem_wait<span class="o">(</span>forks<span class="o">[</span>right<span class="o">(</span>p<span class="o">)])</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>putforks<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>sem_post<span class="o">(</span>forks<span class="o">[</span>left<span class="o">(</span>p<span class="o">)])</span><span class="p">;</span>
+<span class="w">	</span>sem_post<span class="o">(</span>forks<span class="o">[</span>right<span class="o">(</span>p<span class="o">)])</span><span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>포크가 필요할 때 하나의 락을 획득합니다. 그리고 식사가 끝나면 순서대로 놓습니다. 이렇게 하면 교착 상태가 발생합니다. 각 철학자가 동시에 자기 왼쪽에 있는 포크를 집으면 평생 기다려야 합니다.</p>
+<section id="id9">
+<h3>해답: 의존성 제거<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>간단한 해법 중 하나는 최소한 하나의 철학자가 다른 순서로 포크를 집도록 하는 것입니다.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>void<span class="w"> </span>getforks<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="nv">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">4</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">		</span>sem_wait<span class="o">(</span>forks<span class="o">[</span>right<span class="o">(</span>p<span class="o">)])</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>오른쪽<span class="w"> </span>포크<span class="w"> </span>먼저<span class="w"> </span>집도록
+<span class="w">		</span>sem_wait<span class="o">(</span>forks<span class="o">[</span>left<span class="o">(</span>p<span class="o">)])</span><span class="p">;</span>
+<span class="w">	</span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span>
+<span class="w">		</span>sem_wait<span class="o">(</span>forks<span class="o">[</span>left<span class="o">(</span>p<span class="o">)])</span><span class="p">;</span>
+<span class="w">		</span>sem_wait<span class="o">(</span>forks<span class="o">[</span>right<span class="o">(</span>p<span class="o">)])</span><span class="p">;</span>
+<span class="w">	</span><span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>이렇게 해서 환형 대기 상태를 끊을 수 있습니다.</p>
+</section>
+</section>
+<section id="id10">
+<h2>세마포어 구현<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>저수준 동기화 기법인 락과 컨디션 변수를 사용하여 우리만의 세마포어를 만들어 보자. <em>(Zemaphore)</em></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>typedef<span class="w"> </span>struct<span class="w"> </span>__Zem_t<span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>int<span class="w"> </span>value<span class="p">;</span>
+<span class="w">	</span>pthread_cond_t<span class="w"> </span>cond<span class="p">;</span>
+<span class="w">	</span>pthread_mutex_t<span class="w"> </span>lock<span class="p">;</span>
+<span class="o">}</span><span class="w"> </span>Zem_t<span class="p">;</span>
+
+//<span class="w"> </span>오직<span class="w"> </span>하나의<span class="w"> </span>쓰레드만<span class="w"> </span>이<span class="w"> </span>문장을<span class="w"> </span>호출할<span class="w"> </span>수<span class="w"> </span>있다.
+void<span class="w"> </span>Zem_init<span class="o">(</span>Zem_t<span class="w"> </span>*s,<span class="w"> </span>int<span class="w"> </span>value<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>s−&gt;value<span class="w"> </span><span class="o">=</span><span class="w"> </span>value<span class="p">;</span>
+<span class="w">	</span>Cond_init<span class="o">(</span><span class="p">&amp;</span>s−&gt;cond<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>Mutex_init<span class="o">(</span><span class="p">&amp;</span>s−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>Zem_wait<span class="o">(</span>Zem_t<span class="w"> </span>*s<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>Mutex_lock<span class="o">(</span><span class="p">&amp;</span>s−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span><span class="k">while</span><span class="w"> </span><span class="o">(</span>s−&gt;value<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="o">)</span>
+<span class="w">		</span>Cond_wait<span class="o">(</span><span class="p">&amp;</span>s−&gt;cond,<span class="w"> </span><span class="p">&amp;</span>s−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>s−&gt;value−−<span class="p">;</span>
+<span class="w">	</span>Mutex_unlock<span class="o">(</span><span class="p">&amp;</span>s−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+void<span class="w"> </span>Zem_post<span class="o">(</span>Zem_t<span class="w"> </span>*s<span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>Mutex_lock<span class="o">(</span><span class="p">&amp;</span>s−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>s−&gt;value++<span class="p">;</span>
+<span class="w">	</span>Cond_signal<span class="o">(</span><span class="p">&amp;</span>s−&gt;cond<span class="o">)</span><span class="p">;</span>
+<span class="w">	</span>Mutex_unlock<span class="o">(</span><span class="p">&amp;</span>s−&gt;lock<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Dijkstra가 정의한 세마포어와 여기서 정의한 제마포어 간의 중요한 차이 중 하나는 세마포어의 음수 값이 대기 중인 쓰레드의 수를 나타낸다는 부분입니다. 사실 제마포어에서는 이 값이 0 보다 작을 수가 없습니다. 이 방식이 구현하기도 쉽고 현재 Linux에 구현된 방식이기도 합니다.</p>
+<p>세마포어를 사용하여 락과 컨디션 변수를 만드는 것은 매우 까다로운 문제입니다.</p>
+</section>
+<section id="id11">
+<h2>요약<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>세마포어는 병행 프로그램 작성을 위한 박력하고 유연한 기법입니다. 어떤 개발자들은 간단하고 유용하다는 이유 때문에 락과 컨디션 변수가 아닌 세마포어만을 사용하기도 합니다.</p>
 </section>
 </section>
 
@@ -674,11 +1061,18 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">세마포어: 정의</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">이진 세마포어 (락)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">컨디션 변수로서의 세마포어</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">생산자/소비자 (유한 버퍼) 문제</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">생산자/소비자 (유한 버퍼) 문제</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">상호 배제 추가</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">제대로 된 해법</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reader-writer">Reader-Writer 락</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">식사하는 철학자</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">세마포어 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">요약</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">식사하는 철학자</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">해답: 의존성 제거</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">세마포어 구현</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">요약</a></li>
 </ul>
   </nav></div>
 
