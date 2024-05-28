@@ -51,7 +51,7 @@ html:
       data-sponsor-link="https://chat.entelecheia.app/workspace/os2024"
       src="https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js">
     </script>
-  announcement: "5/15일(수) 수업의 보강은 5/16일(목) 14:00에 진행됩니다."
+  announcement: "5/22일(수) 수업은 휴강입니다. 보강은 6/11일(화) 14:00에 진행됩니다."
 
 sphinx:
   config:
