@@ -14,19 +14,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
@@ -48,9 +48,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
@@ -104,27 +104,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -147,13 +143,15 @@
 </form></div>
   </div>
 
-
-  <div class="bd-header-announcement container-fluid bd-header-announcement">
-    <div class="bd-header-announcement__content">5/22일(수) 수업은 휴강입니다. 보강은 6/11일(화) 14:00에 진행됩니다.</div>
-  </div>
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">5/22일(수) 수업은 휴강입니다. 보강은 6/11일(화) 14:00에 진행됩니다.</div>
+</aside>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -211,13 +209,13 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week01/index.html">Week 1 - 아주 쉬운 세 가지 이야기</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week01/index.html">Week 1 - 아주 쉬운 세 가지 이야기</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week01/dialogue.html">이 책에 관한 대화</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week01/intro.html">운영체제 개요</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://learn.microsoft.com/ko-kr/windows/wsl/install">WSL 설치방법</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week02/index.html">Week 2 - 가상화의 세계</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week02/index.html">Week 2 - 가상화의 세계</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/dialogue.html">가상화에 관한 대화</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/cpu-intro.html">프로세스의 개념</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/cpu-api.html">프로세스 API</a></li>
@@ -227,15 +225,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../../week02/tip.html">Tip: 리눅스 프로세스 관리 명령어</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/hw-wk02.html">Homework: 프로세스</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week03/index.html">Week 3 - 스케줄링 1</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week03/index.html">Week 3 - 스케줄링 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/cpu-scheduling.html">스케줄링: 개요</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/lab.html">Lab: 프로세스 생성과 실행 기초</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/wsl-setup.html">WSL에서 Ubuntu 환경구축 및 GitHub 설정하기</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/hw-wk03.html">Homework: 스케줄링</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week04/index.html">Week 4 - 스케줄링 2</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week04/index.html">Week 4 - 스케줄링 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/lottery.html">스케줄링: 비례 배분</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/dialogue.html">CPU 가상화 마무리 대화</a></li>
@@ -243,87 +241,87 @@
 <li class="toctree-l2"><a class="reference internal" href="../../week04/lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/hw-wk04.html">Homework: 비례 배분</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week05/index.html">Week 5 - 메모리 가상화 1</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week05/index.html">Week 5 - 메모리 가상화 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week05/vm-intro.html">주소 공간의 개념</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week05/vm-api.html">메모리 관리 API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week05/lab.html">Lab: 메모리 구조 탐색하기</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week05/tip-linux-cmd.html">Tip: Linux 기본 명령어</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week06/index.html">Week 6 - 메모리 가상화 2</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week06/index.html">Week 6 - 메모리 가상화 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/vm-mechanism.html">주소 변환의 원리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/vm-segmentation.html">세그멘테이션 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/lab.html">Lab: 주소 변환 시뮬레이션</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/hw-wk06.html">Homework: 주소 변환의 원리</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week07/index.html">Week 7 - 메모리 가상화 3</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week07/index.html">Week 7 - 메모리 가상화 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week07/vm-freespace.html">빈 공간 관리</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week07/hw-wk07.html">Homework: 빈 공간 관리</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week09/index.html">Week 9 - 메모리 가상화 4</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week09/index.html">Week 9 - 메모리 가상화 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week09/vm-paging.html">페이징: 개요</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week09/vm-tlbs.html">페이징: 더 빠른 변환 (TLB)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week09/vm-swap.html">물리 메모리 크기의 극복: 메커니즘</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week10/index.html">Week 10 - 병행성에 관한 대화</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week10/index.html">Week 10 - 병행성에 관한 대화</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week10/threads-intro.html">병행성: 개요</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week10/threads-api.html">쓰레드 API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week11/index.html">Week 11 - 병행성 2</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week11/index.html">Week 11 - 병행성 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week11/threads-locks.html">락 </a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week11/threads-locks-usage.html">락 기반의 병행 자료 구조</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../week12/index.html">Week 12 - 병행성 3</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../week12/index.html">Week 12 - 병행성 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week12/threads-cv.html">컨디션 변수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week12/threads-sema.html">세마포어</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">OS 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/202121006/index.html">reverse 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">OS 프로젝트</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/202121006/index.html">reverse 프로젝트</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202121006/hw-wk02.html">Week 2 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202121006/hw-wk03.html">Week 3 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202121006/hw-wk04.html">Week 4 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202121006/hw-wk06.html">Week 6 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202121006/hw-wk07.html">Week 7 Homework</a></li>
 </ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/202121010/index.html">Key-Value store project by ypilseong</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/202121010/index.html">Key-Value store project by ypilseong</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202121010/homework.html">Homework</a></li>
 </ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/202221014/index.html">프로젝트: Key-Value Store 구현</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/202221014/index.html">프로젝트: Key-Value Store 구현</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202221014/hw-wk02.html">Week 2 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202221014/hw-wk03.html">Week 3 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202221014/hw-wk04.html">Week 4 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202221014/hw-wk06.html">Week 6 Homework</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l2"><a class="reference internal" href="../../projects/202321007/index.html">리버스 프로젝트 개요</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../projects/202321010/index.html">reverse 프로젝트</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/202321017/index.html">grep 프로젝트</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/202321017/index.html">grep 프로젝트</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202321017/hw-wk02.html">Week 2 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202321017/hw-wk03.html">Week 3 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202321017/hw-wk04.html">Week 4 Homework</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../projects/202321017/hw-wk06.html">Week 6 Homework</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/contents/index.html">프로젝트 과제 목록</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/contents/index.html">프로젝트 과제 목록</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../projects/contents/utilities.html">유닉스 유틸리티 프로젝트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../projects/contents/reverse.html"><code class="docutils literal notranslate"><span class="pre">reverse</span></code> 프로젝트</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../projects/contents/kv.html"><code class="docutils literal notranslate"><span class="pre">kv</span></code> 프로젝트: 간단한 키-값 저장소</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../projects/lab-tutorial.html">Lab 튜토리얼</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../projects/tester.html">프로젝트 테스터</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../projects/setup.html">프로젝트 환경설정</a></li>
@@ -363,7 +361,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -372,7 +370,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -573,7 +571,7 @@ Translation by Youjip Won, Minkyu Park, Sungjin Lee.</p>
 <li><p><a class="reference external" href="http://www.hongpub.co.kr/sub.php?goPage=view_product&amp;amp;flashpage=&amp;amp;Code=20170327120039">Softcover</a></p></li>
 </ul>
 <p>Book chapters, available freely here:</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>intro</p></th>
 <th class="head"><p>virtualization</p></th>
@@ -681,6 +679,7 @@ Translation by Youjip Won, Minkyu Park, Sungjin Lee.</p>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -710,7 +709,7 @@ Translation by Youjip Won, Minkyu Park, Sungjin Lee.</p>
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -737,8 +736,6 @@ Translation by Youjip Won, Minkyu Park, Sungjin Lee.</p>
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -795,8 +792,8 @@ By <a href='https://entelecheia.me/'>Young Joon Lee</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>
