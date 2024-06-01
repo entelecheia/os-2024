@@ -73,6 +73,9 @@ parts:
       - file: week13/index
         sections:
           - file: week13/dialogue
+          - file: week13/file-devices
+          - file: week13/file-directory
+          - file: week13/fs-implementation
   - caption: Projects
     chapters:
       - file: projects/index
