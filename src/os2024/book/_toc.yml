@@ -57,6 +57,7 @@ parts:
           - file: week09/vm-paging
           - file: week09/vm-tlbs
           - file: week09/vm-swap
+          - file: week09/dialogue
       - file: week10/index
         sections:
           - file: week10/threads-intro
@@ -69,6 +70,12 @@ parts:
         sections:
           - file: week12/threads-cv
           - file: week12/threads-sema
+      - file: week13/index
+        sections:
+          - file: week13/dialogue
+          - file: week13/file-devices
+          - file: week13/file-directory
+          - file: week13/fs-implementation
   - caption: Projects
     chapters:
       - file: projects/index
