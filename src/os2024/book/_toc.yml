@@ -60,6 +60,7 @@ parts:
           - file: week09/dialogue
       - file: week10/index
         sections:
+          - file: week10/dialogue
           - file: week10/threads-intro
           - file: week10/threads-api
       - file: week11/index
