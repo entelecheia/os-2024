@@ -1,4 +1,4 @@
-# Week 14 - 영속성 2
+# Week 15 - 분산
 
 ```{tableofcontents}
 
