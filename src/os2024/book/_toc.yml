@@ -32,7 +32,7 @@ parts:
         sections:
           - file: week04/mlfq
           - file: week04/lottery
-          - file: week04/dialogue
+          - file: week04/summary
           - file: week04/lab-sched
           - file: week04/lab-lottery
           - file: week04/hw-wk04
@@ -57,7 +57,7 @@ parts:
           - file: week09/vm-paging
           - file: week09/vm-tlbs
           - file: week09/vm-swap
-          - file: week09/dialogue
+          - file: week09/summary
       - file: week10/index
         sections:
           - file: week10/dialogue
@@ -71,6 +71,7 @@ parts:
         sections:
           - file: week12/threads-cv
           - file: week12/threads-sema
+          - file: week12/summary
       - file: week13/index
         sections:
           - file: week13/dialogue
@@ -80,12 +81,12 @@ parts:
         sections:
           - file: week14/data-integrity
           - file: week14/fs-implementation
-          - file: week14/dialogue
+          - file: week14/summary
       - file: week15/index
         sections:
           - file: week15/dialogue
           - file: week15/dist-intro
-          - file: week15/dialogue-summary
+          - file: week15/summary
   - caption: Projects
     chapters:
       - file: projects/index
