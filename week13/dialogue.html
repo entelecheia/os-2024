@@ -236,7 +236,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week04/index.html">Week 4 - 스케줄링 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week04/mlfq.html">스케줄링: 멀티 레벨 피드백 큐</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week04/lottery.html">스케줄링: 비례 배분</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week04/dialogue.html">CPU 가상화 마무리 대화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/summary.html">CPU 가상화 마무리 대화</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week04/lab-sched.html">Lab: 스케줄링 알고리즘 시뮬레이터</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week04/lab-lottery.html">Lab: Lottery 스케줄링 알고리즘 구현</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week04/hw-wk04.html">Homework: 비례 배분</a></li>
@@ -265,7 +265,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../week09/vm-paging.html">페이징: 개요</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week09/vm-tlbs.html">페이징: 더 빠른 변환 (TLB)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week09/vm-swap.html">물리 메모리 크기의 극복: 메커니즘</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week09/dialogue.html">메모리 가상화를 정리하는 대화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/summary.html">메모리 가상화를 정리하는 대화</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week10/index.html">Week 10 - 병행성 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -282,6 +282,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week12/index.html">Week 12 - 병행성 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week12/threads-cv.html">컨디션 변수</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week12/threads-sema.html">세마포어</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week12/summary.html">병행성을 정리하는 대화</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 13 - 영속성 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -293,13 +294,13 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week14/index.html">Week 14 - 영속성 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week14/data-integrity.html">데이터 무결성과 보호</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week14/fs-implementation.html">파일 시스템 구현</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week14/dialogue.html">영속성을 정리하는 대화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week14/summary.html">영속성을 정리하는 대화</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week15/index.html">Week 15 - 분산</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week15/dialogue.html">분산에 관한 대화</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../week15/dist-intro.html">분산 시스템</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week15/dialogue-summary.html">분산을 정리하는 대화</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week15/summary.html">분산을 정리하는 대화</a></li>
 </ul>
 </details></li>
 </ul>
@@ -582,6 +583,41 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>영속성에 관한 대화<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>교수</strong>: 자, 이렇게 해서 운영체제의 네 개의 … 어 … 세 개의 기둥 중에 두 번째인 영속성 (persistence)이라는 기둥에 도달했네.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 기둥이 세 개라고 하셨나요, 네 개라고 하셨나요? 네 번째는 뭐죠?</p>
+<blockquote>
+<div><p><strong>교수</strong>: 아닐세, 세 개, 어린 학생, 세 기둥일세. 간결하게 만드는 중이야.</p>
+</div></blockquote>
+<p><strong>학생</strong>: OK, 좋아요. 그런데 영속성이 뭐죠, 멋지고 고귀하신 교수님?</p>
+<blockquote>
+<div><p><strong>교수</strong>: 사실, 전통적인 의미에서는 어떤 의미를 갖고 있는지는 알고 있을거야, 그렇지? Persistence(영속성)는 사전적으로 “곤경과 반대에도 불구하고 굳게 또는 완고하게 행동 방침을 유지”할 때 쓰는 말이지.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 마치 교수님의 수업을 듣는 것과 비슷하네요, 완고함이 필요하거든요.</p>
+<blockquote>
+<div><p><strong>교수</strong>: 하! 그렇구나. 하지만 여기서의 영속성은 다른 의미를 갖고 있단다. 설명해줄게. 밖에 운동장에 서있다고 가정해 보자 그리고 이걸 따려고</p>
+</div></blockquote>
+<p><strong>학생</strong>: (끼어들며) 알아요! 복숭아! 복숭아 나무에서요!</p>
+<blockquote>
+<div><p><strong>교수</strong>: 사과나무에서 사과를 따는 것을 말하려고 했다마는. 그래 좋아. 너의 의견을 따르도록 해보자꾸나.</p>
+</div></blockquote>
+<p><strong>학생</strong>: (멍하게 바라본다)</p>
+<blockquote>
+<div><p><strong>교수</strong>: 어쨌든, 복숭아를 땄다. 사실 여러 개의 복숭아를 땄어. 그리고 그 복숭아들이 영원히 그대로 있었으면 하는 거야. 위스콘신의 겨울은 알다시피 매섭고 춥잖니? 그러면 어떻게 해야 할까?</p>
+</div></blockquote>
+<p><strong>학생</strong>: 그러면, 몇 가지 시도해 볼 수 있을 것 같아요. 절이거나 파이로 굽던가, 아니면 잼같은 것을 만들면 되요. 완전 재미있을 거예요!</p>
+<blockquote>
+<div><p><strong>교수</strong>: 재미있다고? 그래, 그럴수도 있지. 확실한 것은 복숭아를 그대로 유지시키기 위해서는 엄청나게 많은 노력이 필요할거야. 정보도 마찬가지야. 컴퓨터가 멈추거나, 디스크 고장이나 전원이 꺼지는 상황에도 불구하고 정보를 그대로 유지시키는 것은 힘들지만 흥미로운 도전이지.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 자연스럽게 흘러가네요. 점점 익숙해지시는 듯해요.</p>
+<blockquote>
+<div><p><strong>교수</strong>: 고맙네! 교수들에게는 그런 친절한 말이 항상 필요하다네.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 기억해 둘게요. 이제 복숭아 이야기를 그만하고 컴퓨터 이야기로 넘어가야 할 시간이지요?</p>
+<blockquote>
+<div><p><strong>교수</strong>: 그래 넘어갈 시간이지…</p>
+</div></blockquote>
 </section>
 
     <script type="text/x-thebe-config">

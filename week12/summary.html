@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 7 - 메모리 가상화 3 &#8212; 운영체제 2024</title>
+    <title>병행성을 정리하는 대화 &#8212; 운영체제 2024</title>
   
   
   
@@ -89,12 +89,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'week07/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week12/summary';</script>
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="빈 공간 관리" href="vm-freespace.html" />
-    <link rel="prev" title="Homework: 주소 변환의 원리" href="../week06/hw-wk06.html" />
+    <link rel="next" title="Week 13 - 영속성 1" href="../week13/index.html" />
+    <link rel="prev" title="세마포어" href="threads-sema.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -256,9 +256,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../week06/hw-wk06.html">Homework: 주소 변환의 원리</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 7 - 메모리 가상화 3</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="vm-freespace.html">빈 공간 관리</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hw-wk07.html">Homework: 빈 공간 관리</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week07/index.html">Week 7 - 메모리 가상화 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week07/vm-freespace.html">빈 공간 관리</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week07/hw-wk07.html">Homework: 빈 공간 관리</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week09/index.html">Week 9 - 메모리 가상화 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -279,10 +279,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../week11/threads-locks-usage.html">락 기반의 병행 자료 구조</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week12/index.html">Week 12 - 병행성 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week12/threads-cv.html">컨디션 변수</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week12/threads-sema.html">세마포어</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../week12/summary.html">병행성을 정리하는 대화</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 12 - 병행성 3</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="threads-cv.html">컨디션 변수</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads-sema.html">세마포어</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">병행성을 정리하는 대화</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../week13/index.html">Week 13 - 영속성 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -438,7 +438,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week07/index.md" target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/edit/main/src/os2024/book/week12/summary.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -455,7 +455,7 @@
       
       
       
-      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek07/index.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/chu-aie/os-2024/issues/new?title=Issue%20on%20page%20%2Fweek12/summary.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -485,7 +485,7 @@
       
       
       
-      <li><a href="../_sources/week07/index.md" target="_blank"
+      <li><a href="../_sources/week12/summary.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -567,7 +567,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 7 - 메모리 가상화 3</h1>
+    <h1>병행성을 정리하는 대화</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -581,14 +581,40 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-7-3">
-<h1>Week 7 - 메모리 가상화 3<a class="headerlink" href="#week-7-3" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="vm-freespace.html">빈 공간 관리</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hw-wk07.html">Homework: 빈 공간 관리</a></li>
-</ul>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>병행성을 정리하는 대화<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>교수</strong>: 어때, 머리가 슬슬 아파오지?</p>
+</div></blockquote>
+<p><strong>학생</strong>: (해열진통제 두 알을 먹으며) 음, 조금이요. 쓰레드가 서로 얽히는 모든 경우를 생각하기는 어려운 것 같아요.</p>
+<blockquote>
+<div><p><strong>교수</strong>: 사실 그렇지. 병행되는 코드 몇 줄이 이해가 안되는 걸 보면 놀라곤 하지.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 저도 그래요! 컴퓨터 과학자로서 다섯 줄의 코드도 이해할 수 없다는 것이 당혹스럽기도 해요.</p>
+<blockquote>
+<div><p><strong>교수</strong>: 오, 너무 기분 상해하지 말게. 병행 알고리즘에 대한 초기 논문들을 살펴보면 잘못된 것들이 가끔 있다네! 그리고 저자들은 보통 교수들이지!</p>
+</div></blockquote>
+<p><strong>학생</strong>: (헉) 교수님들이 …어… 틀릴 수 있다고요?</p>
+<blockquote>
+<div><p><strong>교수</strong>: 그래, 그게 사실이긴 하지만 누구에게도 말하면 안 되는 영원한 비밀 중에 하나야.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 비밀을 지킬게요. 하지만 만약 병행 코드가 그렇게 어렵다면, 그리고 제대로 구현하기 어렵다면, 올바른 병행 코드를 어떻게 작성할 수 있죠?</p>
+<blockquote>
+<div><p><strong>교수</strong>: 그것이 제대로 된 질문이 되겠군, 그렇지? 간단한 몇 가지에서 시작할 수 있다고 생각하네. 먼저 간단하게 만들어야 하네! 쓰레드 간의 복잡한 상호 동작을 피하고, 잘 알려진 그리고 확실하게 검증된 기법을 사용하여 쓰레드들의 동작을 관리해야 하네.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 간단한 락이나 생산자-소비자 큐와 같은 것을 말씀하시는 건가요?</p>
+<blockquote>
+<div><p><strong>교수</strong>: 정확하네! 그런 것들이 일반적인 패러다임이야. 자네가 배운 것들을 기반으로 동작 가능한 해법을 만들어 낼 수 있을 것이네. 둘째는 정말 필요할 때 병행성을 사용하되 피할 수 있으면 전적으로 피해야 하네. 어설프게 최적화된 프로그램처럼 나쁜 것은 없다네.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 그렇군요. 그러면 쓰레드가 필요 없는 데 사용하는 이유는 무엇인가요?</p>
+<blockquote>
+<div><p><strong>교수</strong>: 바로 그거야. 세 번째는 정말 병렬화가 필요하다면 다른 단순화된 방식을 찾아봐야해. 예를 들어 병렬 데이터 분석 코드를 위한 맵리듀스 기법은 락이나 컨디션 변수 또는 다른 우리가 다뤘던 골치아픈 녀석들이 갖는 복잡성을 전혀 사용하지 않고도 병렬성을 달성하는 훌륭한 예제이지.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 맵리듀스요? 흥미진진하게 들리는군요. 찾아 읽어봐야겠어요.</p>
+<blockquote>
+<div><p><strong>교수</strong>: 훌륭해! 꼭 읽어보게. 결국에는 그런 것을 아주 많이 해야 할 거야. 우리가 배운 주제들은 소개에 지나지 않아. 읽고, 또 읽은 후에 좀 더 읽어보게! 그리고 무언가 시도해 보고 코드도 작성해 보고 그리고 나서 좀 더 작성해 보게나. Gladwell이 “아웃라이어 (Outlier)”에서 말했듯이 대략 10,000 시간을 투자해야 그 분야에 진정한 전문가가 된다네. 수업시간만으로는 그 시간을 다 채울 수가 없지.</p>
+</div></blockquote>
+<p><strong>학생</strong>: 와우, 우울하게 받아 드려야 할지 희망적으로 받아드려야 할지 잘 모르겠어요. 하지만 후자라고 믿고 시작해 보겠습니다! 병행 코드를 좀 더 작성해봐야 할 시간이 되었네요…</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -604,7 +630,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./week07"
+            path: "./week12"
         },
         predefinedOutput: true
     }
@@ -622,20 +648,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../week06/hw-wk06.html"
+       href="threads-sema.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Homework: 주소 변환의 원리</p>
+        <p class="prev-next-title">세마포어</p>
       </div>
     </a>
     <a class="right-next"
-       href="vm-freespace.html"
+       href="../week13/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">빈 공간 관리</p>
+        <p class="prev-next-title">Week 13 - 영속성 1</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
