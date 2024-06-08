@@ -604,7 +604,7 @@ document.write(`
 <p>네트워크 통신의 기본 요소는 다음과 같습니다.</p>
 <ol class="arabic">
 <li><p><strong>네트워크 프로토콜</strong>: 데이터 전송 방식을 정의하는 규칙 집합입니다. TCP/IP는 가장 널리 사용되는 네트워크 프로토콜로, 패킷 스위칭, IP 주소 지정, 전송 제어 등을 포함합니다.</p>
-<p><img alt="alt text" src="../_images/image-4.png" /></p>
+<p><img alt="alt text" src="../_images/image-41.png" /></p>
 </li>
 <li><p><strong>네트워크 토폴로지</strong>: 네트워크 구성 요소들의 물리적 또는 논리적 배열을 의미합니다. 스타, 버스, 링, 메시 등의 형태가 있습니다.</p>
 <p><img alt="alt text" src="../_images/image-5.png" /></p>
@@ -621,7 +621,7 @@ document.write(`
 <li><p><strong>순서 바뀜</strong>: 데이터그램이 전송된 순서와 다르게 도착할 수 있습니다.</p></li>
 </ul>
 <p>이러한 문제들을 허용하는 프로토콜 중 하나는 **UDP (User Datagram Protocol)**입니다. UDP는 비연결형 프로토콜로, 연결 설정 없이 데이터를 전송합니다. 속도가 빠르고 오버헤드가 적지만, 데이터의 신뢰성을 보장하지 않습니다. 따라서, 실시간 스트리밍, 온라인 게임 등 데이터 손실을 감수할 수 있는 애플리케이션에 적합합니다.</p>
-<p><img alt="alt text" src="../_images/image-2.png" /></p>
+<p><img alt="alt text" src="../_images/image-21.png" /></p>
 </section>
 <section id="id4">
 <h2>신뢰할 수 있는 통신 계층<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
@@ -633,7 +633,7 @@ document.write(`
 <li><p><strong>혼잡 제어</strong>: 네트워크 혼잡을 방지하고 조절합니다.</p></li>
 </ul>
 <p>이러한 기능을 제공하는 대표적인 프로토콜은 **TCP (Transmission Control Protocol)**입니다. TCP는 연결형 프로토콜로, 데이터 전송 전에 송신자와 수신자 간에 연결을 설정합니다. 데이터 전송 중에는 확인 응답(ACK)을 사용하여 데이터가 제대로 도착했는지 확인하며, 오류가 발생하면 재전송합니다.</p>
-<p><img alt="alt text" src="../_images/image-3.png" /></p>
+<p><img alt="alt text" src="../_images/image-31.png" /></p>
 </section>
 <section id="id5">
 <h2>통신 추상화<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
@@ -660,7 +660,7 @@ document.write(`
 <li><p><strong>데이터 직렬화</strong>: 함수 호출 시 전달되는 인자와 반환 값은 네트워크를 통해 전송될 수 있도록 직렬화됩니다.</p></li>
 <li><p><strong>에러 처리</strong>: 네트워크 오류나 원격 함수 실행 오류를 처리할 수 있는 메커니즘을 제공합니다.</p></li>
 </ul>
-<p><img alt="alt text" src="../_images/image-1.png" /></p>
+<p><img alt="alt text" src="../_images/image-11.png" /></p>
 <p>이 다이어그램은 클라이언트와 서버 간의 요청과 응답의 흐름을 명확히 보여주며, RPC의 기본적인 작동 방식을 이해하는 데 도움을 줍니다. 클라이언트는 원격 함수를 호출하고 응답을 기다리며, 서버는 요청을 받아 해당 함수를 실행하고 결과를 반환합니다.</p>
 <p>RPC의 구현 예시로는 gRPC와 Apache Thrift가 있습니다. gRPC는 Google이 개발한 고성능 RPC 프레임워크로, HTTP/2와 프로토콜 버퍼를 사용하여 효율적인 통신을 제공합니다. Apache Thrift는 다양한 프로그래밍 언어와의 상호 운용성을 지원하며, 컴팩트한 바이너리 프로토콜을 사용합니다.</p>
 </section>
