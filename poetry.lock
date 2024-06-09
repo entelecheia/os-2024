@@ -2873,13 +2873,13 @@ test = ["pytest"]
 
 [[package]]
 name = "sphinxcontrib-video"
-version = "0.2.0"
+version = "0.2.1"
 description = "Allows embedding of HTML5 videos in sphinx"
 optional = false
 python-versions = ">=3.6.9"
 files = [
-    {file = "sphinxcontrib-video-0.2.0.tar.gz", hash = "sha256:c98afef50a5452d5a6960fd57c6b57b71da9b825cadaa56c1b6c77338bfd0284"},
-    {file = "sphinxcontrib_video-0.2.0-py3-none-any.whl", hash = "sha256:8973278316c02547efd0910bfd69205385462c423885cf03edc28b1c66f3b23c"},
+    {file = "sphinxcontrib_video-0.2.1-py3-none-any.whl", hash = "sha256:ebc31be0bb96e1aee260efe6b3806b81f9db20535c55b2f4ba355404f38d067d"},
+    {file = "sphinxcontrib_video-0.2.1.tar.gz", hash = "sha256:b813be3b602aa14b537ed18e8a52a876d0818ccfc9c4c7c8e4822227f677ce48"},
 ]
 
 [package.dependencies]
