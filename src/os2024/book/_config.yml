@@ -51,7 +51,7 @@ html:
       data-sponsor-link="https://chat.entelecheia.app/workspace/os2024"
       src="https://chat.entelecheia.app/embed/anythingllm-chat-widget.min.js">
     </script>
-  announcement: "이번주 수업은 11일(목) 2시에 합니다."
+  announcement: "6/11일(화) 15:00에 보강 있습니다. 기말 프로젝트 제출 마감은 6/22일(토) 23:59입니다."
 
 sphinx:
   config:

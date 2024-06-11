@@ -8,28 +8,34 @@ parts:
     chapters:
       - file: week01/index
         sections:
+          - file: week01/dialogue
           - file: week01/intro
           - url: https://learn.microsoft.com/ko-kr/windows/wsl/install
             title: WSL 설치방법
       - file: week02/index
         sections:
+          - file: week02/dialogue
           - file: week02/cpu-intro
           - file: week02/cpu-api
           - file: week02/cpu-mechanisms
           - file: week02/shells
           - file: week02/lab
           - file: week02/tip
+          - file: week02/hw-wk02
       - file: week03/index
         sections:
           - file: week03/cpu-scheduling
           - file: week03/lab
           - file: week03/wsl-setup
+          - file: week03/hw-wk03
       - file: week04/index
         sections:
           - file: week04/mlfq
           - file: week04/lottery
+          - file: week04/summary
           - file: week04/lab-sched
           - file: week04/lab-lottery
+          - file: week04/hw-wk04
       - file: week05/index
         sections:
           - file: week05/vm-intro
@@ -40,16 +46,82 @@ parts:
         sections:
           - file: week06/vm-mechanism
           - file: week06/vm-segmentation
-          - file: week06/vm-freespace
           - file: week06/lab
+          - file: week06/hw-wk06
       - file: week07/index
         sections:
-          - file: week07/vm-paging
+          - file: week07/vm-freespace
+          - file: week07/hw-wk07
+      - file: week09/index
+        sections:
+          - file: week09/vm-paging
+          - file: week09/vm-tlbs
+          - file: week09/vm-swap
+          - file: week09/summary
+      - file: week10/index
+        sections:
+          - file: week10/dialogue
+          - file: week10/threads-intro
+          - file: week10/threads-api
+      - file: week11/index
+        sections:
+          - file: week11/threads-locks
+          - file: week11/threads-locks-usage
+      - file: week12/index
+        sections:
+          - file: week12/threads-cv
+          - file: week12/threads-sema
+          - file: week12/summary
+      - file: week13/index
+        sections:
+          - file: week13/dialogue
+          - file: week13/file-devices
+          - file: week13/file-directory
+      - file: week14/index
+        sections:
+          - file: week14/data-integrity
+          - file: week14/fs-implementation
+          - file: week14/summary
+      - file: week15/index
+        sections:
+          - file: week15/dialogue
+          - file: week15/dist-intro
+          - file: week15/summary
   - caption: Projects
     chapters:
       - file: projects/index
         sections:
-          - file: projects/template/index
+          - file: projects/202121006/index
+            sections:
+              - file: projects/202121006/hw-wk02
+              - file: projects/202121006/hw-wk03
+              - file: projects/202121006/hw-wk04
+              - file: projects/202121006/hw-wk06
+              - file: projects/202121006/hw-wk07
+          - file: projects/202121010/index
+            sections:
+              - file: projects/202121010/homework
+          - file: projects/202221014/index
+            sections:
+              - file: projects/202221014/hw-wk02
+              - file: projects/202221014/hw-wk03
+              - file: projects/202221014/hw-wk04
+              - file: projects/202221014/hw-wk06
+          - file: projects/202321007/index
+          - file: projects/202321010/index
+          - file: projects/202321017/index
+            sections:
+              - file: projects/202321017/hw-wk02
+              - file: projects/202321017/hw-wk03
+              - file: projects/202321017/hw-wk04
+              - file: projects/202321017/hw-wk06
+      - file: projects/contents/index
+        sections:
+          - file: projects/contents/utilities
+          - file: projects/contents/reverse
+          - file: projects/contents/kv
+      - file: projects/lab-tutorial
+      - file: projects/tester
       - file: projects/setup
   - caption: References
     chapters:
