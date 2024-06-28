@@ -585,6 +585,18 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">주요기능</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">사용기술</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">진행 계획</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로젝트 결과</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code">code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">code 결과</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">동작 과정 요약</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">코드 설명</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">주의사항</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">개선 방향</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">개선 사항 요약</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -617,11 +629,13 @@ document.write(`
 </section>
 <section id="id3">
 <h2>사용기술<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>fopen(), getline(), fclose() : 입력 파일을 읽고 출력하는 코드를 작성하는 언어
-fprintf() : 화면에 출력하기 위한 언어
-fgets() : 파일에서 한 줄씩 읽어드리는 언어
-append() : 연결 리스트에 추가하는 언어
-printReverse() : 재귀를 사용하여 연결 리스트에 역순으로 출력하는 언어</p>
+<ul class="simple">
+<li><p>fopen(), getline(), fclose() : 입력 파일을 읽고 출력하는 코드를 작성하는 언어</p></li>
+<li><p>fprintf() : 화면에 출력하기 위한 언어</p></li>
+<li><p>fgets() : 파일에서 한 줄씩 읽어드리는 언어</p></li>
+<li><p>append() : 연결 리스트에 추가하는 언어</p></li>
+<li><p>printReverse() : 재귀를 사용하여 연결 리스트에 역순으로 출력하는 언어</p></li>
+</ul>
 </section>
 <section id="id4">
 <h2>진행 계획<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
@@ -634,6 +648,237 @@ printReverse() : 재귀를 사용하여 연결 리스트에 역순으로 출력�
 <li><p>테스트: 작성한 코드를 테스트하여 정확성과 성능을 확인합니다. 다양한 입력값에 대해 코드가 제대로 동작하는지를 검증합니다.</p></li>
 <li><p>최적화(Optional): 필요한 경우 코드의 성능을 향상시키기 위해 최적화 작업을 수행합니다. 예를 들어, 반복문의 개수를 줄이거나 특정한 데이터 구조를 사용하여 처리 속도를 향상시킬 수 있습니다.</p></li>
 </ol>
+</section>
+<section id="id5">
+<h2>프로젝트 결과<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>이 프로젝트는 파일로부터 데이터를 읽어 연결 리스트에 저장한 후, 리스트를 역순으로 출력하는 프로그램입니다.</p>
+<section id="code">
+<h3>code<a class="headerlink" href="#code" title="Link to this heading">#</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+
+<span class="c1">// 노드 구조체 정의</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Node</span><span class="p">;</span>
+
+<span class="c1">// 연결 리스트에 노드를 추가하는 함수</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">append</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="o">**</span><span class="n">head</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">new_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Node</span><span class="p">));</span>
+<span class="w">    </span><span class="n">new_node</span><span class="o">-&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strdup</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="n">new_node</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="o">*</span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_node</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">last</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">last</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">last</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_node</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 연결 리스트를 역순으로 출력하는 재귀 함수</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">printReverse</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">printReverse</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Windows에서 getline 함수 대체</span>
+<span class="kt">ssize_t</span><span class="w"> </span><span class="nf">get_line</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">lineptr</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">stream</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">feof</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!*</span><span class="n">lineptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="o">*</span><span class="n">lineptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="mi">128</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!*</span><span class="n">lineptr</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">128</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fgetc</span><span class="p">(</span><span class="n">stream</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">EOF</span><span class="p">;)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">len</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">size_t</span><span class="w"> </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">128</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">new_ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realloc</span><span class="p">(</span><span class="o">*</span><span class="n">lineptr</span><span class="p">,</span><span class="w"> </span><span class="n">new_size</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">new_ptr</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">            </span><span class="o">*</span><span class="n">lineptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_ptr</span><span class="p">;</span>
+<span class="w">            </span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_size</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">lineptr</span><span class="p">)[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">(</span><span class="o">*</span><span class="n">lineptr</span><span class="p">)[</span><span class="n">len</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 메인 함수</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">file</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">read</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;C:</span><span class="se">\\</span><span class="s">c code</span><span class="se">\\</span><span class="s">text</span><span class="se">\\</span><span class="s">input.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;파일을 열 수 없습니다.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_line</span><span class="p">(</span><span class="o">&amp;</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">append</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;역순 출력:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printReverse</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 메모리 해제</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">temp</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">        </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">temp</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
+<span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>code 결과<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>주어진 파일 ‘input.txt’의 내용이 역순으로 출력되는 것입니다.</p>
+<p>input.txt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span>
+<span class="n">this</span>
+<span class="ow">is</span>
+<span class="n">a</span> <span class="n">file</span>
+<span class="n">good</span>
+<span class="n">day</span>
+<span class="n">pes</span>
+<span class="mi">202121006</span>
+</pre></div>
+</div>
+<p>프로그램을 실행하면 출력 결과는 다음과 같습니다.</p>
+<p>결과</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">202121006</span>
+<span class="n">pes</span>
+<span class="n">day</span>
+<span class="n">good</span>
+<span class="n">a</span> <span class="n">file</span>
+<span class="ow">is</span>
+<span class="n">this</span>
+<span class="n">hello</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>동작 과정 요약<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>파일 열기: main 함수에서 input.txt 파일을 엽니다. 파일을 열 수 없으면 오류 메시지를 출력하고 종료합니다.</p></li>
+<li><p>파일 읽기: get_line 함수를 사용하여 파일에서 한 줄씩 읽어옵니다.</p></li>
+<li><p>노드 추가: 읽어온 각 줄을 append 함수를 사용하여 연결 리스트에 추가합니다.</p></li>
+<li><p>역순 출력: printReverse 함수를 사용하여 연결 리스트의 데이터를 역순으로 출력합니다.</p></li>
+<li><p>메모리 해제: 연결 리스트의 노드와 데이터를 해제하여 메모리 누수를 방지합니다.</p></li>
+</ol>
+</section>
+<section id="id8">
+<h3>코드 설명<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>‘Node’ 구조체: 연결 리스트의 각 노드를 정의합니다. 각 노드는 문자열 데이터를 저장하고, 다음 노드를 가리키는 포인터를 가집니다.</p></li>
+<li><p>‘append’ 함수: 새로운 노드를 생성하여 연결 리스트의 끝에 추가합니다.</p></li>
+<li><p>‘printReverse’ 함수: 재귀적으로 호출되어 연결 리스트의 데이터를 역순으로 출력합니다.</p></li>
+<li><p>‘get_line’ 함수: 파일에서 한 줄씩 읽어오는 기능을 구현합니다. getline 함수를 사용할 수 없는 환경을 고려한 대체 함수입니다.</p></li>
+<li><p>‘main’ 함수: 파일을 열고 데이터를 읽어 연결 리스트에 저장한 후, 역순으로 출력하고 메모리를 해제합니다.</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>주의사항<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>파일 경로는 코드에 하드코딩되어 있으므로, 실행 환경에 맞게 파일 경로를 수정해야 합니다.</p></li>
+<li><p>프로그램이 성공적으로 실행되기 위해서는 input.txt 파일이 존재하고, 읽기 권한이 있어야 합니다.</p></li>
+</ul>
+<p>이 프로젝트는 연결 리스트의 기본적인 사용법과 재귀 호출을 이용한 역순 출력 방법을 학습하는 데 유용합니다.</p>
+</section>
+</section>
+<section id="id10">
+<h2>개선 방향<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>이 프로젝트를 개선하기 위해 다음과 같은 방향을 고려할 수 있습니다</p>
+<ol class="arabic simple">
+<li><p>파일 경로의 유연성:</p></li>
+</ol>
+<ul class="simple">
+<li><p>현재 파일 경로가 코드에 하드코딩되어 있어, 다른 파일을 읽으려면 코드 수정이 필요합니다. 사용자로부터 파일 경로를 입력받도록 수정하면 유연성이 증가합니다.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>에러 처리 개선:</p></li>
+</ol>
+<ul class="simple">
+<li><p>파일이 존재하지 않거나 읽기 권한이 없는 경우에 대한 에러 처리를 개선합니다. 예외 처리를 추가하여 오류 메시지를 사용자에게 명확히 전달합니다.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>메모리 관리:</p></li>
+</ol>
+<ul class="simple">
+<li><p>현재 코드에서는 연결 리스트의 메모리를 수동으로 해제하고 있습니다. 이를 자동으로 처리할 수 있는 구조를 도입하여 메모리 누수 가능성을 줄입니다.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>코드 구조 개선:</p></li>
+</ol>
+<ul class="simple">
+<li><p>함수들을 모듈화하고, 파일 입출력, 리스트 조작, 출력 등을 별도의 함수로 분리하여 가독성과 유지보수성을 높입니다.</p></li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p>테스트 케이스 추가:</p></li>
+</ol>
+<ul class="simple">
+<li><p>다양한 입력에 대해 프로그램이 정상적으로 동작하는지 확인하는 테스트 케이스를 작성합니다. 이를 통해 예기치 않은 입력 상황에 대한 처리가 제대로 되는지 확인할 수 있습니다.</p></li>
+</ul>
+<ol class="arabic simple" start="6">
+<li><p>입력 데이터 검증:</p></li>
+</ol>
+<ul class="simple">
+<li><p>입력 데이터가 올바른 형식인지 확인하고, 부적절한 데이터에 대해 경고하거나 처리를 중지하는 로직을 추가합니다.</p></li>
+</ul>
+<ol class="arabic simple" start="7">
+<li><p>다국어 지원:</p></li>
+</ol>
+<ul class="simple">
+<li><p>출력 메시지와 오류 메시지를 다국어로 지원하여, 다양한 언어를 사용하는 사용자가 편리하게 사용할 수 있도록 합니다.</p></li>
+</ul>
+<ol class="arabic simple" start="8">
+<li><p>유닛 테스트 추가:</p></li>
+</ol>
+<ul class="simple">
+<li><p>각 함수에 대해 유닛 테스트를 작성하여 코드의 안정성을 확보합니다.</p></li>
+</ul>
+<ol class="arabic simple" start="9">
+<li><p>메모리 사용 최적화:</p></li>
+</ol>
+<ul class="simple">
+<li><p>연결 리스트의 데이터 복사 및 메모리 할당 방식을 최적화하여 성능을 개선할 수 있습니다.</p></li>
+</ul>
+<section id="id11">
+<h3>개선 사항 요약<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>사용자로부터 파일 경로를 입력받아 유연성을 높임</p></li>
+<li><p>메모리 할당 실패 시 오류 처리 추가</p></li>
+<li><p>메모리 해제 함수를 분리하여 코드의 가독성 및 재사용성 향상</p></li>
+<li><p>프로그램 시작 시 파일 경로 입력을 받도록 개선하여 하드코딩된 파일 경로 문제 해결</p></li>
+</ul>
+<p>이와 같은 개선을 통해 프로그램의 유연성, 안정성, 유지보수성을 향상시킬 수 있습니다.</p>
+</section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -707,6 +952,18 @@ printReverse() : 재귀를 사용하여 연결 리스트에 역순으로 출력�
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">주요기능</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">사용기술</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">진행 계획</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">프로젝트 결과</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code">code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">code 결과</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">동작 과정 요약</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">코드 설명</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">주의사항</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">개선 방향</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">개선 사항 요약</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
