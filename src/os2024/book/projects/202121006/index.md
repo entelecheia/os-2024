@@ -16,11 +16,11 @@ reverse는 역순 프로그램으로 지정된 입력 파일에서 데이터를 
 
 
 ## 사용기술 
-fopen(), getline(), fclose() : 입력 파일을 읽고 출력하는 코드를 작성하는 언어
-fprintf() : 화면에 출력하기 위한 언어
-fgets() : 파일에서 한 줄씩 읽어드리는 언어
-append() : 연결 리스트에 추가하는 언어
-printReverse() : 재귀를 사용하여 연결 리스트에 역순으로 출력하는 언어
+- fopen(), getline(), fclose() : 입력 파일을 읽고 출력하는 코드를 작성하는 언어
+- fprintf() : 화면에 출력하기 위한 언어
+- fgets() : 파일에서 한 줄씩 읽어드리는 언어
+- append() : 연결 리스트에 추가하는 언어
+- printReverse() : 재귀를 사용하여 연결 리스트에 역순으로 출력하는 언어
 
 
 ## 진행 계획
@@ -38,4 +38,214 @@ printReverse() : 재귀를 사용하여 연결 리스트에 역순으로 출력�
 5. 테스트: 작성한 코드를 테스트하여 정확성과 성능을 확인합니다. 다양한 입력값에 대해 코드가 제대로 동작하는지를 검증합니다.
 
 6. 최적화(Optional): 필요한 경우 코드의 성능을 향상시키기 위해 최적화 작업을 수행합니다. 예를 들어, 반복문의 개수를 줄이거나 특정한 데이터 구조를 사용하여 처리 속도를 향상시킬 수 있습니다.
+
+
+## 프로젝트 결과
+
+이 프로젝트는 파일로부터 데이터를 읽어 연결 리스트에 저장한 후, 리스트를 역순으로 출력하는 프로그램입니다.
+
+### code
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// 노드 구조체 정의
+typedef struct Node {
+    char *data;
+    struct Node *next;
+} Node;
+
+// 연결 리스트에 노드를 추가하는 함수
+void append(Node **head, char *data) {
+    Node *new_node = (Node *)malloc(sizeof(Node));
+    new_node->data = strdup(data);
+    new_node->next = NULL;
+
+    if (*head == NULL) {
+        *head = new_node;
+        return;
+    }
+
+    Node *last = *head;
+    while (last->next != NULL) {
+        last = last->next;
+    }
+    last->next = new_node;
+}
+
+// 연결 리스트를 역순으로 출력하는 재귀 함수
+void printReverse(Node *node) {
+    if (node == NULL) {
+        return;
+    }
+    printReverse(node->next);
+    printf("%s", node->data);
+}
+
+// Windows에서 getline 함수 대체
+ssize_t get_line(char **lineptr, size_t *n, FILE *stream) {
+    size_t len = 0;
+    if (feof(stream)) return -1;
+    if (!*lineptr) {
+        *lineptr = malloc(128);
+        if (!*lineptr) return -1;
+        *n = 128;
+    }
+
+    for (int c; (c = fgetc(stream)) != EOF;) {
+        if (len + 1 >= *n) {
+            size_t new_size = *n + 128;
+            char *new_ptr = realloc(*lineptr, new_size);
+            if (!new_ptr) return -1;
+            *lineptr = new_ptr;
+            *n = new_size;
+        }
+        (*lineptr)[len++] = c;
+        if (c == '\n') break;
+    }
+    (*lineptr)[len] = '\0';
+    return len;
+}
+
+// 메인 함수
+int main() {
+    FILE *file;
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    Node *head = NULL;
+
+    file = fopen("C:\\c code\\text\\input.txt", "r");
+    if (file == NULL) {
+        fprintf(stderr, "파일을 열 수 없습니다.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    while ((read = get_line(&line, &len, file)) != -1) {
+        append(&head, line);
+    }
+
+    fclose(file);
+    if (line) {
+        free(line);
+    }
+
+    printf("역순 출력:\n");
+    printReverse(head);
+
+    // 메모리 해제
+    Node *temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp->data);
+        free(temp);
+    }
+
+    return 0;
+}
+```
+
+### code 결과
+주어진 파일 'input.txt'의 내용이 역순으로 출력되는 것입니다.
+
+input.txt
+```
+hello
+this
+is
+a file
+good
+day
+pes
+202121006
+```
+
+프로그램을 실행하면 출력 결과는 다음과 같습니다.
+
+결과
+```
+202121006
+pes
+day
+good
+a file
+is
+this
+hello
+```
+
+### 동작 과정 요약
+1. 파일 열기: main 함수에서 input.txt 파일을 엽니다. 파일을 열 수 없으면 오류 메시지를 출력하고 종료합니다.
+2. 파일 읽기: get_line 함수를 사용하여 파일에서 한 줄씩 읽어옵니다.
+3. 노드 추가: 읽어온 각 줄을 append 함수를 사용하여 연결 리스트에 추가합니다.
+4. 역순 출력: printReverse 함수를 사용하여 연결 리스트의 데이터를 역순으로 출력합니다.
+5. 메모리 해제: 연결 리스트의 노드와 데이터를 해제하여 메모리 누수를 방지합니다.
+
+
+### 코드 설명
+- 'Node' 구조체: 연결 리스트의 각 노드를 정의합니다. 각 노드는 문자열 데이터를 저장하고, 다음 노드를 가리키는 포인터를 가집니다.
+- 'append' 함수: 새로운 노드를 생성하여 연결 리스트의 끝에 추가합니다.
+- 'printReverse' 함수: 재귀적으로 호출되어 연결 리스트의 데이터를 역순으로 출력합니다.
+- 'get_line' 함수: 파일에서 한 줄씩 읽어오는 기능을 구현합니다. getline 함수를 사용할 수 없는 환경을 고려한 대체 함수입니다.
+- 'main' 함수: 파일을 열고 데이터를 읽어 연결 리스트에 저장한 후, 역순으로 출력하고 메모리를 해제합니다.
+
+### 주의사항
+- 파일 경로는 코드에 하드코딩되어 있으므로, 실행 환경에 맞게 파일 경로를 수정해야 합니다.
+- 프로그램이 성공적으로 실행되기 위해서는 input.txt 파일이 존재하고, 읽기 권한이 있어야 합니다.
+
+
+이 프로젝트는 연결 리스트의 기본적인 사용법과 재귀 호출을 이용한 역순 출력 방법을 학습하는 데 유용합니다.
+
+## 개선 방향
+
+이 프로젝트를 개선하기 위해 다음과 같은 방향을 고려할 수 있습니다
+1. 파일 경로의 유연성:
+- 현재 파일 경로가 코드에 하드코딩되어 있어, 다른 파일을 읽으려면 코드 수정이 필요합니다. 사용자로부터 파일 경로를 입력받도록 수정하면 유연성이 증가합니다.
+
+2. 에러 처리 개선:
+- 파일이 존재하지 않거나 읽기 권한이 없는 경우에 대한 에러 처리를 개선합니다. 예외 처리를 추가하여 오류 메시지를 사용자에게 명확히 전달합니다.
+
+3. 메모리 관리:
+- 현재 코드에서는 연결 리스트의 메모리를 수동으로 해제하고 있습니다. 이를 자동으로 처리할 수 있는 구조를 도입하여 메모리 누수 가능성을 줄입니다.
+
+4. 코드 구조 개선:
+- 함수들을 모듈화하고, 파일 입출력, 리스트 조작, 출력 등을 별도의 함수로 분리하여 가독성과 유지보수성을 높입니다.
+
+5. 테스트 케이스 추가:
+- 다양한 입력에 대해 프로그램이 정상적으로 동작하는지 확인하는 테스트 케이스를 작성합니다. 이를 통해 예기치 않은 입력 상황에 대한 처리가 제대로 되는지 확인할 수 있습니다.
+
+6. 입력 데이터 검증:
+- 입력 데이터가 올바른 형식인지 확인하고, 부적절한 데이터에 대해 경고하거나 처리를 중지하는 로직을 추가합니다.
+
+7. 다국어 지원:
+- 출력 메시지와 오류 메시지를 다국어로 지원하여, 다양한 언어를 사용하는 사용자가 편리하게 사용할 수 있도록 합니다.
+
+8. 유닛 테스트 추가:
+- 각 함수에 대해 유닛 테스트를 작성하여 코드의 안정성을 확보합니다.
+
+9. 메모리 사용 최적화:
+- 연결 리스트의 데이터 복사 및 메모리 할당 방식을 최적화하여 성능을 개선할 수 있습니다.
+
+
+### 개선 사항 요약
+- 사용자로부터 파일 경로를 입력받아 유연성을 높임
+- 메모리 할당 실패 시 오류 처리 추가
+- 메모리 해제 함수를 분리하여 코드의 가독성 및 재사용성 향상
+- 프로그램 시작 시 파일 경로 입력을 받도록 개선하여 하드코딩된 파일 경로 문제 해결
+
+
+
+이와 같은 개선을 통해 프로그램의 유연성, 안정성, 유지보수성을 향상시킬 수 있습니다.
+
+
+
+
+
+
+
+
+
+
 
