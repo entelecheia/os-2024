@@ -1,0 +1,103 @@
+# 프로그램 코드 
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// 노드 구조체 정의
+typedef struct Node {
+    char *data;
+    struct Node *next;
+} Node;
+
+// 연결 리스트에 노드를 추가하는 함수
+void append(Node **head, char *data) {
+    Node *new_node = (Node *)malloc(sizeof(Node));
+    new_node->data = strdup(data);
+    new_node->next = NULL;
+
+    if (*head == NULL) {
+        *head = new_node;
+        return;
+    }
+
+    Node *last = *head;
+    while (last->next != NULL) {
+        last = last->next;
+    }
+    last->next = new_node;
+}
+
+// 연결 리스트를 역순으로 출력하는 재귀 함수
+void printReverse(Node *node) {
+    if (node == NULL) {
+        return;
+    }
+    printReverse(node->next);
+    printf("%s", node->data);
+}
+
+// Windows에서 getline 함수 대체
+ssize_t get_line(char **lineptr, size_t *n, FILE *stream) {
+    size_t len = 0;
+    if (feof(stream)) return -1;
+    if (!*lineptr) {
+        *lineptr = malloc(128);
+        if (!*lineptr) return -1;
+        *n = 128;
+    }
+
+    for (int c; (c = fgetc(stream)) != EOF;) {
+        if (len + 1 >= *n) {
+            size_t new_size = *n + 128;
+            char *new_ptr = realloc(*lineptr, new_size);
+            if (!new_ptr) return -1;
+            *lineptr = new_ptr;
+            *n = new_size;
+        }
+        (*lineptr)[len++] = c;
+        if (c == '\n') break;
+    }
+    (*lineptr)[len] = '\0';
+    return len;
+}
+
+// 메인 함수
+int main() {
+    FILE *file;
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    Node *head = NULL;
+
+    file = fopen("C:\\c code\\text\\input.txt", "r");
+    if (file == NULL) {
+        fprintf(stderr, "파일을 열 수 없습니다.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    while ((read = get_line(&line, &len, file)) != -1) {
+        append(&head, line);
+    }
+
+    fclose(file);
+    if (line) {
+        free(line);
+    }
+
+    printf("역순 출력:\n");
+    printReverse(head);
+
+    // 메모리 해제
+    Node *temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp->data);
+        free(temp);
+    }
+
+    return 0;
+}
+```

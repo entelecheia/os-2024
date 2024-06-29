@@ -92,29 +92,30 @@ parts:
       - file: projects/index
         sections:
           - file: projects/202121006/index
-            sections:
-              - file: projects/202121006/hw-wk02
-              - file: projects/202121006/hw-wk03
-              - file: projects/202121006/hw-wk04
-              - file: projects/202121006/hw-wk06
-              - file: projects/202121006/hw-wk07
+            # sections:
+            #   - file: projects/202121006/hw-wk02
+            #   - file: projects/202121006/hw-wk03
+            #   - file: projects/202121006/hw-wk04
+            #   - file: projects/202121006/hw-wk06
+            #   - file: projects/202121006/hw-wk07
           - file: projects/202121010/index
-            sections:
-              - file: projects/202121010/homework
+            # sections:
+            #   - file: projects/202121010/homework
           - file: projects/202221014/index
             sections:
-              - file: projects/202221014/hw-wk02
-              - file: projects/202221014/hw-wk03
-              - file: projects/202221014/hw-wk04
-              - file: projects/202221014/hw-wk06
-          - file: projects/202321007/index
+              # - file: projects/202221014/hw-wk02
+              # - file: projects/202221014/hw-wk03
+              # - file: projects/202221014/hw-wk04
+              # - file: projects/202221014/hw-wk06
+              - file: projects/202221014/project_manual
+          # - file: projects/202321007/index
           - file: projects/202321010/index
           - file: projects/202321017/index
-            sections:
-              - file: projects/202321017/hw-wk02
-              - file: projects/202321017/hw-wk03
-              - file: projects/202321017/hw-wk04
-              - file: projects/202321017/hw-wk06
+            # sections:
+            #   - file: projects/202321017/hw-wk02
+            #   - file: projects/202321017/hw-wk03
+            #   - file: projects/202321017/hw-wk04
+            #   - file: projects/202321017/hw-wk06
       - file: projects/contents/index
         sections:
           - file: projects/contents/utilities
