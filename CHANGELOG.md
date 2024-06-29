@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.8.0 (2024-06-29)
+
+### Feature
+
+* Initialize project directory of 202321017 ([`4ddeb5a`](https://github.com/chu-aie/os-2024/commit/4ddeb5adc56da032e5252c3cdfa98851085fa15c))
+
 ## v0.7.0 (2024-06-11)
 
 ### Feature
