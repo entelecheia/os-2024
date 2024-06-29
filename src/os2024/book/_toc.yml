@@ -108,7 +108,7 @@ parts:
               # - file: projects/202221014/hw-wk04
               # - file: projects/202221014/hw-wk06
               - file: projects/202221014/project_manual
-          - file: projects/202321007/index
+          # - file: projects/202321007/index
           - file: projects/202321010/index
           - file: projects/202321017/index
             # sections:
