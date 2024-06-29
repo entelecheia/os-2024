@@ -1,5 +1,6 @@
-# 1. 디렉토리 구조
-```{diractory}
+## 1. 디렉토리 구조
+
+```
 /home/qhddybuntu/workspace/projects/os-2024/book/projects/202221014
 └── kv_store
     ├── src
@@ -11,8 +12,9 @@
     └── Makefile
 ```
 
-## 1.1 디렉토리 생성
-```{bash}
+### 1.1 디렉토리 생성
+
+```bash
 cd /home/qhddybuntu/workspace/projects/os-2024/book/projects/202221014
 mkdir kv_store
 cd kv_store
@@ -20,9 +22,11 @@ mkdir src build
 touch src/main.c src/kv_store.h src/kv_store.c database.txt Makefile
 ```
 
-# 2. 프로그램 작성
+## 2. 프로그램 작성
 
-```{main.c}
+> main.c
+
+```c
 #include <stdio.h>    // 표준 입출력 라이브러리
 #include <stdlib.h>   // 표준 라이브러리 (메모리 할당, 변환 등)
 #include <string.h>   // 문자열 처리 라이브러리
@@ -71,7 +75,7 @@ int main() {
     if (load_db(&kv_head) == -1) {              // 데이터베이스 로드
         printf("Failed to load database\n");    // 로드 실패 시 메시지 출력
     }
-    
+
     char command[256];                          // 명령어를 저장할 배열
     while (1) {
         printf("cv> ");                         // 프롬프트 출력
@@ -79,17 +83,19 @@ int main() {
         command[strcspn(command, "\n")] = 0;    // 입력된 명령어에서 개행문자 제거
         execute_command(command);               // 명령어 실행
     }
-    
+
     if (save_db(kv_head) == -1) {               // 데이터베이스 저장
         printf("Failed to save database\n");    // 저장 실패 시 메시지 출력
     }
-    
+
     free_kv(kv_head);                           // 메모리 해제
     return 0;
 }
 ```
 
-```{kv_store.c}
+> kv_store.c
+
+```c
 #include "kv_store.h" // kv_store의 함수와 구조체 선언 헤더 파일
 #include <stdio.h>    // 표준 입출력 라이브러리
 #include <stdlib.h>   // 표준 라이브러리 (메모리 할당, 변환 등)
@@ -196,7 +202,9 @@ int save_db(KeyValue* head) {
 }
 ```
 
-```{kv_store.h}
+> kv_store.h
+
+```c
 #ifndef KV_STORE_H
 #define KV_STORE_H
 
@@ -225,61 +233,63 @@ int save_db(KeyValue* head);                       // 데이터베이스 저장
 #endif
 ```
 
-```{Makefile}
-# 컴파일러 설정
-CC = gcc                            # 사용할 컴파일러
-CFLAGS = -Wall -Wextra -std=c99     # 컴파일 옵션: 모든 경고 표시, C99 표준 사용
+```makefile
+## 컴파일러 설정
+CC = gcc                            ## 사용할 컴파일러
+CFLAGS = -Wall -Wextra -std=c99     ## 컴파일 옵션: 모든 경고 표시, C99 표준 사용
 
-# 소스 파일 및 오브젝트 파일 설정
-SRC = src/main.c src/kv_store.c     # 소스 파일 목록
-OBJ = $(SRC:.c=.o)                  # 오브젝트 파일 목록 (.c를 .o로 대체)
+## 소스 파일 및 오브젝트 파일 설정
+SRC = src/main.c src/kv_store.c     ## 소스 파일 목록
+OBJ = $(SRC:.c=.o)                  ## 오브젝트 파일 목록 (.c를 .o로 대체)
 
-# 타겟 설정
-TARGET = kv_store                   # 생성할 실행 파일 이름
+## 타겟 설정
+TARGET = kv_store                   ## 생성할 실행 파일 이름
 
-# 기본 타겟
+## 기본 타겟
 all: $(TARGET)
 
-# 실행 파일 생성 규칙
+## 실행 파일 생성 규칙
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
-# 오브젝트 파일 생성 규칙
+## 오브젝트 파일 생성 규칙
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# clean 타겟: 생성된 파일들 삭제
+## clean 타겟: 생성된 파일들 삭제
 clean:
 	rm -f $(OBJ) $(TARGET)
 
-# .PHONY 타겟: 실제 파일이 아닌 타겟 설정
+## .PHONY 타겟: 실제 파일이 아닌 타겟 설정
 .PHONY: all clean
 ```
 
-# 3. 빌드 및 실행
+## 3. 빌드 및 실행
 
-```{build}
-# 프로젝트 디렉토리 이동
+```bash
+## 프로젝트 디렉토리 이동
 cd /home/qhddybuntu/workspace/projects/os-2024/book/projects/202221014/kv_store
 
-# Makefile를 사용하여 프로젝트 빌드
+## Makefile를 사용하여 프로젝트 빌드
 make
 
-# 프로그램 실행
+## 프로그램 실행
 ./kv_store
 ```
 
-# 4. 실행 예제
+## 4. 실행 예제
 
 **4.1 Key-Value 쌍 삽입**
-```{bash}
+
+```bash
 cv p,1,Gyubeom
 cv p,8,Apple
 cv p,50,Melon
 ```
 
 **4.2 키 값 검색**
-```{bash}
+
+```bash
 cv g,1
 1,Gyubeom
 cv g,8
@@ -289,21 +299,24 @@ cv g,50
 ```
 
 **4.3 Key-Value 쌍 삭제**
-```{bash}
+
+```bash
 cv d,8
 cv g,8
 K not found (K=8)
 ```
 
 **4.4 모든 Key-Value 쌍 출력**
-```{bash}
+
+```bash
 cv a
 1,Gyubeom
 50,Melon
 ```
 
 **4.5 추가 Key-Value 쌍 삽입 및 출력**
-```{bash}
+
+```bash
 cv p,2,Banana
 cv p,3,Grape
 cv a
@@ -314,7 +327,8 @@ cv a
 ```
 
 **4.6 데이터베이스 지우기 및 확인**
-```{bash}
+
+```bash
 cv c
 database is empty
 cv a
@@ -322,12 +336,14 @@ database is empty
 ```
 
 **4.7 프로그램 종료**
-```{bash}
+
+```bash
 exit
 ```
 
-## 전체 예제 세션
-```{bash}
+### 전체 예제 세션
+
+```bash
 cv> cv p,1,Gyubeom
 cv> cv p,8,Aplle
 cv> cv p,50,Melon
