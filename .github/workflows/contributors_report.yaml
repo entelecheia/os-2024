@@ -10,6 +10,9 @@ on:
     branches:
       - book
 
+permissions:
+  contents: write
+
 jobs:
   generate_report:
     runs-on: ubuntu-latest
