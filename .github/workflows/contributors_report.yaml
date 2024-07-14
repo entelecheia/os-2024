@@ -6,6 +6,9 @@ on:
     - cron: "0 0 * * 0"
   workflow_dispatch:
     # Also allow manual triggering
+  push:
+    branches:
+      - book
 
 jobs:
   generate_report:
@@ -46,4 +49,4 @@ jobs:
           git add book/about/contributors.png
           git add book/about/contributors.md
           git commit -m "Update contributors report" || echo "No changes to commit"
-          git push
+          git push origin book
