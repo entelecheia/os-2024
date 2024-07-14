@@ -2,6 +2,16 @@
 cmd = "echo 'Hello World'"
 help = "Put your extra tasks here"
 
-[tool.poe.tasks.generate_toc]
+[tool.poe.tasks.generate-toc]
 cmd = "python3 .github/scripts/autotoc.py"
 help = "Generate the table of contents"
+
+[tool.poe.tasks.install-contributors-requirements]
+shell = """
+  pip install -r .github/scripts/requirements.txt
+"""
+help = "install jupyter-book"
+
+[tool.poe.tasks.generate-contributors]
+cmd = "python3 .github/scripts/contributors.py"
+help = "Generate the contributors list"
