@@ -6,7 +6,7 @@
 
 ### 이영준
 
-```{image} images/yjlee.jpeg
+```{image} https://entelecheia.me/assets/img/profile-200x220.jpeg
 :width: 100
 :align: left
 ```

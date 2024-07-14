@@ -136,6 +136,7 @@ parts:
     chapters:
       - file: syllabus/index
       - file: about/index
+      - file: about/contributors
   - caption: Links
     chapters:
       - url: https://halla.ai
