@@ -37,7 +37,7 @@ jobs:
           GITHUB_OWNER: ${{ github.repository_owner }}
           GITHUB_REPO: ${{ github.event.repository.name }}
           CONTRIBUTION_START_DATE: "2024-03-01" # Adjust these dates as needed
-          CONTRIBUTION_END_DATE: "2025-06-22" # Adjust these dates as needed
+          CONTRIBUTION_END_DATE: "2024-06-22" # Adjust these dates as needed
           CONTRIBUTION_FREQUENCY: "W" # 'W' for weekly, 'M' for monthly
           CONTRIBUTION_FIGURE_PATH: "src/os2024/book/about/contributors.png"
           CONTRIBUTION_MARKDOWN_PATH: "src/os2024/book/about/contributors.md"
