@@ -1,0 +1,49 @@
+name: Generate Contributors Report
+
+on:
+  schedule:
+    # Run this workflow weekly on Sunday at 00:00 UTC
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+    # Also allow manual triggering
+
+jobs:
+  generate_report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9" # Specify the Python version
+
+      - name: Install Python dependencies
+        run: |
+          pip install -r .github/scripts/requirements.txt
+
+      - name: Run the Contributors Generation Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPO: ${{ github.event.repository.name }}
+          CONTRIBUTION_START_DATE: "2024-03-01" # Adjust these dates as needed
+          CONTRIBUTION_END_DATE: "2025-06-22" # Adjust these dates as needed
+          CONTRIBUTION_FREQUENCY: "W" # 'W' for weekly, 'M' for monthly
+          CONTRIBUTION_FIGURE_PATH: "book/about/contributors.png"
+          CONTRIBUTION_MARKDOWN_PATH: "book/about/contributors.md"
+          CONTRIBUTION_EXCLUDE_GITHUB_IDS: "entelecheia,github-actions[bot]" # GitHub user IDs to exclude from the report
+        run: |
+          python .github/scripts/contributors.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add book/about/contributors.png
+          git add book/about/contributors.md
+          git commit -m "Update contributors report" || echo "No changes to commit"
+          git push
