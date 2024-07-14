@@ -1,12 +1,12 @@
 import argparse
-import requests
-import matplotlib.pyplot as plt
-import seaborn as sns
 import os
-import pandas as pd
-from collections import defaultdict
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from datetime import datetime
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import requests
+import seaborn as sns
 
 
 def parse_args():
@@ -98,10 +98,7 @@ def process_commits(commits, frequency, excluded_ids):
                         period = date.strftime("%Y-%m")
                     contributions[period][author_id] += 1
     sorted_periods = sorted(contributions.keys())
-    sorted_contributions = OrderedDict(
-        (period, contributions[period]) for period in sorted_periods
-    )
-    return sorted_contributions
+    return OrderedDict((period, contributions[period]) for period in sorted_periods)
 
 
 def save_chart(contributions, figure_path):
