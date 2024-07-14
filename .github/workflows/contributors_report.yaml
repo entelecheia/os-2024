@@ -36,8 +36,8 @@ jobs:
           CONTRIBUTION_START_DATE: "2024-03-01" # Adjust these dates as needed
           CONTRIBUTION_END_DATE: "2025-06-22" # Adjust these dates as needed
           CONTRIBUTION_FREQUENCY: "W" # 'W' for weekly, 'M' for monthly
-          CONTRIBUTION_FIGURE_PATH: "book/about/contributors.png"
-          CONTRIBUTION_MARKDOWN_PATH: "book/about/contributors.md"
+          CONTRIBUTION_FIGURE_PATH: "src/os2024/book/about/contributors.png"
+          CONTRIBUTION_MARKDOWN_PATH: "src/os2024/book/about/contributors.md"
           CONTRIBUTION_EXCLUDE_GITHUB_IDS: "entelecheia,github-actions[bot]" # GitHub user IDs to exclude from the report
         run: |
           python .github/scripts/contributors.py
@@ -46,7 +46,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add book/about/contributors.png
-          git add book/about/contributors.md
+          git add src/os2024/book/about/contributors.png
+          git add src/os2024/book/about/contributors.md
           git commit -m "Update contributors report" || echo "No changes to commit"
           git push origin book
