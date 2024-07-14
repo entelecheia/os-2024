@@ -2,3 +2,4 @@ matplotlib
 requests
 seaborn
 pandas
+tabulate
