@@ -1,5 +1,21 @@
 <!--next-version-placeholder-->
 
+## v0.9.0 (2024-07-14)
+
+### Feature
+
+* **contributors_report:** Add push branch trigger for 'book' ([`58660f5`](https://github.com/chu-aie/os-2024/commit/58660f50d4e3c2a6f157cbe6542a1b0c8e2fc6ba))
+* **workflows:** Add contributors report generation ([`4ee831c`](https://github.com/chu-aie/os-2024/commit/4ee831c7e5c39f3167601a176b13bcb80bee69d6))
+* **poetasks:** Add tasks for installing contributors requirements and contributors list ([`fc794c5`](https://github.com/chu-aie/os-2024/commit/fc794c578c26558f7a898944a2e33ec83fc514d1))
+* **documentation:** Add contributors list with weekly contributions ([`c44434c`](https://github.com/chu-aie/os-2024/commit/c44434c9abb9a4c0c92fcf004c1ea7b06473ed16))
+* **scripts:** Add script to generate contributors report and graphs using Git API ([`adb6631`](https://github.com/chu-aie/os-2024/commit/adb66312280b08ae7f6525e93cc50eca80a0d71f))
+* **env:** Add environment variables for GitHub contribution settings ([`6b33107`](https://github.com/chu-aie/os-2024/commit/6b33107664def66407de69456bf6dc8e777d7ad4))
+
+### Fix
+
+* **workflow:** Correct contribution end date in report configuration ([`cf84912`](https://github.com/chu-aie/os-2024/commit/cf84912ec7e2ae58df0d2d9ddf6da52a1a0a136d))
+* **contributors:** Correct axis labels in commit contributions heatmap ([`ad5b8ee`](https://github.com/chu-aie/os-2024/commit/ad5b8ee392f5c3c003f8c61c52e519ab9f94c07d))
+
 ## v0.8.0 (2024-06-29)
 
 ### Feature
