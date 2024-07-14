@@ -111,8 +111,8 @@ def save_chart(contributions, figure_path):
         df, annot=True, fmt=".0f", cmap="Blues", cbar_kws={"label": "Number of Commits"}
     )
     plt.title("Commit Contributions Heatmap")
-    plt.ylabel("Time Period")
-    plt.xlabel("Contributors (GitHub ID)")
+    plt.xlabel("Time Period")
+    plt.ylabel("Contributors (GitHub ID)")
     plt.savefig(figure_path)
 
 
