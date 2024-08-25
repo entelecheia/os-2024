@@ -1,5 +1,11 @@
 <!--next-version-placeholder-->
 
+## v0.10.0 (2024-08-25)
+
+### Feature
+
+* Update homepage URLs to os2024.jeju.ai ([`20e2a46`](https://github.com/entelecheia/os-2024/commit/20e2a46ecf4043a83b3118cdea12ceed81e2c1a5))
+
 ## v0.9.0 (2024-07-14)
 
 ### Feature
