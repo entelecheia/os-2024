@@ -44,7 +44,7 @@
 
 이 실습을 통해 Lottery 스케줄링 알고리즘의 구현과 동작 원리를 이해하고, 연결 리스트와 Makefile의 활용 방법을 익힐 수 있을 것입니다.
 
-모든 코드는 [수업 리포](https://github.com/chu-aie/os-2024/blob/main/src/ostep/cpu-sched-lottery)에서 확인할 수 있습니다.
+모든 코드는 [수업 리포](https://github.com/entelecheia/os-2024/blob/main/src/ostep/cpu-sched-lottery)에서 확인할 수 있습니다.
 
 ### lottery.c - Lottery 스케줄링 알고리즘 구현
 

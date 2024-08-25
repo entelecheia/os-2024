@@ -1,6 +1,6 @@
 # Homework: 빈 공간 관리
 
-| [빈 공간 관리](http://www.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf) | [malloc 실행](https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/vm-freespace) |
+| [빈 공간 관리](http://www.cs.wisc.edu/~remzi/OSTEP/vm-freespace.pdf) | [malloc 실행](https://github.com/entelecheia/os-2024/tree/main/src/ostep-homework/vm-freespace) |
 
 ```{note}
 본 과제는 프로젝트를 위해 생성한 본인의 개별 폴더에 제출하기 바랍니다. 제출기한은 5/15(수)입니다.

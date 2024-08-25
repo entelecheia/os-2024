@@ -4,7 +4,7 @@
 
 ## 리포 복제
 
-먼저, [os-2024](https://github.com/chu-aie/os-2024.git) 저장소를 자신의 GitHub 계정으로 복제(Fork)합니다. 복제한 저장소의 URL은 `https://github.com/your_github_id/os-2024.git`와 같은 형식이 될 것입니다.
+먼저, [os-2024](https://github.com/entelecheia/os-2024.git) 저장소를 자신의 GitHub 계정으로 복제(Fork)합니다. 복제한 저장소의 URL은 `https://github.com/your_github_id/os-2024.git`와 같은 형식이 될 것입니다.
 
 그 다음, 복제한 저장소를 로컬 컴퓨터로 클론합니다. 아래 명령을 터미널에서 실행하세요:
 
@@ -77,14 +77,14 @@ os2024
 
 ## 리포 동기화 및 프로젝트 브랜치 생성
 
-다음으로, 본인이 복제한 리포를 원본 리포([os-2024](https://github.com/chu-aie/os-2024.git))와 동기화합니다. 이를 위해 원본 리포를 `upstream`으로 추가하고, 최신 변경사항을 가져옵니다:
+다음으로, 본인이 복제한 리포를 원본 리포([os-2024](https://github.com/entelecheia/os-2024.git))와 동기화합니다. 이를 위해 원본 리포를 `upstream`으로 추가하고, 최신 변경사항을 가져옵니다:
 
 ```bash
-git remote add upstream https://github.com/chu-aie/os-2024.git \
+git remote add upstream https://github.com/entelecheia/os-2024.git \
     && git fetch upstream
 ```
 
-- `git remote add upstream https://github.com/chu-aie/os-2024.git`: 원본 리포를 `upstream`이라는 이름으로 추가합니다.
+- `git remote add upstream https://github.com/entelecheia/os-2024.git`: 원본 리포를 `upstream`이라는 이름으로 추가합니다.
 - `git fetch upstream`: `upstream` 리포의 최신 변경사항을 가져옵니다.
 
 그런 다음, 프로젝트를 위한 새 브랜치를 생성합니다. 브랜치 이름은 `your_github_id/project_patch_#` 형식으로 짓습니다. 예를 들어, GitHub 아이디가 `johndoe`이고 첫 번째 프로젝트라면 브랜치 이름은 `johndoe/project_patch_1`이 됩니다. 아래 명령을 실행하세요:

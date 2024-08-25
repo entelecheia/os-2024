@@ -8,7 +8,7 @@
 
 - 물리 메모리보다 훨씬 저렴한 하드 디스크 공간을 활용하여 가상 메모리 공간을 확장 가능
 
-![image](https://github.com/chu-aie/os-2024/assets/133697595/798ba7ee-3772-4b69-b7da-04dd624c5d39)
+![image](https://github.com/entelecheia/os-2024/assets/133697595/798ba7ee-3772-4b69-b7da-04dd624c5d39)
 
 스왑 공간 사용 방식 - 가상 메모리 공간이 부족하면 사용하지 않는 페이지를 스왑 공간으로 백업하고, 필요하면 다시 메모리로 불러온다.
 

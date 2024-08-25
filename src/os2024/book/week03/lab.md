@@ -48,7 +48,7 @@ Makefile:
 
 ## 실습
 
-모든 코드는 [수업 리포](https://github.com/chu-aie/os-2024/blob/main/src/ostep/cpu-api)에서 확인할 수 있습니다.
+모든 코드는 [수업 리포](https://github.com/entelecheia/os-2024/blob/main/src/ostep/cpu-api)에서 확인할 수 있습니다.
 
 ### p1.c - 프로세스 생성 기초
 
