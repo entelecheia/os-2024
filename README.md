@@ -18,7 +18,7 @@
 [course-url]: https://course.entelecheia.ai
 [lecture-img]: https://img.shields.io/badge/lecture-entelecheia.ai-blue
 [lecture-url]: https://lecture.entelecheia.ai
-[codecov-image]: https://codecov.io/gh/entelecheia/os-2024/branch/main/graph/badge.svg?token=WvzaewFR3I
+[codecov-image]: https://codecov.io/gh/entelecheia/os-2024/branch/main/graph/badge.svg?token=e6DMbOez1Q
 [codecov-url]: https://codecov.io/gh/entelecheia/os-2024
 [pypi-image]: https://img.shields.io/pypi/v/os2024
 [license-image]: https://img.shields.io/github/license/entelecheia/os-2024
