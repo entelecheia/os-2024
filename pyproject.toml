@@ -4,8 +4,8 @@ version = "0.9.0"
 description = "Operating Systems 2024 Class"
 authors = ["Young Joon Lee <yj.lee@chu.ac.kr>"]
 license = "CC-BY-4.0"
-homepage = "https://os2024.halla.ai"
-repository = "https://github.com/chu-aie/os-2024"
+homepage = "https://os2024.jeju.ai"
+repository = "https://github.com/entelecheia/os-2024"
 readme = "README.md"
 packages = [{ include = "os2024", from = "src" }]
 

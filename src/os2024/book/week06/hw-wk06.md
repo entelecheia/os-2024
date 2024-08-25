@@ -1,6 +1,6 @@
 # Homework: 주소 변환의 원리
 
-| [주소 변환의 원리](http://www.cs.wisc.edu/~remzi/OSTEP/vm-mechanism.pdf) | [relocation.py 실행](https://github.com/chu-aie/os-2024/tree/main/src/ostep-homework/vm-mechanism) |
+| [주소 변환의 원리](http://www.cs.wisc.edu/~remzi/OSTEP/vm-mechanism.pdf) | [relocation.py 실행](https://github.com/entelecheia/os-2024/tree/main/src/ostep-homework/vm-mechanism) |
 
 ```{note}
 본 과제는 프로젝트를 위해 생성한 본인의 개별 폴더에 제출하기 바랍니다. 제출기한은 5/8(수)입니다.

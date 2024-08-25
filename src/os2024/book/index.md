@@ -16,20 +16,20 @@
 [course-url]: https://course.entelecheia.ai
 [lecture-img]: https://img.shields.io/badge/lecture-entelecheia.ai-blue
 [lecture-url]: https://lecture.entelecheia.ai
-[codecov-image]: https://codecov.io/gh/chu-aie/os-2024/branch/main/graph/badge.svg?token=WvzaewFR3I
-[codecov-url]: https://codecov.io/gh/chu-aie/os-2024
+[codecov-image]: https://codecov.io/gh/entelecheia/os-2024/branch/main/graph/badge.svg?token=WvzaewFR3I
+[codecov-url]: https://codecov.io/gh/entelecheia/os-2024
 [pypi-image]: https://img.shields.io/pypi/v/os2024
-[license-image]: https://img.shields.io/github/license/chu-aie/os-2024
-[license-url]: https://github.com/chu-aie/os-2024/blob/main/LICENSE
-[version-image]: https://img.shields.io/github/v/release/chu-aie/os-2024?sort=semver
-[release-date-image]: https://img.shields.io/github/release-date/chu-aie/os-2024
-[release-url]: https://github.com/chu-aie/os-2024/releases
+[license-image]: https://img.shields.io/github/license/entelecheia/os-2024
+[license-url]: https://github.com/entelecheia/os-2024/blob/main/LICENSE
+[version-image]: https://img.shields.io/github/v/release/entelecheia/os-2024?sort=semver
+[release-date-image]: https://img.shields.io/github/release-date/entelecheia/os-2024
+[release-url]: https://github.com/entelecheia/os-2024/releases
 [jupyter-book-image]: https://jupyterbook.org/en/stable/_images/badge.svg
-[repo-url]: https://github.com/chu-aie/os-2024
+[repo-url]: https://github.com/entelecheia/os-2024
 [pypi-url]: https://pypi.org/project/os2024
-[docs-url]: https://os2024.halla.ai
-[changelog]: https://github.com/chu-aie/os-2024/blob/main/CHANGELOG.md
-[contributing guidelines]: https://github.com/chu-aie/os-2024/blob/main/CONTRIBUTING.md
+[docs-url]: https://os2024.jeju.ai
+[changelog]: https://github.com/entelecheia/os-2024/blob/main/CHANGELOG.md
+[contributing guidelines]: https://github.com/entelecheia/os-2024/blob/main/CONTRIBUTING.md
 
 <!-- Links: -->
 
@@ -102,7 +102,7 @@ The following options are available:
 
 For more information and additional options, run `os2024 --help` to see the help message.
 
-## [Contributors](https://github.com/chu-aie/os-2024/contributors)
+## [Contributors](https://github.com/entelecheia/os-2024/contributors)
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

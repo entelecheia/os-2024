@@ -124,7 +124,7 @@ argc와 argv는 C 프로그램의 main() 함수가 받는 인자들입니다. �
 
 이를 그림으로 표현하면 아래에 있는 이미지와 같이 될 것이다.
 
-<img src="https://github.com/chu-aie/os-2024/assets/103018072/e40ad322-4dd4-4466-92ca-b905707ef660" width="560" height="400"/>
+<img src="https://github.com/entelecheia/os-2024/assets/103018072/e40ad322-4dd4-4466-92ca-b905707ef660" width="560" height="400"/>
 
 위에서 보이는 듯 프로세스는 '준비' 상태와 '실행' 상태를 운영체제의 정책에 따라 이동한다. 프로세스는 운영체제의 스케줄링 정책에 따라 스케줄이 되면 '준비' 상태에서 '실행' 상태로 전이한다.
 
@@ -132,11 +132,11 @@ argc와 argv는 C 프로그램의 main() 함수가 받는 인자들입니다. �
 
 두 개의 프로세스가 어떻게 전이될 수 있는지를 한번 알아보자. 먼저 실행 중인 두 프로세스가 있다고 했을 때, 각 프로세스가 오직 CPU만 사용하고 입출력을 행하지 않을 때의 프로세스 상태 추이를 나타내면 아래와 같다.
 
-<img src="https://github.com/chu-aie/os-2024/assets/103018072/c71dbbbe-6e57-49bc-9739-216054256ef5" width="750" height="500"/>
+<img src="https://github.com/entelecheia/os-2024/assets/103018072/c71dbbbe-6e57-49bc-9739-216054256ef5" width="750" height="500"/>
 
 위에서 보이다시피 첫 번째 프로세스가 어느 정도 실행한 후에 입출력을 요청한다. 그 순간 프로세스는 대기 상태가 되고 다른 프로세스에게 실행 기회를 준다. 이걸 자세히 보면 아래와 같다.
 
-<img src="https://github.com/chu-aie/os-2024/assets/103018072/1fc92971-1a49-4977-9d9f-2670a7afbeb5" width= "780" height="440"/>
+<img src="https://github.com/entelecheia/os-2024/assets/103018072/1fc92971-1a49-4977-9d9f-2670a7afbeb5" width= "780" height="440"/>
 
 순서를 자세히 살펴보면,
 
